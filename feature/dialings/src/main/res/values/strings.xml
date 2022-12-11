@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialings_title">Приемы и консультации</string>
+    <string name="status">Статус</string>
+    <string name="author">Автор</string>
+    <string name="details">Детали</string>
+    <string name="base">База клиентов</string>
+    <string name="scenario">Сценарий</string>
+    <string name="run">Текущий</string>
+    <string name="scheduled">Запланирован</string>
+    <string name="done">Завершен</string>
+    <string name="no_dialings">Приемов не назначено</string>
+    <string name="run_now">Запустить сейчас</string>
+    <string name="progress">Прогресс</string>
+    <string name="begin">начало:</string>
+    <string name="end">конец:</string>
+    <string name="period">Период работы</string>
+    <string name="time_to_success_calls">Время / успешные звонки</string>
+</resources>

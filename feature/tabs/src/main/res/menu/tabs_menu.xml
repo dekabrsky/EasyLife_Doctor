@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/call"
+        android:icon="@drawable/ic_round_call_24"
+        android:title="@string/calling"/>
+
+    <item
+        android:id="@+id/scenarios"
+        android:icon="@drawable/ic_round_question_answer_24"
+        android:title="@string/scenarios"/>
+
+    <item
+        android:id="@+id/callersBase"
+        android:icon="@drawable/ic_round_group_24"
+        android:title="@string/callers_base"/>
+
+    <item
+        android:id="@+id/stats"
+        android:icon="@drawable/ic_round_bar_chart_24"
+        android:title="@string/stats"/>
+
+</menu>

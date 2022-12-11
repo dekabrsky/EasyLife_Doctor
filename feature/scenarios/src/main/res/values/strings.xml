@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="scenarios_title">Пациенты</string>
+    <string name="set_calling">Назначить обзвон</string>
+    <string name="this_scenario_assigned_to_dialings">Этот сценарий прикреплен к обзваниваниям:</string>
+</resources>

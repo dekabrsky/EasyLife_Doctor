@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/StandardToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/white"
+        app:menu="@menu/stats_menu"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/offset_large"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/dialings_count"
+                layout="@layout/include_title_value"/>
+
+            <include
+                android:id="@+id/average_dial_length"
+                layout="@layout/include_title_value"/>
+
+            <include
+                android:id="@+id/average_dial_count"
+                layout="@layout/include_title_value"/>
+
+            <include
+                android:id="@+id/average_single_dial_length"
+                layout="@layout/include_title_value"/>
+
+            <include
+                android:id="@+id/pie_chart_layout"
+                layout="@layout/include_stats_pie_chart" />
+
+            <include
+                android:id="@+id/line_chart_layout"
+                layout="@layout/include_stats_line_chart" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

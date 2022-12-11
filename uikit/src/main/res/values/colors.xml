@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="negative">@color/red_600</color>
+    <color name="positive">@color/green_600</color>
+    <color name="black">#212324</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="orange_50">#FFF7E1</color>
+    <color name="orange_100">#70e1e5</color>
+    <color name="orange_200">#FFDD81</color>
+    <color name="orange_300">#FFD14D</color>
+    <color name="orange_400">#FFC526</color>
+    <color name="orange_500">#FFBC04</color>
+    <color name="orange_600">#70e1e5</color>
+    <color name="orange_700">#FE9B03</color>
+    <color name="orange_800">#008B8F</color>
+    <color name="orange_900">#FD6907</color>
+
+    <color name="blue_50">#E9EBFF</color>
+    <color name="blue_100">#C7CCFF</color>
+    <color name="blue_200">#9FABFF</color>
+    <color name="blue_300">#728AFF</color>
+    <color name="blue_400">#4A6DFF</color>
+    <color name="blue_500">#0051FF</color>
+    <color name="blue_600">#0047F2</color>
+    <color name="blue_700">#003CE6</color>
+    <color name="blue_800">#002FDB</color>
+    <color name="blue_900">#0012CB</color>
+
+    <color name="grey_50">#F4F4F4</color>
+    <color name="grey_100">#E9E9E9</color>
+    <color name="grey_200">#D3D3D3</color>
+    <color name="grey_300">#BDBDBD</color>
+    <color name="grey_400">#A6A7A7</color>
+    <color name="grey_500">#909192</color>
+    <color name="grey_600">#7A7B7C</color>
+    <color name="grey_700">#646566</color>
+    <color name="grey_800">#4D4F50</color>
+    <color name="grey_900">#212324</color>
+
+    <color name="red_50">#FEE7E5</color>
+    <color name="red_100">#FFC8B7</color>
+    <color name="red_200">#FFA388</color>
+    <color name="red_300">#FF7C58</color>
+    <color name="red_400">#FF5C33</color>
+    <color name="red_500">#FF3504</color>
+    <color name="red_600">#FF2F00</color>
+    <color name="red_700">#F12600</color>
+    <color name="red_800">#E31A00</color>
+    <color name="red_900">#CC0000</color>
+
+    <color name="green_50">#FAFFE7</color>
+    <color name="green_100">#F1FEC2</color>
+    <color name="green_200">#E6FE97</color>
+    <color name="green_300">#DAFC69</color>
+    <color name="green_400">#D1F93F</color>
+    <color name="green_500">#D0FF00</color>
+    <color name="green_600">#C4EB00</color>
+    <color name="green_700">#B5D300</color>
+    <color name="green_800">#A6BB00</color>
+    <color name="green_900">#8F9300</color>
+
+</resources>

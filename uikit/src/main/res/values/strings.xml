@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">ITalks</string>
+    <string name="menu_sorting">Сортировка</string>
+    <string name="menu_search">Поиск</string>
+    <string name="count_format">%s эл</string>
+    <string name="no_elements">Нет элементов</string>
+    <string name="old_first">Сначала старые</string>
+    <string name="new_first">Сначала новые</string>
+    <string name="in_alphabet_order">По алфавиту</string>
+    <string name="all">Все</string>
+    <string name="creation_date">Дата создания</string>
+    <string name="elem_count">Кол-во элементов</string>
+    <string name="info">Информация</string>
+
+    // pie chart
+    <string name="success_finished">Успешно заверш.</string>
+    <string name="scenario_not_passed">Не завершен</string>
+    <string name="not_ringing">Не дозвонились</string>
+    <string name="in_progress">В процессе</string>
+</resources>

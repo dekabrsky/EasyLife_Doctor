@@ -1,0 +1,6 @@
+package ru.dekabrsky.italks.basic.di
+
+import javax.inject.Qualifier
+
+@Qualifier
+annotation class ServerEndpoint

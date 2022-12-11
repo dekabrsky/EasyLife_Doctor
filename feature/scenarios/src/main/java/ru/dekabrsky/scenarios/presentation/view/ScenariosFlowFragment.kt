@@ -1,0 +1,68 @@
+package ru.dekabrsky.scenarios.presentation.view
+
+import androidx.fragment.app.Fragment
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.italks.basic.di.inject
+import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
+import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
+import ru.dekabrsky.italks.basic.navigation.di.installNavigation
+import ru.dekabrsky.italks.basic.navigation.router.AppRouter
+import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
+import ru.dekabrsky.scenarios.R
+import ru.dekabrsky.scenarios.presentation.presenter.ScenariosFlowPresenter
+import ru.dekabrsky.scenarios_common.presentation.model.ScenarioItemUiModel
+import toothpick.Toothpick
+import javax.inject.Inject
+
+class ScenariosFlowFragment : BasicFlowFragment(), ScenariosFlowView {
+
+    override val layoutRes = R.layout.basic_fragment_flow
+
+    override val containerId = R.id.flowContainer
+
+    override val scopeName = Scopes.SCOPE_FLOW_SCENARIOS
+
+    override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
+        object : FragmentFlowNavigator(this, router, containerId) {
+            override fun createFragment(screenKey: String?, data: Any?): Fragment? =
+                when (screenKey) {
+                    Flows.Scenarios.SCREEN_SCENARIOS_LIST -> ScenariosListFragment.newInstance()
+                    Flows.Scenarios.SCREEN_SCENARIO_DETAILS ->
+                        ScenarioDetailsFragment.newInstance(data as ScenarioItemUiModel)
+                    else -> super.createFragment(screenKey, data)
+                }
+        }
+
+    @Inject
+    @InjectPresenter
+    lateinit var presenter: ScenariosFlowPresenter
+
+    @ProvidePresenter
+    fun providePresenter() = presenter
+
+    override fun injectDependencies() {
+        Toothpick.openScopes(Scopes.SCOPE_APP, scopeName)
+            .installNavigation()
+            .inject(this)
+    }
+
+    override fun onFinallyFinished() {
+        super.onFinallyFinished()
+        Toothpick.closeScope(scopeName)
+    }
+
+    override fun onBackPressed() {
+        presenter.onBackPressed()
+    }
+
+    fun setNavBarVisibility(isVisible: Boolean) {
+        (parentFragment as TabsFlowFragment).setNavBarVisibility(isVisible)
+    }
+
+    companion object {
+        fun newInstance() = ScenariosFlowFragment()
+    }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all_dials_status">Статус звонков</string>
+    <string name="time_success_calls">Время суток / Успешные звонки</string>
+    <string name="general_stats">Профиль</string>
+    <string name="dialingsCount">Обзваниваний запущено</string>
+    <string name="averageDialLength">Средняя продолж. обзванивания</string>
+    <string name="averageDialCount">Среднее кол-во звонков за обзванивание</string>
+    <string name="averageSingleDialLength">Средняя продолжительность звонка</string>
+</resources>

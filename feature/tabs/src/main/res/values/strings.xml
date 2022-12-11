@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="calling">Приемы и консультации</string>
+    <string name="callers_base">Чаты</string>
+    <string name="scenarios">Пациенты</string>
+    <string name="stats">Профиль</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="callers_bases_title">Чаты</string>
+    <string name="callers_bases_parameters">Параметры</string>
+    <string name="this_base_assigned_to_dialings">Эта база данных прикреплена к обзваниваниям:</string>
+</resources>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/offset_medium"
+    android:layout_marginTop="@dimen/offset_medium"
+    android:background="@color/grey_50"
+    android:orientation="vertical"
+    android:padding="@dimen/offset_medium">
+
+    <TextView
+        android:id="@+id/pieChartTitle"
+        style="@style/TextView.OverLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/progress"
+        android:textColor="@color/grey_600" />
+
+    <TextView
+        android:id="@+id/successValue"
+        style="@style/TextView.H6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="70 % успешных" />
+
+    <TextView
+        android:id="@+id/successDetails"
+        style="@style/TextView.Subtitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="84 из 120"
+        android:textColor="@color/grey_600" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="@dimen/offset_medium"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <org.eazegraph.lib.charts.PieChart
+            tools:context="de.eazegraph.app.fragments.PieChartFragment"
+            android:id="@+id/piechart"
+            android:layout_width="0dp"
+            android:layout_height="124dp"
+            android:layout_weight="1"
+            android:padding="6dp"
+            app:egUseInnerValue="true"
+            app:egOpenClockwise="true" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="124dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+
+                <View
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/green_600" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="@string/success_finished" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp">
+
+                <View
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/red_600" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="@string/scenario_not_passed" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp">
+
+                <View
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_600" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="@string/not_ringing" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="5dp">
+
+                <View
+                    android:layout_width="15dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_200" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:text="@string/in_progress" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

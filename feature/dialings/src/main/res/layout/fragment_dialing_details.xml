@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/StandardToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/white" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/offset_medium">
+
+        <TextView
+            android:id="@+id/dialingTitle"
+            style="@style/TextView.H4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Диалинг #1" />
+
+        <TextView
+            android:id="@+id/statusTitle"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:text="@string/status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialingTitle" />
+
+        <TextView
+            android:id="@+id/statusValue"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:textColor="@color/grey_600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dialingTitle"
+            tools:text="Запущен" />
+
+        <TextView
+            android:id="@+id/authorTitle"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:text="@string/author"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/statusTitle" />
+
+        <TextView
+            android:id="@+id/authorValue"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:textColor="@color/grey_600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/statusTitle"
+            tools:text="\@IvanovAG" />
+
+        <TextView
+            android:id="@+id/baseTitle"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:text="@string/base"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/authorTitle" />
+
+        <TextView
+            android:id="@+id/baseValue"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:textColor="@color/blue_400"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/authorTitle"
+            tools:text="Тестовая база #1" />
+
+        <TextView
+            android:id="@+id/scenarioTitle"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:text="@string/scenario"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/baseTitle" />
+
+        <TextView
+            android:id="@+id/scenarioValue"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:textColor="@color/blue_400"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/baseTitle"
+            tools:text="Запрос документов" />
+
+        <TextView
+            android:id="@+id/progressPercent"
+            style="@style/TextView.OverLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/offset_small"
+            android:textColor="@color/grey_600"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/actionButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scenarioTitle"
+            tools:text="65%"
+            tools:visibility="visible" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/classicProgress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_medium"
+            android:layout_marginEnd="@dimen/offset_small"
+            app:layout_constraintEnd_toStartOf="@+id/progressPercent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scenarioTitle"
+            android:visibility="gone"
+            tools:visibility="visible"
+            app:trackColor="@color/grey_200"
+            app:indicatorColor="@color/green_800"/>
+
+        <TextView
+            android:id="@+id/actionButton"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_medium"
+            android:text="// TODO: управление, статистика"
+            android:textColor="@color/green_800"
+            app:layout_constraintTop_toBottomOf="@id/classicProgress" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

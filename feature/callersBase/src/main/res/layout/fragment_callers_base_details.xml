@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/StandardToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/white" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/offset_medium">
+
+        <TextView
+            android:id="@+id/baseTitle"
+            style="@style/TextView.H4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/info"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/dateTitle"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:text="@string/creation_date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/baseTitle" />
+
+        <TextView
+            android:id="@+id/dateValue"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:textColor="@color/grey_600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/baseTitle"
+            tools:text="12 дек 2021" />
+
+        <TextView
+            android:id="@+id/countTitle"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:text="@string/elem_count"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateTitle" />
+
+        <TextView
+            android:id="@+id/countValue"
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:textColor="@color/grey_600"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dateTitle"
+            tools:text="15 эл." />
+
+        <TextView
+            android:id="@+id/variablesTitle"
+            style="@style/TextView.H4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_medium"
+            android:text="@string/callers_bases_parameters"
+            app:layout_constraintTop_toBottomOf="@id/countTitle" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/baseVariablesList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_medium"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/variablesTitle"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_base_variable" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="@dimen/offset_medium"
+            android:background="@color/grey_200"
+            app:layout_constraintTop_toBottomOf="@+id/baseVariablesList"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/dialingsListTitle"
+            style="@style/TextView.Subtitle2.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_medium"
+            android:text="@string/this_base_assigned_to_dialings"
+            android:textColor="@color/grey_600"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            tools:visibility="visible"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/linkedDialings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_small"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/dialingsListTitle"
+            tools:itemCount="3"
+            tools:listitem="@layout/clickable_title_subtitle_item"
+            tools:visibility="visible" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

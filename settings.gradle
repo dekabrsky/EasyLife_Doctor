@@ -1,0 +1,16 @@
+rootProject.name = "ITalks"
+include ':app'
+include ':basic'
+include ':scopes'
+include ':flows'
+include ':uikit'
+
+include ':feature:callersBase'
+include ':feature:tabs'
+include ':feature:scenarios'
+include ':feature:dialings'
+include ':feature:callersBase-common'
+include ':feature:dialings-common'
+include ':feature:scenarios-common'
+include ':feature:stats'
+include ':feature:tester-settings'

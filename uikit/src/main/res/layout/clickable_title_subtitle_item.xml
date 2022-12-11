@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground">
+
+    <TextView
+        android:id="@+id/subtitle"
+        style="@style/TextView.OverLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/offset_medium"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="16 ноя 2021, 16:30" />
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/TextView.Subtitle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/offset_tiny"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle"
+        tools:text="Еженедельное обзванивание" />
+
+    <ImageView
+        android:layout_width="@dimen/offset_large"
+        android:layout_height="@dimen/offset_large"
+        android:src="@drawable/ic_round_chevron_right_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/grey_600" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/offset_medium"
+        android:background="@color/grey_200"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

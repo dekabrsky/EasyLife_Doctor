@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/offset_medium"
+    android:layout_marginHorizontal="@dimen/offset_medium"
+    android:background="@color/grey_50"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/offset_medium"
+    android:paddingTop="@dimen/offset_medium"
+    android:paddingBottom="@dimen/offset_large">
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/TextView.OverLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="База данных"
+        android:textColor="@color/grey_600" />
+
+    <TextView
+        android:id="@+id/value"
+        style="@style/TextView.H4.Regular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/offset_tiny"
+        tools:text="База клиентов стоматологии" />
+
+</LinearLayout>
