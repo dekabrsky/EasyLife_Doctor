@@ -45,9 +45,9 @@
                     android:layout_height="wrap_content"
                     android:background="@color/grey_50"
                     app:itemIconTint="@color/nav_bar_item_selector"
-                    app:itemRippleColor="@color/orange_600"
+                    app:itemRippleColor="@color/cyan_main"
                     app:itemTextColor="@color/black"
-                    app:labelVisibilityMode="unlabeled"
+                    app:labelVisibilityMode="labeled"
                     app:menu="@menu/tabs_menu" />
 
             </LinearLayout>

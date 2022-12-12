@@ -3,7 +3,7 @@
     <style name="StandardToolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">56dp</item>
-        <item name="android:background">@color/orange_600</item>
+        <item name="android:background">@color/cyan_main</item>
     </style>
 
     <style name="RegularText">

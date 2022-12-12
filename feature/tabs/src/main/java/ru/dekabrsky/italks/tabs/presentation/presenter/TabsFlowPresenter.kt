@@ -1,7 +1,7 @@
 package ru.dekabrsky.italks.tabs.presentation.presenter
 
-import ru.dekabrsky.callersbase_common.presentation.model.CallersBasesFlowScreenArgs
-import ru.dekabrsky.dialings_common.presentation.model.DialingsFlowScreenArgs
+import ru.dekabrsky.callersbase_common.presentation.model.ChatsFlowScreenArgs
+import ru.dekabrsky.dialings_common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.italks.basic.navigation.Flow
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
@@ -22,51 +22,51 @@ class TabsFlowPresenter @Inject constructor(
         super.onFirstViewAttach()
 
         router.preSetScreens(
-            Flows.CallersBase.name to CallersBasesFlowScreenArgs(
+            Flows.Chats.name to ChatsFlowScreenArgs(
                 Scopes.SCOPE_APP,
-                Flows.CallersBase.SCREEN_BASES_LIST
+                Flows.Chats.SCREEN_BASES_LIST
             ),
-            Flows.Scenarios.name to null,
-            Flows.Dialing.name to DialingsFlowScreenArgs(
+            Flows.Patients.name to null,
+            Flows.Events.name to EventsFlowScreenArgs(
                 Scopes.SCOPE_APP,
-                Flows.Dialing.SCREEN_DIALINGS_LIST
+                Flows.Events.SCREEN_DIALINGS_LIST
             ),
             Flows.Stats.name to null
         )
         toggleScreen(
-            Flows.Dialing,
-            DialingsFlowScreenArgs(
+            Flows.Events,
+            EventsFlowScreenArgs(
                 Scopes.SCOPE_APP,
-                Flows.Dialing.SCREEN_DIALINGS_LIST
+                Flows.Events.SCREEN_DIALINGS_LIST
             )
         )
     }
 
     fun onTabSelect(itemId: Int) {
         when (itemId) {
-            R.id.callersBase -> toggleScreen(
-                Flows.CallersBase,
-                CallersBasesFlowScreenArgs(
+            R.id.chats -> toggleScreen(
+                Flows.Chats,
+                ChatsFlowScreenArgs(
                     Scopes.SCOPE_APP,
-                    Flows.CallersBase.SCREEN_BASES_LIST
+                    Flows.Chats.SCREEN_BASES_LIST
                 )
             )
-            R.id.call -> toggleScreen(
-                Flows.Dialing,
-                DialingsFlowScreenArgs(
+            R.id.events -> toggleScreen(
+                Flows.Events,
+                EventsFlowScreenArgs(
                     Scopes.SCOPE_APP,
-                    Flows.Dialing.SCREEN_DIALINGS_LIST
+                    Flows.Events.SCREEN_DIALINGS_LIST
                 )
             )
-            R.id.scenarios -> toggleScreen(Flows.Scenarios)
+            R.id.patients -> toggleScreen(Flows.Patients)
             R.id.stats -> toggleScreen(Flows.Stats)
         }
     }
 
     private fun selectTab(flow: Flow) {
         when (flow) {
-            Flows.Dialing -> viewState.setSelectedCallTab()
-            Flows.Scenarios -> viewState.setSelectedScenariosTab()
+            Flows.Events -> viewState.setSelectedCallTab()
+            Flows.Patients -> viewState.setSelectedScenariosTab()
         }
     }
 

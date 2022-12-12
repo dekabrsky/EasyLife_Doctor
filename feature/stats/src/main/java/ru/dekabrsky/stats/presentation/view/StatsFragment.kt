@@ -65,7 +65,7 @@ class StatsFragment: BasicFragment(), StatsView {
 
     override fun showLineChart(mapLineChart: List<ChartPointUiModel>) {
         val series = ValueLineSeries()
-        series.color = ContextCompat.getColor(requireContext(), R.color.orange_600)
+        series.color = ContextCompat.getColor(requireContext(), R.color.cyan_main)
 
         mapLineChart.forEach { series.addPoint(ValueLinePoint(it.x, it.y.toFloat())) }
 

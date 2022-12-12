@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground">
+
+    <TextView
+        android:id="@+id/dialingDateTime"
+        style="@style/TextView.OverLine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/offset_medium"
+        android:layout_marginTop="@dimen/offset_medium"
+        android:text="16 ноя 2021, 16:30"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dialingTitle"
+        style="@style/TextView.Subtitle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/offset_medium"
+        android:layout_marginTop="@dimen/offset_small"
+        app:layout_constraintTop_toBottomOf="@id/dialingDateTime"
+        tools:text="Диалинг #1" />
+
+    <ImageView
+        android:id="@+id/scenarioIcon"
+        style="@style/TextView.Subtitle1"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="@dimen/offset_medium"
+        android:layout_marginTop="@dimen/offset_small"
+        android:src="@drawable/ic_round_question_answer_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialingTitle"
+        app:tint="@color/grey_600" />
+
+    <TextView
+        android:id="@+id/scenarioValue"
+        style="@style/TextView.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/offset_small"
+        android:textColor="@color/grey_600"
+        app:layout_constraintStart_toEndOf="@id/scenarioIcon"
+        app:layout_constraintTop_toBottomOf="@id/dialingTitle"
+        tools:text="Еженедельное обзванивание" />
+
+    <ImageView
+        android:id="@+id/cbIcon"
+        style="@style/TextView.Subtitle1"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="@dimen/offset_medium"
+        android:layout_marginTop="@dimen/offset_small"
+        android:src="@drawable/ic_round_group_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scenarioIcon"
+        app:tint="@color/grey_600" />
+
+    <TextView
+        android:id="@+id/cbValue"
+        style="@style/TextView.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/offset_small"
+        android:textColor="@color/grey_600"
+        app:layout_constraintStart_toEndOf="@id/cbIcon"
+        app:layout_constraintTop_toBottomOf="@id/scenarioIcon"
+        tools:text="Клиенты клиники" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/progressLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cbIcon"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/progressPercent"
+            style="@style/TextView.OverLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/offset_small"
+            android:layout_marginEnd="@dimen/offset_medium"
+            android:textColor="@color/grey_600"
+            app:layout_constraintBottom_toBottomOf="@id/classicProgress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/classicProgress"
+            tools:text="65%" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/classicProgress"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/offset_medium"
+            android:layout_marginStart="@dimen/offset_medium"
+            android:layout_marginTop="@dimen/offset_medium"
+            android:layout_marginEnd="@dimen/offset_small"
+            app:indicatorColor="@color/cyan_main"
+            app:layout_constraintEnd_toStartOf="@+id/progressPercent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:trackColor="@color/cyan_main" />
+
+        <View
+            android:id="@+id/progressDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/offset_medium"
+            android:layout_marginTop="@dimen/offset_medium"
+            android:background="@color/grey_200"
+            app:layout_constraintTop_toBottomOf="@id/classicProgress" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/runLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cbIcon"
+        tools:visibility="gone">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/runDialing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/offset_medium"
+            android:layout_marginTop="@dimen/offset_small"
+            android:backgroundTint="@color/white"
+            android:checkable="true"
+            android:text="@string/run_now"
+            android:textAppearance="@style/TextView.Button"
+            android:textColor="@color/cyan_main"
+            app:chipCornerRadius="4dp"
+            app:chipIcon="@drawable/ic_round_play_arrow_24"
+            app:chipIconEnabled="true"
+            app:chipIconTint="@color/cyan_main"
+            app:chipIconVisible="true"
+            app:chipStrokeColor="@color/grey_100"
+            app:chipStrokeWidth="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/runIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/offset_small"
+            android:src="@drawable/ic_round_play_arrow_24"
+            app:layout_constraintBottom_toBottomOf="@id/runDialing"
+            app:layout_constraintStart_toStartOf="@id/runDialing"
+            app:layout_constraintTop_toTopOf="@id/runDialing"
+            app:tint="@color/cyan_main" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/offset_medium"
+            android:layout_marginTop="@dimen/offset_medium"
+            android:background="@color/grey_200"
+            app:layout_constraintTop_toBottomOf="@id/runDialing" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

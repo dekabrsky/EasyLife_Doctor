@@ -1,9 +1,9 @@
 package ru.dekabrsky.italks.navigation
 
-import ru.dekabrsky.callersbase.presentation.view.CallersBaseFlowFragment
-import ru.dekabrsky.callersbase_common.presentation.model.CallersBasesFlowScreenArgs
+import ru.dekabrsky.callersbase.presentation.view.ChatFlowFragment
+import ru.dekabrsky.callersbase_common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.dialings.presentation.view.DialingsFlowFragment
-import ru.dekabrsky.dialings_common.presentation.model.DialingsFlowScreenArgs
+import ru.dekabrsky.dialings_common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider
 import ru.dekabrsky.italks.flows.Flows
@@ -18,11 +18,11 @@ class AppFlowFragmentProvider @Inject constructor(): FlowFragmentProvider {
     override fun provideFlowFragment(screenName: String?, data: Any?): BasicFlowFragment? {
         return when (screenName) {
             Flows.Main.name -> TabsFlowFragment.newInstance()
-            Flows.CallersBase.name ->
-                CallersBaseFlowFragment.newInstance(data as CallersBasesFlowScreenArgs)
-            Flows.Scenarios.name -> ScenariosFlowFragment.newInstance()
-            Flows.Dialing.name ->
-                DialingsFlowFragment.newInstance(data as DialingsFlowScreenArgs)
+            Flows.Chats.name ->
+                ChatFlowFragment.newInstance(data as ChatsFlowScreenArgs)
+            Flows.Patients.name -> ScenariosFlowFragment.newInstance()
+            Flows.Events.name ->
+                DialingsFlowFragment.newInstance(data as EventsFlowScreenArgs)
             Flows.Stats.name ->
                 StatsFlowFragment.newInstance()
             Flows.TesterSettings.name ->

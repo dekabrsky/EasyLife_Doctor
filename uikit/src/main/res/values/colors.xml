@@ -5,16 +5,11 @@
     <color name="black">#212324</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="orange_50">#FFF7E1</color>
-    <color name="orange_100">#70e1e5</color>
-    <color name="orange_200">#FFDD81</color>
-    <color name="orange_300">#FFD14D</color>
-    <color name="orange_400">#FFC526</color>
-    <color name="orange_500">#FFBC04</color>
-    <color name="orange_600">#70e1e5</color>
-    <color name="orange_700">#FE9B03</color>
-    <color name="orange_800">#008B8F</color>
-    <color name="orange_900">#FD6907</color>
+    <color name="button_color">#DAFFEE</color>
+
+    <color name="cyan_main_50">#8070E1E5</color>
+    <color name="cyan_main">#70e1e5</color>
+    <color name="cyan_dark">#159DC3</color>
 
     <color name="blue_50">#E9EBFF</color>
     <color name="blue_100">#C7CCFF</color>
