@@ -7,8 +7,8 @@ import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.R
 import ru.dekabrsky.callersbase.databinding.FragmentCallersBaseBinding
 import ru.dekabrsky.callersbase.presentation.adapter.ChatsListAdapter
-import ru.dekabrsky.callersbase_common.presentation.model.CallersBaseUiModel
 import ru.dekabrsky.callersbase.presentation.presenter.ChatsListPresenter
+import ru.dekabrsky.callersbase_common.presentation.model.ChatUiModel
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes.SCOPE_FLOW_CHATS
@@ -18,7 +18,7 @@ class ChatsListFragment : BasicFragment(), ChatsListView {
 
     override val layoutRes: Int = R.layout.fragment_callers_base
 
-    private val adapter by lazy { ChatsListAdapter(presenter::onItemClick) }
+    private val chatsAdapter by lazy { ChatsListAdapter(presenter::onChatClick) }
 
     private val binding by viewBinding(FragmentCallersBaseBinding::bind)
 
@@ -39,7 +39,7 @@ class ChatsListFragment : BasicFragment(), ChatsListView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        binding.basesCardsList.adapter = adapter
+        binding.basesCardsList.adapter = chatsAdapter
         binding.toolbar.setTitle(R.string.callers_bases_title)
     }
 
@@ -79,8 +79,8 @@ class ChatsListFragment : BasicFragment(), ChatsListView {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun setItems(items: List<CallersBaseUiModel>) {
-        adapter.updateItems(items)
+    override fun setChatsList(items: List<ChatUiModel>) {
+        chatsAdapter.updateItems(items)
     }
 
     override fun showEmptyLayout() {

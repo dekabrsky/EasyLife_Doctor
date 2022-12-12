@@ -5,47 +5,49 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.dekabrsky.callersbase.R
-import ru.dekabrsky.callersbase.databinding.ItemCallersBaseBinding
-import ru.dekabrsky.callersbase_common.presentation.model.CallersBaseUiModel
+import ru.dekabrsky.callersbase.databinding.ItemChatBinding
+import ru.dekabrsky.callersbase_common.presentation.model.ChatUiModel
 
 class ChatsListAdapter(
-    private val onItemClick: (CallersBaseUiModel) -> Unit
-): RecyclerView.Adapter<ChatsListAdapter.CallersBaseHolder>() {
+    private val onItemClick: (ChatUiModel) -> Unit
+): RecyclerView.Adapter<ChatsListAdapter.ChatHolder>() {
 
-    private var items: MutableList<CallersBaseUiModel> = arrayListOf()
+    private var items: MutableList<ChatUiModel> = arrayListOf()
 
-    fun updateItems(newItems: List<CallersBaseUiModel>) {
+    fun updateItems(newItems: List<ChatUiModel>) {
         items = newItems.toMutableList()
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CallersBaseHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_callers_base, parent, false)
+            .inflate(R.layout.item_chat, parent, false)
 
-        return CallersBaseHolder(view)
+        return ChatHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CallersBaseHolder, position: Int) {
+    override fun onBindViewHolder(holder: ChatHolder, position: Int) {
         val item = items[position]
-        holder.title.text = item.title
+        holder.name.text = item.name
         holder.date.text = item.date
-        holder.count.text =
-            holder.itemView.context.resources.getString(R.string.count_format, item.count)
-        val variablesAdapter = ChatsVariablesListAdapter()
-        holder.variablesList.adapter = variablesAdapter
-        variablesAdapter.updateItems(item.variables)
+        holder.message.text = item.lastMessage
+        if (item.newMessagesCount > 0) {
+            holder.count.visibility = View.VISIBLE
+            holder.count.text = item.newMessagesCount.toString()
+            holder.message.setTextAppearance(R.style.BoldText)
+            holder.message.setTextColor(holder.itemView.context.getColor(R.color.grey_600))
+        }
         holder.root.setOnClickListener { onItemClick(item) }
     }
 
     override fun getItemCount(): Int = items.size
 
-    class CallersBaseHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemCallersBaseBinding.bind(itemView)
+    class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val binding = ItemChatBinding.bind(itemView)
         val root = binding.root
-        val title = binding.baseName
-        val date = binding.dateAndCount
-        val count = binding.countValue
-        val variablesList = binding.baseVariablesList
+        val name = binding.name
+        val date = binding.lastMessageTime
+        val count = binding.newMessagesCount
+        val message = binding.lastMessage
     }
 }

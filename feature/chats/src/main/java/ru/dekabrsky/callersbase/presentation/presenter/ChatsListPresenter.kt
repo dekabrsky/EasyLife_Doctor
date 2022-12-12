@@ -5,6 +5,7 @@ import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.callersbase.presentation.mapper.ChatEntityToUiMapper
 import ru.dekabrsky.callersbase_common.presentation.model.CallersBaseUiModel
 import ru.dekabrsky.callersbase.presentation.view.ChatsListView
+import ru.dekabrsky.callersbase_common.presentation.model.ChatUiModel
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.network.utils.Direction
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
@@ -37,7 +38,7 @@ class ChatsListPresenter @Inject constructor(
 //                }
 //            )
 //            .addFullLifeCycle()
-        viewState.showEmptyLayout()
+        viewState.setChatsList(uiMapper.mapChats())
     }
 
     fun loadSortByName() = load()
@@ -50,13 +51,12 @@ class ChatsListPresenter @Inject constructor(
         if (items.isEmpty()) {
             viewState.showEmptyLayout()
         } else {
-            viewState.setItems(items)
+            viewState.setChatsList(uiMapper.mapChats())
         }
     }
 
-    fun onItemClick(model: CallersBaseUiModel) {
-        router.navigateTo(Flows.Chats.SCREEN_BASES_DETAILS, model.fullData)
+    fun onChatClick(model: ChatUiModel) {
+        // переход в чат
     }
-
 
 }
