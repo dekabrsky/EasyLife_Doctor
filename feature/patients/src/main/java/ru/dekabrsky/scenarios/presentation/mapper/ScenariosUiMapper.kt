@@ -15,7 +15,7 @@ class ScenariosUiMapper @Inject constructor() {
             id = Random.nextInt(10000),
             name = "#${Random.nextInt(10000)}",
             date = formatDateToUiDate(LocalDateTime.now()),
-            hasWarning = false, // пока некорректных сценариев не бывает
+            hasWarning = Random.nextBoolean(), // пока некорректных сценариев не бывает
             stepsCount = "Статус: на наблюдении"
         )
     }

@@ -7,7 +7,7 @@
 
     <item
         android:id="@+id/patients"
-        android:icon="@drawable/ic_round_group_24"
+        android:icon="@drawable/ic_hospital"
         android:title="@string/patients"/>
 
     <item
@@ -17,7 +17,7 @@
 
     <item
         android:id="@+id/stats"
-        android:icon="@drawable/ic_round_bar_chart_24"
+        android:icon="@drawable/ic_round_group_24"
         android:title="@string/stats"/>
 
 </menu>

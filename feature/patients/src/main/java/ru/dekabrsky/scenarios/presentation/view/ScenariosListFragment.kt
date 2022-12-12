@@ -1,5 +1,7 @@
 package ru.dekabrsky.scenarios.presentation.view
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -13,9 +15,10 @@ import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.databinding.FragmentScenariosBinding
 import ru.dekabrsky.scenarios.presentation.adapter.ScenariosAdapter
-import ru.dekabrsky.scenarios_common.presentation.model.ScenarioItemUiModel
 import ru.dekabrsky.scenarios.presentation.presenter.ScenariosListPresenter
+import ru.dekabrsky.scenarios_common.presentation.model.ScenarioItemUiModel
 import toothpick.Toothpick
+
 
 class ScenariosListFragment: BasicFragment(), ScenariosListView {
 
@@ -44,6 +47,28 @@ class ScenariosListFragment: BasicFragment(), ScenariosListView {
         setHasOptionsMenu(true)
         binding.basesCardsList.adapter = adapter
         binding.toolbar.setTitle(R.string.scenarios_title)
+        binding.invitePatient.setOnClickListener {
+            showInviteCodeConfirmation()
+        }
+    }
+
+    private fun showInviteCodeConfirmation() {
+        AlertDialog.Builder(context)
+            .setTitle("Пригласить нового пациента")
+            .setMessage("Создать новую учетную запись?")
+            .setPositiveButton("Да") { dialog, _ -> showCodeDialog(dialog) }
+            .setNegativeButton("Нет", null)
+            .setIcon(R.drawable.ic_round_group_24)
+            .show()
+    }
+
+    private fun showCodeDialog(dialog: DialogInterface) {
+        dialog.dismiss()
+        AlertDialog.Builder(context)
+            .setTitle("Новый пациент создан")
+            .setMessage("Сообщите пациенту код #3976")
+            .setPositiveButton("Готово", null)
+            .show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

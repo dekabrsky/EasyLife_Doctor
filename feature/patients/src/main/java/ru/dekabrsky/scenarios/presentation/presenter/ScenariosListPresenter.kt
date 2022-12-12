@@ -37,7 +37,7 @@ class ScenariosListPresenter @Inject constructor(
 //                }
 //            )
 //            .addFullLifeCycle()
-        dispatchLoading(listOf(uiMapper.map(), uiMapper.map(), uiMapper.map()))
+        dispatchLoading(listOf(uiMapper.map(), uiMapper.map(), uiMapper.map(), uiMapper.map() , uiMapper.map()))
         //viewState.showEmptyLayout()
     }
 

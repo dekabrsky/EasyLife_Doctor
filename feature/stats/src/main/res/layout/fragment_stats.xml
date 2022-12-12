@@ -33,23 +33,28 @@
 
             <include
                 android:id="@+id/average_dial_length"
-                layout="@layout/include_title_value"/>
+                layout="@layout/include_title_value"
+                android:visibility="gone"/>
 
             <include
                 android:id="@+id/average_dial_count"
-                layout="@layout/include_title_value"/>
+                layout="@layout/include_title_value"
+                android:visibility="gone"/>
 
             <include
                 android:id="@+id/average_single_dial_length"
-                layout="@layout/include_title_value"/>
+                layout="@layout/include_title_value"
+                android:visibility="gone"/>
 
             <include
                 android:id="@+id/pie_chart_layout"
-                layout="@layout/include_stats_pie_chart" />
+                layout="@layout/include_stats_pie_chart"
+                android:visibility="gone"/>
 
             <include
                 android:id="@+id/line_chart_layout"
-                layout="@layout/include_stats_line_chart" />
+                layout="@layout/include_stats_line_chart"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

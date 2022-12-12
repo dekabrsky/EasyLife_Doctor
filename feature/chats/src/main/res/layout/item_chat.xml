@@ -12,6 +12,7 @@
         android:layout_width="@dimen/icon_48"
         android:layout_height="@dimen/icon_48"
         android:background="@color/grey_100"
+        android:padding="@dimen/offset_small"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

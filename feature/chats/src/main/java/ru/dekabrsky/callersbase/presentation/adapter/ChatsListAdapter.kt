@@ -37,6 +37,12 @@ class ChatsListAdapter(
             holder.message.setTextAppearance(R.style.BoldText)
             holder.message.setTextColor(holder.itemView.context.getColor(R.color.grey_600))
         }
+        if (item.name.contains("373")) {
+            holder.avatar.setImageResource(R.drawable.cat_avatar)
+        }
+        if (item.name.contains("0356")) {
+            holder.avatar.setImageResource(R.drawable.cat_avatar_2)
+        }
         holder.root.setOnClickListener { onItemClick(item) }
     }
 
@@ -49,5 +55,6 @@ class ChatsListAdapter(
         val date = binding.lastMessageTime
         val count = binding.newMessagesCount
         val message = binding.lastMessage
+        val avatar = binding.avatar
     }
 }

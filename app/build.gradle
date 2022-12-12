@@ -17,7 +17,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", 'ENDPOINT',  "\"http://192.168.0.2:8080/\""
+        buildConfigField "String", 'ENDPOINT',  "\"http://83.222.11.163/\""
     }
 
     buildFeatures {

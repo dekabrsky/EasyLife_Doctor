@@ -50,14 +50,14 @@ class StatsFragment: BasicFragment(), StatsView {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         binding.toolbar.setTitle(R.string.general_stats)
-        binding.dialingsCount.title.setText(R.string.dialingsCount)
+        //binding.dialingsCount.title.setText(R.string.dialingsCount)
         binding.averageDialLength.title.setText(R.string.averageDialLength)
         binding.averageDialCount.title.setText(R.string.averageDialCount)
         binding.averageSingleDialLength.title.setText(R.string.averageSingleDialLength)
     }
 
     override fun showMainStats(model: MainStatsUiModel) {
-        binding.dialingsCount.value.text = model.totalDialings
+        //binding.dialingsCount.value.text = model.totalDialings
         binding.averageDialLength.value.text = model.averageDialingsDuration
         binding.averageDialCount.value.text = model.averageNumberOfCallsPerDialing
         binding.averageSingleDialLength.value.text = model.averageCallDuration

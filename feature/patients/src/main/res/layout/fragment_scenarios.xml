@@ -52,4 +52,16 @@
             android:textColor="@color/grey_600" />
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/invitePatient"
+        android:src="@drawable/ic_round_add_24"
+        app:tint="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/cyan_main"
+        android:layout_margin="@dimen/offset_medium"
+        android:layout_alignParentRight="true"
+        app:fabSize="mini"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>
