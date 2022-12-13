@@ -6,6 +6,10 @@ class Flows {
 
     object Main : Flow("FLOW_MAIN") {}
 
+    object Login : Flow("FLOW_LOGIN") {
+        const val SCREEN_LOGIN = "SCREEN_LOGIN"
+    }
+
     object Chats : Flow("FLOW_CALLERS_BASE") {
         const val SCREEN_BASES_LIST = "SCREEN_BASES_LIST"
         const val SCREEN_BASES_DETAILS = "SCREEN_BASES_DETAILS"

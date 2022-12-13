@@ -25,6 +25,7 @@ import ru.dekabrsky.italks.navigation.AppFlowFragmentProvider
 import ru.dekabrsky.italks.navigation.AppFlowNavigator
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.italks.testerSettings.presentation.view.TesterSettingsFragment
+import ru.dekabrsky.login.di.module.LoginFeatureModule
 import ru.dekabrsky.scenarios.di.module.ScenariosFeatureModule
 import ru.dekabrsky.stats.di.StatsFeatureModule
 import ru.terrakok.cicerone.Navigator
@@ -73,6 +74,7 @@ class MainActivity : AppCompatActivity(), MainView {
                 FlowModule(),
                 NetworkModule(),
                 // features
+                LoginFeatureModule(),
                 CallersBasesFeatureModule(),
                 ScenariosFeatureModule(),
                 DialingsFeatureModule(),
