@@ -7,6 +7,8 @@ import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.italks.tabs.domain.UserType
+import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(
@@ -14,7 +16,7 @@ class MainPresenter @Inject constructor(
 ): BasicPresenter<MainView>() {
 
     override fun onFirstViewAttach() {
-        startFlow(Flows.Login.name)
+        startFlow(Flows.Main.name, TabsFlowArgs(UserType.PATIENT))
     }
 
     private fun startFlow(flowName: String, data: Any? = null) {

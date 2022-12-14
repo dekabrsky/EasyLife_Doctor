@@ -1,5 +1,6 @@
 package ru.dekabrsky.italks.tabs.presentation.view
 
+import androidx.annotation.MenuRes
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
 
@@ -7,4 +8,5 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 interface TabsFlowView: MvpView {
     fun setSelectedCallTab()
     fun setSelectedScenariosTab()
+    fun setTabsByRole(@MenuRes menu: Int)
 }

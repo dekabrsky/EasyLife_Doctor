@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.di.inject
+import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider
 import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
@@ -16,6 +17,7 @@ import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.italks.feature.tabs.R
 import ru.dekabrsky.italks.feature.tabs.databinding.TabsFragmentBinding
+import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.italks.tabs.presentation.presenter.TabsFlowPresenter
 import ru.dekabrsky.italks.tabs.presentation.view.TabsFlowView
 import ru.terrakok.cicerone.Navigator
@@ -26,6 +28,8 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
 
     override val containerId: Int = R.id.flowContainer
     override val layoutRes = R.layout.tabs_fragment
+
+    private var args : TabsFlowArgs? = null
 
     @InjectPresenter
     lateinit var presenter: TabsFlowPresenter
@@ -42,6 +46,7 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
     @ProvidePresenter
     fun providePresenter(): TabsFlowPresenter {
         return Toothpick.openScope(Scopes.SCOPE_FLOW_TABS)
+            .module { bind(TabsFlowArgs::class.java).toInstance(args) }
             .getInstance(TabsFlowPresenter::class.java)
     }
 
@@ -57,6 +62,7 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
         super.onViewCreated(view, savedInstanceState)
         binding.navBar.visibility = View.VISIBLE
         binding.navBar.initWidget(mvpDelegate)
+        binding.navBar.maxItemCount
         binding.navBar.setOnNavigationItemSelectedListener { menuItem ->
             presenter.onTabSelect(menuItem.itemId)
             true
@@ -71,6 +77,11 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
         //viewBinding.navBar.selectedItemId = R.id.other
     }
 
+    override fun setTabsByRole(menu: Int) {
+        binding.navBar.menu.clear()
+        binding.navBar.inflateMenu(menu)
+    }
+
     override fun onFinallyFinished() {
         super.onFinallyFinished()
         Toothpick.closeScope(Scopes.SCOPE_FLOW_TABS)
@@ -81,10 +92,10 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
     }
 
     override fun onBackPressed() {
-        // TODO
+        presenter.onBackPressed()
     }
 
     companion object {
-        fun newInstance() = TabsFlowFragment()
+        fun newInstance(args: TabsFlowArgs) = TabsFlowFragment().apply { this.args = args }
     }
 }

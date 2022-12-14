@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/events"
+        android:icon="@drawable/ic_round_calendar_24"
+        android:title="@string/events" />
+
+
+    <item
+        android:id="@+id/patients"
+        android:icon="@drawable/ic_hospital"
+        android:title="@string/patients"/>
+
+    <item
+        android:id="@+id/chats"
+        android:icon="@drawable/ic_round_question_answer_24"
+        android:title="@string/chats" />
+
+    <item
+        android:id="@+id/stats"
+        android:icon="@drawable/ic_round_group_24"
+        android:title="@string/stats"/>
+
+</menu>

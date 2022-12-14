@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -48,7 +49,7 @@
                     app:itemRippleColor="@color/cyan_main"
                     app:itemTextColor="@color/black"
                     app:labelVisibilityMode="labeled"
-                    app:menu="@menu/tabs_menu" />
+                    tools:menu="@menu/doctor_tabs_menu" />
 
             </LinearLayout>
 

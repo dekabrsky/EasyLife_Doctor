@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="events">Приемы и консультации</string>
+    <!--Common-->
     <string name="chats">Чаты</string>
-    <string name="patients">Пациенты</string>
     <string name="stats">Профиль</string>
+    <string name="events">Календарь</string>
+
+    <!--Doctor-->
+    <string name="patients">Пациенты</string>
+
+    <!--Patient-->
+    <string name="game">Игра</string>
+    <string name="materials">Материалы</string>
+
 </resources>
