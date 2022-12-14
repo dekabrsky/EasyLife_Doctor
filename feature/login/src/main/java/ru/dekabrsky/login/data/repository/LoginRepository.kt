@@ -12,4 +12,6 @@ class LoginRepository @Inject constructor(
     private val mapper: LoginCredentialsToRequestMapper
 ) { // тут решил пропустить domain-слой
     fun login(login: String, password: String): Completable = api.login(mapper.mapCredentials(login, password))
+
+    fun getCurrentUser(): Completable = api.getCurrentUser()
 }

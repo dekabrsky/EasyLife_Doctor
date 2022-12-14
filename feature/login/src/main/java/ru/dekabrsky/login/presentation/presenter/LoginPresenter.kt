@@ -19,12 +19,12 @@ class LoginPresenter @Inject constructor(
     fun onLoginClick() {
         repository.login(currentLogin, currentPassword)
             .observeOn(RxSchedulers.main())
-            .subscribe( { router.startFlow(Flows.Main.name) }, ::dispatchLoginError)
+            .subscribe({
+                // test user query
+                repository.getCurrentUser().subscribe()
+                router.startFlow(Flows.Main.name)
+            }, viewState::showError)
             .addFullLifeCycle()
-
-    }
-
-    private fun dispatchLoginError(throwable: Throwable?) {
 
     }
 
