@@ -42,7 +42,8 @@ class TabsFlowPresenter @Inject constructor(
                 Scopes.SCOPE_APP,
                 Flows.Events.SCREEN_DIALINGS_LIST
             ),
-            Flows.Stats.name to null
+            Flows.Stats.name to null,
+            Flows.Game.name to null
         )
         toggleScreen(
             Flows.Events,
@@ -71,6 +72,7 @@ class TabsFlowPresenter @Inject constructor(
             )
             R.id.patients -> toggleScreen(Flows.Patients)
             R.id.stats -> toggleScreen(Flows.Stats)
+            R.id.game -> toggleScreen(Flows.Game)
         }
     }
 

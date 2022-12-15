@@ -32,4 +32,8 @@ class Flows {
     object TesterSettings: Flow("FLOW_TESTER_SETTINGS") {
         const val SCREEN_TESTER_SETTINGS = "SCREEN_TESTER_SETTINGS"
     }
+
+    object Game : Flow("game") {
+        const val SCREEN_GAME = "SCREEN_GABE"
+    }
 }

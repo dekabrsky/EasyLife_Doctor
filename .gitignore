@@ -35,3 +35,4 @@ local.properties
 /.idea/
 /scopes/build/
 /uikit/build/
+/android/build/

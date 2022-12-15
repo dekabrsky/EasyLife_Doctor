@@ -58,4 +58,8 @@ class ScenariosListPresenter @Inject constructor(
     fun onItemClick(model: ScenarioItemUiModel) {
         router.navigateTo(Flows.Patients.SCREEN_SCENARIO_DETAILS, model)
     }
+
+    fun startGame() {
+        router.startFlow(Flows.Game.name)
+    }
 }
