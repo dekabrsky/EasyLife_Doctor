@@ -16,7 +16,7 @@ class MainPresenter @Inject constructor(
 ): BasicPresenter<MainView>() {
 
     override fun onFirstViewAttach() {
-        startFlow(Flows.Main.name, TabsFlowArgs(UserType.PATIENT))
+        startFlow(Flows.Login.name, TabsFlowArgs(UserType.PATIENT))
     }
 
     private fun startFlow(flowName: String, data: Any? = null) {

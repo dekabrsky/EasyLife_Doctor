@@ -4,6 +4,8 @@ import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.italks.tabs.domain.UserType
+import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.login.data.repository.LoginRepository
 import ru.dekabrsky.login.presentation.view.LoginView
 import javax.inject.Inject
@@ -22,7 +24,7 @@ class LoginPresenter @Inject constructor(
             .subscribe({
                 // test user query
                 repository.getCurrentUser().subscribe()
-                router.startFlow(Flows.Main.name)
+                router.startFlow(Flows.Main.name, TabsFlowArgs(UserType.PATIENT))
             }, viewState::showError)
             .addFullLifeCycle()
 
