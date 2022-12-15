@@ -48,7 +48,9 @@ class PatientsListFragment: BasicFragment(), PatientsListView {
         binding.basesCardsList.adapter = adapter
         binding.toolbar.setTitle(R.string.scenarios_title)
         binding.invitePatient.setOnClickListener {
-            showInviteCodeConfirmation()
+            //showInviteCodeConfirmation()
+
+            presenter.startGame()
         }
     }
 

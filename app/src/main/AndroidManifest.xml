@@ -2,26 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.dekabrsky.italks">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+<!--    <uses-permission android:name="android.permission.INTERNET"/>-->
 
-    <application
-        android:name=".App"
-        android:allowBackup="true"
-        android:icon="@drawable/ic_logo_orange"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_logo_orange"
-        android:supportsRtl="true"
-        android:theme="@style/ThemeITalks"
-        android:usesCleartextTraffic="true">
-        <activity
-            android:name=".activity.view.MainActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--    <application-->
+<!--        android:name=".App"-->
+<!--        android:allowBackup="true"-->
+<!--        android:icon="@drawable/ic_logo_orange"-->
+<!--        android:label="@string/app_name"-->
+<!--        android:roundIcon="@drawable/ic_logo_orange"-->
+<!--        android:supportsRtl="true"-->
+<!--        android:theme="@style/ThemeITalks"-->
+<!--        android:usesCleartextTraffic="true">-->
+<!--&lt;!&ndash;        <activity&ndash;&gt;-->
+<!--&lt;!&ndash;            android:name=".activity.view.MainActivity"&ndash;&gt;-->
+<!--&lt;!&ndash;            android:screenOrientation="fullSensor">&ndash;&gt;-->
+<!--&lt;!&ndash;        </activity>&ndash;&gt;-->
+<!--        <activity android:name=".activity.view.MainActivity"-->
+<!--            android:screenOrientation="fullSensor"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+<!--    </application>-->
 
 </manifest>
