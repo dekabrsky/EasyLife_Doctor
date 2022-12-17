@@ -47,13 +47,7 @@ class TabsFlowPresenter @Inject constructor(
             Flows.Materials.name to null,
             Flows.Game.name to null
         )
-        toggleScreen(
-            Flows.Events,
-            EventsFlowScreenArgs(
-                Scopes.SCOPE_APP,
-                Flows.Events.SCREEN_DIALINGS_LIST
-            )
-        )
+        toggleScreen(Flows.Game)
     }
 
     fun onTabSelect(itemId: Int) {

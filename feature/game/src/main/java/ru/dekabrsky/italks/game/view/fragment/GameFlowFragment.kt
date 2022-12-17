@@ -1,9 +1,5 @@
-package main.java.ru.dekabrsky.italks.game
+package ru.dekabrsky.italks.game.view.fragment
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
@@ -14,9 +10,9 @@ import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
 import ru.dekabrsky.italks.basic.navigation.di.installNavigation
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.game.GameFlowPresenter
-import ru.dekabrsky.italks.game.GameFlowView
 import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.view.GameFlowView
+import ru.dekabrsky.italks.game.view.presenter.GameFlowPresenter
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 import javax.inject.Inject
@@ -35,7 +31,7 @@ class GameFlowFragment : BasicFlowFragment(), GameFlowView {
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
                 when (screenKey) {
-                    Flows.Game.SCREEN_GAME -> GameFragment.newInstance()
+                    Flows.Game.SCREEN_START_GAME -> StartGameFragment.newInstance()
                     else -> super.createFragment(screenKey, data)
                 }
         }
@@ -53,10 +49,6 @@ class GameFlowFragment : BasicFlowFragment(), GameFlowView {
         Toothpick.openScopes(Scopes.SCOPE_APP, scopeName)
             .installNavigation()
             .inject(this)
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onFinallyFinished() {

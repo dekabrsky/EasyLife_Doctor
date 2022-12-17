@@ -39,6 +39,6 @@ class Flows {
     }
 
     object Game : Flow("game") {
-        const val SCREEN_GAME = "SCREEN_GABE"
+        const val SCREEN_START_GAME = "SCREEN_GABE"
     }
 }

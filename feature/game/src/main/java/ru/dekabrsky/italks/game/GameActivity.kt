@@ -4,7 +4,7 @@ import android.os.Bundle
 import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 
-class NoWorkGameActivity : AndroidApplication() {
+class GameActivity : AndroidApplication() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -12,6 +12,6 @@ class NoWorkGameActivity : AndroidApplication() {
     }
 
     companion object {
-        fun newInstance() = NoWorkGameActivity()
+        fun newInstance() = GameActivity()
     }
 }
