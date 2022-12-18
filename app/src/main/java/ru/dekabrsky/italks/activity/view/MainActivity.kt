@@ -18,7 +18,6 @@ import ru.dekabrsky.italks.activity.presenter.MainPresenter
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.di.module.AppModule
-import ru.dekabrsky.italks.di.module.NetworkModule
 import ru.dekabrsky.italks.di.module.FlowModule
 import ru.dekabrsky.italks.di.module.NetworkModule
 import ru.dekabrsky.italks.navigation.AppFlowFragmentProvider
