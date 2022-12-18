@@ -90,10 +90,6 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
         binding.navBar.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 
-    override fun onBackPressed() {
-        presenter.onBackPressed()
-    }
-
     companion object {
         fun newInstance(args: TabsFlowArgs) = TabsFlowFragment().apply { this.args = args }
     }

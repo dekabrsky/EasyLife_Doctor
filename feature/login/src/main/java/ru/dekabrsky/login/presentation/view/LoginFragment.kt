@@ -1,12 +1,9 @@
 package ru.dekabrsky.login.presentation.view
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import android.widget.EditText
 import main.utils.onTextChange
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
@@ -48,8 +45,24 @@ class LoginFragment: BasicFragment(), LoginView {
 
         binding.editTextLogin.onTextChange { presenter.onLoginChanged(binding.editTextLogin.text.toString()) }
         binding.editTextPassword.onTextChange { presenter.onPasswordChanged(binding.editTextPassword.text.toString()) }
+        binding.editTextCode.onTextChange { presenter.onCodeTextChanged(binding.editTextCode.text.toString()) }
 
-        binding.loginCardBtn.setOnClickListener { presenter.onLoginClick() }
+        binding.loginCardBtn.setOnClickListener { presenter.onDoneButtonClick() }
+        binding.changeMode.setOnClickListener { presenter.onChangeModeClick() }
+    }
+
+    override fun setupForRegistration() {
+        binding.title.text = getString(R.string.registration)
+        binding.codeLayout.visibility = View.VISIBLE
+        binding.changeMode.text = getString(R.string.change_mode_to_login)
+        binding.bgImage.setImageResource(R.drawable.ic_divan)
+    }
+
+    override fun setupForLogin() {
+        binding.title.text = getString(R.string.login_title)
+        binding.codeLayout.visibility = View.GONE
+        binding.changeMode.text = getString(R.string.registration)
+        binding.bgImage.setImageResource(R.drawable.drawable_table)
     }
 
     companion object{

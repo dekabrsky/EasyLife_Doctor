@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun onBackPressed() {
         val fragment =
-            supportFragmentManager.fragments.firstOrNull { it.isHidden.not() && it is BasicFlowFragment }
+            supportFragmentManager.fragments.lastOrNull { it.isHidden.not() && it is BasicFlowFragment }
         (fragment as? BasicFlowFragment)?.onBackPressed()
     }
 

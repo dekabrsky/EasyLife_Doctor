@@ -5,4 +5,6 @@ import ru.dekabrsky.italks.basic.fragments.BasicView
 
 @AddToEndSingle
 interface LoginView: BasicView {
+    fun setupForRegistration()
+    fun setupForLogin()
 }
