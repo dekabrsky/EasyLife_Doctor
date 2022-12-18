@@ -44,15 +44,11 @@ class TabsFlowPresenter @Inject constructor(
                 Flows.Events.SCREEN_DIALINGS_LIST
             ),
             Flows.Stats.name to null,
-            Flows.Materials.name to null
+            Flows.Materials.name to null,
+            Flows.Game.name to null,
+            Flows.Profile.name to null
         )
-        toggleScreen(
-            Flows.Events,
-            EventsFlowScreenArgs(
-                Scopes.SCOPE_APP,
-                Flows.Events.SCREEN_DIALINGS_LIST
-            )
-        )
+        toggleScreen(Flows.Game)
     }
 
     fun onTabSelect(itemId: Int) {
@@ -73,7 +69,9 @@ class TabsFlowPresenter @Inject constructor(
             )
             R.id.patients -> toggleScreen(Flows.Patients)
             R.id.stats -> toggleScreen(Flows.Stats)
+            R.id.game -> toggleScreen(Flows.Game)
             R.id.materials -> toggleScreen(Flows.Materials)
+            R.id.patientProfile -> toggleScreen(Flows.Profile)
         }
     }
 

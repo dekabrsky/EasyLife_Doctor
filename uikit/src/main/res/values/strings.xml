@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ITalks</string>
+    <string name="app_name">EasyLife</string>
     <string name="menu_sorting">Сортировка</string>
     <string name="menu_search">Поиск</string>
     <string name="count_format">%s эл</string>

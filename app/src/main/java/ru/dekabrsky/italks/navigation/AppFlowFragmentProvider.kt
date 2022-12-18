@@ -7,6 +7,8 @@ import ru.dekabrsky.dialings_common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider
 import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.italks.game.view.fragment.GameFlowFragment
+import ru.dekabrsky.italks.profile.view.fragment.ProfileFlowFragment
 import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
 import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.italks.testerSettings.presentation.view.TesterSettingsFlowFragment
@@ -16,7 +18,7 @@ import ru.dekabrsky.scenarios.presentation.view.ScenariosFlowFragment
 import ru.dekabrsky.stats.presentation.view.StatsFlowFragment
 import javax.inject.Inject
 
-class AppFlowFragmentProvider @Inject constructor(): FlowFragmentProvider {
+class AppFlowFragmentProvider @Inject constructor() : FlowFragmentProvider {
 
     override fun provideFlowFragment(screenName: String?, data: Any?): BasicFlowFragment? {
         return when (screenName) {
@@ -33,6 +35,8 @@ class AppFlowFragmentProvider @Inject constructor(): FlowFragmentProvider {
                 TesterSettingsFlowFragment.newInstance()
             Flows.Materials.name ->
                 MaterialsFlowFragment.newInstance()
+            Flows.Game.name -> GameFlowFragment.newInstance()
+            Flows.Profile.name -> ProfileFlowFragment.newInstance()
             else -> null
         }
     }
