@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/offset_medium"
+    android:background="?selectableItemBackground"
+    android:paddingVertical="@dimen/offset_medium"
+    app:cardCornerRadius="@dimen/offset_medium">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/icon_92"
+            android:layout_height="0dp"
+            android:background="@color/grey_100"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/gradient"
+            android:layout_width="@dimen/icon_92"
+            android:layout_height="0dp"
+            android:src="@drawable/white_blur"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name"
+            style="@style/TextView.Subtitle1.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/offset_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/avatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Что нужно знать для того, чтобы рассказать о вич-инфекции ребенку" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

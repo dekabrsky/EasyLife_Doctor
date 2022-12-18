@@ -62,7 +62,6 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
         super.onViewCreated(view, savedInstanceState)
         binding.navBar.visibility = View.VISIBLE
         binding.navBar.initWidget(mvpDelegate)
-        binding.navBar.maxItemCount
         binding.navBar.setOnNavigationItemSelectedListener { menuItem ->
             presenter.onTabSelect(menuItem.itemId)
             true

@@ -15,6 +15,11 @@ class Flows {
         const val SCREEN_BASES_DETAILS = "SCREEN_BASES_DETAILS"
     }
 
+    object Materials : Flow("FLOW_MATERIALS") {
+        const val SCREEN_MATERIALS_LIST = "SCREEN_MATERIALS_LIST"
+        const val SCREEN_MATERIAL_DETAILS = "SCREEN_MATERIAL_DETAILS"
+    }
+
     object Events : Flow("FLOW_DIALING") {
         const val SCREEN_DIALINGS_LIST = "SCREEN_DIALINGS_LIST"
         const val SCREEN_DIALING_DETAILS = "SCREEN_DIALING_DETAILS"
