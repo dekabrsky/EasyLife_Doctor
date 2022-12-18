@@ -32,6 +32,11 @@ class MaterialsListFragment: BasicFragment(), MaterialsListView {
             .also { Toothpick.closeScope(scopeName) }
     }
 
+    override fun onResume() {
+        super.onResume()
+        (parentFragment as MaterialsFlowFragment).setNavBarVisibility(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)

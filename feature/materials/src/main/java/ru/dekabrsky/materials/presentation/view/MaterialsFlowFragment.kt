@@ -11,7 +11,9 @@ import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes.SCOPE_APP
 import ru.dekabrsky.italks.scopes.Scopes.SCOPE_FLOW_MATERIALS
+import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
 import ru.dekabrsky.materials.R
+import ru.dekabrsky.materials.presentation.model.MaterialDetailsUiModel
 import ru.dekabrsky.materials.presentation.presenter.MaterialsFlowPresenter
 import toothpick.Toothpick
 import javax.inject.Inject
@@ -29,8 +31,8 @@ class MaterialsFlowFragment : BasicFlowFragment(), MaterialsFlowView {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
                 when (screenKey) {
                     Flows.Materials.SCREEN_MATERIALS_LIST -> MaterialsListFragment.newInstance()
-//                    Flows.Materials.SCREEN_MATERIAL_DETAILS ->
-//                        MaterialDetailsFragment.newInstance(data as MaterialDetailsUiModel)
+                    Flows.Materials.SCREEN_MATERIAL_DETAILS ->
+                        MaterialDetailsFragment.newInstance(data as MaterialDetailsUiModel)
                     else -> super.createFragment(screenKey, data)
                 }
         }
@@ -55,6 +57,10 @@ class MaterialsFlowFragment : BasicFlowFragment(), MaterialsFlowView {
 
     override fun onBackPressed() {
         presenter.onBackPressed()
+    }
+
+    fun setNavBarVisibility(isVisible: Boolean) {
+        (parentFragment as TabsFlowFragment).setNavBarVisibility(isVisible)
     }
 
     companion object {

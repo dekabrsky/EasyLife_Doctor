@@ -2,6 +2,7 @@ package ru.dekabrsky.materials.presentation.presenter
 
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
+import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.materials.presentation.mapper.MaterialsUiMapper
 import ru.dekabrsky.materials.presentation.model.MaterialDetailsUiModel
 import ru.dekabrsky.materials.presentation.view.MaterialsListView
@@ -22,6 +23,6 @@ class MaterialsListPresenter@Inject constructor(
     }
 
     fun onMaterialClick(model: MaterialDetailsUiModel) {
-        // переход в детали
+        router.navigateTo(Flows.Materials.SCREEN_MATERIAL_DETAILS, model)
     }
 }

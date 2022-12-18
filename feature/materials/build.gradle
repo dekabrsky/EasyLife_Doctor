@@ -68,8 +68,11 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.14.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
     implementation project(path: ':flows')
     implementation project(path: ':basic')
     implementation project(path: ':scopes')
     implementation project(path: ':uikit')
+    implementation project(path: ':feature:tabs')
 }

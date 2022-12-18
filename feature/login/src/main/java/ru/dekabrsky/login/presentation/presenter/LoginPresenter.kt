@@ -22,9 +22,7 @@ class LoginPresenter @Inject constructor(
         repository.login(currentLogin, currentPassword)
             .observeOn(RxSchedulers.main())
             .subscribe({
-                // test user query
-                repository.getCurrentUser().subscribe()
-                router.startFlow(Flows.Main.name, TabsFlowArgs(UserType.PATIENT))
+                router.replaceFlow(Flows.Main.name, TabsFlowArgs(UserType.PATIENT))
             }, viewState::showError)
             .addFullLifeCycle()
 

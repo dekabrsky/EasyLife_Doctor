@@ -3,8 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="200dp"
+        android:alpha="0.25"
+        android:src="@drawable/drawable_table"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView6"
@@ -43,14 +51,15 @@
         android:id="@+id/loginLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/offset_large"
         android:layout_marginHorizontal="50dp"
-        android:inputType="textPassword"
+        android:layout_marginTop="@dimen/offset_large"
         android:background="@android:color/transparent"
+        android:hint="Введите логин"
+        android:inputType="textPassword"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7"
-        app:expandedHintEnabled="false"
-        android:hint="Введите логин">
+        app:layout_constraintTop_toBottomOf="@+id/textView7">
 
         <EditText
             android:id="@+id/editTextLogin"
@@ -64,14 +73,16 @@
         android:id="@+id/passwordLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:layout_marginTop="@dimen/offset_medium"
         android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="@dimen/offset_medium"
+        android:background="@android:color/transparent"
+        android:hint="Введите пароль"
         android:inputType="textPassword"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginLayout"
-        app:passwordToggleEnabled="true"
-        android:hint="Введите пароль">
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/editTextPassword"
@@ -87,16 +98,15 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="@dimen/offset_medium"
         android:layout_marginBottom="30dp"
         android:backgroundTint="@color/cyan_main_50"
+        android:outlineProvider="none"
         app:cardCornerRadius="30dp"
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
-        app:layout_constraintVertical_bias="0.08"
         tools:ignore="MissingClass">
 
         <TextView
@@ -121,6 +131,7 @@
         android:text="Нет аккаунта? "
         android:textColor="@color/grey_600"
         android:textSize="16sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -133,6 +144,7 @@
         android:text="Зарегистрироваться"
         android:textColor="@color/cyan_main"
         android:textSize="16sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -147,6 +159,7 @@
         android:text="Я родитель"
         android:textColor="@color/cyan_main"
         android:textSize="16sp"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -156,7 +169,7 @@
         android:id="@+id/tV8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/offset_medium"
         android:text="Забыли пароль?"
         android:textColor="@color/cyan_dark"
         android:textSize="16sp"
