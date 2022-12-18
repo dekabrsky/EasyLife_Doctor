@@ -45,7 +45,8 @@ class TabsFlowPresenter @Inject constructor(
             ),
             Flows.Stats.name to null,
             Flows.Materials.name to null,
-            Flows.Game.name to null
+            Flows.Game.name to null,
+            Flows.Profile.name to null
         )
         toggleScreen(Flows.Game)
     }
@@ -70,6 +71,7 @@ class TabsFlowPresenter @Inject constructor(
             R.id.stats -> toggleScreen(Flows.Stats)
             R.id.game -> toggleScreen(Flows.Game)
             R.id.materials -> toggleScreen(Flows.Materials)
+            R.id.patientProfile -> toggleScreen(Flows.Profile)
         }
     }
 

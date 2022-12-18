@@ -25,20 +25,24 @@ class Flows {
         const val SCREEN_DIALING_DETAILS = "SCREEN_DIALING_DETAILS"
     }
 
-    object Patients: Flow("FLOW_SCENARIOS") {
+    object Patients : Flow("FLOW_SCENARIOS") {
         const val SCREEN_SCENARIOS_LIST = "SCREEN_SCENARIOS_LIST"
         const val SCREEN_SCENARIO_DETAILS = "SCREEN_SCENARIO_DETAILS"
     }
 
-    object Stats: Flow("FLOW_STATS") {
+    object Stats : Flow("FLOW_STATS") {
         const val SCREEN_MAIN_STATS = "SCREEN_MAIN_STATS"
     }
 
-    object TesterSettings: Flow("FLOW_TESTER_SETTINGS") {
+    object TesterSettings : Flow("FLOW_TESTER_SETTINGS") {
         const val SCREEN_TESTER_SETTINGS = "SCREEN_TESTER_SETTINGS"
     }
 
-    object Game : Flow("game") {
+    object Game : Flow("FLOW_GAME") {
         const val SCREEN_START_GAME = "SCREEN_GABE"
+    }
+
+    object Profile : Flow("FLOW_PROFILE") {
+        const val SCREEN_PROFILE = "SCREEN_PROFILE"
     }
 }

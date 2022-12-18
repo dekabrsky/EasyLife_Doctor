@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Questions">
+        <item>Выберите контрольный вопрос</item>
+        <item>Кличка вашего первого питомца?</item>
+        <item>Ваш любимый фильм?</item>
+        <item>Ваш любимый цвет?</item>
+        <item>Ваша любимая марка авто?</item>
+    </string-array>
+</resources>

@@ -1,10 +1,10 @@
 package ru.dekabrsky.italks.activity.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import androidx.annotation.CallSuper
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
@@ -20,8 +20,10 @@ import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.di.module.AppModule
 import ru.dekabrsky.italks.di.module.NetworkModule
 import ru.dekabrsky.italks.di.module.FlowModule
+import ru.dekabrsky.italks.di.module.NetworkModule
 import ru.dekabrsky.italks.navigation.AppFlowFragmentProvider
 import ru.dekabrsky.italks.navigation.AppFlowNavigator
+import ru.dekabrsky.italks.profile.di.ProfileFeatureModule
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.italks.testerSettings.presentation.view.TesterSettingsFragment
 import ru.dekabrsky.login.di.module.LoginFeatureModule
@@ -77,7 +79,8 @@ class MainActivity : AppCompatActivity(), MainView {
                 CallersBasesFeatureModule(),
                 DoctorsPatientsModule(),
                 DialingsFeatureModule(),
-                StatsFeatureModule()
+                StatsFeatureModule(),
+                ProfileFeatureModule()
             )
         }.inject(this)
     }
