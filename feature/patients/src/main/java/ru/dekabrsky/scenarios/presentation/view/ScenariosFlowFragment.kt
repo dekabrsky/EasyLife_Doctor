@@ -29,7 +29,7 @@ class ScenariosFlowFragment : BasicFlowFragment(), ScenariosFlowView {
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
                 when (screenKey) {
-                    Flows.Patients.SCREEN_SCENARIOS_LIST -> ScenariosListFragment.newInstance()
+                    Flows.Patients.SCREEN_SCENARIOS_LIST -> PatientsListFragment.newInstance()
                     Flows.Patients.SCREEN_SCENARIO_DETAILS ->
                         ScenarioDetailsFragment.newInstance(data as ScenarioItemUiModel)
                     else -> super.createFragment(screenKey, data)

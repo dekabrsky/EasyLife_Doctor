@@ -20,7 +20,7 @@ import ru.dekabrsky.scenarios_common.presentation.model.ScenarioItemUiModel
 import toothpick.Toothpick
 
 
-class ScenariosListFragment: BasicFragment(), ScenariosListView {
+class PatientsListFragment: BasicFragment(), PatientsListView {
 
     override val layoutRes: Int = R.layout.fragment_scenarios
 
@@ -56,17 +56,17 @@ class ScenariosListFragment: BasicFragment(), ScenariosListView {
         AlertDialog.Builder(context)
             .setTitle("Пригласить нового пациента")
             .setMessage("Создать новую учетную запись?")
-            .setPositiveButton("Да") { dialog, _ -> showCodeDialog(dialog) }
+            .setPositiveButton("Да") { dialog, _ -> presenter.generatePatients(dialog) }
             .setNegativeButton("Нет", null)
             .setIcon(R.drawable.ic_round_group_24)
             .show()
     }
 
-    private fun showCodeDialog(dialog: DialogInterface) {
+    override fun showCodeDialog(dialog: DialogInterface, code: Int) {
         dialog.dismiss()
         AlertDialog.Builder(context)
             .setTitle("Новый пациент создан")
-            .setMessage("Сообщите пациенту код #3976")
+            .setMessage("Сообщите пациенту код #$code. Пациент пояится в списке, когда активирует учетную запись")
             .setPositiveButton("Готово", null)
             .show()
     }
@@ -123,6 +123,6 @@ class ScenariosListFragment: BasicFragment(), ScenariosListView {
     override fun onBackPressed() = presenter.onBackPressed()
 
     companion object {
-        fun newInstance() = ScenariosListFragment()
+        fun newInstance() = PatientsListFragment()
     }
 }

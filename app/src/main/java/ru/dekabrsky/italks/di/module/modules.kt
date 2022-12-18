@@ -2,12 +2,11 @@ package ru.dekabrsky.italks.di.module
 
 import android.app.Application
 import android.content.Context
-import com.google.gson.Gson
 import io.reactivex.Scheduler
+import okhttp3.CookieJar
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
-import ru.dekabrsky.italks.BuildConfig
 import ru.dekabrsky.italks.basic.di.ServerEndpoint
 import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
@@ -20,7 +19,6 @@ import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
 import toothpick.config.Module
-import java.io.File
 import java.net.CookieManager
 
 class AppRootModule(app: Application) : Module() {
@@ -62,5 +60,7 @@ class NetworkModule : Module() {
             .providesSingletonInScope()
         bind(BaseModelErrorHandlerFactory::class.java).to(ModelErrorHandlerFactoryImpl::class.java)
             .singletonInScope()
+        bind(CookieManager::class.java).toInstance(CookieManager())
+        bind(CookieJar::class.java).toProvider(CookieJarProvider::class.java).providesSingletonInScope()
     }
 }
