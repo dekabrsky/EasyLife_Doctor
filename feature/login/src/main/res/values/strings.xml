@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_title">Вход</string>
+    <string name="invite_code">Код приглашения</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="login_action">Войти</string>
+    <string name="registration">Регистрация</string>
+    <string name="forgot_password_question">Забыли пароль?</string>
+    <string name="change_mode_to_login">У меня уже есть учетная запись</string>
+</resources>

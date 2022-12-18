@@ -15,17 +15,46 @@ class LoginPresenter @Inject constructor(
     private val repository: LoginRepository
 ): BasicPresenter<LoginView>() {
 
+    enum class LoginMode { LOGIN, REGISTRATION }
+
+    var currentCode: String = ""
     var currentLogin: String = ""
     var currentPassword: String = ""
 
-    fun onLoginClick() {
-        repository.login(currentLogin, currentPassword)
-            .observeOn(RxSchedulers.main())
-            .subscribe({
-                router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
-            }, viewState::showError)
-            .addFullLifeCycle()
+    private var mode: LoginMode = LoginMode.LOGIN
 
+    fun onDoneButtonClick() {
+        when (mode) {
+            LoginMode.LOGIN -> {
+                repository.login(currentLogin, currentPassword)
+                    .observeOn(RxSchedulers.main())
+                    .subscribe({
+                        router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
+                    }, viewState::showError)
+                    .addFullLifeCycle()
+            }
+            LoginMode.REGISTRATION -> {
+                repository.registration(currentCode, currentLogin, currentPassword)
+                    .observeOn(RxSchedulers.main())
+                    .subscribe({
+                        router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
+                    }, viewState::showError)
+                    .addFullLifeCycle()
+            }
+        }
+    }
+
+    fun onChangeModeClick() {
+        when (mode) {
+            LoginMode.LOGIN -> {
+                mode = LoginMode.REGISTRATION
+                viewState.setupForRegistration()
+            }
+            LoginMode.REGISTRATION -> {
+                mode = LoginMode.LOGIN
+                viewState.setupForLogin()
+            }
+        }
     }
 
     fun onLoginChanged(text: CharSequence) {
@@ -34,5 +63,9 @@ class LoginPresenter @Inject constructor(
 
     fun onPasswordChanged(text: CharSequence) {
         currentPassword = text.toString()
+    }
+
+    fun onCodeTextChanged(text: String) {
+        currentCode = text
     }
 }

@@ -39,7 +39,7 @@ abstract class BasicFlowFragment: BasicFragment() {
 
     override fun onBackPressed() {
         val fragment =
-            childFragmentManager.fragments.firstOrNull { it.isVisible && it is BasicFragment }
+            childFragmentManager.fragments.lastOrNull { it.isVisible && it is BasicFragment }
         (fragment as? BasicFragment)?.onBackPressed()
     }
 
