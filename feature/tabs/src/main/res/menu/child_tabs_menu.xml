@@ -10,16 +10,6 @@
         android:icon="@drawable/ic_round_calendar_24"
         android:title="@string/events" />
 
-<!--    <item-->
-<!--        android:id="@+id/chats"-->
-<!--        android:icon="@drawable/ic_round_question_answer_24"-->
-<!--        android:title="@string/chats" />-->
-
-    <item
-        android:id="@+id/materials"
-        android:icon="@drawable/ic_book"
-        android:title="@string/materials" />
-
     <item
         android:id="@+id/stats"
         android:icon="@drawable/ic_round_group_24"

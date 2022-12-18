@@ -5,7 +5,6 @@
         android:icon="@drawable/ic_round_calendar_24"
         android:title="@string/events" />
 
-
     <item
         android:id="@+id/patients"
         android:icon="@drawable/ic_hospital"
