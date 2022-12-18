@@ -1,18 +1,13 @@
 package ru.dekabrsky.scenarios.data.repository
 
-import io.reactivex.Observable
-import ru.dekabrsky.scenarios.data.api.ScenariosApi
-import ru.dekabrsky.scenarios.data.mapper.ScenariosResponseToEntityMapper
-import ru.dekabrsky.scenarios_common.domain.model.ScenarioEntity
+import io.reactivex.Single
+import ru.dekabrsky.scenarios.data.api.DoctorPatientsApi
+import ru.dekabrsky.scenarios.data.mapper.PatientsResponseToEntityMapper
 import javax.inject.Inject
 
 class ScenariosRepository @Inject constructor(
-    private val api: ScenariosApi,
-    private val mapper: ScenariosResponseToEntityMapper
+    private val api: DoctorPatientsApi,
+    private val mapper: PatientsResponseToEntityMapper
 ) {
-    fun getCallersBases(direction: String, sortBy: String): Observable<List<ScenarioEntity>> =
-        api.getScenarios(
-            direction = direction,
-            sortBy = sortBy
-        ).map { mapper.map(it) }
+    fun generateCode(): Single<Int> = api.generatePatient().map { it.code }
 }

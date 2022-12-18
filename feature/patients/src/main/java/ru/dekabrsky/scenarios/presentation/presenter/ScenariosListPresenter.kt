@@ -1,21 +1,24 @@
 package ru.dekabrsky.scenarios.presentation.presenter
 
+import android.content.DialogInterface
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.network.utils.Direction
 import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
+import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.scenarios.domain.interactor.ScenariosInteractorImpl
+import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
+import ru.dekabrsky.scenarios.domain.interactor.DoctorPatientsInteractorImpl
 import ru.dekabrsky.scenarios.presentation.mapper.ScenariosUiMapper
 import ru.dekabrsky.scenarios_common.presentation.model.ScenarioItemUiModel
-import ru.dekabrsky.scenarios.presentation.view.ScenariosListView
+import ru.dekabrsky.scenarios.presentation.view.PatientsListView
 import javax.inject.Inject
 
 class ScenariosListPresenter @Inject constructor(
     private val router: FlowRouter,
     private val uiMapper: ScenariosUiMapper,
-    private val interactor: ScenariosInteractorImpl
-) : BasicPresenter<ScenariosListView>(router) {
+    private val interactor: DoctorPatientsInteractorImpl
+) : BasicPresenter<PatientsListView>(router) {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -57,5 +60,14 @@ class ScenariosListPresenter @Inject constructor(
 
     fun onItemClick(model: ScenarioItemUiModel) {
         router.navigateTo(Flows.Patients.SCREEN_SCENARIO_DETAILS, model)
+    }
+
+    fun generatePatients(dialog: DialogInterface) {
+        interactor.generateCode()
+            .observeOn(RxSchedulers.main())
+            .subscribe({
+                viewState.showCodeDialog(dialog, it)
+            }, viewState::showError)
+            .addFullLifeCycle()
     }
 }
