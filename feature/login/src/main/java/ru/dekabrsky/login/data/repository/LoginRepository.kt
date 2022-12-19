@@ -20,5 +20,5 @@ class LoginRepository @Inject constructor(
         api.registration(mapper.mapRegistration(code= code, login = login, password = password))
             .map { mapper.mapUserInfo(it) }
 
-    //fun getCurrentUser(): Single<UserInfoResponse> = api.getCurrentUser()
+    fun getCurrentUser(): Single<UserInfoEntity> = api.getCurrentUser().map { mapper.mapUserInfo(it) }
 }

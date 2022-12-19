@@ -15,6 +15,7 @@ import ru.dekabrsky.italks.basic.navigation.di.installNavigation
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes.SCOPE_FLOW_CHATS
+import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -34,7 +35,7 @@ class ChatFlowFragment : BasicFlowFragment(), ChatFlowView {
                 when (screenKey) {
                     Flows.Chats.SCREEN_BASES_LIST -> ChatsListFragment.newInstance()
                     Flows.Chats.SCREEN_BASES_DETAILS ->
-                        ChatDetailsFragment.newInstance(data as CallersBaseEntity)
+                        ChatConversationFragment.newInstance()
                     else -> super.createFragment(screenKey, data)
                 }
         }
@@ -60,6 +61,10 @@ class ChatFlowFragment : BasicFlowFragment(), ChatFlowView {
 
     override fun onBackPressed() {
         presenter.onBackPressed()
+    }
+
+    fun setNavBarVisibility(isVisible: Boolean) {
+        (parentFragment as TabsFlowFragment).setNavBarVisibility(isVisible)
     }
 
     companion object {

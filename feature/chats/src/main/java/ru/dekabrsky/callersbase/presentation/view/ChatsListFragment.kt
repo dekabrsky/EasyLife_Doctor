@@ -12,6 +12,7 @@ import ru.dekabrsky.callersbase_common.presentation.model.ChatUiModel
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes.SCOPE_FLOW_CHATS
+import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
 import toothpick.Toothpick
 
 class ChatsListFragment : BasicFragment(), ChatsListView {
@@ -36,6 +37,11 @@ class ChatsListFragment : BasicFragment(), ChatsListView {
             .also { Toothpick.closeScope(scopeName) }
     }
 
+    override fun onResume() {
+        super.onResume()
+        setNavBarVisibility(true)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
@@ -45,7 +51,7 @@ class ChatsListFragment : BasicFragment(), ChatsListView {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.callers_bases_menu, menu)
+        //inflater.inflate(R.menu.callers_bases_menu, menu)
 
         sortByNameItem = menu.findItem(R.id.sort_name)
         sortByDateAscItem = menu.findItem(R.id.sort_date_asc)
@@ -88,6 +94,10 @@ class ChatsListFragment : BasicFragment(), ChatsListView {
     }
 
     override fun onBackPressed() = presenter.onBackPressed()
+
+    fun setNavBarVisibility(isVisible: Boolean) {
+        (parentFragment as ChatFlowFragment).setNavBarVisibility(isVisible)
+    }
 
     companion object {
         fun newInstance() = ChatsListFragment()

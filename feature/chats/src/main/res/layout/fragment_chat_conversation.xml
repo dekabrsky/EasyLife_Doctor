@@ -15,8 +15,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:title="Чат с врачом"/>
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bottom_part"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/chat_input_bg"
@@ -45,6 +45,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+    <ImageView
+        android:id="@+id/chatPlaceHolder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_chat"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:scaleType="centerCrop"
+        android:scrollY="-25dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,8 +28,13 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/dialings_count"
+                android:id="@+id/myProfile"
                 layout="@layout/include_title_value"/>
+
+            <include
+                android:id="@+id/myChildren"
+                layout="@layout/include_title_value"
+                android:visibility="gone"/>
 
             <include
                 android:id="@+id/average_dial_length"

@@ -27,7 +27,7 @@ class TabsFlowPresenter @Inject constructor(
         viewState.setTabsByRole(
             when (args.userType) {
                 UserType.DOCTOR -> R.menu.doctor_tabs_menu
-                UserType.PATIENT -> R.menu.parent_tabs_menu
+                UserType.PATIENT -> R.menu.child_tabs_menu
                 UserType.PARENT -> R.menu.parent_tabs_menu
                 UserType.CHILD -> R.menu.child_tabs_menu
             }
@@ -48,7 +48,12 @@ class TabsFlowPresenter @Inject constructor(
             Flows.Game.name to null,
             Flows.Profile.name to null
         )
-        toggleScreen(Flows.Game)
+        when (args.userType) {
+           UserType.DOCTOR -> toggleScreen(Flows.Events)
+            UserType.PATIENT -> toggleScreen(Flows.Game)
+            UserType.PARENT -> toggleScreen(Flows.Chats)
+            UserType.CHILD -> toggleScreen(Flows.Game)
+        }
     }
 
     fun onTabSelect(itemId: Int) {
