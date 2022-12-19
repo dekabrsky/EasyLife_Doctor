@@ -1,13 +1,13 @@
 package ru.dekabrsky.callersbase.data.repository
 
 import io.reactivex.Observable
-import ru.dekabrsky.callersbase.data.api.CallersBaseApi
+import ru.dekabrsky.callersbase.data.api.ContactsApi
 import ru.dekabrsky.callersbase.data.mapper.CallersBaseResponseToEntityMapper
 import ru.dekabrsky.callersbase_common.domain.model.CallersBaseEntity
 import javax.inject.Inject
 
-class CallersBaseRepository @Inject constructor(
-    private val api: CallersBaseApi,
+class ContactsRepository @Inject constructor(
+    private val api: ContactsApi,
     private val mapper: CallersBaseResponseToEntityMapper
 ){
     fun getCallersBases(direction: String, sortBy: String): Observable<List<CallersBaseEntity>> =

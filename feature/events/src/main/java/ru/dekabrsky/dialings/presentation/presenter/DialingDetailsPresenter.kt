@@ -1,7 +1,7 @@
 package ru.dekabrsky.dialings.presentation.presenter
 
 import org.threeten.bp.LocalDateTime
-import ru.dekabrsky.callersbase_common.domain.interactor.CallersBaseInteractor
+import ru.dekabrsky.callersbase_common.domain.interactor.ContactsInteractor
 import ru.dekabrsky.callersbase_common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.dialings.presentation.mapper.DialingListUiMapper
 import ru.dekabrsky.dialings.presentation.view.DialingDetailsView
@@ -21,7 +21,7 @@ import javax.inject.Inject
 class DialingDetailsPresenter @Inject constructor(
     private val router: FlowRouter,
     private val dialingId: IntWrapper,
-    private val callersBaseInteractor: CallersBaseInteractor,
+    private val callersBaseInteractor: ContactsInteractor,
     private val dialingsInteractor: DialingsInteractor,
     private val dialingUiMapper: DialingListUiMapper
 ) : BasicPresenter<DialingDetailsView>(router) {

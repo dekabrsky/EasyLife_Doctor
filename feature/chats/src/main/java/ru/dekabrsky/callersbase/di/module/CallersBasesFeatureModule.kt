@@ -1,14 +1,14 @@
 package ru.dekabrsky.callersbase.di.module
 
-import ru.dekabrsky.callersbase.data.api.CallersBaseApi
+import ru.dekabrsky.callersbase.data.api.ContactsApi
 import ru.dekabrsky.callersbase.di.provider.CallersBaseApiProvider
-import ru.dekabrsky.callersbase.domain.interactor.CallersBaseInteractorImpl
-import ru.dekabrsky.callersbase_common.domain.interactor.CallersBaseInteractor
+import ru.dekabrsky.callersbase.domain.interactor.ContactsInteractorImpl
+import ru.dekabrsky.callersbase_common.domain.interactor.ContactsInteractor
 import toothpick.config.Module
 
 class CallersBasesFeatureModule: Module() {
     init {
-        bind(CallersBaseApi::class.java).toProvider(CallersBaseApiProvider::class.java)
-        bind(CallersBaseInteractor::class.java).to(CallersBaseInteractorImpl::class.java)
+        bind(ContactsApi::class.java).toProvider(CallersBaseApiProvider::class.java)
+        bind(ContactsInteractor::class.java).to(ContactsInteractorImpl::class.java)
     }
 }

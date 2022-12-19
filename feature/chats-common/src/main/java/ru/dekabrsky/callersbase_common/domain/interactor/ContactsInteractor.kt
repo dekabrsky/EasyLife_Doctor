@@ -5,7 +5,7 @@ import ru.dekabrsky.callersbase_common.domain.model.CallersBaseEntity
 import ru.dekabrsky.italks.basic.network.utils.Direction
 import ru.dekabrsky.italks.basic.network.utils.SortVariants
 
-interface CallersBaseInteractor {
+interface ContactsInteractor {
     fun getCallersBases(
         direction: String = Direction.ASC.name,
         sortBy: String = SortVariants.NAME.name
