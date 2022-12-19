@@ -1,14 +1,9 @@
 package ru.dekabrsky.italks.activity.presenter
 
-import moxy.MvpPresenter
-import moxy.MvpView
 import ru.dekabrsky.italks.activity.view.MainView
-import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.tabs.domain.UserType
-import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(

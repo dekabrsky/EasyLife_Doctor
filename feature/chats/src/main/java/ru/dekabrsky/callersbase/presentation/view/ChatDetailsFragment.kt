@@ -42,6 +42,11 @@ class ChatDetailsFragment : BasicFragment(), ChatDetailsView {
             .also { Toothpick.closeScope(scopeName) }
     }
 
+    override fun onResume() {
+        super.onResume()
+        (parentFragment as ChatsListFragment).setNavBarVisibility(false)
+    }
+
     override fun onBackPressed() {
         presenter.onBackPressed()
     }

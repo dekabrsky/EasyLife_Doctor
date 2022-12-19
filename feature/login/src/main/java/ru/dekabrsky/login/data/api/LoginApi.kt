@@ -17,5 +17,5 @@ interface LoginApi {
     fun registration(@Body regRequest: RegistrationRequest): Single<UserInfoResponse>
 
     @GET("users/current")
-    fun getCurrentUser(): Completable
+    fun getCurrentUser():  Single<UserInfoResponse>
 }

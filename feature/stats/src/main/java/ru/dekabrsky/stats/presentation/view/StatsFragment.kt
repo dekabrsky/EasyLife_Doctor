@@ -13,6 +13,7 @@ import org.eazegraph.lib.models.ValueLineSeries
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.login.domain.model.UserInfoEntity
 import ru.dekabrsky.stats.R
 import ru.dekabrsky.stats.databinding.FragmentStatsBinding
 import ru.dekabrsky.stats.presentation.model.ChartPointUiModel
@@ -103,6 +104,13 @@ class StatsFragment: BasicFragment(), StatsView {
             )
         )
         binding.pieChartLayout.piechart.startAnimation()
+    }
+
+    override fun showMyInfo(infoEntity: UserInfoEntity?) {
+         infoEntity?.let {
+             binding.myProfile.value.text = it.name
+             binding.myProfile.speciality.text = it.role.desc
+         }
     }
 
     companion object{

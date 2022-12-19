@@ -43,6 +43,12 @@ class ChatsListAdapter(
         if (item.name.contains("0356")) {
             holder.avatar.setImageResource(R.drawable.cat_avatar_2)
         }
+        if (item.name.contains("Вас")) {
+            holder.avatar.setImageResource(R.drawable.ic_doctor_m)
+        }
+        if (item.name.contains("Нат")) {
+            holder.avatar.setImageResource(R.drawable.ic_doctor_f)
+        }
         holder.root.setOnClickListener { onItemClick(item) }
     }
 

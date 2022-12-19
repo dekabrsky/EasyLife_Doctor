@@ -9,12 +9,16 @@ import ru.dekabrsky.callersbase_common.presentation.model.ChatUiModel
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.network.utils.Direction
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
+import ru.dekabrsky.italks.basic.rx.RxSchedulers
+import ru.dekabrsky.italks.tabs.domain.UserType
+import ru.dekabrsky.login.data.repository.LoginRepository
 import javax.inject.Inject
 
 class ChatsListPresenter @Inject constructor(
     private val router: FlowRouter,
     private val interactor: ContactsInteractorImpl,
-    private val uiMapper: ChatEntityToUiMapper
+    private val uiMapper: ChatEntityToUiMapper,
+    private val loginInteractor: LoginRepository
 ) : BasicPresenter<ChatsListView>(router) {
 
     override fun onFirstViewAttach() {
@@ -26,18 +30,17 @@ class ChatsListPresenter @Inject constructor(
         direction: String = Direction.ASC.name,
         sortBy: String = SortVariants.NAME.name
     ) {
-//        interactor.getCallersBases(direction, sortBy)
-//            .observeOn(RxSchedulers.main())
-//            .map { it.map { entity -> uiMapper.map(entity) } }
-//            .subscribe(
-//                { dispatchLoading(it) },
-//                {
-//                    viewState.showError(it, ::load)
-//                    viewState.showEmptyLayout()
-//                }
-//            )
-//            .addFullLifeCycle()
-        viewState.setChatsList(uiMapper.mapChats())
+        loginInteractor.getCurrentUser()
+            .observeOn(RxSchedulers.main())
+            .subscribe({
+                when (it.role) {
+                    UserType.DOCTOR -> viewState.setChatsList(uiMapper.mapDoctorChats())
+                    UserType.PARENT -> viewState.setChatsList(uiMapper.mapParentChats())
+                    else -> viewState.setChatsList(listOf())
+                }
+            }, viewState::showError)
+            .addFullLifeCycle()
+
     }
 
     fun loadSortByName() = load()
@@ -50,12 +53,12 @@ class ChatsListPresenter @Inject constructor(
         if (items.isEmpty()) {
             viewState.showEmptyLayout()
         } else {
-            viewState.setChatsList(uiMapper.mapChats())
+            viewState.setChatsList(uiMapper.mapDoctorChats())
         }
     }
 
     fun onChatClick(model: ChatUiModel) {
-        // переход в чат
+        //router.navigateTo(Flows.Chats.SCREEN_BASES_DETAILS)
     }
 
 }
