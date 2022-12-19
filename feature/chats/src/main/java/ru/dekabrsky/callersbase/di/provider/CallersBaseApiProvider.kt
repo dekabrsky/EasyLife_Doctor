@@ -1,13 +1,13 @@
 package ru.dekabrsky.callersbase.di.provider
 
 import retrofit2.Retrofit
-import ru.dekabrsky.callersbase.data.api.CallersBaseApi
+import ru.dekabrsky.callersbase.data.api.ContactsApi
 import javax.inject.Inject
 import javax.inject.Provider
 
 class CallersBaseApiProvider @Inject constructor(private val retrofit: Retrofit) :
-    Provider<CallersBaseApi> {
+    Provider<ContactsApi> {
 
-    override fun get(): CallersBaseApi = retrofit.create(CallersBaseApi::class.java)
+    override fun get(): ContactsApi = retrofit.create(ContactsApi::class.java)
 
 }

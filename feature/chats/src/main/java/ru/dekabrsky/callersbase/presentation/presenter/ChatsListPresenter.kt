@@ -1,6 +1,6 @@
 package ru.dekabrsky.callersbase.presentation.presenter
 
-import ru.dekabrsky.callersbase.domain.interactor.CallersBaseInteractorImpl
+import ru.dekabrsky.callersbase.domain.interactor.ContactsInteractorImpl
 import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.callersbase.presentation.mapper.ChatEntityToUiMapper
 import ru.dekabrsky.callersbase_common.presentation.model.CallersBaseUiModel
@@ -9,12 +9,11 @@ import ru.dekabrsky.callersbase_common.presentation.model.ChatUiModel
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.network.utils.Direction
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.flows.Flows
 import javax.inject.Inject
 
 class ChatsListPresenter @Inject constructor(
     private val router: FlowRouter,
-    private val interactor: CallersBaseInteractorImpl,
+    private val interactor: ContactsInteractorImpl,
     private val uiMapper: ChatEntityToUiMapper
 ) : BasicPresenter<ChatsListView>(router) {
 

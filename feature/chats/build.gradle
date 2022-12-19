@@ -70,5 +70,6 @@ dependencies {
     implementation project(path: ':basic')
     implementation project(path: ':scopes')
     implementation project(path: ':uikit')
+    implementation project(path: ':feature:login')
     implementation project(path: ':feature:chats-common')
 }
