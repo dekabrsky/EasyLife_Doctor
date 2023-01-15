@@ -26,7 +26,7 @@ import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 import java.util.*
 
-class ProfileFragment() : BasicFragment(), ProfileView {
+class ProfileFragment : BasicFragment(), ProfileView {
 
     private val binding by viewBinding(FragmentProfileBinding::bind)
     private var question = 0

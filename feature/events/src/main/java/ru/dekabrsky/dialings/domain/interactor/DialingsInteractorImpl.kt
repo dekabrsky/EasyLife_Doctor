@@ -3,9 +3,9 @@ package ru.dekabrsky.dialings.domain.interactor
 import io.reactivex.Completable
 import io.reactivex.Observable
 import ru.dekabrsky.dialings.data.repository.DialingsRepository
-import ru.dekabrsky.dialings_common.domain.model.DialingEntity
-import ru.dekabrsky.dialings_common.domain.model.DialingStatus
-import ru.dekabrsky.dialings_common.domain.interactor.DialingsInteractor
+import ru.dekabrsky.common.domain.model.DialingEntity
+import ru.dekabrsky.common.domain.model.DialingStatus
+import ru.dekabrsky.common.domain.interactor.DialingsInteractor
 import ru.dekabrsky.italks.basic.network.utils.Direction
 import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import javax.inject.Inject

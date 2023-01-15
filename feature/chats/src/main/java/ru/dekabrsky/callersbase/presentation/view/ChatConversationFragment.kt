@@ -1,7 +1,6 @@
 package ru.dekabrsky.callersbase.presentation.view
 
 import ru.dekabrsky.callersbase.R
-import ru.dekabrsky.callersbase_common.domain.model.CallersBaseEntity
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 
 class ChatConversationFragment: BasicFragment() {

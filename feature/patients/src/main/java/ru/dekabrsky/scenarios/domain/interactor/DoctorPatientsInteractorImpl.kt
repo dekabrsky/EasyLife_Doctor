@@ -1,7 +1,7 @@
 package ru.dekabrsky.scenarios.domain.interactor
 
 import ru.dekabrsky.scenarios.data.repository.ScenariosRepository
-import ru.dekabrsky.scenarios_common.domain.interactor.DoctorPatientsInteractor
+import ru.dekabrsky.common.domain.interactor.DoctorPatientsInteractor
 import javax.inject.Inject
 
 class DoctorPatientsInteractorImpl @Inject constructor(

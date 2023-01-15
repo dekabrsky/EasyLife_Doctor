@@ -4,6 +4,7 @@ import androidx.annotation.Keep
 import ru.dekabrsky.italks.basic.paging.data.response.Pageable
 import ru.dekabrsky.italks.basic.paging.data.response.Sort
 
+@Suppress("LongParameterList")
 @Keep
 class CallersBaseResponse(
     val content: List<ContentResponse>,
@@ -28,6 +29,7 @@ class ColumnResponse(
     val type: String
 )
 
+@Suppress("LongParameterList")
 @Keep
 class ContentResponse(
     val columns: List<ColumnResponse>,

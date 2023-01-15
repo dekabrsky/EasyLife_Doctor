@@ -30,9 +30,10 @@ class GameFlowFragment : BasicFlowFragment(), GameFlowView {
     override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
-                when (screenKey) {
-                    Flows.Game.SCREEN_START_GAME -> StartGameFragment.newInstance()
-                    else -> super.createFragment(screenKey, data)
+                if(screenKey == Flows.Game.SCREEN_START_GAME) {
+                    StartGameFragment.newInstance()
+                } else {
+                    super.createFragment(screenKey, data)
                 }
         }
 

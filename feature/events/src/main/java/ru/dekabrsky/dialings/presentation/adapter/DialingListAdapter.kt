@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.databinding.ItemDialingBinding
-import ru.dekabrsky.dialings_common.domain.model.DialingStatus
-import ru.dekabrsky.dialings_common.presentation.model.DialingUiModel
+import ru.dekabrsky.common.domain.model.DialingStatus
+import ru.dekabrsky.common.presentation.model.DialingUiModel
 
 class DialingListAdapter(
     private val onItemClick: (DialingUiModel) -> Unit,

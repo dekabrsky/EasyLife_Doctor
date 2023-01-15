@@ -6,12 +6,12 @@ import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.R
 import ru.dekabrsky.callersbase.databinding.FragmentChatDetailsBinding
-import ru.dekabrsky.callersbase_common.domain.model.CallersBaseEntity
+import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import ru.dekabrsky.callersbase.presentation.adapter.ChatsVariablesListAdapter
-import ru.dekabrsky.callersbase_common.presentation.model.CallersBaseUiModel
+import ru.dekabrsky.common.presentation.model.CallersBaseUiModel
 import ru.dekabrsky.callersbase.presentation.presenter.ChatDetailsPresenter
-import ru.dekabrsky.dialings_common.presentation.adapter.MiniDialingsAdapter
-import ru.dekabrsky.dialings_common.presentation.model.MiniDialingUiModel
+import ru.dekabrsky.common.presentation.adapter.MiniDialingsAdapter
+import ru.dekabrsky.common.presentation.model.MiniDialingUiModel
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding

@@ -26,6 +26,7 @@ import com.badlogic.gdx.math.Intersector
 import com.badlogic.gdx.math.Rectangle
 import java.util.*
 
+@Suppress("MagicNumber")
 class FlappyBird : ApplicationAdapter() {
 
     private lateinit var batch: SpriteBatch
@@ -87,6 +88,7 @@ class FlappyBird : ApplicationAdapter() {
         startGame()
     }
 
+    @Suppress("LongMethod", "CyclomaticComplexMethod")
     override fun render() {
         batch.begin()
         batch.draw(background, 0f, 0f, gdxWidth.toFloat(), gdxHeight.toFloat())

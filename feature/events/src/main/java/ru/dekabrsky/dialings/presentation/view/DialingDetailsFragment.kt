@@ -14,14 +14,13 @@ import org.eazegraph.lib.models.ValueLineSeries
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.databinding.NewFragmentDialingDetailsBinding
 import ru.dekabrsky.dialings.presentation.presenter.DialingDetailsPresenter
-import ru.dekabrsky.dialings_common.domain.model.DialingStatus
-import ru.dekabrsky.dialings_common.presentation.model.DialingUiModel
+import ru.dekabrsky.common.domain.model.DialingStatus
+import ru.dekabrsky.common.presentation.model.DialingUiModel
 import ru.dekabrsky.italks.basic.di.IntWrapper
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
 import toothpick.Toothpick
 import java.util.*
 
@@ -97,6 +96,7 @@ class DialingDetailsFragment: BasicFragment(), DialingDetailsView {
         }
     }
 
+    @Suppress("MagicNumber")
     override fun setupPieChart() {
         binding.pieChart.piechart.addPieSlice(
             PieModel(
@@ -130,6 +130,7 @@ class DialingDetailsFragment: BasicFragment(), DialingDetailsView {
         binding.pieChart.piechart.startAnimation()
     }
 
+    @Suppress("MagicNumber")
     override fun setupLineChart() {
         val series = ValueLineSeries()
         series.color = ContextCompat.getColor(requireContext(), R.color.cyan_main)

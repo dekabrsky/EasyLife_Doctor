@@ -1,13 +1,13 @@
 package ru.dekabrsky.dialings.presentation.presenter
 
 import org.threeten.bp.LocalDateTime
-import ru.dekabrsky.callersbase_common.domain.interactor.ContactsInteractor
-import ru.dekabrsky.callersbase_common.presentation.model.ChatsFlowScreenArgs
+import ru.dekabrsky.common.domain.interactor.ContactsInteractor
+import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.dialings.presentation.mapper.DialingListUiMapper
 import ru.dekabrsky.dialings.presentation.view.DialingDetailsView
-import ru.dekabrsky.dialings_common.domain.interactor.DialingsInteractor
-import ru.dekabrsky.dialings_common.domain.model.DialingStatus
-import ru.dekabrsky.dialings_common.presentation.model.DialingUiModel
+import ru.dekabrsky.common.domain.interactor.DialingsInteractor
+import ru.dekabrsky.common.domain.model.DialingStatus
+import ru.dekabrsky.common.presentation.model.DialingUiModel
 import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiDateTime
 import ru.dekabrsky.italks.basic.di.IntWrapper
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter

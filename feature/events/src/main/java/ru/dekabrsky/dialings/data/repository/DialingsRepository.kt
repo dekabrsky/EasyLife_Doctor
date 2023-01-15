@@ -4,7 +4,7 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import ru.dekabrsky.dialings.data.api.DialingsApi
 import ru.dekabrsky.dialings.data.mapper.DialingResponseToEntityMapper
-import ru.dekabrsky.dialings_common.domain.model.DialingEntity
+import ru.dekabrsky.common.domain.model.DialingEntity
 import javax.inject.Inject
 
 class DialingsRepository @Inject constructor(

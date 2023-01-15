@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.databinding.ItemScenarioBinding
-import ru.dekabrsky.scenarios_common.presentation.model.ScenarioItemUiModel
+import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 
 class ScenariosAdapter(
     private val onItemClick: (ScenarioItemUiModel) -> Unit

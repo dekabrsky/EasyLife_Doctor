@@ -5,7 +5,7 @@ import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.presentation.presenter.DialingsFlowPresenter
-import ru.dekabrsky.dialings_common.presentation.model.EventsFlowScreenArgs
+import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment

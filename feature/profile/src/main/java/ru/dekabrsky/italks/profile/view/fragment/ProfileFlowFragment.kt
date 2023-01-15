@@ -30,9 +30,10 @@ class ProfileFlowFragment : BasicFlowFragment(), ProfileFlowView {
     override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
-                when (screenKey) {
-                    Flows.Profile.SCREEN_PROFILE -> ProfileFragment.newInstance()
-                    else -> super.createFragment(screenKey, data)
+                if (screenKey == Flows.Profile.SCREEN_PROFILE) {
+                    ProfileFragment.newInstance()
+                } else {
+                    super.createFragment(screenKey, data)
                 }
         }
 

@@ -4,8 +4,7 @@ import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.R
-import ru.dekabrsky.callersbase_common.domain.model.CallersBaseEntity
-import ru.dekabrsky.callersbase_common.presentation.model.ChatsFlowScreenArgs
+import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.callersbase.presentation.presenter.ChatFlowPresenter
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.di.module

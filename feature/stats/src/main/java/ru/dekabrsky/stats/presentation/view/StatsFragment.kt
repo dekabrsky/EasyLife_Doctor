@@ -74,6 +74,7 @@ class StatsFragment: BasicFragment(), StatsView {
         binding.lineChartLayout.lineChart.startAnimation()
     }
 
+    @Suppress("MagicNumber")
     override fun showPieChart() {
         binding.pieChartLayout.piechart.addPieSlice(
             PieModel(

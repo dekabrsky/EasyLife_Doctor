@@ -3,7 +3,9 @@ package ru.dekabrsky.materials.presentation.mapper
 import ru.dekabrsky.materials.presentation.model.MaterialDetailsUiModel
 import javax.inject.Inject
 
+@Suppress("MaxLineLength", " LongMethod")
 class MaterialsUiMapper @Inject constructor() {
+    @Suppress("LongMethod")
     fun mapMaterials(): List<MaterialDetailsUiModel> {
         return listOf(
             MaterialDetailsUiModel(

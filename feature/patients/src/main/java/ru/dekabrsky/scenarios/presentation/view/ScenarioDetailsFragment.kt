@@ -4,17 +4,16 @@ import android.os.Bundle
 import android.view.View
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.dialings_common.presentation.adapter.MiniDialingsAdapter
-import ru.dekabrsky.dialings_common.presentation.model.MiniDialingUiModel
+import ru.dekabrsky.common.presentation.adapter.MiniDialingsAdapter
+import ru.dekabrsky.common.presentation.model.MiniDialingUiModel
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.databinding.FragmentScenarioDetailsBinding
-import ru.dekabrsky.scenarios.databinding.FragmentScenariosBinding
 import ru.dekabrsky.scenarios.presentation.presenter.ScenarioDetailsPresenter
-import ru.dekabrsky.scenarios_common.presentation.model.ScenarioItemUiModel
+import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import toothpick.Toothpick
 
 class ScenarioDetailsFragment: BasicFragment(), ScenarioDetailsView {

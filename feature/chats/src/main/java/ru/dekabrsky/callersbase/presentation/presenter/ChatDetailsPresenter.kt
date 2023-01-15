@@ -1,12 +1,12 @@
 package ru.dekabrsky.callersbase.presentation.presenter
 
-import ru.dekabrsky.callersbase_common.domain.model.CallersBaseEntity
+import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import ru.dekabrsky.callersbase.presentation.mapper.ChatEntityToUiMapper
 import ru.dekabrsky.callersbase.presentation.view.ChatDetailsView
-import ru.dekabrsky.dialings_common.domain.interactor.DialingsInteractor
-import ru.dekabrsky.dialings_common.presentation.mapper.MiniDialingUiMapper
-import ru.dekabrsky.dialings_common.presentation.model.EventsFlowScreenArgs
-import ru.dekabrsky.dialings_common.presentation.model.MiniDialingUiModel
+import ru.dekabrsky.common.domain.interactor.DialingsInteractor
+import ru.dekabrsky.common.presentation.mapper.MiniDialingUiMapper
+import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
+import ru.dekabrsky.common.presentation.model.MiniDialingUiModel
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
