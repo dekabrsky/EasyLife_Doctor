@@ -1,0 +1,19 @@
+subprojects {
+    apply {
+        plugin 'io.gitlab.arturbosch.detekt'
+    }
+
+    detekt {
+        toolVersion = "1.22.0"
+        config = files("$rootDir/config/detekt/config.yml")
+        baseline = file("$projectDir/config/detekt/baseline.xml")
+
+        reports {
+            html {
+                enabled = true
+            }
+        }
+    }
+}
+
+

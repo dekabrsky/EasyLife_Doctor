@@ -3,7 +3,6 @@ package ru.dekabrsky.login.presentation.view
 import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.dialings_common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
@@ -16,7 +15,7 @@ import ru.dekabrsky.login.presentation.presenter.LoginFlowPresenter
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class LoginFlowFragment: BasicFlowFragment(), LoginFlowView {
+class LoginFlowFragment : BasicFlowFragment(), LoginFlowView {
 
     override val layoutRes = R.layout.basic_fragment_flow
 
@@ -27,9 +26,10 @@ class LoginFlowFragment: BasicFlowFragment(), LoginFlowView {
     override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
-                when (screenKey) {
-                    Flows.Login.SCREEN_LOGIN -> LoginFragment.newInstance()
-                    else -> super.createFragment(screenKey, data)
+                if (screenKey == Flows.Login.SCREEN_LOGIN) {
+                    LoginFragment.newInstance()
+                } else {
+                    super.createFragment(screenKey, data)
                 }
         }
 

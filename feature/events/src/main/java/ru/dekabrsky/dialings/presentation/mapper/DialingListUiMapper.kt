@@ -1,8 +1,7 @@
 package ru.dekabrsky.dialings.presentation.mapper
 
-import org.threeten.bp.format.DateTimeFormatter
-import ru.dekabrsky.dialings_common.domain.model.DialingEntity
-import ru.dekabrsky.dialings_common.presentation.model.DialingUiModel
+import ru.dekabrsky.common.domain.model.DialingEntity
+import ru.dekabrsky.common.presentation.model.DialingUiModel
 import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiDateTime
 import ru.dekabrsky.italks.basic.dateTime.formatDateToUiDate
 import javax.inject.Inject

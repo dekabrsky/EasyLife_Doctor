@@ -11,7 +11,7 @@ import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.databinding.FragmentDialingListBinding
 import ru.dekabrsky.dialings.presentation.adapter.DialingListAdapter
-import ru.dekabrsky.dialings_common.presentation.model.DialingUiModel
+import ru.dekabrsky.common.presentation.model.DialingUiModel
 import ru.dekabrsky.dialings.presentation.presenter.DialingsListPresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding

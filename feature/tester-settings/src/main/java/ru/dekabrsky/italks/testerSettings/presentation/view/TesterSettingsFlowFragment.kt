@@ -23,6 +23,7 @@ class TesterSettingsFlowFragment: BasicFlowFragment(), TesterSettingsFlowView {
 
     override val scopeName = Scopes.SCOPE_TESTER_SETTINGS
 
+    @Suppress("UseIfInsteadOfWhen")
     override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =

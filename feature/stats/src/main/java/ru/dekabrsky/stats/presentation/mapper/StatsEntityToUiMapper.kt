@@ -33,6 +33,7 @@ class StatsEntityToUiMapper @Inject constructor() {
 //        )
 //    }
 
+    @Suppress("MagicNumber")
     fun mapLineChart() = listOf(
         ChartPointUiModel("12:00", 1),
         ChartPointUiModel("13:00", 3),

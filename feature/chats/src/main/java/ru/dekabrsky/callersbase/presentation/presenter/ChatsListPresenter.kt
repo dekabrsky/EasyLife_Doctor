@@ -3,9 +3,9 @@ package ru.dekabrsky.callersbase.presentation.presenter
 import ru.dekabrsky.callersbase.domain.interactor.ContactsInteractorImpl
 import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.callersbase.presentation.mapper.ChatEntityToUiMapper
-import ru.dekabrsky.callersbase_common.presentation.model.CallersBaseUiModel
+import ru.dekabrsky.common.presentation.model.CallersBaseUiModel
 import ru.dekabrsky.callersbase.presentation.view.ChatsListView
-import ru.dekabrsky.callersbase_common.presentation.model.ChatUiModel
+import ru.dekabrsky.common.presentation.model.ChatUiModel
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.network.utils.Direction
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter

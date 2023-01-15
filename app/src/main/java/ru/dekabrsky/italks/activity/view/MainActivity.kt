@@ -35,7 +35,7 @@ import toothpick.configuration.MultipleRootException
 import toothpick.locators.NoFactoryFoundException
 import javax.inject.Inject
 
-class MainActivity : AppCompatActivity(), MainView {
+open class MainActivity : AppCompatActivity(), MainView {
 
     private val mvpDelegate: MvpDelegate<out MainActivity> by lazy { MvpDelegate(this) }
     private val compositeDisposable by lazy { CompositeDisposable() }
@@ -171,6 +171,7 @@ class MainActivity : AppCompatActivity(), MainView {
                 compositeDisposable.dispose()
             }
         } catch (e: Exception) {
+            throw e
         }
     }
 }

@@ -4,7 +4,7 @@ import org.threeten.bp.Instant
 import org.threeten.bp.ZoneId
 import ru.dekabrsky.callersbase.data.model.CallersBaseResponse
 import ru.dekabrsky.callersbase.data.model.ContentResponse
-import ru.dekabrsky.callersbase_common.domain.model.CallersBaseEntity
+import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import javax.inject.Inject
 
 class CallersBaseResponseToEntityMapper @Inject constructor() {

@@ -16,7 +16,7 @@ import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.databinding.FragmentScenariosBinding
 import ru.dekabrsky.scenarios.presentation.adapter.ScenariosAdapter
 import ru.dekabrsky.scenarios.presentation.presenter.ScenariosListPresenter
-import ru.dekabrsky.scenarios_common.presentation.model.ScenarioItemUiModel
+import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import toothpick.Toothpick
 
 

@@ -1,8 +1,8 @@
 package ru.dekabrsky.callersbase.presentation.mapper
 
-import ru.dekabrsky.callersbase_common.domain.model.CallersBaseEntity
-import ru.dekabrsky.callersbase_common.presentation.model.CallersBaseUiModel
-import ru.dekabrsky.callersbase_common.presentation.model.ChatUiModel
+import ru.dekabrsky.common.domain.model.CallersBaseEntity
+import ru.dekabrsky.common.presentation.model.CallersBaseUiModel
+import ru.dekabrsky.common.presentation.model.ChatUiModel
 import ru.dekabrsky.italks.basic.dateTime.formatDateToUiDate
 import javax.inject.Inject
 

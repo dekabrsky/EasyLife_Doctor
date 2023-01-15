@@ -1,8 +1,7 @@
 package ru.dekabrsky.dialings.presentation.view
 
 import moxy.viewstate.strategy.alias.AddToEndSingle
-import org.threeten.bp.LocalDateTime
-import ru.dekabrsky.dialings_common.presentation.model.DialingUiModel
+import ru.dekabrsky.common.presentation.model.DialingUiModel
 import ru.dekabrsky.italks.basic.fragments.BasicView
 import java.util.*
 

@@ -4,6 +4,7 @@ import androidx.annotation.Keep
 import ru.dekabrsky.italks.basic.paging.data.response.Pageable
 import ru.dekabrsky.italks.basic.paging.data.response.Sort
 
+@Suppress("LongParameterList")
 @Keep
 class DialingsResponse(
     val content: List<DialingResultResponse>?,
@@ -19,6 +20,7 @@ class DialingsResponse(
     val totalPages: Int
 )
 
+@Suppress("LongParameterList")
 @Keep
 class DialingResultResponse(
     val callersBase: CallersBaseOfDialingResponse?,

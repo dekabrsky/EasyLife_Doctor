@@ -1,9 +1,9 @@
 package ru.dekabrsky.italks.navigation
 
 import ru.dekabrsky.callersbase.presentation.view.ChatFlowFragment
-import ru.dekabrsky.callersbase_common.presentation.model.ChatsFlowScreenArgs
+import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.dialings.presentation.view.DialingsFlowFragment
-import ru.dekabrsky.dialings_common.presentation.model.EventsFlowScreenArgs
+import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider
 import ru.dekabrsky.italks.flows.Flows

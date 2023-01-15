@@ -1,6 +1,6 @@
 package ru.dekabrsky.callersbase.presentation.presenter
 
-import ru.dekabrsky.callersbase_common.presentation.model.ChatsFlowScreenArgs
+import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.callersbase.presentation.view.ChatFlowView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter

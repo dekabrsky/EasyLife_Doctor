@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.dekabrsky.callersbase.R
 import ru.dekabrsky.callersbase.databinding.ItemChatBinding
-import ru.dekabrsky.callersbase_common.presentation.model.ChatUiModel
+import ru.dekabrsky.common.presentation.model.ChatUiModel
 
 class ChatsListAdapter(
     private val onItemClick: (ChatUiModel) -> Unit

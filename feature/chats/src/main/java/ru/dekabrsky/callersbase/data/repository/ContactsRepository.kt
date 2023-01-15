@@ -3,7 +3,7 @@ package ru.dekabrsky.callersbase.data.repository
 import io.reactivex.Observable
 import ru.dekabrsky.callersbase.data.api.ContactsApi
 import ru.dekabrsky.callersbase.data.mapper.CallersBaseResponseToEntityMapper
-import ru.dekabrsky.callersbase_common.domain.model.CallersBaseEntity
+import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import javax.inject.Inject
 
 class ContactsRepository @Inject constructor(

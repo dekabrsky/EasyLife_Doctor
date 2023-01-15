@@ -7,10 +7,9 @@ import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.scenarios.domain.interactor.DoctorPatientsInteractorImpl
 import ru.dekabrsky.scenarios.presentation.mapper.ScenariosUiMapper
-import ru.dekabrsky.scenarios_common.presentation.model.ScenarioItemUiModel
+import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import ru.dekabrsky.scenarios.presentation.view.PatientsListView
 import javax.inject.Inject
 

@@ -10,7 +10,7 @@ import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-public abstract class ViewBindingProperty<in R : Any, T : ViewBinding>(
+abstract class ViewBindingProperty<in R : Any, T : ViewBinding>(
     private val viewBinder: (R) -> T
 ) : ReadOnlyProperty<R, T> {
 
@@ -39,7 +39,7 @@ public abstract class ViewBindingProperty<in R : Any, T : ViewBinding>(
     }
 
     @MainThread
-    public fun clear() {
+    fun clear() {
         val thisRef = thisRef ?: return
         this.thisRef = null
         getLifecycleOwner(thisRef).lifecycle.removeObserver(lifecycleObserver)
@@ -48,7 +48,7 @@ public abstract class ViewBindingProperty<in R : Any, T : ViewBinding>(
 
     private inner class ClearOnDestroyLifecycleObserver : DefaultLifecycleObserver {
         @MainThread
-        override fun onDestroy(owner: LifecycleOwner): Unit = clear()
+        override fun onDestroy(owner: LifecycleOwner) = clear()
     }
 
     private companion object {

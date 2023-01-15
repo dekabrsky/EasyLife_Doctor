@@ -1,7 +1,7 @@
 package ru.dekabrsky.callersbase.domain.interactor
 
 import ru.dekabrsky.callersbase.data.repository.ContactsRepository
-import ru.dekabrsky.callersbase_common.domain.interactor.ContactsInteractor
+import ru.dekabrsky.common.domain.interactor.ContactsInteractor
 import javax.inject.Inject
 
 class ContactsInteractorImpl @Inject constructor(

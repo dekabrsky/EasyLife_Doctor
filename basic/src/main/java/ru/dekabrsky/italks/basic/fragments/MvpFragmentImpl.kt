@@ -27,6 +27,7 @@ open class MvpFragmentImpl : Fragment() {
         }
     }
 
+    @Suppress("TooGenericExceptionCaught")
     override fun onResume() {
         super.onResume()
         stateSaved = false

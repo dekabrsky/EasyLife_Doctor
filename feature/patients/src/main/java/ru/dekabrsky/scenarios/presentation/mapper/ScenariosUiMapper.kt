@@ -1,14 +1,13 @@
 package ru.dekabrsky.scenarios.presentation.mapper
 
 import org.threeten.bp.LocalDateTime
-import org.threeten.bp.format.DateTimeFormatter
 import ru.dekabrsky.italks.basic.dateTime.formatDateToUiDate
-import ru.dekabrsky.scenarios_common.domain.model.ScenarioEntity
-import ru.dekabrsky.scenarios_common.presentation.model.ScenarioItemUiModel
+import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import javax.inject.Inject
 import kotlin.random.Random
 
 class ScenariosUiMapper @Inject constructor() {
+    @Suppress("MagicNumber")
     fun map(): ScenarioItemUiModel {
 
         return ScenarioItemUiModel(

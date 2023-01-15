@@ -5,8 +5,8 @@ import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneId
 import ru.dekabrsky.dialings.data.model.DialingResultResponse
 import ru.dekabrsky.dialings.data.model.DialingsResponse
-import ru.dekabrsky.dialings_common.domain.model.DialingEntity
-import ru.dekabrsky.dialings_common.domain.model.DialingStatus
+import ru.dekabrsky.common.domain.model.DialingEntity
+import ru.dekabrsky.common.domain.model.DialingStatus
 import javax.inject.Inject
 
 class DialingResponseToEntityMapper @Inject constructor() {
@@ -14,6 +14,7 @@ class DialingResponseToEntityMapper @Inject constructor() {
         return response.content?.map { mapContent(it) }.orEmpty()
     }
 
+    @Suppress("CyclomaticComplexMethod")
     fun mapContent(it: DialingResultResponse) =
         DialingEntity(
             callersBaseId = it.callersBase?.id ?: 0,

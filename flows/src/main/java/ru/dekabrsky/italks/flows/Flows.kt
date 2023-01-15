@@ -4,7 +4,7 @@ import ru.dekabrsky.italks.basic.navigation.Flow
 
 class Flows {
 
-    object Main : Flow("FLOW_MAIN") {}
+    object Main : Flow("FLOW_MAIN")
 
     object Login : Flow("FLOW_LOGIN") {
         const val SCREEN_LOGIN = "SCREEN_LOGIN"
