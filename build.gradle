@@ -1,5 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    apply from: 'dependencies.gradle'
+
     ext {
         gdxVersion = '1.11.0'
         kotlin_version = "1.5.10"
@@ -29,6 +31,8 @@ allprojects {
     configurations { natives }
 }
 
+apply from: 'dependencies.gradle'
+
 project(":android") {
     apply plugin: "android"
     apply plugin: "kotlin-android"
@@ -45,3 +49,5 @@ project(":android") {
         api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     }
 }
+
+ext.Base = "$rootDir/base.gradle"

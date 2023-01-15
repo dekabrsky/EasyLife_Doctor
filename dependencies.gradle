@@ -1,0 +1,135 @@
+ext.versions = [
+        minSdk          : 23,
+        targetSdk           : 33,
+        compileSdk          : 33,
+        kotlin              : '1.5.10',
+        buildTools          : '30.0.3',
+        cicerone            : '3.0.0',
+        detekt              : '1.5.1',
+        material            : '1.3.0',
+        services            : '18.0.0',
+        support             : '1.3.1',
+        rxjava2             : '2.2.21',
+        rxjava3             : '3.0.0',
+        rxkotlin2           : '2.3.0',
+        rxandroid2          : '2.1.1',
+        retrofit            : '2.3.0',
+        okhttp              : '4.9.3',
+        moxy                : '2.2.1',
+        toothpick           : '2.1.0',
+        // Test
+        junit               : '4.12',
+        mockito             : '3.9.0',
+        mockitoKotlin       : '3.2.0',
+        robolectric         : '4.4',
+        androidTestCore     : '1.0.0',
+        glide               : '4.12.0'
+]
+
+ext.libraries = [
+        kotlinStdlib         : "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin",
+
+        appCompat            : "androidx.appcompat:appcompat:$versions.support",
+        recyclerView         : "androidx.recyclerview:recyclerview:1.2.1",
+        ktx                  : "androidx.core:core-ktx:1.3.2",
+        annotations          : "androidx.annotation:annotation:1.2.0",
+        viewPager2           : "androidx.viewpager2:viewpager2:1.0.0",
+        constraintlayout     : "androidx.constraintlayout:constraintlayout:2.0.4",
+
+        rxJava2              : "io.reactivex.rxjava2:rxjava:$versions.rxjava2",
+        rxJava3              : "io.reactivex.rxjava3:rxjava:$versions.rxjava3",
+        rxAndroid2           : "io.reactivex.rxjava2:rxandroid:$versions.rxandroid2",
+        rxKotlin2            : "io.reactivex.rxjava2:rxkotlin:$versions.rxkotlin2",
+        rxbinding4           : "com.jakewharton.rxbinding4:rxbinding-appcompat:$versions.rxbinding4",
+
+        moxyCompiler         : "com.github.moxy-community:moxy-compiler:$versions.moxy",
+        toothpickCompiler    : "com.github.stephanenicolas.toothpick:toothpick-compiler:$versions.toothpick",
+        customizableCalendar : "ru.skblab.skbbank:customizable-calendar:$versions.customizableCalendar",
+        material             : "com.google.android.material:material:$versions.material",
+
+        cicerone             : "ru.terrakok.cicerone:cicerone:$versions.cicerone",
+
+        glide                : "com.github.bumptech.glide:glide:$versions.glide",
+
+        // Test
+        kotlinTest           : "org.jetbrains.kotlin:kotlin-test:$versions.kotlin",
+        junit                : "junit:junit:$versions.junit",
+        mockitoCore          : "org.mockito:mockito-core:$versions.mockito",
+        mockitoKotlin        : "org.mockito.kotlin:mockito-kotlin:$versions.mockitoKotlin",
+        robolectric          : "org.robolectric:robolectric:$versions.robolectric",
+        androidTestCore      : "androidx.test:core:$versions.androidTestCore",
+]
+
+ext.librarySets = [
+        rxJava     : {
+            currentProject.dependencies {
+                implementation libraries.rxJava2
+                implementation libraries.rxJava3
+                implementation libraries.rxAndroid2
+                implementation libraries.rxKotlin2
+            }
+        },
+        toothpick  : {
+            currentProject.dependencies {
+                implementation "com.github.stephanenicolas.toothpick:toothpick-runtime:$versions.toothpick"
+                implementation "com.github.stephanenicolas.toothpick:smoothie:$versions.toothpick"
+                kapt libraries.toothpickCompiler
+            }
+        },
+        retrofit   : {
+            currentProject.dependencies {
+                implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+                implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+                implementation "com.squareup.okhttp3:okhttp:$versions.okhttp"
+                implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
+                implementation "com.squareup.okhttp3:okhttp-urlconnection:$versions.okhttp"
+            }
+        },
+        moxy       : {
+            currentProject.dependencies {
+                implementation "com.github.moxy-community:moxy:$versions.moxy"
+                implementation "com.github.moxy-community:moxy-androidx:$versions.moxy"
+                kapt libraries.moxyCompiler
+            }
+        },
+        gson       : {
+            currentProject.dependencies {
+                implementation 'com.github.salomonbrys.kotson:kotson:2.5.0'
+                implementation 'com.google.code.gson:gson:2.8.6'
+                implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+            }
+        },
+        lifecycle  : {
+            currentProject.dependencies {
+                implementation "androidx.lifecycle:lifecycle-process:$versions.lifecycle"
+                implementation "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
+                implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.lifecycle"
+            }
+        },
+        glide      : {
+            currentProject.dependencies {
+                implementation libraries.glide
+                kapt "com.github.bumptech.glide:compiler:$versions.glide"
+            }
+        },
+        units      : {
+            currentProject.dependencies {
+                testImplementation libraries.kotlinTest
+                testImplementation libraries.junit
+                testImplementation libraries.mockitoCore
+                testImplementation libraries.mockitoKotlin
+                testImplementation libraries.robolectric
+                testImplementation 'io.mockk:mockk:1.11.0'
+                testImplementation 'org.mockito:mockito-inline:2.13.0'
+            }
+        }
+]
+
+ext.dependenciesSet = { project, closure ->
+    librarySets.each { entity ->
+        entity.value.ext.currentProject = project
+        closure.ext.set(entity.key, entity.value)
+    }
+    closure()
+}
+

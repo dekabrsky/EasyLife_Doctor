@@ -25,7 +25,7 @@ class OkHttpClientProvider : Provider<OkHttpClient> {
         builder.readTimeout(TIME_OUT, TimeUnit.SECONDS)
         builder.writeTimeout(TIME_OUT, TimeUnit.SECONDS)
         builder.followSslRedirects(true)
-        cookieJar?.let { builder.cookieJar(cookieJar) }
+        cookieJar?.let { builder.cookieJar(cookieJar!!) }
 
         return builder
     }
