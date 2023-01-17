@@ -25,10 +25,32 @@ android {
 
         buildConfigField "String", 'ENDPOINT', "\"http://83.222.11.163/\""
     }
+
+    signingConfigs {
+        release {
+            def keystoreProperties = new Properties()
+            def keystorePropsFile = file("keystore/keystore_config")
+
+            if (keystorePropsFile.exists()) {
+                file("keystore/keystore_config").withInputStream { keystoreProperties.load(it) }
+                storeFile file("$keystoreProperties.storeFile")
+                storePassword "$keystoreProperties.storePassword"
+                keyAlias "$keystoreProperties.keyAlias"
+                keyPassword "$keystoreProperties.keyPassword"
+            } else {
+                storeFile file("keystore/easy_life.keystore")
+                storePassword System.getenv('KEYSTORE_PASSWORD')
+                keyAlias System.getenv('RELEASE_SIGN_KEY_ALIAS')
+                keyPassword System.getenv('RELEASE_SIGN_KEY_PASSWORD')
+            }
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
