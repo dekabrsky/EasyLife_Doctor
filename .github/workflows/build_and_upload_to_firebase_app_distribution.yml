@@ -43,7 +43,7 @@ jobs:
           appId: ${{secrets.FIREBASE_PROJECT_ID}}
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
           groups: testers
-          file: app/build/outputs/apk/release/android-release.aab
+          file: android/build/outputs/apk/release/android-release.aab
 
 
 
