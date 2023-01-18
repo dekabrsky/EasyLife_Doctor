@@ -18,7 +18,7 @@ import toothpick.Toothpick
 class LoginFragment: BasicFragment(), LoginView {
 
     override val layoutRes: Int
-    get() = R.layout.fmt_login
+        get() = R.layout.fmt_login
 
     @InjectPresenter
     lateinit var presenter: LoginPresenter

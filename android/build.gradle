@@ -23,6 +23,10 @@ android {
         versionCode 1
         versionName "1.0"
 
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        testInstrumentationRunnerArguments clearPackageData: 'true'
+
         buildConfigField "String", 'ENDPOINT', "\"http://83.222.11.163/\""
     }
 
@@ -52,6 +56,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
 }
 
@@ -132,6 +139,9 @@ dependencies {
     }
 
     implementation libraries.cicerone
+
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestUtil 'androidx.test:orchestrator:1.1.0'
 
     implementation "com.github.moxy-community:moxy-android:2.2.1"
     implementation "com.github.moxy-community:moxy-androidx:2.2.1"
