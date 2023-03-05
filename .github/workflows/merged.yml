@@ -1,8 +1,8 @@
 name: Merged
 
-#on:
-#  push:
-#    branches: [ "master" ]
+on:
+  push:
+    branches: [ "master" ]
 
 env:
   KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -11,6 +11,7 @@ env:
 
 jobs:
   build:
+    if: ${{ false }}
 
     runs-on: ubuntu-latest
 
