@@ -1,9 +1,9 @@
 name: Build & upload to Firebase App Distribution
 
-on:
-  pull_request:
-    branches:
-      - 'master'
+#on:
+#  pull_request:
+#    branches:
+#      - 'master'
 
 env:
   KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
