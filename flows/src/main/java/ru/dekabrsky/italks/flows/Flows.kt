@@ -45,4 +45,8 @@ class Flows {
     object Profile : Flow("FLOW_PROFILE") {
         const val SCREEN_PROFILE = "SCREEN_PROFILE"
     }
+
+    object Calendar : Flow("FLOW_CALENDAR") {
+        const val SCREEN_CALENDAR = "SCREEN_CALENDAR"
+    }
 }
