@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollContainer"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="none" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/game_screen_width"
+        android:layout_height="match_parent"
+        android:background="@color/button_color">
+
+        <View
+            android:id="@+id/floor"
+            android:layout_width="@dimen/game_screen_width"
+            android:layout_height="0dp"
+            android:background="@color/floor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="144:167"
+            android:src="@drawable/avatar_cat"
+            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/door"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="84:236"
+            app:layout_constraintHeight_percent="0.7"
+            android:src="@drawable/door"
+            app:layout_constraintBottom_toTopOf="@id/floor"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/window"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="142:168"
+            app:layout_constraintHeight_percent="0.5"
+            android:src="@drawable/window"
+            app:layout_constraintTop_toTopOf="@id/door"
+            app:layout_constraintEnd_toEndOf="@id/avatar" />
+
+        <ImageView
+            android:id="@+id/clock"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="47:47"
+            app:layout_constraintHeight_percent="0.15"
+            android:src="@drawable/clock"
+            android:layout_marginTop="@dimen/offset_large"
+            android:layout_marginStart="@dimen/offset_large"
+            app:layout_constraintTop_toTopOf="@id/window"
+            app:layout_constraintStart_toEndOf="@id/window" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shelf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/offset_large"
+            app:layout_constraintEnd_toStartOf="@id/window"
+            app:layout_constraintTop_toTopOf="@id/door"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            tools:itemCount="5"
+            tools:listitem="@layout/item_on_shelf" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</HorizontalScrollView>

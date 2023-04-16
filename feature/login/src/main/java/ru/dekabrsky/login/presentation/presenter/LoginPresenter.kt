@@ -22,6 +22,17 @@ class LoginPresenter @Inject constructor(
 
     private var mode: LoginMode = LoginMode.LOGIN
 
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+//        repository.login("Denis", "123")
+//            .observeOn(RxSchedulers.main())
+//            .subscribe({
+//                router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
+//            }, viewState::showError)
+//            .addFullLifeCycle()
+            // todo убери
+    }
+
     fun onDoneButtonClick() {
         when (mode) {
             LoginMode.LOGIN -> {
