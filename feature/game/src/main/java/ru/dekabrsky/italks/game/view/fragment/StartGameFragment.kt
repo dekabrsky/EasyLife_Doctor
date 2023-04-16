@@ -13,6 +13,7 @@ import ru.dekabrsky.italks.game.databinding.StartGameFragmentBinding
 import ru.dekabrsky.italks.game.view.GameView
 import ru.dekabrsky.italks.game.view.presenter.GameStartPresenter
 import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
 import toothpick.Toothpick
 
 class StartGameFragment : BasicFragment(), GameView {
@@ -36,6 +37,11 @@ class StartGameFragment : BasicFragment(), GameView {
         binding.startButton.setOnClickListener {
             presenter.onGameStartClicked()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (parentFragment as GameFlowFragment).setNavBarVisibility(true)
     }
 
     override fun onBackPressed() {
