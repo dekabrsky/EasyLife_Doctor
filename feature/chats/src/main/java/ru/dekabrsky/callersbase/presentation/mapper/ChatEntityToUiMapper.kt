@@ -1,10 +1,14 @@
 package ru.dekabrsky.callersbase.presentation.mapper
 
+import org.threeten.bp.LocalDateTime
+import ru.dekabrsky.callersbase.domain.entity.ChatEntity
 import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import ru.dekabrsky.common.presentation.model.CallersBaseUiModel
 import ru.dekabrsky.common.presentation.model.ChatUiModel
+import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiDateTime
 import ru.dekabrsky.italks.basic.dateTime.formatDateToUiDate
 import javax.inject.Inject
+import kotlin.random.Random
 
 class ChatEntityToUiMapper @Inject constructor() {
     fun map(entity: CallersBaseEntity): CallersBaseUiModel {
@@ -32,5 +36,18 @@ class ChatEntityToUiMapper @Inject constructor() {
             ChatUiModel("18 дек", "Техническая поддержка", "Тестовое сообщение", 0),
             ChatUiModel("18 дек", "Вячеслав Васильев", "Вы: Отправил результаты анализов", 0),
         )
+    }
+
+    fun mapChats(entities: List<ChatEntity>): List<ChatUiModel> {
+        return entities.map { entity ->
+            ChatUiModel(
+                date = formatDateTimeToUiDateTime(
+                    entity.messages.maxByOrNull { it.createdDate }?.createdDate ?: LocalDateTime.now()
+                ),
+                name = entity.firstUser.name,
+                lastMessage = entity.messages.maxByOrNull { it.createdDate }?.text ?: "",
+                newMessagesCount = Random.nextInt(10)
+            )
+        }
     }
 }

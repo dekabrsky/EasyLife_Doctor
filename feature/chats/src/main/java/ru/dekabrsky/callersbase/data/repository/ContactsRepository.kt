@@ -18,4 +18,6 @@ class ContactsRepository @Inject constructor(
 
     fun getCallersBase(id: Int): Observable<CallersBaseEntity> =
         api.getCallersBase(id).map { mapper.mapBase(it) }
+
+    fun getChats() = api.getChats().map { list -> list.map { mapper.mapChat(it) } }
 }

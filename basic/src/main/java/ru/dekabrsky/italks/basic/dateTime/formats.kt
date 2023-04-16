@@ -21,6 +21,9 @@ fun formatDateToUiDate(dateTime: LocalDateTime): String =
         .withLocale(Locale("ru"))
         .format(dateTime)
 
+fun formatServerDateToLocalDateTime(date: String): LocalDateTime =
+    LocalDateTime.parse(date, DateTimeFormatter.ofPattern("YYYY-MM-DD hh:mm:ss"))
+
 fun LocalDate.toDate(): Date = Date(atStartOfDay(ZoneId.systemDefault()).toInstant().toEpochMilli())
 
 fun LocalDateTime.toDate(zoneOffset: ZoneOffset = ZoneOffset.UTC): Date =

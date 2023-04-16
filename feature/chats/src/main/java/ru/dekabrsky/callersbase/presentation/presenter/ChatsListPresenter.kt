@@ -30,17 +30,24 @@ class ChatsListPresenter @Inject constructor(
         direction: String = Direction.ASC.name,
         sortBy: String = SortVariants.NAME.name
     ) {
-        loginInteractor.getCurrentUser()
+//        loginInteractor.getCurrentUser()
+//            .observeOn(RxSchedulers.main())
+//            .subscribe({
+//                when (it.role) {
+//                    UserType.DOCTOR -> viewState.setChatsList(uiMapper.mapDoctorChats())
+//                    UserType.PARENT -> viewState.setChatsList(uiMapper.mapParentChats())
+//                    else -> viewState.setChatsList(listOf())
+//                }
+//            }, viewState::showError)
+//            .addFullLifeCycle()
+
+        interactor.getChats()
             .observeOn(RxSchedulers.main())
+            .map { uiMapper.mapChats(it) }
             .subscribe({
-                when (it.role) {
-                    UserType.DOCTOR -> viewState.setChatsList(uiMapper.mapDoctorChats())
-                    UserType.PARENT -> viewState.setChatsList(uiMapper.mapParentChats())
-                    else -> viewState.setChatsList(listOf())
-                }
+                dispatchLoading(it)
             }, viewState::showError)
             .addFullLifeCycle()
-
     }
 
     fun loadSortByName() = load()
@@ -49,11 +56,11 @@ class ChatsListPresenter @Inject constructor(
 
     fun loadSortByDateDesc() = load(Direction.DESC.name, SortVariants.CREATION_DATE.name)
 
-    private fun dispatchLoading(items: List<CallersBaseUiModel>) {
+    private fun dispatchLoading(items: List<ChatUiModel>) {
         if (items.isEmpty()) {
             viewState.showEmptyLayout()
         } else {
-            viewState.setChatsList(uiMapper.mapDoctorChats())
+            viewState.setChatsList(items)
         }
     }
 

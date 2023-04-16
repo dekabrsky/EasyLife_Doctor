@@ -11,4 +11,6 @@ class ContactsInteractorImpl @Inject constructor(
         repository.getCallersBases(direction, sortBy)
 
     override fun getCallersBase(id: Int) = repository.getCallersBase(id)
+
+    fun getChats() = repository.getChats()
 }
