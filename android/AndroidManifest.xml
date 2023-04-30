@@ -28,8 +28,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="ru.dekabrsky.italks.game.GameActivity">
+        <activity android:name="ru.dekabrsky.italks.game.GameActivity"/>
+        <activity android:name="ru.dekabrsky.italks.minigamestwolast.PyatActivity"/>
+        <activity android:name="ru.dekabrsky.italks.minigamestwolast.FootballActivity"/>
 
+        <activity
+            android:name="gree.uniq.minigameleaves.AndroidLauncher"
+            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
+            android:exported="true"
+            android:screenOrientation="fullSensor">
         </activity>
     </application>
 
