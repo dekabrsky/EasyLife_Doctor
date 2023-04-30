@@ -5,5 +5,11 @@ import ru.dekabrsky.italks.basic.fragments.BasicView
 
 interface GardenView: BasicView {
     @OneExecution
-    fun startGameActivity()
+    fun startFlappyBirdActivity()
+    @OneExecution
+    fun startPyatActivity()
+    @OneExecution
+    fun startFootballActivity()
+    @OneExecution
+    fun startLeavesActivity()
 }

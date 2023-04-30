@@ -14,6 +14,18 @@ class GardenPresenter @Inject constructor(
     }
 
     fun startFlappyBird() {
-        viewState.startGameActivity()
+        viewState.startFlappyBirdActivity()
+    }
+
+    fun goToFootball() {
+        viewState.startFootballActivity()
+    }
+
+    fun goToLeaves() {
+        viewState.startLeavesActivity()
+    }
+
+    fun goToPyat() {
+        viewState.startPyatActivity()
     }
 }

@@ -12,7 +12,7 @@ class GameStartPresenter @Inject constructor(
 
 
     fun onGameStartClicked() {
-        //viewState.startGameActivity()
+        //viewState.startFlappyBirdActivity()
         router.navigateTo(Flows.Game.SCREEN_MAIN_ROOM)
     }
 }

@@ -3,6 +3,7 @@ package ru.dekabrsky.italks.game.view.fragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import gree.uniq.minigameleaves.AndroidLauncher
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
@@ -16,6 +17,8 @@ import ru.dekabrsky.italks.game.view.MainRoomView
 import ru.dekabrsky.italks.game.view.presenter.GardenPresenter
 import ru.dekabrsky.italks.game.view.presenter.MainRoomPresenter
 import ru.dekabrsky.italks.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
+import ru.dekabrsky.italks.minigamestwolast.FootballActivity
+import ru.dekabrsky.italks.minigamestwolast.PyatActivity
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 
@@ -39,9 +42,9 @@ class GardenFragment : BasicFragment(), GardenView {
         super.onViewCreated(view, savedInstanceState)
         context?.let {
             binding.house.setOnClickListenerWithAnimation(it) { presenter.goToHouse() }
-            binding.football.setOnClickListenerWithAnimation(it) {}
-            binding.tree.setOnClickListenerWithAnimation(it) {}
-            binding.barbecue.setOnClickListenerWithAnimation(it) {}
+            binding.football.setOnClickListenerWithAnimation(it) { presenter.goToFootball() }
+            binding.tree.setOnClickListenerWithAnimation(it) { presenter.goToLeaves() }
+            binding.barbecue.setOnClickListenerWithAnimation(it) { presenter.goToPyat() }
             binding.bird.setOnClickListenerWithAnimation(it) { presenter.startFlappyBird() }
         }
     }
@@ -50,8 +53,23 @@ class GardenFragment : BasicFragment(), GardenView {
         presenter.onBackPressed()
     }
 
-    override fun startGameActivity() {
+    override fun startFlappyBirdActivity() {
         val intent = Intent(context, GameActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun startPyatActivity() {
+        val intent = Intent(context, PyatActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun startFootballActivity() {
+        val intent = Intent(context, FootballActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun startLeavesActivity() {
+        val intent = Intent(context, AndroidLauncher::class.java)
         startActivity(intent)
     }
 
