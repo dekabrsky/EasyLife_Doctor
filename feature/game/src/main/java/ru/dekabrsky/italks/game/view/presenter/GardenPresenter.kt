@@ -1,5 +1,6 @@
 package ru.dekabrsky.italks.game.view.presenter
 
+import android.os.Build
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.flows.Flows
@@ -48,6 +49,17 @@ class GardenPresenter @Inject constructor(
     }
 
     fun goToFifteen() {
-        router.navigateTo(Flows.Game.SCREEN_FIFTEEN)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            router.navigateTo(Flows.Game.SCREEN_FIFTEEN)
+        } else {
+            router.navigateTo(
+                Flows.Common.SCREEN_BOTTOM_INFO,
+                BottomSheetScreenArgs(
+                    title = "Ошибка",
+                    subtitle = "Эта игра не поддерживается на твоем устройстве",
+                    mode = BottomSheetMode.GAME
+                )
+            )
+        }
     }
 }

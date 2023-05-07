@@ -11,5 +11,6 @@
     <!--Patient-->
     <string name="game">Игра</string>
     <string name="materials">Материалы</string>
+    <string name="notifications">Напоминания</string>
 
 </resources>

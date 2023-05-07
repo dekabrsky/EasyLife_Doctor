@@ -17,6 +17,7 @@ ext.versions = [
         okhttp              : '4.9.3',
         moxy                : '2.2.1',
         toothpick           : '2.1.0',
+        room                : '2.5.1',
         // Test
         junit               : '4.12',
         mockito             : '3.9.0',
@@ -110,6 +111,17 @@ ext.librarySets = [
             currentProject.dependencies {
                 implementation libraries.glide
                 kapt "com.github.bumptech.glide:compiler:$versions.glide"
+            }
+        },
+        room: {
+            currentProject.dependencies {
+                implementation "androidx.room:room-runtime:$versions.room"
+                annotationProcessor "androidx.room:room-compiler:$versions.room"
+
+                kapt "androidx.room:room-compiler:$versions.room"
+
+                implementation "androidx.room:room-rxjava2:$versions.room"
+                implementation "androidx.room:room-rxjava3:$versions.room"
             }
         },
         units      : {

@@ -6,9 +6,9 @@
         android:title="@string/game" />
 
     <item
-        android:id="@+id/events"
+        android:id="@+id/notifications"
         android:icon="@drawable/ic_round_calendar_24"
-        android:title="@string/events" />
+        android:title="@string/notifications" />
 
     <item
         android:id="@+id/patientProfile"

@@ -55,6 +55,7 @@ class StatsFragment: BasicFragment(), StatsView {
         binding.averageDialLength.title.setText(R.string.averageDialLength)
         binding.averageDialCount.title.setText(R.string.averageDialCount)
         binding.averageSingleDialLength.title.setText(R.string.averageSingleDialLength)
+        binding.logoutBtn.setOnClickListener { presenter.onLogoutClick() }
     }
 
     override fun showMainStats(model: MainStatsUiModel) {
@@ -112,6 +113,13 @@ class StatsFragment: BasicFragment(), StatsView {
              binding.myProfile.value.text = it.name
              binding.myProfile.speciality.text = it.role.desc
          }
+    }
+
+    override fun showChildInfo() {
+        binding.myChildren.root.visibility = View.VISIBLE
+        binding.myChildren.value.text = "Тестовая Белка #1789"
+        binding.myChildren.speciality.text = "Пациент"
+        binding.myChildren.title.text = "Мой ребенок"
     }
 
     companion object{

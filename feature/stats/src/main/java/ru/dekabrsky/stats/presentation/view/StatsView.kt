@@ -12,4 +12,5 @@ interface StatsView: BasicView {
     fun showLineChart(mapLineChart: List<ChartPointUiModel>)
     fun showPieChart()
     fun showMyInfo(infoEntity: UserInfoEntity?)
+    fun showChildInfo()
 }

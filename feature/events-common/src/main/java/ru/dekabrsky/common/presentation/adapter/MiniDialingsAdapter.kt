@@ -4,17 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.dekabrsky.common.presentation.model.MiniDialingUiModel
+import ru.dekabrsky.common.presentation.model.TakingMedicationsUiModel
 import ru.dekabrsky.events.common.R
 import ru.dekabrsky.italks.uikit.databinding.ClickableTitleSubtitleItemBinding
 
 class MiniDialingsAdapter(
-    private val onItemClick: (MiniDialingUiModel) -> Unit
+    private val onItemClick: (TakingMedicationsUiModel) -> Unit
 ): RecyclerView.Adapter<MiniDialingsAdapter.CallersBaseDialingHolder>() {
 
-    private var items: MutableList<MiniDialingUiModel> = arrayListOf()
+    private var items: MutableList<TakingMedicationsUiModel> = arrayListOf()
 
-    fun updateItems(newItems: List<MiniDialingUiModel>) {
+    fun updateItems(newItems: List<TakingMedicationsUiModel>) {
         items = newItems.toMutableList()
         notifyDataSetChanged()
     }
@@ -31,6 +31,18 @@ class MiniDialingsAdapter(
         holder.title.text = item.name
         holder.subtitle.text = item.dateTime // todo
         holder.root.setOnClickListener { onItemClick(item) }
+        item.isMedicationTaken?.let {
+            if (it) {
+                holder.icon.setImageResource(R.drawable.ic_done)
+            } else {
+                holder.icon.setImageResource(R.drawable.ic_cancel)
+            }
+        }
+        item.isGameDone?.let {
+            if (it && item.isMedicationTaken == true) {
+                holder.detail.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun getItemCount(): Int = items.size
@@ -40,5 +52,7 @@ class MiniDialingsAdapter(
         val root = binding.root
         val title = binding.title
         val subtitle = binding.subtitle
+        val icon = binding.icon
+        val detail = binding.detail
     }
 }

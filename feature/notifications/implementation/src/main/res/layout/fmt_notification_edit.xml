@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/StandardToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/notificationDataContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/offset_medium"
+                android:background="@drawable/edit_text_cyan_border_bg"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/offset_medium">
+
+                <EditText
+                    android:id="@+id/tabletName"
+                    style="@style/TextView.Subtitle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/offset_medium"
+                    android:hint="@string/enter_name"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/tabletDosage" />
+
+                <View
+                    android:id="@+id/divider1"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/cyan_main" />
+
+                <EditText
+                    android:id="@+id/tabletDosage"
+                    style="@style/TextView.Subtitle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/offset_medium"
+                    android:hint="@string/enter_dosage"
+                    android:imeOptions="actionNext"
+                    android:nextFocusDown="@id/tabletNote" />
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/cyan_main" />
+
+                <EditText
+                    android:id="@+id/tabletNote"
+                    style="@style/TextView.Subtitle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/offset_medium"
+                    android:hint="@string/enter_notes"
+                    android:imeOptions="actionDone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/offset_medium"
+                android:background="@drawable/edit_text_cyan_border_bg"
+                android:orientation="horizontal"
+                android:padding="@dimen/offset_medium">
+
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/notificationDateContainer"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:background="?selectableItemBackground">-->
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="@dimen/icon_20"-->
+<!--                        android:layout_height="@dimen/icon_20"-->
+<!--                        android:src="@drawable/ic_round_calendar_24" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/notificationDate"-->
+<!--                        style="@style/TextView.Subtitle2"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/offset_small"-->
+<!--                        tools:text="21.11.2022" />-->
+
+<!--                </LinearLayout>-->
+
+                <LinearLayout
+                    android:id="@+id/notificationTimeContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="?selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_20"
+                        android:layout_height="@dimen/icon_20"
+                        android:src="@drawable/round_access_time_24"/>
+
+                    <TextView
+                        android:id="@+id/notificationTime"
+                        style="@style/TextView.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/offset_small"
+                        android:text="@string/setupTime" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/offset_medium"
+                android:background="@drawable/edit_text_cyan_border_bg"
+                android:foreground="?selectableItemBackground"
+                android:orientation="horizontal"
+                android:padding="@dimen/offset_medium">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_20"
+                    android:layout_height="@dimen/icon_20"
+                    android:src="@drawable/round_repeat_24" />
+
+                <TextView
+                    android:id="@+id/repeatVariantTitle"
+                    style="@style/TextView.Subtitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/offset_small"
+                    android:text="@string/notification_repeat" />
+
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/repeatVariantGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/offset_medium">
+
+                <RadioButton
+                    android:id="@+id/repeatNever"
+                    style="@style/TextView.Subtitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/never" />
+
+                <RadioButton
+                    android:id="@+id/repeatDaily"
+                    style="@style/TextView.Subtitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/daily" />
+
+                <RadioButton
+                    android:id="@+id/repeatWeekly"
+                    style="@style/TextView.Subtitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/weekly" />
+
+                <RadioButton
+                    android:id="@+id/repeatMonthly"
+                    style="@style/TextView.Subtitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/monthly" />
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/doneBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/offset_medium"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

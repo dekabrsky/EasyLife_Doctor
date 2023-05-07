@@ -46,7 +46,8 @@ class TabsFlowPresenter @Inject constructor(
             Flows.Stats.name to null,
             Flows.Materials.name to null,
             Flows.Game.name to null,
-            Flows.Profile.name to null
+            Flows.Profile.name to null,
+            Flows.Notifications.name to null
         )
         when (args.userType) {
            UserType.DOCTOR -> toggleScreen(Flows.Events)
@@ -72,6 +73,7 @@ class TabsFlowPresenter @Inject constructor(
                     Flows.Events.SCREEN_DIALINGS_LIST
                 )
             )
+            R.id.notifications -> toggleScreen(Flows.Notifications)
             R.id.patients -> toggleScreen(Flows.Patients)
             R.id.stats -> toggleScreen(Flows.Stats)
             R.id.game -> toggleScreen(Flows.Game)

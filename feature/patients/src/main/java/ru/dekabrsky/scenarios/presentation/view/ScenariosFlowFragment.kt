@@ -14,6 +14,9 @@ import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
 import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.presentation.presenter.ScenariosFlowPresenter
 import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
+import ru.dekabrsky.italks.flows.Flows.Common.SCREEN_BOTTOM_INFO
+import ru.dekabrsky.simpleBottomsheet.view.fragment.SimpleInfoBottomSheet
+import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -31,7 +34,8 @@ class ScenariosFlowFragment : BasicFlowFragment(), ScenariosFlowView {
                 when (screenKey) {
                     Flows.Patients.SCREEN_SCENARIOS_LIST -> PatientsListFragment.newInstance()
                     Flows.Patients.SCREEN_SCENARIO_DETAILS ->
-                        ScenarioDetailsFragment.newInstance(data as ScenarioItemUiModel)
+                        PatientDetailsFragment.newInstance(data as ScenarioItemUiModel)
+                    SCREEN_BOTTOM_INFO -> SimpleInfoBottomSheet.newInstance(data as BottomSheetScreenArgs)
                     else -> super.createFragment(screenKey, data)
                 }
         }

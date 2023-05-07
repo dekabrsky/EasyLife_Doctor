@@ -24,7 +24,20 @@
         app:layout_constraintTop_toBottomOf="@+id/subtitle"
         tools:text="Еженедельное обзванивание" />
 
+    <TextView
+        android:id="@+id/detail"
+        style="@style/TextView.Caption"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/offset_tiny"
+        android:textColor="@color/green_800"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        android:text="Игра пройдена"
+        tools:visibility="visible" />
+
     <ImageView
+        android:id="@+id/icon"
         android:layout_width="@dimen/offset_large"
         android:layout_height="@dimen/offset_large"
         android:src="@drawable/ic_round_chevron_right_24"
@@ -39,6 +52,6 @@
         android:layout_height="1dp"
         android:layout_marginTop="@dimen/offset_medium"
         android:background="@color/grey_200"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/detail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
