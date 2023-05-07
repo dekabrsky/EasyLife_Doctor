@@ -99,10 +99,11 @@ class ProfileFragment : BasicFragment(), ProfileView {
             startActivity(intent)
         }
         tapCat()
+        binding.logout.setOnClickListener { presenter.onLogoutClick() }
     }
 
     override fun onBackPressed() {
-        TODO("Not yet implemented")
+        presenter.onBackPressed()
     }
 
     private fun init() {

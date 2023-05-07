@@ -11,6 +11,9 @@ import ru.dekabrsky.scenarios.domain.interactor.DoctorPatientsInteractorImpl
 import ru.dekabrsky.scenarios.presentation.mapper.ScenariosUiMapper
 import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import ru.dekabrsky.scenarios.presentation.view.PatientsListView
+import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
+import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
+import ru.dekabrsky.simpleBottomsheet.view.model.ButtonState
 import javax.inject.Inject
 
 class ScenariosListPresenter @Inject constructor(
@@ -41,6 +44,7 @@ class ScenariosListPresenter @Inject constructor(
 //            .addFullLifeCycle()
         dispatchLoading(listOf(uiMapper.map(), uiMapper.map(), uiMapper.map(), uiMapper.map() , uiMapper.map()))
         //viewState.showEmptyLayout()
+
     }
 
     fun loadSortByName() = load()
@@ -62,11 +66,20 @@ class ScenariosListPresenter @Inject constructor(
     }
 
     fun generatePatients(dialog: DialogInterface) {
-        interactor.generateCode()
-            .observeOn(RxSchedulers.main())
-            .subscribe({
-                viewState.showCodeDialog(dialog, it)
-            }, viewState::showError)
-            .addFullLifeCycle()
+        router.navigateTo(
+            Flows.Common.SCREEN_BOTTOM_INFO,
+            BottomSheetScreenArgs(
+                title = "Пациент добавлен в систему",
+                subtitle = "Теперь можно перейти в его карточку",
+                mode = BottomSheetMode.LK,
+                buttonState = ButtonState("Перейти", {})
+            )
+        )
+//        interactor.generateCode()
+//            .observeOn(RxSchedulers.main())
+//            .subscribe({
+//                viewState.showCodeDialog(dialog, it)
+//            }, viewState::showError)
+//            .addFullLifeCycle()
     }
 }

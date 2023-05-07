@@ -20,6 +20,7 @@ class ChatEntityToUiMapper @Inject constructor() {
     fun mapDoctorChats(): List<ChatUiModel> {
         return listOf(
             ChatUiModel("10:12", "Пациент #0373", "Посмотрите пожалуйста вот эту штуку", 1),
+            ChatUiModel("15 дек", "Родитель #0373", "Посмотрите пожалуйста вот эту штуку", 0),
             ChatUiModel("18 дек", "Техническая поддержка", "Вы: А если запустить с веба?", 0),
             ChatUiModel("18 дек", "Даниил Редкозубов", "Вы: Система работает. Тестируем", 0),
             ChatUiModel("11 дек", "Пациент #0356", "Хорошо, приедем во вторник", 0),

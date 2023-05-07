@@ -2,11 +2,14 @@ package ru.dekabrsky.italks.di.module
 
 import android.app.Application
 import android.content.Context
+import androidx.room.RoomDatabase
 import io.reactivex.Scheduler
 import okhttp3.CookieJar
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
+import ru.dekabrsky.feature.notifications.implementation.data.provider.NotificationDatabaseProvider
+import ru.dekabrsky.italks.basic.di.NotificationDatabaseQualifier
 import ru.dekabrsky.italks.basic.di.ServerEndpoint
 import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
@@ -39,6 +42,8 @@ class AppModule : Module() {
         bind(AppRouter::class.java).toInstance(cicerone.router)
         bind(FlowRouter::class.java).toInstance(cicerone.router)
         bind(NavigatorHolder::class.java).toInstance(cicerone.navigatorHolder)
+        bind(RoomDatabase::class.java).withName(NotificationDatabaseQualifier::class.java)
+            .toProvider(NotificationDatabaseProvider::class.java).providesSingletonInScope()
     }
 }
 

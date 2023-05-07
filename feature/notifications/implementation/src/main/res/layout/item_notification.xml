@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/offset_medium">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/offset_medium">
+
+        <ImageView
+            android:id="@+id/drawable"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/dosage"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_logo"
+            android:rotation="15"
+            android:alpha="0.5" />
+
+
+        <TextView
+            android:id="@+id/notificationTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextView.H4"
+            tools:text="11:00"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="@dimen/offset_medium" />
+
+        <TextView
+            android:id="@+id/tabletName"
+            style="@style/TextView.Subtitle1.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Всёпройдин"
+            app:layout_constraintTop_toTopOf="@id/notificationTime"
+            app:layout_constraintStart_toEndOf="@id/notificationTime"
+            android:layout_marginStart="@dimen/offset_medium" />
+
+        <TextView
+            android:id="@+id/dosage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextView.Caption"
+            tools:text="1 таблетка"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/notificationTime"
+            android:layout_marginTop="@dimen/offset_small"
+            android:layout_marginStart="@dimen/offset_medium" />
+
+        <TextView
+            android:id="@+id/note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextView.Caption"
+            tools:text="до еды"
+            app:layout_constraintStart_toStartOf="@id/tabletName"
+            app:layout_constraintTop_toTopOf="@id/dosage" />
+
+        <Switch
+            android:id="@+id/notificationSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="@dimen/offset_small" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

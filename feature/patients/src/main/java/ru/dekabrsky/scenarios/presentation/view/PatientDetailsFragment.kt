@@ -5,36 +5,36 @@ import android.view.View
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.common.presentation.adapter.MiniDialingsAdapter
-import ru.dekabrsky.common.presentation.model.MiniDialingUiModel
+import ru.dekabrsky.common.presentation.model.TakingMedicationsUiModel
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.scenarios.R
-import ru.dekabrsky.scenarios.databinding.FragmentScenarioDetailsBinding
-import ru.dekabrsky.scenarios.presentation.presenter.ScenarioDetailsPresenter
+import ru.dekabrsky.scenarios.presentation.presenter.PatientDetailsPresenter
 import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
+import ru.dekabrsky.scenarios.databinding.FragmentPatientDetailsBinding
 import toothpick.Toothpick
 
-class ScenarioDetailsFragment: BasicFragment(), ScenarioDetailsView {
+class PatientDetailsFragment: BasicFragment(), PatientDetailsView {
 
     private lateinit var model: ScenarioItemUiModel
 
     override val layoutRes: Int
-        get() = R.layout.fragment_scenario_details
+        get() = R.layout.fragment_patient_details
 
     @InjectPresenter
-    lateinit var presenter: ScenarioDetailsPresenter
+    lateinit var presenter: PatientDetailsPresenter
 
-    private val binding by viewBinding(FragmentScenarioDetailsBinding::bind)
+    private val binding by viewBinding(FragmentPatientDetailsBinding::bind)
 
     private val dialingsAdapter by lazy { MiniDialingsAdapter(presenter::onDialingClick) }
 
     @ProvidePresenter
-    fun providePresenter(): ScenarioDetailsPresenter {
+    fun providePresenter(): PatientDetailsPresenter {
         return Toothpick.openScopes(Scopes.SCOPE_FLOW_SCENARIOS, scopeName)
             .module { bind(ScenarioItemUiModel::class.java).toInstance(model) }
-            .getInstance(ScenarioDetailsPresenter::class.java)
+            .getInstance(PatientDetailsPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }
 
@@ -55,14 +55,14 @@ class ScenarioDetailsFragment: BasicFragment(), ScenarioDetailsView {
         binding.toolbar.title = model.name
     }
 
-    override fun setupDialings(dialings: List<MiniDialingUiModel>) {
+    override fun setupTakingMedications(dialings: List<TakingMedicationsUiModel>) {
         binding.dialingsListTitle.visibility = View.VISIBLE
         binding.linkedDialings.visibility = View.VISIBLE
         dialingsAdapter.updateItems(dialings)
     }
 
     companion object {
-        fun newInstance(model: ScenarioItemUiModel) = ScenarioDetailsFragment().apply {
+        fun newInstance(model: ScenarioItemUiModel) = PatientDetailsFragment().apply {
             this.model = model
         }
     }

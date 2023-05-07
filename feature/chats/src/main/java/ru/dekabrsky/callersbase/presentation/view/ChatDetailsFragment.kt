@@ -11,7 +11,7 @@ import ru.dekabrsky.callersbase.presentation.adapter.ChatsVariablesListAdapter
 import ru.dekabrsky.common.presentation.model.CallersBaseUiModel
 import ru.dekabrsky.callersbase.presentation.presenter.ChatDetailsPresenter
 import ru.dekabrsky.common.presentation.adapter.MiniDialingsAdapter
-import ru.dekabrsky.common.presentation.model.MiniDialingUiModel
+import ru.dekabrsky.common.presentation.model.TakingMedicationsUiModel
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
@@ -70,7 +70,7 @@ class ChatDetailsFragment : BasicFragment(), ChatDetailsView {
         variablesAdapter.updateItems(variables)
     }
 
-    override fun setupDialings(dialings: List<MiniDialingUiModel>) {
+    override fun setupDialings(dialings: List<TakingMedicationsUiModel>) {
         binding.divider.visibility = View.VISIBLE
         binding.dialingsListTitle.visibility = View.VISIBLE
         binding.linkedDialings.visibility = View.VISIBLE

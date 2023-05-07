@@ -15,6 +15,11 @@ class Flows {
         const val SCREEN_BASES_DETAILS = "SCREEN_BASES_DETAILS"
     }
 
+    object Notifications: Flow("FLOW_NOTIFICATIONS") {
+        const val SCREEN_NOTIFICATIONS_LIST = "SCREEN_NOTIFICATIONS_LIST"
+        const val SCREEN_EDIT_NOTIFICATION = "SCREEN_EDIT_NOTIFICATION"
+    }
+
     object Materials : Flow("FLOW_MATERIALS") {
         const val SCREEN_MATERIALS_LIST = "SCREEN_MATERIALS_LIST"
         const val SCREEN_MATERIAL_DETAILS = "SCREEN_MATERIAL_DETAILS"

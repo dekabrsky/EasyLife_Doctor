@@ -3,4 +3,5 @@
     <string name="scenarios_title">Пациенты</string>
     <string name="set_calling">Назначить обзвон</string>
     <string name="this_scenario_assigned_to_dialings">Этот сценарий прикреплен к обзваниваниям:</string>
+    <string name="patent_pill_schedule">Статистика приема медикаментов</string>
 </resources>

@@ -151,12 +151,12 @@ open class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-        if (keyCode in setOf(KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP)
-            && supportFragmentManager.fragments.firstOrNull { it is TesterSettingsFragment } == null
-        ) {
-            presenter.toTesterSettings()
-            return true
-        }
+//        if (keyCode in setOf(KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP)
+//            && supportFragmentManager.fragments.firstOrNull { it is TesterSettingsFragment } == null
+//        ) {
+//            presenter.toTesterSettings()
+//            return true
+//        }
 
         return super.onKeyDown(keyCode, event)
     }
