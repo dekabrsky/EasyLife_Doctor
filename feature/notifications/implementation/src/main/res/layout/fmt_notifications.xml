@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/StandardToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/white" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/basesCardsList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_notification" />
+
+    <LinearLayout
+        android:id="@+id/emptyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:background="@color/grey_50"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:visibility="gone">
+
+        <ImageView
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_round_format_list_bulleted_24"
+            app:tint="@color/grey_600" />
+
+        <TextView
+            style="@style/TextView.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_large"
+            android:text="@string/no_elements"
+            android:textColor="@color/grey_600" />
+
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/invitePatient"
+        android:src="@drawable/ic_round_add_24"
+        app:tint="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/cyan_main"
+        android:layout_margin="@dimen/offset_medium"
+        android:layout_alignParentRight="true"
+        app:fabSize="mini"
+        android:layout_alignParentBottom="true" />
+</RelativeLayout>
