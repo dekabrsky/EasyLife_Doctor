@@ -44,6 +44,11 @@ class Flows {
         const val SCREEN_GARDEN = "SCREEN_GARDEN"
     }
 
+    object Notifications : Flow("FLOW_NOTIFICATIONS") {
+        const val SCREEN_NOTIFICATIONS_LIST = "SCREEN_NOTIFICATIONS_LIST"
+        const val SCREEN_NOTIFICATION_DETAILS = "SCREEN_NOTIFICATION_DETAILS"
+    }
+
     object Profile : Flow("FLOW_PROFILE") {
         const val SCREEN_PROFILE = "SCREEN_PROFILE"
     }

@@ -2,7 +2,7 @@ package ru.dekabrsky.feature.notifications.implementation.presentation.view
 
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 
-class NotificationsListFragment:  BasicFragment(), NotificationsListView {
+class NotificationDetailFragment: BasicFragment(), NotificationDetailView {
     override val layoutRes: Int
         get() = TODO("Not yet implemented")
 
@@ -11,6 +11,6 @@ class NotificationsListFragment:  BasicFragment(), NotificationsListView {
     }
 
     companion object {
-        fun newInstance() = NotificationsListFragment()
+        fun newInstance() = NotificationDetailFragment()
     }
 }
