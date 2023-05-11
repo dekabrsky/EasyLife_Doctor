@@ -1,4 +1,5 @@
 apply from: Base
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     buildFeatures {
@@ -8,6 +9,9 @@ android {
 
 dependencies {
 
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     dependenciesSet(this) {
         rxJava()
         moxy()
@@ -35,4 +39,5 @@ dependencies {
     implementation("com.badlogicgames.gdx:gdx-box2d-platform:1.9.8:natives-armeabi")
     implementation("com.badlogicgames.gdx:gdx-box2d-platform:1.9.8:natives-armeabi-v7a")
     implementation("com.badlogicgames.gdx:gdx-box2d-platform:1.9.8:natives-x86")
+    implementation "com.airbnb.android:lottie:3.4.0"
 }

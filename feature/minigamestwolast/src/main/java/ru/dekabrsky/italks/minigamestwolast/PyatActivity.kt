@@ -120,11 +120,11 @@ class PyatActivity : AppCompatActivity() {
             moveButton(button)
         }
         button.text = "${button.id}"
-        button.background.setTint(Color.YELLOW)
+        button.background.setTint(Color.DKGRAY)
         if (button.id == matrixSize * matrixSize) {
             button.text = " "
             button.tag = "target"
-            button.background.setTint(Color.WHITE)
+            button.background.setTint(Color.parseColor("#159DC3"))
         }
         return button
     }
