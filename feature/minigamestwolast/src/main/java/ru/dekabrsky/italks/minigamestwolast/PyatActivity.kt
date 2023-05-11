@@ -1,5 +1,6 @@
 package ru.dekabrsky.italks.minigamestwolast
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -8,20 +9,21 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.Button
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import ru.dekabrsky.italks.minigamestwolast.databinding.ActivityPyatBinding
 import java.util.*
 import java.util.stream.IntStream
 import kotlin.streams.toList
 
+@Suppress("DEPRECATION")
 class PyatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPyatBinding
     private var matrixSize = 4
     private var buttonSize = 300
-    private var tableOffsetX = 125;
-    private var tableOffsetY = 400;
+    private var tableOffsetX = 125
+    private var tableOffsetY = 400
+
     private var buttons = mutableListOf<Button>()
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +35,15 @@ class PyatActivity : AppCompatActivity() {
         binding = ActivityPyatBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
         initGame()
+        val bt2 = findViewById<ImageView>(R.id.button2)
+
+        bt2.setOnClickListener {
+            val intent = Intent(this, PyatActivity::class.java)
+            startActivity(intent)
+            finish()
+            overridePendingTransition(R.anim.two_intent, R.anim.one_intent)
+        }
 
     }
 
@@ -67,14 +76,14 @@ class PyatActivity : AppCompatActivity() {
         val button = binding.container.findViewWithTag<Button>("target")
         val x = (button.x - tableOffsetX) / buttonSize
         val y = (button.y - tableOffsetY) / buttonSize
+        val txt = findViewById<TextView>(R.id.winner1)
+        val bt2 = findViewById<ImageView>(R.id.button2)
         if (neighbours.contains(Position(x, y))) {
             Log.i("Move", "valid")
             Log.i("Next Pos", "x: ${button.x}  y: ${button.y}")
 
             val nextPC = Position(currentButton.x, currentButton.y) - Position(button.x, button.y)
             val nextPN = Position(button.x, button.y) - Position(currentButton.x, currentButton.y)
-//            Log.i("Translate", "$nextPC")
-//            Log.i("Translate", "$nextPN")
             currentButton.translationX = currentButton.x + nextPC.x
             currentButton.translationY = currentButton.y + nextPC.y
             button.translationX = button.x + nextPN.x
@@ -84,7 +93,9 @@ class PyatActivity : AppCompatActivity() {
             Log.i("Move", "invalid")
         }
         if (check()) {
-            Toast.makeText(this, "Congratulations", Toast.LENGTH_SHORT).show()
+            txt.text = "Вы победили!"
+            txt.setTextColor(Color.GREEN)
+            bt2.visibility = View.VISIBLE
         }
     }
 
