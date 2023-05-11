@@ -3,7 +3,7 @@ name: Test and build artifacts on release
 on:
   pull_request:
     branches:
-      - 'master'
+      - 'mast212'
 
 env:
   KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
@@ -12,8 +12,7 @@ env:
 
 jobs:
   build_apk_aab:
-    if: ${{ false }}
-    #if: startsWith(github.head_ref, 'pdjfhsdjhfjksd/') == true
+    if: startsWith(github.head_ref, 'release/') == true
     name: Build release artifacts
     runs-on: ubuntu-latest
 
