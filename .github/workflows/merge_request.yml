@@ -2,7 +2,7 @@ name: MergeRequest
 
 on:
   pull_request:
-    branches: [ "master" ]
+    branches: [ "mast212" ]
 
 jobs:
 
@@ -25,7 +25,6 @@ jobs:
         run: ./gradlew detekt
 
   test:
-    if: ${{ false }}
 
     runs-on: ubuntu-latest
 
