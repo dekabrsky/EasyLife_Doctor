@@ -4,6 +4,8 @@
     <string name="chats">Чаты</string>
     <string name="stats">Профиль</string>
     <string name="events">Календарь</string>
+    <string name="monitoring">Мониторинг</string>
+    <string name="settings">Настройки</string>
 
     <!--Doctor-->
     <string name="patients">Пациенты</string>

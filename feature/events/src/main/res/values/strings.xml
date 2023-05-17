@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="dialings_title">Приемы и консультации</string>
+    <string name="dialings_title">Мониторинг</string>
     <string name="status">Статус</string>
     <string name="author">Автор</string>
     <string name="details">Детали</string>

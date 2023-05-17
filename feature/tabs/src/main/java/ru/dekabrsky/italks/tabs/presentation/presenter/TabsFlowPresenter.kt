@@ -14,8 +14,7 @@ import ru.dekabrsky.italks.tabs.presentation.view.TabsFlowView
 import javax.inject.Inject
 
 class TabsFlowPresenter @Inject constructor(
-    private val router: FlowRouter,
-    private val args: TabsFlowArgs
+    private val router: FlowRouter
 ) : BasicPresenter<TabsFlowView>(router) {
 
     private var currentFlow: Flow? = null
@@ -24,14 +23,7 @@ class TabsFlowPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
-        viewState.setTabsByRole(
-            when (args.userType) {
-                UserType.DOCTOR -> R.menu.doctor_tabs_menu
-                UserType.PATIENT -> R.menu.child_tabs_menu
-                UserType.PARENT -> R.menu.parent_tabs_menu
-                UserType.CHILD -> R.menu.child_tabs_menu
-            }
-        )
+        viewState.setTabsByRole(R.menu.doctor_tabs_menu)
 
         router.preSetScreens(
             Flows.Chats.name to ChatsFlowScreenArgs(
@@ -48,12 +40,7 @@ class TabsFlowPresenter @Inject constructor(
             Flows.Game.name to null,
             Flows.Profile.name to null
         )
-        when (args.userType) {
-           UserType.DOCTOR -> toggleScreen(Flows.Events)
-            UserType.PATIENT -> toggleScreen(Flows.Game)
-            UserType.PARENT -> toggleScreen(Flows.Chats)
-            UserType.CHILD -> toggleScreen(Flows.Game)
-        }
+        toggleScreen(Flows.Events)
     }
 
     fun onTabSelect(itemId: Int) {
@@ -72,11 +59,12 @@ class TabsFlowPresenter @Inject constructor(
                     Flows.Events.SCREEN_DIALINGS_LIST
                 )
             )
-            R.id.patients -> toggleScreen(Flows.Patients)
+            //R.id.patients -> toggleScreen(Flows.Patients)
             R.id.stats -> toggleScreen(Flows.Stats)
             R.id.game -> toggleScreen(Flows.Game)
             R.id.materials -> toggleScreen(Flows.Materials)
             R.id.patientProfile -> toggleScreen(Flows.Profile)
+            R.id.settings -> toggleScreen(Flows.Stats)
         }
     }
 

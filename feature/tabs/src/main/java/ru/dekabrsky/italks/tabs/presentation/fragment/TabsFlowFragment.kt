@@ -46,7 +46,6 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
     @ProvidePresenter
     fun providePresenter(): TabsFlowPresenter {
         return Toothpick.openScope(Scopes.SCOPE_FLOW_TABS)
-            .module { bind(TabsFlowArgs::class.java).toInstance(args) }
             .getInstance(TabsFlowPresenter::class.java)
     }
 
@@ -91,6 +90,6 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
     }
 
     companion object {
-        fun newInstance(args: TabsFlowArgs) = TabsFlowFragment().apply { this.args = args }
+        fun newInstance() = TabsFlowFragment()
     }
 }

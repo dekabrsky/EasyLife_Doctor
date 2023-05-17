@@ -22,7 +22,7 @@ class AppFlowFragmentProvider @Inject constructor() : FlowFragmentProvider {
 
     override fun provideFlowFragment(screenName: String?, data: Any?): BasicFlowFragment? {
         return when (screenName) {
-            Flows.Main.name -> TabsFlowFragment.newInstance(data as TabsFlowArgs)
+            Flows.Main.name -> TabsFlowFragment.newInstance()
             Flows.Login.name -> LoginFlowFragment.newInstance()
             Flows.Chats.name ->
                 ChatFlowFragment.newInstance(data as ChatsFlowScreenArgs)

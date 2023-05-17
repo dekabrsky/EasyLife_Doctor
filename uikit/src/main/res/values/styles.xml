@@ -85,9 +85,4 @@
         <item name="android:letterSpacing">0.035</item>
         <item name="android:textAllCaps">true</item>
     </style>
-
-    <style name="Button.WhiteAndDarkBlue">
-        <item name="android:textAppearance">@style/TextView.H4</item>
-        <item name="background">@drawable/edit_text_cyan_border_bg</item>
-    </style>
 </resources>
