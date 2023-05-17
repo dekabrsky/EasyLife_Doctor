@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="ThemeITalks" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#70e1e5</item>
-        <item name="colorPrimaryVariant">#008B8F</item>
+        <item name="colorPrimary">#DF5F0C</item>
+        <item name="colorPrimaryVariant">#FF9F4B15</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">#FFB9B9</item>
