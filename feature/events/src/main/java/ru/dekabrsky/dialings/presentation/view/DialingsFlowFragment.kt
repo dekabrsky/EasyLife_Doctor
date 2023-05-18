@@ -6,6 +6,8 @@ import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.presentation.presenter.DialingsFlowPresenter
 import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
+import ru.dekabrsky.dialings.domain.model.PlainProduct
+import ru.dekabrsky.dialings.presentation.model.FilterScreenArgs
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
@@ -34,7 +36,9 @@ class DialingsFlowFragment : BasicFlowFragment(), DialingsFlowView {
                 when (screenKey) {
                     Flows.Events.SCREEN_DIALINGS_LIST -> DialingsListFragment.newInstance()
                     Flows.Events.SCREEN_DIALING_DETAILS ->
-                        DialingDetailsFragment.newInstance(data as Int)
+                        DialingDetailsFragment.newInstance(data as PlainProduct)
+                    Flows.Events.SCREEN_FILTER ->
+                        FilterListFragment.newInstance(data as FilterScreenArgs)
                     else -> super.createFragment(screenKey, data)
                 }
         }

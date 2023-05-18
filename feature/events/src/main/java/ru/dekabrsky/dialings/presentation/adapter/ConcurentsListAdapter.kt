@@ -8,16 +8,14 @@ import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.databinding.ItemDialingBinding
 import ru.dekabrsky.common.domain.model.DialingStatus
 import ru.dekabrsky.dialings.domain.model.PlainProduct
+import ru.dekabrsky.dialings.presentation.model.ConcurentUiModel
 import kotlin.math.roundToInt
 
-class DialingListAdapter(
-    private val onItemClick: (PlainProduct) -> Unit,
-    private val onRunClick: (Int) -> Unit
-) : RecyclerView.Adapter<DialingListAdapter.DialingHolder>() {
+class ConcurentsListAdapter() : RecyclerView.Adapter<ConcurentsListAdapter.DialingHolder>() {
 
-    private var items: MutableList<PlainProduct> = arrayListOf()
+    private var items: MutableList<ConcurentUiModel> = arrayListOf()
 
-    fun updateItems(newItems: List<PlainProduct>) {
+    fun updateItems(newItems: List<ConcurentUiModel>) {
         items = newItems.toMutableList()
         notifyDataSetChanged()
     }
@@ -33,10 +31,10 @@ class DialingListAdapter(
         with(holder.binding) {
             val item = items[position]
             dialingTitle.text = item.name
-            scenarioValue.text = item.city
-            avgPrice.text = "${item.avg.roundToInt()} ₽"
-            minMaxPrices.text = "${item.min.roundToInt()} ₽ - ${item.max.roundToInt()} ₽"
-            root.setOnClickListener { onItemClick(item) }
+            scenarioValue.visibility = View.GONE
+            scenarioIcon.visibility = View.GONE
+            avgPrice.text = "${item.price.roundToInt()} ₽"
+            minMaxPrices.visibility = View.GONE
         }
     }
 

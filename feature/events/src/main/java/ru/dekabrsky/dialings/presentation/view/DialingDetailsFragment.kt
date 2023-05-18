@@ -3,6 +3,8 @@ package ru.dekabrsky.dialings.presentation.view
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
@@ -16,6 +18,9 @@ import ru.dekabrsky.dialings.databinding.NewFragmentDialingDetailsBinding
 import ru.dekabrsky.dialings.presentation.presenter.DialingDetailsPresenter
 import ru.dekabrsky.common.domain.model.DialingStatus
 import ru.dekabrsky.common.presentation.model.DialingUiModel
+import ru.dekabrsky.dialings.domain.model.PlainProduct
+import ru.dekabrsky.dialings.presentation.adapter.ConcurentsListAdapter
+import ru.dekabrsky.dialings.presentation.model.ConcurentUiModel
 import ru.dekabrsky.italks.basic.di.IntWrapper
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
@@ -23,23 +28,26 @@ import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 import java.util.*
+import kotlin.math.roundToInt
 
 
 class DialingDetailsFragment: BasicFragment(), DialingDetailsView {
 
     override val layoutRes = R.layout.new_fragment_dialing_details
 
-    private lateinit var dialingId : IntWrapper
+    private lateinit var product: PlainProduct
 
     @InjectPresenter
     lateinit var presenter: DialingDetailsPresenter
 
     private val binding by viewBinding(NewFragmentDialingDetailsBinding::bind)
 
+    private val adapter by lazy { ConcurentsListAdapter() }
+
     @ProvidePresenter
     fun providePresenter(): DialingDetailsPresenter {
         return Toothpick.openScopes(Scopes.SCOPE_FLOW_DIALINGS, scopeName)
-            .module { bind(IntWrapper::class.java).toInstance(dialingId) }
+            .module { bind(PlainProduct::class.java).toInstance(product) }
             .getInstance(DialingDetailsPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }
@@ -48,153 +56,55 @@ class DialingDetailsFragment: BasicFragment(), DialingDetailsView {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setNavigationIcon(R.drawable.ic_round_arrow_back_24)
         binding.toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
-        binding.base.root.setOnClickListener { presenter.onBaseClick() }
-        binding.progress.runNow.setOnClickListener { presenter.onRunNowClick() }
         (parentFragment as DialingsFlowFragment).setNavBarVisibility(false)
+        binding.toolbar.title = product.name
+        binding.toolbar.subtitle = product.city
+        binding.concurentsList.adapter = adapter
+//        var builder = NotificationCompat.Builder(requireContext(), "23")
+//            .setSmallIcon(R.drawable.ic_logo)
+//            .setContentTitle("Труба квадратная 20х20х1.5")
+//            .setContentText("Цена упала на 7,64 %")
+//            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+//        with(NotificationManagerCompat.from(requireContext())) {
+//            // notificationId is a unique int for each notification that you must define
+//            notify(23, builder.build())
+//        }
     }
 
     override fun onBackPressed() {
         presenter.onBackPressed()
     }
 
-    override fun setMainData(model: DialingUiModel) {
-        binding.toolbar.title = model.name
-
-        // base
-        binding.base.title.text = "Базы данных"
-        binding.base.value.text = model.callersBaseName
-        binding.base.subValue.text = "${model.callersBaseCount} эл"
-        binding.base.root.visibility = View.VISIBLE
-
-        // scenario
-        binding.scenario.title.text = "Сценарий"
-        binding.scenario.value.text = model.scenarioName
-        binding.scenario.subValue.text = "Шагов: ${model.scenarioStepsCount}"
-        binding.scenario.root.visibility = View.VISIBLE
-
-        if (model.status != DialingStatus.SCHEDULED) {
-            binding.time.endValue.text = model.endDate
-            binding.time.end.visibility = View.VISIBLE
-            binding.time.endValue.visibility = View.VISIBLE
-            binding.time.root.visibility = View.VISIBLE
-        }
-    }
-
-    override fun setupProgress(progressInt: Int, progress: String, details: String) {
-        binding.progress.classicProgress.progress = progressInt
-        binding.progress.progressValue.text = progress
-        binding.progress.progressDetails.text = details
-        binding.progress.root.visibility = View.VISIBLE
-    }
-
-    override fun setupTime(startTime: String, canEdit: Boolean) {
-        binding.time.beginValue.text = startTime
-        binding.time.root.visibility = View.VISIBLE
-        if (canEdit) {
-            binding.time.editBegin.visibility = View.VISIBLE
-            binding.time.editBegin.setOnClickListener { presenter.onEditTimeClick() }
-        }
-    }
 
     @Suppress("MagicNumber")
-    override fun setupPieChart() {
-        binding.pieChart.piechart.addPieSlice(
-            PieModel(
-                getString(R.string.success_finished),
-                70F,
-                ContextCompat.getColor(requireContext(), R.color.green_600)
-            )
-        )
-        binding.pieChart.piechart.addPieSlice(
-            PieModel(
-                getString(R.string.scenario_not_passed),
-                8F,
-                ContextCompat.getColor(requireContext(), R.color.red_800)
-            )
-        )
-        binding.pieChart.piechart.addPieSlice(
-            PieModel(
-                getString(R.string.not_ringing),
-                14F,
-                ContextCompat.getColor(requireContext(), R.color.grey_600)
-            )
-        )
-        binding.pieChart.piechart.addPieSlice(
-            PieModel(
-                getString(R.string.in_progress),
-                14F,
-                ContextCompat.getColor(requireContext(), R.color.grey_200)
-            )
-        )
-        binding.pieChart.root.visibility = View.VISIBLE
-        binding.pieChart.piechart.startAnimation()
-    }
-
-    @Suppress("MagicNumber")
-    override fun setupLineChart() {
-        val series = ValueLineSeries()
+    override fun setupLineChart(series: ValueLineSeries, trendSeries: ValueLineSeries) {
         series.color = ContextCompat.getColor(requireContext(), R.color.cyan_main)
-
-        series.addPoint(ValueLinePoint("12:00", 34f))
-        series.addPoint(ValueLinePoint("13:00", 24f))
-        series.addPoint(ValueLinePoint("14:00", 36f))
-        series.addPoint(ValueLinePoint("15:00", 14f))
-        series.addPoint(ValueLinePoint("16:00", 38f))
-        series.addPoint(ValueLinePoint("17:00", 54f))
-        series.addPoint(ValueLinePoint("18:00", 39f))
+        trendSeries.color = ContextCompat.getColor(requireContext(), R.color.black)
 
         binding.lineChartLayout.lineChart.addSeries(series)
+        //binding.lineChartLayout.lineChart.addSeries(trendSeries)
         binding.lineChartLayout.lineChart.startAnimation()
         binding.lineChartLayout.root.visibility = View.VISIBLE
     }
 
-    override fun showDatePicker() {
-        val dpd: DatePickerDialog =
-            DatePickerDialog.newInstance(null, Calendar.getInstance())
-
-        dpd.setOkText("Далее")
-        dpd.setCancelText("Отмена")
-        dpd.setOnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-            presenter.onDateSet(year, monthOfYear, dayOfMonth)
-        }
-
-        dpd.show(requireActivity().supportFragmentManager, DATE_PICKER_TAG)
+    override fun setMainData(product: PlainProduct) {
+        binding.progress.currentAvg.text = product.avg.roundToInt().toString() + " ₽"
+        binding.progress.minValue.text = product.min.roundToInt().toString() + " ₽"
+        binding.progress.maxValue.text = product.max.roundToInt().toString() + " ₽"
     }
 
-    override fun showTimePicker(date: Date) {
-        val tpd: TimePickerDialog = TimePickerDialog.newInstance(null, true)
-
-        tpd.setOkText("Ок")
-        tpd.setCancelText("Отмена")
-        tpd.setOnTimeSetListener { _, hourOfDay, minute, _ ->
-            presenter.onTimeSet(hourOfDay, minute, date)
-        }
-
-        tpd.show(requireActivity().supportFragmentManager, TIME_PICKER_TAG)
+    override fun setPrecision(precision: Int, delta: Double) {
+        binding.precision.currentAvg.text = "$precision ₽"
+        binding.precision.minValue.text = String.format("%.2f", delta) + " %"
     }
 
-    override fun showNewStartDate(newValue: String) {
-        binding.time.beginValue.text = newValue
-    }
-
-    override fun setRunNowVisibility(isVisible: Boolean) {
-        binding.progress.runNow.visibility = if (isVisible) View.VISIBLE else View.GONE
-    }
-
-    override fun showRunNowDialog() {
-        val builder = AlertDialog.Builder(requireContext())
-        builder.setMessage("Запустить сейчас?")
-        builder.setPositiveButton("Да") { _, _ -> presenter.runNow() }
-        builder.setNegativeButton("Нет") { _, _ -> }
-        builder.show()
+    override fun setConcurents(concurents: List<ConcurentUiModel>) {
+        adapter.updateItems(concurents)
     }
 
     companion object {
-        private const val DATE_PICKER_TAG = "DATE_PICKER_DIALOG"
-        private const val TIME_PICKER_TAG = "TIME_PICKER_DIALOG"
-
-        fun newInstance(dialingId: Int) = DialingDetailsFragment().apply {
-            this.dialingId = IntWrapper(dialingId)
+        fun newInstance(product: PlainProduct) = DialingDetailsFragment().apply {
+            this.product = product
         }
     }
 }

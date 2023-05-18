@@ -7,4 +7,5 @@
     <string name="averageDialLength">Средняя продолж. обзванивания</string>
     <string name="averageDialCount">Среднее кол-во звонков за обзванивание</string>
     <string name="averageSingleDialLength">Средняя продолжительность звонка</string>
+    <string name="logout">Выйти из приложения</string>
 </resources>

@@ -29,17 +29,15 @@
 
             <include
                 android:id="@+id/myProfile"
-                layout="@layout/include_title_value"/>
+                layout="@layout/include_title_value" />
 
             <include
-                android:id="@+id/myChildren"
-                layout="@layout/include_title_value"
-                android:visibility="gone"/>
+                android:id="@+id/pushSettings"
+                layout="@layout/include_title_value" />
 
             <include
-                android:id="@+id/average_dial_length"
-                layout="@layout/include_title_value"
-                android:visibility="gone"/>
+                android:id="@+id/supportCard"
+                layout="@layout/include_title_value" />
 
             <include
                 android:id="@+id/average_dial_count"
@@ -63,8 +61,11 @@
 
             <Button
                 android:id="@+id/logout_button"
+                style="@style/TextView.Button.Medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/logout"
                 android:layout_margin="@dimen/offset_medium" />
 
         </LinearLayout>

@@ -23,6 +23,7 @@ class Flows {
     object Events : Flow("FLOW_DIALING") {
         const val SCREEN_DIALINGS_LIST = "SCREEN_DIALINGS_LIST"
         const val SCREEN_DIALING_DETAILS = "SCREEN_DIALING_DETAILS"
+        const val SCREEN_FILTER = "SCREEN_FILTER"
     }
 
     object Patients : Flow("FLOW_SCENARIOS") {

@@ -15,7 +15,7 @@
         style="@style/TextView.OverLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Текущая средняя цена"
+        android:text="Прогноз"
         android:textColor="@color/grey_600" />
 
     <TextView
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/grey_600"
-            android:text="Мин." />
+            android:text="Изменение" />
 
         <TextView
             android:id="@+id/minValue"
@@ -48,29 +48,4 @@
             android:layout_marginStart="@dimen/offset_small" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/maxTitle"
-            style="@style/TextView.Subtitle2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/grey_600"
-            android:text="Макс."  />
-
-        <TextView
-            android:id="@+id/maxValue"
-            style="@style/TextView.Subtitle2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/cyan_main"
-            android:text="@string/run_now"
-            android:layout_marginStart="@dimen/offset_small" />
-
-    </LinearLayout>
-
 </LinearLayout>

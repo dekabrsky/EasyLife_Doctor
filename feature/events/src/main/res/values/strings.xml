@@ -16,4 +16,6 @@
     <string name="end">конец:</string>
     <string name="period">Период работы</string>
     <string name="time_to_success_calls">Время / успешные звонки</string>
+    <string name="city">Город</string>
+    <string name="type">Тип</string>
 </resources>

@@ -8,4 +8,5 @@
     <string name="registration">Регистрация</string>
     <string name="forgot_password_question">Забыли пароль?</string>
     <string name="change_mode_to_login">У меня уже есть учетная запись</string>
+    <string name="price_monitor">Монитор цен</string>
 </resources>

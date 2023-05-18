@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import org.eazegraph.lib.models.PieModel
@@ -42,24 +43,36 @@ class StatsFragment: BasicFragment(), StatsView {
         presenter.onBackPressed()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.stats_menu, menu)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
-        binding.toolbar.setTitle(R.string.general_stats)
+        binding.toolbar.setTitle(R.string.settings)
         //binding.dialingsCount.title.setText(R.string.dialingsCount)
-        binding.averageDialLength.title.setText(R.string.averageDialLength)
+
+        binding.myProfile.title.text = "Моя учетная запись"
+        binding.myProfile.value.text = "Тест Тестов"
+        binding.myProfile.speciality.text = "Директор ТестТЗ"
+        Glide
+            .with(requireContext())
+            .asBitmap()
+            .load("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Fru%2Ffree-icon%2Fexample_5579119&psig=AOvVaw3knxYNdiIz-80TDywtngZL&ust=1684502289667000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCLi3kZj6_v4CFQAAAAAdAAAAABAE")
+            .circleCrop()
+            .into(binding.myProfile.imageEnd)
+
+        binding.pushSettings.title.text = "push-уведомления"
+        binding.pushSettings.value.text = "Активно"
+        binding.pushSettings.speciality.text = "При изменении 5%"
+
+        binding.supportCard.title.text = "сообщения"
+        binding.supportCard.value.text = "Чат с поддержкой"
+        binding.supportCard.speciality.text = "Нет новых сообщений"
+
         binding.averageDialCount.title.setText(R.string.averageDialCount)
         binding.averageSingleDialLength.title.setText(R.string.averageSingleDialLength)
     }
 
     override fun showMainStats(model: MainStatsUiModel) {
         //binding.dialingsCount.value.text = model.totalDialings
-        binding.averageDialLength.value.text = model.averageDialingsDuration
+        //binding.averageDialLength.value.text = model.averageDialingsDuration
         binding.averageDialCount.value.text = model.averageNumberOfCallsPerDialing
         binding.averageSingleDialLength.value.text = model.averageCallDuration
     }

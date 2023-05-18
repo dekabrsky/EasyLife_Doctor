@@ -55,14 +55,14 @@ class LoginFragment: BasicFragment(), LoginView {
         binding.title.text = getString(R.string.registration)
         binding.codeLayout.visibility = View.VISIBLE
         binding.changeMode.text = getString(R.string.change_mode_to_login)
-        binding.bgImage.setImageResource(R.drawable.ic_divan)
+//        binding.bgImage.setImageResource(R.drawable.ic_divan)
     }
 
     override fun setupForLogin() {
         binding.title.text = getString(R.string.login_title)
         binding.codeLayout.visibility = View.GONE
         binding.changeMode.text = getString(R.string.registration)
-        binding.bgImage.setImageResource(R.drawable.drawable_table)
+//        binding.bgImage.setImageResource(R.drawable.drawable_table)
     }
 
     companion object{

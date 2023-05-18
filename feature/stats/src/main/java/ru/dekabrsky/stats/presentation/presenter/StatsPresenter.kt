@@ -17,12 +17,12 @@ class StatsPresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        loginInteractor.getCurrentUser()
-            .observeOn(RxSchedulers.main())
-            .subscribe({
-                viewState.showMyInfo(it)
-            }, viewState::showError)
-            .addFullLifeCycle()
+//        loginInteractor.getCurrentUser()
+//            .observeOn(RxSchedulers.main())
+//            .subscribe({
+//                viewState.showMyInfo(it)
+//            }, viewState::showError)
+//            .addFullLifeCycle()
 //        loadMainData()
 //        loadLineChart()
 //        viewState.showPieChart()

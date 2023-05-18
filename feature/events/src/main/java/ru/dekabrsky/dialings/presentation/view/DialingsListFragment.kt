@@ -1,6 +1,7 @@
 package ru.dekabrsky.dialings.presentation.view
 
 import android.app.AlertDialog
+import android.content.res.AssetManager
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -11,12 +12,15 @@ import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.databinding.FragmentDialingListBinding
 import ru.dekabrsky.dialings.presentation.adapter.DialingListAdapter
-import ru.dekabrsky.common.presentation.model.DialingUiModel
+import ru.dekabrsky.dialings.domain.model.PlainProduct
 import ru.dekabrsky.dialings.presentation.presenter.DialingsListPresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
+import java.io.IOException
+import java.io.InputStream
+import java.nio.charset.Charset
 
 class DialingsListFragment : BasicFragment(), DialingsListView {
 
@@ -56,11 +60,28 @@ class DialingsListFragment : BasicFragment(), DialingsListView {
         binding.basesCardsList.adapter = adapter
         binding.toolbar.setTitle(R.string.dialings_title)
 
-        binding.filters.setOnCheckedChangeListener { _, checkedId ->
-            presenter.onFilterChanged(checkedId)
-        }
+        val assets = activity?.assets
 
-        binding.allChip.isChecked = true
+        presenter.setJson(assets?.let { getDataFromJson(it) })
+
+        binding.cityLayout.setOnClickListener { presenter.onCityFilterClick() }
+        binding.typeLayout.setOnClickListener { presenter.onTypeFilterClick() }
+    }
+
+    private fun getDataFromJson(it: AssetManager): String? {
+        var json: String? = null
+        json = try {
+            val stream: InputStream = it.open("res_data.json")
+            val size = stream.available()
+            val buffer = ByteArray(size)
+            stream.read(buffer)
+            stream.close()
+            String(buffer, Charset.defaultCharset())
+        } catch (ex: IOException) {
+            ex.printStackTrace()
+            return null
+        }
+        return json
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -101,7 +122,7 @@ class DialingsListFragment : BasicFragment(), DialingsListView {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun setItems(items: List<DialingUiModel>) {
+    override fun setItems(items: List<PlainProduct>) {
         adapter.updateItems(items)
     }
 
@@ -125,7 +146,7 @@ class DialingsListFragment : BasicFragment(), DialingsListView {
     }
 
     override fun setFilter(chipId: Int) {
-        binding.filters.check(chipId)
+//        binding.filters.check(chipId)
     }
 
     override fun showRunNowDialog(id: Int) {
@@ -134,6 +155,14 @@ class DialingsListFragment : BasicFragment(), DialingsListView {
         builder.setPositiveButton("Да") { _, _ -> presenter.runNow(id) }
         builder.setNegativeButton("Нет") { _, _ -> }
         builder.show()
+    }
+
+    override fun setCityMarkerVisibility(notEmpty: Boolean) {
+        binding.cityMarker.visibility = if (notEmpty) View.VISIBLE else View.GONE
+    }
+
+    override fun setTypeMarkerVisibility(notEmpty: Boolean) {
+        binding.typeMarker.visibility = if (notEmpty) View.VISIBLE else View.GONE
     }
 
     override fun onBackPressed() = presenter.onBackPressed()

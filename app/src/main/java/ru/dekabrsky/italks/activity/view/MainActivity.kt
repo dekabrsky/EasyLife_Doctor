@@ -1,5 +1,8 @@
 package ru.dekabrsky.italks.activity.view
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -110,6 +113,18 @@ open class MainActivity : AppCompatActivity(), MainView {
     protected open fun onSecureCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main)
         presenter.onAttach()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create the NotificationChannel.
+            val name = "TMK"
+            val descriptionText = "Price Monitor"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val mChannel = NotificationChannel("23", name, importance)
+            mChannel.description = descriptionText
+            // Register the channel with the system. You can't change the importance
+            // or other notification behaviors after this.
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(mChannel)
+        }
     }
 
     override fun onStart() {

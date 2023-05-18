@@ -15,7 +15,7 @@
         style="@style/TextView.OverLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/time_to_success_calls"
+        android:text="Динамика цены"
         android:textColor="@color/grey_600" />
     
     <org.eazegraph.lib.charts.ValueLineChart
@@ -26,7 +26,7 @@
         app:egUseCubic="false"
         app:egUseOverlapFill="true"
         app:egCurveSmoothness="0.4"
-        app:egLegendHeight="40dp"
-        app:egUseDynamicScaling="false" />
+        app:egLegendHeight="0dp"
+        app:egUseDynamicScaling="true" />
 
 </LinearLayout>
