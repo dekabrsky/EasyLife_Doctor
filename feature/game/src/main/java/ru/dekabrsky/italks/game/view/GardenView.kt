@@ -7,7 +7,5 @@ interface GardenView: BasicView {
     @OneExecution
     fun startFlappyBirdActivity()
     @OneExecution
-    fun startPyatActivity()
-    @OneExecution
     fun startLeavesActivity()
 }

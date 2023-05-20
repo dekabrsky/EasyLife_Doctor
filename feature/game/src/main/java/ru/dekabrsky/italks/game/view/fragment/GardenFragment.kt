@@ -14,7 +14,6 @@ import ru.dekabrsky.italks.game.databinding.GardenFragmentBinding
 import ru.dekabrsky.italks.game.view.GardenView
 import ru.dekabrsky.italks.game.view.presenter.GardenPresenter
 import ru.dekabrsky.italks.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
-import ru.dekabrsky.italks.minigamestwolast.PyatActivity
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 
@@ -42,8 +41,8 @@ class GardenFragment : BasicFragment(), GardenView {
             binding.footballGamePad.setOnClickListenerWithAnimation(it) { presenter.goToFootball() }
             binding.tree.setOnClickListenerWithAnimation(it) { presenter.goToLeaves() }
             binding.treeGamePad.setOnClickListenerWithAnimation(it) { presenter.goToLeaves() }
-            binding.barbecue.setOnClickListenerWithAnimation(it) { presenter.goToPyat() }
-            binding.barbecueGamePad.setOnClickListenerWithAnimation(it) { presenter.goToPyat() }
+            binding.barbecueGamePad.setOnClickListenerWithAnimation(it) { presenter.goToFifteen() }
+            binding.barbecue.setOnClickListenerWithAnimation(it) { presenter.goToFifteen() }
             binding.bird.setOnClickListenerWithAnimation(it) { presenter.startFlappyBird() }
             binding.birdGamePad.setOnClickListenerWithAnimation(it) { presenter.startFlappyBird() }
         }
@@ -55,11 +54,6 @@ class GardenFragment : BasicFragment(), GardenView {
 
     override fun startFlappyBirdActivity() {
         val intent = Intent(context, GameActivity::class.java)
-        startActivity(intent)
-    }
-
-    override fun startPyatActivity() {
-        val intent = Intent(context, PyatActivity::class.java)
         startActivity(intent)
     }
 

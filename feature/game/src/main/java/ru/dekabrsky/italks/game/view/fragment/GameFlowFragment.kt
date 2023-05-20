@@ -37,6 +37,7 @@ class GameFlowFragment : BasicFlowFragment(), GameFlowView {
                     Flows.Game.SCREEN_START_GAME -> StartGameFragment.newInstance()
                     Flows.Game.SCREEN_MAIN_ROOM -> MainRoomFragment.newInstance()
                     Flows.Game.SCREEN_GARDEN -> GardenFragment.newInstance()
+                    Flows.Game.SCREEN_FIFTEEN -> FifteenFragment.newInstance()
                     Flows.Game.SCREEN_FOOTBALL -> FootballFragment.newInstance()
                     Flows.Common.SCREEN_BOTTOM_INFO -> SimpleInfoBottomSheet.newInstance(data as BottomSheetScreenArgs)
                     else -> super.createFragment(screenKey, data)

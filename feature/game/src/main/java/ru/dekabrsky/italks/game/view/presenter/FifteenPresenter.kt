@@ -4,22 +4,16 @@ import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.view.FootballView
-import ru.dekabrsky.italks.game.view.GardenView
+import ru.dekabrsky.italks.game.view.FifteenView
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import ru.dekabrsky.simpleBottomsheet.view.model.ButtonState
 import javax.inject.Inject
 
-class FootballPresenter @Inject constructor(
-    val router: FlowRouter
-) : BasicPresenter<FootballView>(router) {
-
+class FifteenPresenter @Inject constructor(
+    private val router: FlowRouter
+): BasicPresenter<FifteenView>(router) {
     override fun onBackPressed() = exitWithConfirm { router.back() }
-
-    fun restart() {
-        router.replaceScreen(Flows.Game.SCREEN_FOOTBALL)
-    }
 
     fun exitGame() {
         exitWithConfirm { router.backTo(Flows.Game.SCREEN_START_GAME) }
@@ -40,6 +34,7 @@ class FootballPresenter @Inject constructor(
                 title = "Выйти из игры?",
                 subtitle = "Твой прогресс не сохранится",
                 mode = BottomSheetMode.GAME,
+                icon = R.drawable.barbecue,
                 buttonState = ButtonState("Да, выйти") { exitAction.invoke() }
             )
         )

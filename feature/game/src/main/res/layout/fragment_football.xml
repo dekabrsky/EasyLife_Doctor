@@ -67,7 +67,8 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/exit"/>
+            android:src="@drawable/exit"
+            android:background="?selectableItemBackgroundBorderless"/>
 
 <!--        <ImageView-->
 <!--            android:layout_width="match_parent"-->
@@ -80,14 +81,16 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/ic_home"/>
+            android:src="@drawable/ic_home"
+            android:background="?selectableItemBackgroundBorderless"/>
 
         <ImageView
             android:id="@+id/goToGarden"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/game"/>
+            android:src="@drawable/game"
+            android:background="?selectableItemBackgroundBorderless"/>
 
     </LinearLayout>
 

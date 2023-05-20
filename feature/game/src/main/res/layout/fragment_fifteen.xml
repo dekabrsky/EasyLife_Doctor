@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pink"
-    android:orientation="vertical"
-    app:layoutDescription="@xml/main_activity_scene"
-    tools:context=".PyatActivity">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="30dp"
@@ -20,28 +18,28 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/iconClose"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/exit"/>
+            android:src="@drawable/exit"
+            android:background="?selectableItemBackgroundBorderless"/>
 
         <ImageView
+            android:id="@+id/iconHome"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/settings"/>
+            android:src="@drawable/ic_home"
+            android:background="?selectableItemBackgroundBorderless"/>
 
         <ImageView
+            android:id="@+id/iconGamePad"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/ic_home"/>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/game"/>
+            android:src="@drawable/game"
+            android:background="?selectableItemBackgroundBorderless"/>
 
     </LinearLayout>
 
@@ -61,7 +59,47 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/button2"
+        android:id="@+id/hob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="80dp"
+        android:src="@drawable/hob"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <ImageView
+        android:id="@+id/spatula"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/spatula"
+        app:layout_constraintTop_toTopOf="@id/barbecue"
+        app:layout_constraintBottom_toBottomOf="@id/barbecue"
+        app:layout_constraintEnd_toEndOf="@id/barbecue"
+        app:layout_constraintStart_toStartOf="@id/barbecue"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintHorizontal_bias="0"/>
+
+    <ImageView
+        android:id="@+id/barbecue"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/offset_medium"
+        android:src="@drawable/barbecue"
+        app:layout_constraintTop_toBottomOf="@id/hob"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.6" />
+
+    <ImageView
+        android:id="@+id/buttonRestart"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_gravity="center"
