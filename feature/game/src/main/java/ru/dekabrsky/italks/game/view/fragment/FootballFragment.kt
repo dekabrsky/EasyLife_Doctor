@@ -13,10 +13,10 @@ import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
+import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.databinding.FragmentFootballBinding
 import ru.dekabrsky.italks.game.view.FootballView
 import ru.dekabrsky.italks.game.view.presenter.FootballPresenter
-import ru.dekabrsky.italks.minigamestwolast.R
-import ru.dekabrsky.italks.minigamestwolast.databinding.FragmentFootballBinding
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 import java.util.Random

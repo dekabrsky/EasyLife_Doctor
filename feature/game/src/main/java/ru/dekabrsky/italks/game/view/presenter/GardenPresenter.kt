@@ -47,7 +47,7 @@ class GardenPresenter @Inject constructor(
         viewState.startLeavesActivity()
     }
 
-    fun goToPyat() {
-        viewState.startPyatActivity()
+    fun goToFifteen() {
+        router.navigateTo(Flows.Game.SCREEN_FIFTEEN)
     }
 }

@@ -1,50 +1,61 @@
-package ru.dekabrsky.italks.minigamestwolast
+package ru.dekabrsky.italks.game.view.fragment
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.widget.*
 import androidx.annotation.RequiresApi
-import ru.dekabrsky.italks.minigamestwolast.databinding.ActivityPyatBinding
+import androidx.core.content.ContextCompat
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.italks.basic.fragments.BasicFragment
+import ru.dekabrsky.italks.basic.viewBinding.viewBinding
+import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.databinding.FragmentFifteenBinding
+import ru.dekabrsky.italks.game.view.FifteenView
+import ru.dekabrsky.italks.game.view.model.Position
+import ru.dekabrsky.italks.game.view.presenter.FifteenPresenter
+import ru.dekabrsky.italks.scopes.Scopes
+import toothpick.Toothpick
 import java.util.*
 import java.util.stream.IntStream
 import kotlin.streams.toList
 
-@Suppress("DEPRECATION", "NestedBlockDepth", "UnnecessaryParentheses", "MagicNumber")
-class PyatActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityPyatBinding
+@Suppress("NestedBlockDepth", "UnnecessaryParentheses", "MagicNumber")
+class FifteenFragment : BasicFragment(), FifteenView {
+    private val binding by viewBinding(FragmentFifteenBinding::bind)
+
     private var matrixSize = 4
     private var buttonSize = 300
     private var tableOffsetX = 125
     private var tableOffsetY = 400
 
     private var buttons = mutableListOf<Button>()
+
+    override val layoutRes = R.layout.fragment_fifteen
+
+    @InjectPresenter
+    lateinit var presenter: FifteenPresenter
+
+    @ProvidePresenter
+    fun providePresenter(): FifteenPresenter {
+        return Toothpick.openScopes(Scopes.SCOPE_FLOW_GAME, scopeName)
+            .getInstance(FifteenPresenter::class.java)
+            .also { Toothpick.closeScope(scopeName) }
+    }
+
     @RequiresApi(Build.VERSION_CODES.N)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN)
-        binding = ActivityPyatBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.buttonRestart.setOnClickListener { initGame() }
+        binding.iconClose.setOnClickListener { presenter.exitGame() }
+        binding.iconHome.setOnClickListener { presenter.goToHome() }
+        binding.iconGamePad.setOnClickListener { presenter.goToGarden() }
+
         initGame()
-        val bt2 = findViewById<ImageView>(R.id.button2)
-
-        bt2.setOnClickListener {
-            val intent = Intent(this, PyatActivity::class.java)
-            startActivity(intent)
-            finish()
-            overridePendingTransition(R.anim.two_intent, R.anim.one_intent)
-        }
-
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -55,7 +66,7 @@ class PyatActivity : AppCompatActivity() {
         l2.shuffle()
         l1.forEach { x ->
             l2.forEach { y ->
-                val button = createButton(y.toFloat(), x.toFloat())
+                val button = createButton(y, x)
                 buttons.add(button)
                 binding.container.addView(button)
             }
@@ -76,8 +87,6 @@ class PyatActivity : AppCompatActivity() {
         val button = binding.container.findViewWithTag<Button>("target")
         val x = (button.x - tableOffsetX) / buttonSize
         val y = (button.y - tableOffsetY) / buttonSize
-        val txt = findViewById<TextView>(R.id.winner1)
-        val bt2 = findViewById<ImageView>(R.id.button2)
         if (neighbours.contains(Position(x, y))) {
             Log.i("Move", "valid")
             Log.i("Next Pos", "x: ${button.x}  y: ${button.y}")
@@ -93,9 +102,9 @@ class PyatActivity : AppCompatActivity() {
             Log.i("Move", "invalid")
         }
         if (check()) {
-            txt.text = "Вы победили!"
-            txt.setTextColor(Color.GREEN)
-            bt2.visibility = View.VISIBLE
+            binding.winner1.text = "Вы победили!"
+            binding.winner1.setTextColor(Color.GREEN)
+            binding.buttonRestart.visibility = View.VISIBLE
         }
     }
 
@@ -120,23 +129,30 @@ class PyatActivity : AppCompatActivity() {
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
-    private fun createButton(x: Float, y: Float): Button {
-        val button = Button(this)
-        button.x = x * buttonSize + tableOffsetX
-        button.y = y * buttonSize + tableOffsetY
+    private fun createButton(x: Int, y: Int): Button {
+        val button = Button(requireContext())
+        button.x = x.toFloat() * buttonSize + tableOffsetX
+        button.y = y.toFloat() * buttonSize + tableOffsetY
         button.width = buttonSize
         button.height = buttonSize
-        button.id = View.generateViewId()
+        button.id = matrixSize * x + y + 1
         button.setOnClickListener {
             moveButton(button)
         }
         button.text = "${button.id}"
-        button.background.setTint(Color.DKGRAY)
+        button.background = ContextCompat.getDrawable(requireContext(), R.drawable.steak)
+        button.setTextAppearance(R.style.FifteenCardText)
         if (button.id == matrixSize * matrixSize) {
             button.text = " "
             button.tag = "target"
-            button.background.setTint(Color.parseColor("#159DC3"))
+            button.background = ContextCompat.getDrawable(requireContext(), R.drawable.chicken)
         }
         return button
+    }
+
+    override fun onBackPressed() = presenter.onBackPressed()
+
+    companion object {
+        fun newInstance() = FifteenFragment()
     }
 }

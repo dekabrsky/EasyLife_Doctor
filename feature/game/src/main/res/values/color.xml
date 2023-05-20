@@ -5,4 +5,9 @@
     <color name="grass_green">#819A50</color>
     <color name="sky_blue">#8070E1E5</color>
     <color name="floor">#F2E8D7</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>#6A5ACD
+    <color name="pink">#ffdad9</color>
+    <color name="pale_cyan">#d0ebf3</color>
+    <color name="fifteen_card_bg">#747474</color>
 </resources>
