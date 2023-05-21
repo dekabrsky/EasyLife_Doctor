@@ -1,0 +1,28 @@
+apply from: Base
+
+android {
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    dependenciesSet(this) {
+        rxJava()
+        moxy()
+        toothpick()
+        retrofit()
+        gson()
+    }
+
+    implementation libraries.cicerone
+
+    implementation project(':basic')
+    implementation project(':scopes')
+    implementation project(':uikit')
+    implementation project(':feature:login')
+    implementation project(':feature:chats-common')
+    implementation project(':flows')
+    implementation project(':feature:tabs')
+}

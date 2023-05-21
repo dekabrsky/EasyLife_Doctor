@@ -15,6 +15,8 @@ import ru.dekabrsky.italks.game.view.GameFlowView
 import ru.dekabrsky.italks.game.view.presenter.GameFlowPresenter
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
+import ru.dekabrsky.simple_bottomsheet.view.fragment.SimpleInfoBottomSheet
+import ru.dekabrsky.simple_bottomsheet.view.model.BottomSheetScreenArgs
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -35,6 +37,7 @@ class GameFlowFragment : BasicFlowFragment(), GameFlowView {
                     Flows.Game.SCREEN_START_GAME -> StartGameFragment.newInstance()
                     Flows.Game.SCREEN_MAIN_ROOM -> MainRoomFragment.newInstance()
                     Flows.Game.SCREEN_GARDEN -> GardenFragment.newInstance()
+                    Flows.Common.SCREEN_BOTTOM_INFO -> SimpleInfoBottomSheet.newInstance(data as BottomSheetScreenArgs)
                     else -> super.createFragment(screenKey, data)
                 }
         }
