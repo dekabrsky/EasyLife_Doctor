@@ -16,11 +16,7 @@ import java.util.*
 import java.util.stream.IntStream
 import kotlin.streams.toList
 
-<<<<<<< HEAD
-@Suppress("DEPRECATION")
-=======
 @Suppress("DEPRECATION", "NestedBlockDepth", "UnnecessaryParentheses", "MagicNumber")
->>>>>>> origin/EL-71
 class PyatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPyatBinding
     private var matrixSize = 4
