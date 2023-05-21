@@ -51,4 +51,8 @@ class Flows {
     object Calendar : Flow("FLOW_CALENDAR") {
         const val SCREEN_CALENDAR = "SCREEN_CALENDAR"
     }
+
+    object Common : Flow("COMMON") {
+        const val SCREEN_BOTTOM_INFO = "SCREEN_BOTTOM_INFO"
+    }
 }
