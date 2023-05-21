@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="game_screen_width">1600dp</dimen>
+    <dimen name="item_with_shelf_size">64dp</dimen>
+    <dimen name="item_on_shelf_size">52dp</dimen>
+</resources>

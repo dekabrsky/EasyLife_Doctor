@@ -14,6 +14,7 @@ import ru.dekabrsky.italks.game.R
 import ru.dekabrsky.italks.game.view.GameFlowView
 import ru.dekabrsky.italks.game.view.presenter.GameFlowPresenter
 import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -30,10 +31,11 @@ class GameFlowFragment : BasicFlowFragment(), GameFlowView {
     override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
-                if(screenKey == Flows.Game.SCREEN_START_GAME) {
-                    StartGameFragment.newInstance()
-                } else {
-                    super.createFragment(screenKey, data)
+                when (screenKey) {
+                    Flows.Game.SCREEN_START_GAME -> StartGameFragment.newInstance()
+                    Flows.Game.SCREEN_MAIN_ROOM -> MainRoomFragment.newInstance()
+                    Flows.Game.SCREEN_GARDEN -> GardenFragment.newInstance()
+                    else -> super.createFragment(screenKey, data)
                 }
         }
 
@@ -59,6 +61,10 @@ class GameFlowFragment : BasicFlowFragment(), GameFlowView {
 
     override fun onBackPressed() {
         presenter.onBackPressed()
+    }
+
+    fun setNavBarVisibility(isVisible: Boolean) {
+        (parentFragment as TabsFlowFragment).setNavBarVisibility(isVisible)
     }
 
     companion object {

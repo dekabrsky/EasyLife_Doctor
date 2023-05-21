@@ -40,6 +40,8 @@ class Flows {
 
     object Game : Flow("FLOW_GAME") {
         const val SCREEN_START_GAME = "SCREEN_GABE"
+        const val SCREEN_MAIN_ROOM = "SCREEN_MAIN_ROOM"
+        const val SCREEN_GARDEN = "SCREEN_GARDEN"
     }
 
     object Profile : Flow("FLOW_PROFILE") {

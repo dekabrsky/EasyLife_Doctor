@@ -35,7 +35,11 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
+<<<<<<< HEAD
             android:src="@drawable/home"/>
+=======
+            android:src="@drawable/ic_home"/>
+>>>>>>> origin/EL-71
 
         <ImageView
             android:layout_width="match_parent"

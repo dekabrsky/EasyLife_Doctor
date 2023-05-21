@@ -1,5 +1,9 @@
 package ru.dekabrsky.italks.minigamestwolast
 
+<<<<<<< HEAD
+=======
+@Suppress("NestedBlockDepth", "UnnecessaryParentheses", "MagicNumber")
+>>>>>>> origin/EL-71
 class Position(var x: Float, var y: Float) {
     private fun subtract(p1: Position, p2: Position): Position {
         return Position(p1.x - p2.x, p1.y - p2.y)
@@ -10,7 +14,11 @@ class Position(var x: Float, var y: Float) {
     }
 
     private fun isValid(matrixSize: Int): Boolean {
+<<<<<<< HEAD
         return (this.x in 0f..matrixSize-1f && this.y in 0f..matrixSize-1f)
+=======
+        return (this.x in 0f..matrixSize - 1f && this.y in 0f..matrixSize - 1f)
+>>>>>>> origin/EL-71
     }
 
 
@@ -30,6 +38,7 @@ class Position(var x: Float, var y: Float) {
     }
 
 
+<<<<<<< HEAD
 
     operator fun minus(p2: Position): Position {
         val p1 = Position(this.x - p2.x, this.y - p2.y)
@@ -37,6 +46,14 @@ class Position(var x: Float, var y: Float) {
         return if (p1.x > 0 && p1.y > 0)
             p1
         else p3
+=======
+    operator fun minus(p2: Position): Position {
+        val p1 = Position(this.x - p2.x, this.y - p2.y)
+        val p3 = Position(p2.x - this.x, p2.y - this.y)
+        return if (p1.x > 0 && p1.y > 0) {
+            p1
+        } else p3
+>>>>>>> origin/EL-71
     }
 
     override fun equals(other: Any?): Boolean {
