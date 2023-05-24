@@ -15,8 +15,8 @@ import ru.dekabrsky.italks.game.view.GameFlowView
 import ru.dekabrsky.italks.game.view.presenter.GameFlowPresenter
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
-import ru.dekabrsky.simple_bottomsheet.view.fragment.SimpleInfoBottomSheet
-import ru.dekabrsky.simple_bottomsheet.view.model.BottomSheetScreenArgs
+import ru.dekabrsky.simpleBottomsheet.view.fragment.SimpleInfoBottomSheet
+import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import toothpick.Toothpick
 import javax.inject.Inject
 
