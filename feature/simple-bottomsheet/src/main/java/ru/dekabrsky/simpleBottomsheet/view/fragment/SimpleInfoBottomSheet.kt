@@ -1,18 +1,20 @@
-package ru.dekabrsky.simple_bottomsheet.view.fragment
+package ru.dekabrsky.simpleBottomsheet.view.fragment
 
 import android.app.Dialog
 import android.content.DialogInterface
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.simple_bottomsheet.R
-import ru.dekabrsky.simple_bottomsheet.databinding.SimpleInfobottomSheetFragmentBinding
-import ru.dekabrsky.simple_bottomsheet.view.model.BottomSheetScreenArgs
+import ru.dekabrsky.simpleBottomsheet.R
+import ru.dekabrsky.simpleBottomsheet.databinding.SimpleInfobottomSheetFragmentBinding
+import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 
 open class SimpleInfoBottomSheet : BottomSheetDialogFragment() {
     private val viewBinding by viewBinding(SimpleInfobottomSheetFragmentBinding::bind)
@@ -32,6 +34,27 @@ open class SimpleInfoBottomSheet : BottomSheetDialogFragment() {
 
         viewBinding.title.text = args?.title
         viewBinding.description.text = args?.subtitle
+
+        args?.mode?.let { mode ->
+            viewBinding.root.backgroundTintList =
+                ColorStateList.valueOf(ContextCompat.getColor(requireContext(), mode.bgColor))
+            viewBinding.description.setTextColor(ContextCompat.getColor(requireContext(), mode.textColor))
+            viewBinding.title.setTextColor(ContextCompat.getColor(requireContext(), mode.textColor))
+        }
+
+        args?.icon?.let { drawableRes ->
+            viewBinding.image.visibility = View.VISIBLE
+            viewBinding.image.setImageResource(drawableRes)
+        }
+
+        args?.buttonState?.let { buttonState ->
+            viewBinding.customButton.visibility = View.VISIBLE
+            viewBinding.customButton.text = buttonState.text
+            viewBinding.customButton.setOnClickListener {
+                dismissAllowingStateLoss()
+                buttonState.action.invoke()
+            }
+        }
     }
 
 
