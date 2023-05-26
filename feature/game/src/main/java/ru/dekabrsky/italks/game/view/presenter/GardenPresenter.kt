@@ -38,7 +38,7 @@ class GardenPresenter @Inject constructor(
                 subtitle = "Пойдем сыграем в мяч?",
                 mode = BottomSheetMode.GAME,
                 icon = R.drawable.avatar_cat,
-                buttonState = ButtonState("Отлично", viewState::startFootballActivity)
+                buttonState = ButtonState("Отлично") { router.navigateTo(Flows.Game.SCREEN_FOOTBALL) }
             )
         )
     }

@@ -66,7 +66,7 @@
         android:layout_height="60dp"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
-        android:src="@drawable/again"
+        android:src="@drawable/message_item"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
