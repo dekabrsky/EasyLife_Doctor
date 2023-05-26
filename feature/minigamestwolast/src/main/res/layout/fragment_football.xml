@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/football_layout"
     android:background="@color/aqua"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".FootballActivity">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/pointsLine"
@@ -120,7 +120,6 @@
             android:layout_column="0"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="25dp"
-            android:onClick="clcBtn1"
             android:tag="0" />
 
         <ImageView
@@ -131,7 +130,6 @@
             android:layout_column="1"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="25dp"
-            android:onClick="clcBtn2"
             android:tag="1" />
 
         <ImageView
@@ -142,7 +140,6 @@
             android:layout_column="2"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="25dp"
-            android:onClick="clcBtn3"
             android:tag="2" />
 
         <ImageView
@@ -153,7 +150,6 @@
             android:layout_column="0"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="40dp"
-            android:onClick="clcBtn4"
             android:tag="3" />
 
         <ImageView
@@ -164,7 +160,6 @@
             android:layout_column="1"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="40dp"
-            android:onClick="clcBtn5"
             android:tag="4" />
 
         <ImageView
@@ -175,7 +170,6 @@
             android:layout_column="2"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="40dp"
-            android:onClick="clcBtn6"
             android:tag="5" />
 
         <ImageView
@@ -186,7 +180,6 @@
             android:layout_column="0"
             android:layout_marginLeft="25dp"
             android:layout_marginTop="45dp"
-            android:onClick="clcBtn7"
             android:tag="6" />
 
         <ImageView
@@ -197,7 +190,6 @@
             android:layout_column="1"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="40dp"
-            android:onClick="clcBtn8"
             android:tag="7" />
 
         <ImageView
@@ -208,7 +200,6 @@
             android:layout_column="2"
             android:layout_marginLeft="35dp"
             android:layout_marginTop="45dp"
-            android:onClick="clcBtn9"
             android:tag="8" />
     </GridLayout>
 
@@ -222,7 +213,6 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="40dp"
-        android:onClick="clickRestart"
         android:src="@drawable/message_item" />
 
     <com.airbnb.lottie.LottieAnimationView
