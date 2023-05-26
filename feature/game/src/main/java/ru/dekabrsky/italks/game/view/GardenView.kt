@@ -9,7 +9,5 @@ interface GardenView: BasicView {
     @OneExecution
     fun startPyatActivity()
     @OneExecution
-    fun startFootballActivity()
-    @OneExecution
     fun startLeavesActivity()
 }

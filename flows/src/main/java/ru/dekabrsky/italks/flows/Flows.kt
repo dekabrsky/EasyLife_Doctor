@@ -42,6 +42,7 @@ class Flows {
         const val SCREEN_START_GAME = "SCREEN_GABE"
         const val SCREEN_MAIN_ROOM = "SCREEN_MAIN_ROOM"
         const val SCREEN_GARDEN = "SCREEN_GARDEN"
+        const val SCREEN_FOOTBALL = "SCREEN_FOOTBALL"
     }
 
     object Profile : Flow("FLOW_PROFILE") {

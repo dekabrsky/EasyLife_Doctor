@@ -11,13 +11,9 @@ import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.GameActivity
 import ru.dekabrsky.italks.game.R
 import ru.dekabrsky.italks.game.databinding.GardenFragmentBinding
-import ru.dekabrsky.italks.game.databinding.MainRoomLayoutBinding
 import ru.dekabrsky.italks.game.view.GardenView
-import ru.dekabrsky.italks.game.view.MainRoomView
 import ru.dekabrsky.italks.game.view.presenter.GardenPresenter
-import ru.dekabrsky.italks.game.view.presenter.MainRoomPresenter
 import ru.dekabrsky.italks.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
-import ru.dekabrsky.italks.minigamestwolast.FootballActivity
 import ru.dekabrsky.italks.minigamestwolast.PyatActivity
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
@@ -64,11 +60,6 @@ class GardenFragment : BasicFragment(), GardenView {
 
     override fun startPyatActivity() {
         val intent = Intent(context, PyatActivity::class.java)
-        startActivity(intent)
-    }
-
-    override fun startFootballActivity() {
-        val intent = Intent(context, FootballActivity::class.java)
         startActivity(intent)
     }
 

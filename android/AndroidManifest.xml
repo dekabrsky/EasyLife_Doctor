@@ -30,7 +30,6 @@
 
         <activity android:name="ru.dekabrsky.italks.game.GameActivity"/>
         <activity android:name="ru.dekabrsky.italks.minigamestwolast.PyatActivity"/>
-        <activity android:name="ru.dekabrsky.italks.minigamestwolast.FootballActivity"/>
 
         <activity
             android:name="gree.uniq.minigameleaves.AndroidLauncher"
