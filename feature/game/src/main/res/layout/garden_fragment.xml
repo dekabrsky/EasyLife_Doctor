@@ -19,6 +19,28 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
+        android:id="@+id/house"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="360:308"
+        android:src="@drawable/home"
+        app:layout_constraintBottom_toTopOf="@id/guideline"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/lake"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="203:47"
+        android:src="@drawable/lake"
+        app:layout_constraintTop_toTopOf="@id/guideline"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
         android:id="@+id/football"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -31,15 +53,16 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
-        android:id="@+id/house"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="360:308"
-        android:src="@drawable/home"
-        app:layout_constraintBottom_toTopOf="@id/guideline"
-        app:layout_constraintWidth_percent="0.5"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:id="@+id/footballGamePad"
+        android:layout_width="@dimen/icon_24"
+        android:layout_height="@dimen/icon_24"
+        android:src="@drawable/gamepad"
+        app:layout_constraintTop_toTopOf="@id/football"
+        app:layout_constraintEnd_toEndOf="@id/football"
+        app:layout_constraintBottom_toBottomOf="@id/football"
+        app:layout_constraintStart_toStartOf="@id/football"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintHorizontal_bias="0.75"/>
 
     <ImageView
         android:id="@+id/tree"
@@ -54,6 +77,17 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
+        android:id="@+id/treeGamePad"
+        android:layout_width="@dimen/icon_24"
+        android:layout_height="@dimen/icon_24"
+        android:src="@drawable/gamepad"
+        app:layout_constraintTop_toTopOf="@id/tree"
+        app:layout_constraintEnd_toEndOf="@id/tree"
+        app:layout_constraintBottom_toBottomOf="@id/tree"
+        app:layout_constraintStart_toStartOf="@id/tree"
+        app:layout_constraintVertical_bias="0.35"/>
+
+    <ImageView
         android:id="@+id/bird"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -66,6 +100,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+        android:id="@+id/birdGamePad"
+        android:layout_width="@dimen/icon_24"
+        android:layout_height="@dimen/icon_24"
+        android:src="@drawable/gamepad"
+        app:layout_constraintTop_toBottomOf="@id/bird"
+        app:layout_constraintEnd_toEndOf="@id/bird"
+        app:layout_constraintStart_toStartOf="@id/bird"
+        app:layout_constraintVertical_bias="0.35"/>
+
+    <ImageView
         android:id="@+id/barbecue"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -76,6 +120,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="@dimen/offset_large"
         android:layout_marginBottom="@dimen/offset_large"/>
+
+    <ImageView
+        android:id="@+id/barbecueGamePad"
+        android:layout_width="@dimen/icon_24"
+        android:layout_height="@dimen/icon_24"
+        android:src="@drawable/gamepad"
+        app:layout_constraintTop_toTopOf="@id/barbecue"
+        app:layout_constraintEnd_toEndOf="@id/barbecue"
+        app:layout_constraintBottom_toBottomOf="@id/barbecue"
+        app:layout_constraintVertical_bias="0.35"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

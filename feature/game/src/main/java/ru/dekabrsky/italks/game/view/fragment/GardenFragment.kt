@@ -43,9 +43,13 @@ class GardenFragment : BasicFragment(), GardenView {
         context?.let {
             binding.house.setOnClickListenerWithAnimation(it) { presenter.goToHouse() }
             binding.football.setOnClickListenerWithAnimation(it) { presenter.goToFootball() }
+            binding.footballGamePad.setOnClickListenerWithAnimation(it) { presenter.goToFootball() }
             binding.tree.setOnClickListenerWithAnimation(it) { presenter.goToLeaves() }
+            binding.treeGamePad.setOnClickListenerWithAnimation(it) { presenter.goToLeaves() }
             binding.barbecue.setOnClickListenerWithAnimation(it) { presenter.goToPyat() }
+            binding.barbecueGamePad.setOnClickListenerWithAnimation(it) { presenter.goToPyat() }
             binding.bird.setOnClickListenerWithAnimation(it) { presenter.startFlappyBird() }
+            binding.birdGamePad.setOnClickListenerWithAnimation(it) { presenter.startFlappyBird() }
         }
     }
 
