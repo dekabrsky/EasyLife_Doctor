@@ -1,5 +1,6 @@
 package ru.dekabrsky.italks.game.view.fragment
 
+import android.R.attr.buttonStyleInset
 import android.R.attr.data
 import android.os.Bundle
 import android.view.View
@@ -12,6 +13,7 @@ import ru.dekabrsky.italks.game.R
 import ru.dekabrsky.italks.game.databinding.MainRoomLayoutBinding
 import ru.dekabrsky.italks.game.view.MainRoomView
 import ru.dekabrsky.italks.game.view.adapter.ShelfAdapter
+import ru.dekabrsky.italks.game.view.model.ItemVisibility
 import ru.dekabrsky.italks.game.view.model.ShelfItemUiModel
 import ru.dekabrsky.italks.game.view.presenter.MainRoomPresenter
 import ru.dekabrsky.italks.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
@@ -51,6 +53,12 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
             binding.clock.setOnClickListenerWithAnimation(it) {}
         }
         initShelf()
+        binding.scrollContainer.setOnScrollChangeListener { _, scrollX, _, _, _ ->
+            binding.progressMedal.root.translationX = scrollX.toFloat()
+        }
+        binding.progressMedal.root.setOnClickListener {
+            presenter.onMedalClick()
+        }
     }
 
     private fun initShelf() {
@@ -60,6 +68,14 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
 
     override fun setShelfItems(list: List<ShelfItemUiModel>) {
         shelfAdapter.updateItems(list)
+    }
+
+    override fun updateItemsVisibility(level: Int, itemsVisibility: List<ItemVisibility>) {
+        binding.progressMedal.medalText.text = "$level"
+        itemsVisibility.forEach {
+            binding.root.findViewById<View>(it.viewId).visibility =
+                if (it.visible) View.VISIBLE else View.GONE
+        }
     }
 
     override fun onBackPressed() {
