@@ -39,5 +39,5 @@ dependencies {
     implementation("com.badlogicgames.gdx:gdx-box2d-platform:1.9.8:natives-armeabi")
     implementation("com.badlogicgames.gdx:gdx-box2d-platform:1.9.8:natives-armeabi-v7a")
     implementation("com.badlogicgames.gdx:gdx-box2d-platform:1.9.8:natives-x86")
-    implementation "com.airbnb.android:lottie:3.4.0"
+    implementation "com.airbnb.android:lottie:3.5.0"
 }
