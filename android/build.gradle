@@ -1,3 +1,5 @@
+apply plugin: 'com.google.firebase.appdistribution'
+
 android {
     buildToolsVersion "30.0.3"
     compileSdkVersion 33
@@ -161,5 +163,12 @@ dependencies {
     implementation project(':feature:stats')
     implementation project(':feature:login')
     implementation project(':feature:game')
+}
+
+firebaseAppDistribution {
+    appId = "1:352561988518:android:b078b6b11087de02a40567"
+    releaseNotes = "Test Notes"
+    serviceCredentialsFile = System.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+    groups= "testers"
 }
 
