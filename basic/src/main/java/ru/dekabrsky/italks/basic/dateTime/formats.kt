@@ -11,13 +11,14 @@ import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.FormatStyle
 import java.util.*
 
-fun formatDateTimeToUiDateTime(dateTime: LocalDateTime): String =
-    DateTimeFormatter.ofPattern("d MMM yyyy, hh:mm")
-        .withLocale(Locale("ru"))
-        .format(dateTime)
+fun formatDateTimeToUiDateTime(dateTime: LocalDateTime): String = formatDateTime(dateTime, "d MMM yyyy, hh:mm")
 
-fun formatDateToUiDate(dateTime: LocalDateTime): String =
-    DateTimeFormatter.ofPattern("d MMM yyyy")
+fun formatDateToUiDate(dateTime: LocalDateTime): String = formatDateTime(dateTime, "d MMM yyyy")
+
+fun formatDateTimeToUiTime(dateTime: LocalDateTime): String = formatDateTime(dateTime, "hh:mm")
+
+private fun formatDateTime(dateTime: LocalDateTime, format: String): String =
+    DateTimeFormatter.ofPattern(format)
         .withLocale(Locale("ru"))
         .format(dateTime)
 

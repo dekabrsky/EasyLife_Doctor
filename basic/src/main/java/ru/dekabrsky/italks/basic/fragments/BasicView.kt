@@ -6,4 +6,5 @@ import moxy.viewstate.strategy.alias.OneExecution
 @OneExecution
 interface BasicView: MvpView {
     fun showError(error: Throwable, action: (() -> Unit)? = null)
+    fun showToast(msg: String)
 }

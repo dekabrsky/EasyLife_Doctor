@@ -1,5 +1,6 @@
 package ru.dekabrsky.italks.basic.fragments
 
+import android.R.attr.data
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
@@ -7,21 +8,18 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import moxy.MvpFragment
-import moxy.MvpView
 import ru.dekabrsky.italks.basic.R
 import ru.dekabrsky.italks.basic.logging.log
+
 
 abstract class BasicFragment : MvpFragmentImpl(), BasicView {
     protected abstract val layoutRes: Int
@@ -128,6 +126,10 @@ abstract class BasicFragment : MvpFragmentImpl(), BasicView {
         snackBar.show()
 
         Log.d(scopeName, error.stackTraceToString())
+    }
+
+    override fun showToast(msg: String) {
+        Toast.makeText(requireActivity(), msg, Toast.LENGTH_SHORT).show()
     }
 
     abstract fun onBackPressed()

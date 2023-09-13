@@ -57,11 +57,11 @@
         android:background="@android:color/transparent"
         android:hint="@string/invite_code"
         android:inputType="number"
+        android:visibility="gone"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        android:visibility="gone"
         tools:visibility="visible">
 
         <EditText
@@ -80,7 +80,6 @@
         android:layout_marginTop="@dimen/offset_medium"
         android:background="@android:color/transparent"
         android:hint="@string/login"
-        android:inputType="text"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -90,8 +89,10 @@
             android:id="@+id/editTextLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_cyan_border_bg"
             android:imeOptions="actionNext"
-            android:background="@drawable/edit_text_cyan_border_bg" />
+            android:inputType="text"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,9 +115,10 @@
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
             android:background="@drawable/edit_text_cyan_border_bg"
-            android:inputType="textPassword" />
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
+            android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,10 +156,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/offset_medium"
+        android:background="?selectableItemBackground"
         android:text="@string/registration"
         android:textColor="@color/cyan_dark"
         android:textSize="16sp"
-        android:background="?selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_card_btn" />

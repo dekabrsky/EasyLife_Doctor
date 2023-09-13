@@ -11,4 +11,18 @@ class ContactsInteractorImpl @Inject constructor(
         repository.getCallersBases(direction, sortBy)
 
     override fun getCallersBase(id: Int) = repository.getCallersBase(id)
+
+    fun getChats() = repository.getChats()
+
+    fun getDoctors() = repository.getDoctors()
+
+    fun getPatients() = repository.getPatients()
+
+    fun getChildren() = repository.getChildren()
+
+    fun startChat(id: Int) = repository.startChat(id)
+
+    fun getChat(id: Int) = repository.getChat(id)
+
+    fun postMessage(chatId: Int, msg: String) = repository.postMessage(chatId, msg)
 }

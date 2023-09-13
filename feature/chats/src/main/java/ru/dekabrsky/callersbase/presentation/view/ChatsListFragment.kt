@@ -8,7 +8,7 @@ import ru.dekabrsky.callersbase.R
 import ru.dekabrsky.callersbase.databinding.FragmentCallersBaseBinding
 import ru.dekabrsky.callersbase.presentation.adapter.ChatsListAdapter
 import ru.dekabrsky.callersbase.presentation.presenter.ChatsListPresenter
-import ru.dekabrsky.common.presentation.model.ChatUiModel
+import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes.SCOPE_FLOW_CHATS

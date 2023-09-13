@@ -9,5 +9,4 @@ import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 interface PatientsListView : BasicView {
     fun setItems(items: List<ScenarioItemUiModel>)
     fun showEmptyLayout()
-    fun showCodeDialog(dialog: DialogInterface, code: Int)
 }

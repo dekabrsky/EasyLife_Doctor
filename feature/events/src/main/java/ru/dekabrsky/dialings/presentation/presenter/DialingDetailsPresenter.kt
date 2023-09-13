@@ -70,7 +70,7 @@ class DialingDetailsPresenter @Inject constructor(
                         Flows.Chats.name,
                         ChatsFlowScreenArgs(
                             Scopes.SCOPE_FLOW_DIALINGS,
-                            Flows.Chats.SCREEN_BASES_DETAILS,
+                            Flows.Chats.SCREEN_CHAT_CONVERSATION,
                             it
                         )
                     )
