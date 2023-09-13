@@ -31,5 +31,6 @@ dependencies {
     implementation project(':flows')
     implementation project(':feature:chats-common')
     implementation project(':feature:events-common')
+    implementation project(':feature:sharedPreferences')
     implementation project(':feature:tabs')
 }

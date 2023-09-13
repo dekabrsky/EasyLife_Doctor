@@ -27,7 +27,7 @@ class TabsFlowPresenter @Inject constructor(
         viewState.setTabsByRole(
             when (args.userType) {
                 UserType.DOCTOR -> R.menu.doctor_tabs_menu
-                UserType.PATIENT -> R.menu.child_tabs_menu
+                UserType.PATIENT -> R.menu.patient_tabs_menu
                 UserType.PARENT -> R.menu.parent_tabs_menu
                 UserType.CHILD -> R.menu.child_tabs_menu
             }

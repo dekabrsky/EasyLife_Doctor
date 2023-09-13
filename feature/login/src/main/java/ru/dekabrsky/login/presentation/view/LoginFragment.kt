@@ -65,6 +65,10 @@ class LoginFragment: BasicFragment(), LoginView {
         binding.bgImage.setImageResource(R.drawable.drawable_table)
     }
 
+    override fun setLogin(lastLogin: String) {
+        binding.editTextLogin.setText(lastLogin)
+    }
+
     companion object{
         fun newInstance() = LoginFragment()
     }

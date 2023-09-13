@@ -65,21 +65,22 @@ class ScenariosListPresenter @Inject constructor(
         router.navigateTo(Flows.Patients.SCREEN_SCENARIO_DETAILS, model)
     }
 
-    fun generatePatients(dialog: DialogInterface) {
+    fun generatePatients() {
+        interactor.generateCode()
+            .observeOn(RxSchedulers.main())
+            .subscribe(::showAddPatientsResult, viewState::showError)
+            .addFullLifeCycle()
+    }
+
+    private fun showAddPatientsResult(code: Int) {
         router.navigateTo(
             Flows.Common.SCREEN_BOTTOM_INFO,
             BottomSheetScreenArgs(
-                title = "Пациент добавлен в систему",
-                subtitle = "Теперь можно перейти в его карточку",
+                title = "Новый пациент создан",
+                subtitle = "Сообщите пациенту код #$code. Пациент появится в списке, когда активирует учетную запись",
                 mode = BottomSheetMode.LK,
-                buttonState = ButtonState("Перейти", {})
+                buttonState = ButtonState("Готово", {})
             )
         )
-//        interactor.generateCode()
-//            .observeOn(RxSchedulers.main())
-//            .subscribe({
-//                viewState.showCodeDialog(dialog, it)
-//            }, viewState::showError)
-//            .addFullLifeCycle()
     }
 }

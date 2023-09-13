@@ -6,8 +6,11 @@ import io.reactivex.Single
 import retrofit2.http.*
 import ru.dekabrsky.callersbase.data.model.CallersBaseResponse
 import ru.dekabrsky.callersbase.data.model.ChatResponse
+import ru.dekabrsky.callersbase.data.model.ChatsListResponse
 import ru.dekabrsky.callersbase.data.model.ContentResponse
+import ru.dekabrsky.callersbase.data.model.MessageRequest
 import ru.dekabrsky.callersbase.data.model.UserIdNameResponse
+import ru.dekabrsky.callersbase.data.model.UsersListIdNameResponse
 import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.italks.basic.network.utils.Direction
 
@@ -24,23 +27,23 @@ interface ContactsApi {
     fun getCallersBase(@Path("id") id: Int): Observable<ContentResponse>
 
     @GET("users/doctors")
-    fun getDoctors(): Single<UserIdNameResponse>
+    fun getDoctors(): Single<UsersListIdNameResponse>
 
     @GET("users/patients")
-    fun getPatients(): Single<UserIdNameResponse>
+    fun getPatients(): Single<UsersListIdNameResponse>
 
     @GET("users/children")
-    fun getChildren(): Single<UserIdNameResponse>
+    fun getChildren(): Single<UsersListIdNameResponse>
 
     @POST("chats")
-    fun startChat(@Query("companionUserId") userId: Int = 0): Completable
+    fun startChat(@Query("companionUserId") userId: Int): Completable
 
     @GET("chats/users/{companionUserId}")
-    fun getChat(@Query("companionUserId") userId: Int = 0): Single<ChatResponse>
+    fun getChat(@Path("companionUserId") userId: Int): Single<ChatResponse>
 
     @GET("chats")
-    fun getChats(): Single<List<ChatResponse>>
+    fun getChats(): Single<ChatsListResponse>
 
     @POST("chats/messages")
-    fun postMessage(@Body userId: Int = 0): Single<ChatResponse>
+    fun postMessage(@Body message: MessageRequest): Completable
 }

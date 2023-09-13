@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.R
+import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
 import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.callersbase.presentation.presenter.ChatFlowPresenter
 import ru.dekabrsky.italks.basic.di.inject
@@ -33,8 +34,8 @@ class ChatFlowFragment : BasicFlowFragment(), ChatFlowView {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
                 when (screenKey) {
                     Flows.Chats.SCREEN_BASES_LIST -> ChatsListFragment.newInstance()
-                    Flows.Chats.SCREEN_BASES_DETAILS ->
-                        ChatConversationFragment.newInstance()
+                    Flows.Chats.SCREEN_CHAT_CONVERSATION ->
+                        ChatConversationFragment.newInstance(data as ChatConversationScreenArgs)
                     else -> super.createFragment(screenKey, data)
                 }
         }

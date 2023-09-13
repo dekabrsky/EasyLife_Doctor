@@ -7,11 +7,13 @@ import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.login.data.repository.LoginRepository
 import ru.dekabrsky.login.presentation.view.LoginView
+import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import javax.inject.Inject
 
 class LoginPresenter @Inject constructor(
     private val router: FlowRouter,
-    private val repository: LoginRepository
+    private val repository: LoginRepository,
+    private val sharedPreferencesProvider: SharedPreferencesProvider
 ): BasicPresenter<LoginView>() {
 
     enum class LoginMode { LOGIN, REGISTRATION }
@@ -19,11 +21,13 @@ class LoginPresenter @Inject constructor(
     var currentCode: String = ""
     var currentLogin: String = ""
     var currentPassword: String = ""
+    var lastLogin = sharedPreferencesProvider.lastLogin.get()
 
     private var mode: LoginMode = LoginMode.LOGIN
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        viewState.setLogin(lastLogin)
 //        repository.login("Denis", "123")
 //            .observeOn(RxSchedulers.main())
 //            .subscribe({
@@ -41,6 +45,7 @@ class LoginPresenter @Inject constructor(
                         router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
                     }, viewState::showError)
                     .addFullLifeCycle()
+                if (lastLogin != currentLogin) sharedPreferencesProvider.lastLogin.set(currentLogin)
             }
             LoginMode.REGISTRATION -> {
                 repository.registration(currentCode, currentLogin, currentPassword)

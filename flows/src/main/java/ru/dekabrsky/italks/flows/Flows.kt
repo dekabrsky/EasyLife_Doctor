@@ -12,7 +12,7 @@ class Flows {
 
     object Chats : Flow("FLOW_CALLERS_BASE") {
         const val SCREEN_BASES_LIST = "SCREEN_BASES_LIST"
-        const val SCREEN_BASES_DETAILS = "SCREEN_BASES_DETAILS"
+        const val SCREEN_CHAT_CONVERSATION = "SCREEN_BASES_DETAILS"
     }
 
     object Notifications: Flow("FLOW_NOTIFICATIONS") {

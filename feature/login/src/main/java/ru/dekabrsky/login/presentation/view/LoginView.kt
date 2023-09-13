@@ -7,4 +7,5 @@ import ru.dekabrsky.italks.basic.fragments.BasicView
 interface LoginView: BasicView {
     fun setupForRegistration()
     fun setupForLogin()
+    fun setLogin(lastLogin: String)
 }

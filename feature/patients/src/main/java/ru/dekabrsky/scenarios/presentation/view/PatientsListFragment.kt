@@ -56,18 +56,9 @@ class PatientsListFragment: BasicFragment(), PatientsListView {
         AlertDialog.Builder(context)
             .setTitle("Пригласить нового пациента")
             .setMessage("Создать новую учетную запись?")
-            .setPositiveButton("Да") { dialog, _ -> presenter.generatePatients(dialog) }
+            .setPositiveButton("Да") { _, _ -> presenter.generatePatients() }
             .setNegativeButton("Нет", null)
             .setIcon(R.drawable.ic_round_group_24)
-            .show()
-    }
-
-    override fun showCodeDialog(dialog: DialogInterface, code: Int) {
-        dialog.dismiss()
-        AlertDialog.Builder(context)
-            .setTitle("Новый пациент создан")
-            .setMessage("Сообщите пациенту код #$code. Пациент пояится в списке, когда активирует учетную запись")
-            .setPositiveButton("Готово", null)
             .show()
     }
 

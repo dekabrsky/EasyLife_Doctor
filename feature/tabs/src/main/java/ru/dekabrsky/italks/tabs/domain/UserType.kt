@@ -1,6 +1,8 @@
 package ru.dekabrsky.italks.tabs.domain
 
-enum class UserType(val desc: String) {
+import java.io.Serializable
+
+enum class UserType(val desc: String): Serializable {
     CHILD("Ребенок"),
     PATIENT("Пациент"),
     PARENT("Законный представитель"),

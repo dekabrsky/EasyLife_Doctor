@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ru.dekabrsky.callersbase.R
 import ru.dekabrsky.callersbase.databinding.ItemChatBinding
-import ru.dekabrsky.common.presentation.model.ChatUiModel
+import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 
 class ChatsListAdapter(
     private val onItemClick: (ChatUiModel) -> Unit
@@ -28,7 +28,8 @@ class ChatsListAdapter(
 
     override fun onBindViewHolder(holder: ChatHolder, position: Int) {
         val item = items[position]
-        holder.name.text = item.name
+        holder.name.text = item.secondUser.name
+        holder.binding.avatarPlaceholder.text = item.avatarPlaceholder
         holder.date.text = item.date
         holder.message.text = item.lastMessage
         if (item.newMessagesCount > 0) {
@@ -37,25 +38,25 @@ class ChatsListAdapter(
             holder.message.setTextAppearance(R.style.BoldText)
             holder.message.setTextColor(holder.itemView.context.getColor(R.color.grey_600))
         }
-        if (item.name.contains("373")) {
-            holder.avatar.setImageResource(R.drawable.cat_avatar)
-        }
-        if (item.name.contains("0356")) {
-            holder.avatar.setImageResource(R.drawable.cat_avatar_2)
-        }
-        if (item.name.contains("Вас")) {
-            holder.avatar.setImageResource(R.drawable.ic_doctor_m)
-        }
-        if (item.name.contains("Нат")) {
-            holder.avatar.setImageResource(R.drawable.ic_doctor_f)
-        }
+//        if (item.name.contains("373")) {
+//            holder.avatar.setImageResource(R.drawable.cat_avatar)
+//        }
+//        if (item.name.contains("0356")) {
+//            holder.avatar.setImageResource(R.drawable.cat_avatar_2)
+//        }
+//        if (item.name.contains("Вас")) {
+//            holder.avatar.setImageResource(R.drawable.ic_doctor_m)
+//        }
+//        if (item.name.contains("Нат")) {
+//            holder.avatar.setImageResource(R.drawable.ic_doctor_f)
+//        }
         holder.root.setOnClickListener { onItemClick(item) }
     }
 
     override fun getItemCount(): Int = items.size
 
     class ChatHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val binding = ItemChatBinding.bind(itemView)
+        val binding = ItemChatBinding.bind(itemView)
         val root = binding.root
         val name = binding.name
         val date = binding.lastMessageTime
