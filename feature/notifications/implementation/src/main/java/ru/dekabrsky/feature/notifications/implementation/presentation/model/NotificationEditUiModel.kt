@@ -1,7 +1,5 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.model
 
-import kotlin.math.min
-
 class NotificationEditUiModel(
     var tabletName: String = "",
     var dosage: String = "",

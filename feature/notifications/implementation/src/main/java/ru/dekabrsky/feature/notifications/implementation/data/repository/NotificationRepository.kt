@@ -19,4 +19,7 @@ class NotificationRepository @Inject constructor(
 
     fun add(notification: NotificationEntity) =
         notificationDatabase.notificationsDao().insert(mapper.entityToDb(notification))
+
+    fun delete(notification: NotificationEntity) =
+        notificationDatabase.notificationsDao().delete(mapper.entityToDb(notification))
 }

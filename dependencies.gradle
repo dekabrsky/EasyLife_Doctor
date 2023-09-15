@@ -18,6 +18,7 @@ ext.versions = [
         moxy                : '2.2.1',
         toothpick           : '2.1.0',
         room                : '2.5.1',
+        swipeRevealLayout   : '1.4.1',
         // Test
         junit               : '4.12',
         mockito             : '3.9.0',
@@ -51,6 +52,8 @@ ext.libraries = [
         cicerone             : "ru.terrakok.cicerone:cicerone:$versions.cicerone",
 
         glide                : "com.github.bumptech.glide:glide:$versions.glide",
+
+        swipeRevealLayout    : "com.chauthai.swipereveallayout:swipe-reveal-layout:$versions.swipeRevealLayout",
 
         // Test
         kotlinTest           : "org.jetbrains.kotlin:kotlin-test:$versions.kotlin",
