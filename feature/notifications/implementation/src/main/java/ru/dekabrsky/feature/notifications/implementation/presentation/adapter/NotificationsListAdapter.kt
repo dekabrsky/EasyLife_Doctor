@@ -4,20 +4,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.chauthai.swipereveallayout.ViewBinderHelper
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.databinding.ItemNotificationBinding
 import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 
 class NotificationsListAdapter(
-    private val onItemClick: (NotificationEntity) -> Unit
+    private val onItemClick: (NotificationEntity) -> Unit = {},
+    private val onItemDelete: (NotificationEntity) -> Unit
 ): RecyclerView.Adapter<NotificationsListAdapter.NotificationHolder>() {
 
     private var items: MutableList<NotificationEntity> = arrayListOf()
+
+    private val viewBinderHelper = ViewBinderHelper()
 
     fun updateItems(newItems: List<NotificationEntity>) {
         items = newItems.toMutableList()
         notifyDataSetChanged()
     }
+
+    override fun getItemId(position: Int) = position.toLong()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NotificationHolder {
         val view = LayoutInflater.from(parent.context)
@@ -28,6 +34,11 @@ class NotificationsListAdapter(
 
     override fun onBindViewHolder(holder: NotificationHolder, position: Int) {
         val item = items[position]
+
+        viewBinderHelper.setOpenOnlyOne(true)
+        viewBinderHelper.bind(holder.binding.swipeReveal, item.uid.toString())
+        viewBinderHelper.closeLayout(item.uid.toString())
+
         with (holder.binding) {
             tabletName.text = item.tabletName
             dosage.text = item.dosage
@@ -35,6 +46,7 @@ class NotificationsListAdapter(
             notificationTime.text = mapTime(item.hour, item.minute)
             notificationSwitch.isChecked = true
             notificationSwitch.isEnabled = false
+            deleteWrapper.setOnClickListener { onItemDelete(item) }
             root.setOnClickListener { onItemClick(item) }
         }
     }

@@ -10,4 +10,6 @@ class NotificationInteractor @Inject constructor(
     fun getAll() = repository.getAll()
 
     fun add(notification: NotificationEntity) = repository.add(notification)
+
+    fun delete(notification: NotificationEntity) = repository.delete(notification)
 }
