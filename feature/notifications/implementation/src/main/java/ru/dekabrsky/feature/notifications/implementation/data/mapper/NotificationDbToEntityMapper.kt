@@ -19,6 +19,7 @@ class NotificationDbToEntityMapper @Inject constructor() {
 
     fun entityToDb(entity: NotificationEntity): NotificationDbEntity {
         return NotificationDbEntity(
+            uid = entity.uid,
             tabletName = entity.tabletName,
             dosage = entity.dosage,
             note = entity.note,

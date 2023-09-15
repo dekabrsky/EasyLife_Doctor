@@ -6,6 +6,6 @@ import ru.dekabrsky.italks.basic.fragments.BasicView
 
 @AddToEndSingle
 interface NotificationsListView: BasicView {
-    fun showEmptyLayout()
+    fun setEmptyLayoutVisibility(isVisible: Boolean)
     fun setChatsList(items: List<NotificationEntity>)
 }

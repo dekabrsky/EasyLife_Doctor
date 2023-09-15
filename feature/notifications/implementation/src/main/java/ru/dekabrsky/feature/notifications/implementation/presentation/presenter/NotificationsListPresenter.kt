@@ -22,12 +22,24 @@ class NotificationsListPresenter @Inject constructor(
     private fun getAll() {
         notificationInteractor.getAll()
             .observeOn(RxSchedulers.main())
-            .subscribe(viewState::setChatsList, viewState::showError)
+            .subscribe(::dispatchNotifications, viewState::showError)
             .addFullLifeCycle()
 
     }
 
+    private fun dispatchNotifications(list: List<NotificationEntity>) {
+        viewState.setChatsList(list)
+        viewState.setEmptyLayoutVisibility(list.isEmpty())
+    }
+
     fun onAddNotificationClick() {
         router.navigateTo(Flows.Notifications.SCREEN_EDIT_NOTIFICATION)
+    }
+
+    fun onNotificationDelete(notificationEntity: NotificationEntity) {
+        notificationInteractor.delete(notificationEntity)
+            .observeOn(RxSchedulers.main())
+            .subscribe({ getAll() }, viewState::showError)
+            .addFullLifeCycle()
     }
 }

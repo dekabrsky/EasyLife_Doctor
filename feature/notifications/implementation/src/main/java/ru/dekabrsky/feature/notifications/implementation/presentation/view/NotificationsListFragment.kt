@@ -18,7 +18,11 @@ class NotificationsListFragment: BasicFragment(), NotificationsListView {
     override val layoutRes = R.layout.fmt_notifications
     private val binding by viewBinding(FmtNotificationsBinding::bind)
 
-    private val adapter by lazy { NotificationsListAdapter {} }
+    private val adapter by lazy {
+        NotificationsListAdapter(
+            onItemDelete = presenter::onNotificationDelete
+        )
+    }
 
     @InjectPresenter
     lateinit var presenter: NotificationsListPresenter
@@ -46,8 +50,8 @@ class NotificationsListFragment: BasicFragment(), NotificationsListView {
         adapter.updateItems(items)
     }
 
-    override fun showEmptyLayout() {
-        binding.emptyLayout.visibility = View.VISIBLE
+    override fun setEmptyLayoutVisibility(isVisible: Boolean) {
+        binding.emptyLayout.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 
     fun setNavBarVisibility(isVisible: Boolean) {
