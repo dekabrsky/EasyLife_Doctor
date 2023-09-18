@@ -83,8 +83,8 @@ public class TreeScreen implements Screen {
 		camera.update();
 		game.batch.begin();
 		game.batch.draw(bg,0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		font.draw(game.batch, "Score:" + dropleaves, 0, Gdx.graphics.getHeight()-40);
-		font.getData().setScale(4);
+		font.draw(game.batch, "Поймано листочков:" + dropleaves, 0, Gdx.graphics.getHeight()-40);
+		font.getData().setScale(5);
 		font.setColor(Color.BLACK);
 		game.batch.draw(yellowbox, box1.x, box1.y, 351, 363);
 		for (Rectangle leavedrop: leaves){

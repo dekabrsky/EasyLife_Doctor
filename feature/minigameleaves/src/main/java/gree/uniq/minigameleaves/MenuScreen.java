@@ -34,8 +34,8 @@ public class MenuScreen implements Screen {
         camera.update();
         game.batch.begin();
         game.batch.draw(bg, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        game.font.draw(game.batch, "Tap to start game!", Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/2);
-        game.font.getData().setScale(4);
+        game.font.draw(game.batch, "Нажми, чтобы начать игру!", Gdx.graphics.getWidth()/3, Gdx.graphics.getHeight()/2);
+        game.font.getData().setScale(6);
         game.font.setColor(Color.WHITE);
         game.batch.end();
 

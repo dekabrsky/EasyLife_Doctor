@@ -78,7 +78,7 @@ class FootballFragment : BasicFragment(), FootballView {
         @SuppressLint("DiscouragedApi") val idView2 = resources.getIdentifier("button2", "id", context?.packageName)
         val eventView2 = view.findViewById<View>(idView2)
         eventView2.setOnClickListener {
-            if (viewBinding.button2.drawable == null && viewBinding.textView.getText() === "") {
+            if (viewBinding.button2.drawable == null && viewBinding.textView.text === "") {
                 viewBinding.button2.setImageResource(R.drawable.basket)
                 viewBinding.button2.tag = R.drawable.basket
                 isPlayerWinner
@@ -101,88 +101,76 @@ class FootballFragment : BasicFragment(), FootballView {
         }
         @SuppressLint("DiscouragedApi") val idView4 = resources.getIdentifier("button4", "id", context?.packageName)
         val eventView4 = view.findViewById<View>(idView4)
-        eventView4.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                if (viewBinding.button4.getDrawable() == null && viewBinding.textView.getText() === "") {
-                    viewBinding.button4.setImageResource(R.drawable.basket)
-                    viewBinding.button4.setTag(R.drawable.basket)
-                    isPlayerWinner
-                    if (viewBinding.textView.getText() === "") {
-                        hodAI()
-                    }
+        eventView4.setOnClickListener {
+            if (viewBinding.button4.drawable == null && viewBinding.textView.text === "") {
+                viewBinding.button4.setImageResource(R.drawable.basket)
+                viewBinding.button4.tag = R.drawable.basket
+                isPlayerWinner
+                if (viewBinding.textView.text === "") {
+                    hodAI()
                 }
             }
-        })
+        }
         @SuppressLint("DiscouragedApi") val idView5 = resources.getIdentifier("button5", "id", context?.packageName)
         val eventView5 = view.findViewById<View>(idView5)
-        eventView5.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                if (viewBinding.button5.getDrawable() == null && viewBinding.textView.getText() === "") {
-                    viewBinding.button5.setImageResource(R.drawable.basket)
-                    viewBinding.button5.setTag(R.drawable.basket)
-                    isPlayerWinner
-                    if (viewBinding.textView.getText() === "") {
-                        hodAI()
-                    }
+        eventView5.setOnClickListener {
+            if (viewBinding.button5.drawable == null && viewBinding.textView.text === "") {
+                viewBinding.button5.setImageResource(R.drawable.basket)
+                viewBinding.button5.tag = R.drawable.basket
+                isPlayerWinner
+                if (viewBinding.textView.text === "") {
+                    hodAI()
                 }
             }
-        })
+        }
         @SuppressLint("DiscouragedApi") val idView6 = resources.getIdentifier("button6", "id", context?.packageName)
         val eventView6 = view.findViewById<View>(idView6)
-        eventView6.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                if (viewBinding.button6.getDrawable() == null && viewBinding.textView.getText() === "") {
-                    viewBinding.button6.setImageResource(R.drawable.basket)
-                    viewBinding.button6.setTag(R.drawable.basket)
-                    isPlayerWinner
-                    if (viewBinding.textView.getText() === "") {
-                        hodAI()
-                    }
+        eventView6.setOnClickListener {
+            if (viewBinding.button6.drawable == null && viewBinding.textView.text === "") {
+                viewBinding.button6.setImageResource(R.drawable.basket)
+                viewBinding.button6.tag = R.drawable.basket
+                isPlayerWinner
+                if (viewBinding.textView.text === "") {
+                    hodAI()
                 }
             }
-        })
+        }
         @SuppressLint("DiscouragedApi") val idView7 = resources.getIdentifier("button7", "id", context?.packageName)
         val eventView7 = view.findViewById<View>(idView7)
-        eventView7.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                if (viewBinding.button7.getDrawable() == null && viewBinding.textView.getText() === "") {
-                    viewBinding.button7.setImageResource(R.drawable.basket)
-                    viewBinding.button7.setTag(R.drawable.basket)
-                    isPlayerWinner
-                    if (viewBinding.textView.getText() === "") {
-                        hodAI()
-                    }
+        eventView7.setOnClickListener {
+            if (viewBinding.button7.drawable == null && viewBinding.textView.text === "") {
+                viewBinding.button7.setImageResource(R.drawable.basket)
+                viewBinding.button7.tag = R.drawable.basket
+                isPlayerWinner
+                if (viewBinding.textView.text === "") {
+                    hodAI()
                 }
             }
-        })
+        }
         @SuppressLint("DiscouragedApi") val idView8 = resources.getIdentifier("button8", "id", context?.packageName)
         val eventView8 = view.findViewById<View>(idView8)
-        eventView8.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                if (viewBinding.button8.getDrawable() == null && viewBinding.textView.getText() === "") {
-                    viewBinding.button8.setImageResource(R.drawable.basket)
-                    viewBinding.button8.setTag(R.drawable.basket)
-                    isPlayerWinner
-                    if (viewBinding.textView.getText() === "") {
-                        hodAI()
-                    }
+        eventView8.setOnClickListener {
+            if (viewBinding.button8.drawable == null && viewBinding.textView.text === "") {
+                viewBinding.button8.setImageResource(R.drawable.basket)
+                viewBinding.button8.tag = R.drawable.basket
+                isPlayerWinner
+                if (viewBinding.textView.text === "") {
+                    hodAI()
                 }
             }
-        })
+        }
         @SuppressLint("DiscouragedApi") val idView9 = resources.getIdentifier("button9", "id", context?.packageName)
         val eventView9 = view.findViewById<View>(idView9)
-        eventView9.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                if (viewBinding.button9.getDrawable() == null && viewBinding.textView.getText() === "") {
-                    viewBinding.button9.setImageResource(R.drawable.basket)
-                    viewBinding.button9.setTag(R.drawable.basket)
-                    isPlayerWinner
-                    if (viewBinding.textView.getText() === "") {
-                        hodAI()
-                    }
+        eventView9.setOnClickListener {
+            if (viewBinding.button9.drawable == null && viewBinding.textView.text === "") {
+                viewBinding.button9.setImageResource(R.drawable.basket)
+                viewBinding.button9.tag = R.drawable.basket
+                isPlayerWinner
+                if (viewBinding.textView.text === "") {
+                    hodAI()
                 }
             }
-        })
+        }
 
         viewBinding.restart.setOnClickListener { presenter.restart() }
         viewBinding.exitGame.setOnClickListener { presenter.exitGame() }
