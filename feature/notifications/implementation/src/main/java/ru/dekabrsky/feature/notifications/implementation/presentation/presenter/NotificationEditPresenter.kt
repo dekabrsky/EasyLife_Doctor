@@ -3,6 +3,7 @@ package ru.dekabrsky.feature.notifications.implementation.presentation.presenter
 import android.view.View
 import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
+import ru.dekabrsky.feature.notifications.implementation.presentation.mapper.NotificationEntityToUiMapper
 import ru.dekabrsky.feature.notifications.implementation.presentation.model.NotificationEditUiModel
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationEditView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
@@ -12,10 +13,23 @@ import javax.inject.Inject
 
 class NotificationEditPresenter @Inject constructor(
     private val router: FlowRouter,
-    private val interactor: NotificationInteractor
+    private val interactor: NotificationInteractor,
+    private val existingNotification: NotificationEntity,
+    private val mapper: NotificationEntityToUiMapper
 ): BasicPresenter<NotificationEditView>(router) {
 
-    private var notification = NotificationEditUiModel()
+    private var notification = existingNotification.uid?.let {
+        mapper.mapEntityToUi(existingNotification)
+    } ?: NotificationEditUiModel()
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        notification.let {
+            viewState.setNotesFields(it)
+            onTimeSet(it.hour, it.minute)
+        }
+    }
+
     fun onTabletNameChanged(tabletName: String) {
         notification.tabletName = tabletName
     }
@@ -28,19 +42,20 @@ class NotificationEditPresenter @Inject constructor(
         notification.note = note
     }
 
-    fun onTimeClick(view: View?) {
-        viewState.showTimePicker()
+    fun onTimeClick() {
+        viewState.showTimePicker(notification.hour, notification.minute)
     }
 
-    fun onDoneClick(view: View?) {
-        val result = NotificationEntity(
-            tabletName = notification.tabletName,
-            dosage = notification.dosage,
-            note = notification.note,
-            hour = notification.hour,
-            minute = notification.minute
-        )
-        interactor.add(result)
+    fun onDoneClick() {
+        val result = mapper.mapUiToEntity(notification, existingNotification.uid)
+
+        val saveMethod = if (existingNotification.uid == null) {
+            interactor.add(result)
+        } else {
+            interactor.update(result)
+        }
+
+       saveMethod
             .observeOn(RxSchedulers.main())
             .subscribe ({ onBackPressed() }, {viewState.showError(it) })
             .addFullLifeCycle()

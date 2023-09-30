@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import main.utils.onTextChange
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
@@ -49,6 +51,17 @@ class LoginFragment: BasicFragment(), LoginView {
 
         binding.loginCardBtn.setOnClickListener { presenter.onDoneButtonClick() }
         binding.changeMode.setOnClickListener { presenter.onChangeModeClick() }
+
+        // todo kill me please
+        var builder = NotificationCompat.Builder(requireContext(), "1")
+            .setSmallIcon(R.drawable.ic_logo)
+            .setContentTitle("Труба квадратная 20х20х1.5")
+            .setContentText("Цена упала на 7,64 %")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        with(NotificationManagerCompat.from(requireContext())) {
+            // notificationId is a unique int for each notification that you must define
+            notify(1, builder.build())
+        }
     }
 
     override fun setupForRegistration() {

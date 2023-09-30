@@ -8,7 +8,10 @@ import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.databinding.FmtNotificationEditBinding
+import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
+import ru.dekabrsky.feature.notifications.implementation.presentation.model.NotificationEditUiModel
 import ru.dekabrsky.feature.notifications.implementation.presentation.presenter.NotificationEditPresenter
+import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
@@ -19,12 +22,15 @@ class NotificationEditFragment: BasicFragment(), NotificationEditView {
     override val layoutRes = R.layout.fmt_notification_edit
     private val binding by viewBinding(FmtNotificationEditBinding::bind)
 
+    private var notification = NotificationEntity()
+
     @InjectPresenter
     lateinit var presenter: NotificationEditPresenter
 
     @ProvidePresenter
     fun providePresenter(): NotificationEditPresenter {
         return Toothpick.openScopes(Scopes.SCOPE_FLOW_NOTIFICATION, scopeName)
+            .module { bind(NotificationEntity::class.java).toInstance(notification) }
             .getInstance(NotificationEditPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }
@@ -39,13 +45,13 @@ class NotificationEditFragment: BasicFragment(), NotificationEditView {
         binding.tabletName.onTextChange(presenter::onTabletNameChanged)
         binding.tabletDosage.onTextChange(presenter::onDosageChanged)
         binding.tabletNote.onTextChange(presenter::onNoteChanged)
-        binding.notificationTimeContainer.setOnClickListener(presenter::onTimeClick)
-        binding.doneBtn.setOnClickListener(presenter::onDoneClick)
+        binding.notificationTimeContainer.setOnClickListener { presenter.onTimeClick() }
+        binding.doneBtn.setOnClickListener { presenter.onDoneClick() }
         (parentFragment as NotificationFlowFragment).setNavBarVisibility(false)
     }
 
-    override fun showTimePicker() {
-        val tpd: TimePickerDialog = TimePickerDialog.newInstance(null, true)
+    override fun showTimePicker(hour: Int, minute: Int) {
+        val tpd: TimePickerDialog = TimePickerDialog.newInstance(null, hour, minute, true)
 
         tpd.setOkText("Ок")
         tpd.setCancelText("Отмена")
@@ -60,12 +66,20 @@ class NotificationEditFragment: BasicFragment(), NotificationEditView {
         binding.notificationTime.text = time
     }
 
+    override fun setNotesFields(uiModel: NotificationEditUiModel) {
+        binding.tabletName.setText(uiModel.tabletName)
+        binding.tabletDosage.setText(uiModel.dosage)
+        binding.tabletNote.setText(uiModel.note)
+    }
+
     override fun onBackPressed() {
         presenter.onBackPressed()
     }
 
     companion object {
         private const val TIME_PICKER_TAG = "TIME_PICKER_DIALOG"
-        fun newInstance() = NotificationEditFragment()
+        fun newInstance(notification: NotificationEntity) = NotificationEditFragment().apply {
+            this.notification = notification
+        }
     }
 }

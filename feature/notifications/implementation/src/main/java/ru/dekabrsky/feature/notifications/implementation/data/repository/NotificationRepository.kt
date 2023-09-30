@@ -12,14 +12,14 @@ class NotificationRepository @Inject constructor(
     private val mapper: NotificationDbToEntityMapper
 ) {
     private val notificationDatabase = roomDatabase as NotificationDatabase
+    private val dao = notificationDatabase.notificationsDao()
 
-    fun getAll() =
-        notificationDatabase.notificationsDao().getAll()
-            .map { list -> list.map { mapper.dbToEntity(it) } }
+    fun getAll() = dao.getAll().map { list -> list.map { mapper.dbToEntity(it) } }
 
-    fun add(notification: NotificationEntity) =
-        notificationDatabase.notificationsDao().insert(mapper.entityToDb(notification))
+    fun add(notification: NotificationEntity) = dao.insert(mapper.entityToDb(notification))
 
-    fun delete(notification: NotificationEntity) =
-        notificationDatabase.notificationsDao().delete(mapper.entityToDb(notification))
+    fun delete(notification: NotificationEntity) = dao.delete(mapper.entityToDb(notification))
+
+    fun update(notification: NotificationEntity) = dao.update(mapper.entityToDb(notification))
+
 }
