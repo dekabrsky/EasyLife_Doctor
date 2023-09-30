@@ -10,7 +10,7 @@ import ru.dekabrsky.feature.notifications.implementation.databinding.ItemNotific
 import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 
 class NotificationsListAdapter(
-    private val onItemClick: (NotificationEntity) -> Unit = {},
+    private val onItemClick: (NotificationEntity) -> Unit,
     private val onItemDelete: (NotificationEntity) -> Unit
 ): RecyclerView.Adapter<NotificationsListAdapter.NotificationHolder>() {
 
@@ -47,7 +47,7 @@ class NotificationsListAdapter(
             notificationSwitch.isChecked = true
             notificationSwitch.isEnabled = false
             deleteWrapper.setOnClickListener { onItemDelete(item) }
-            root.setOnClickListener { onItemClick(item) }
+            content.setOnClickListener { onItemClick(item) }
         }
     }
 

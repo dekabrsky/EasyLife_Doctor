@@ -42,4 +42,8 @@ class NotificationsListPresenter @Inject constructor(
             .subscribe({ getAll() }, viewState::showError)
             .addFullLifeCycle()
     }
+
+    fun onNotificationClick(notificationEntity: NotificationEntity) {
+        router.navigateTo(Flows.Notifications.SCREEN_EDIT_NOTIFICATION, notificationEntity)
+    }
 }

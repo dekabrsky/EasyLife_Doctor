@@ -5,6 +5,7 @@ import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.feature.notifications.implementation.R
+import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.presentation.presenter.NotificationFlowPresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
@@ -32,7 +33,9 @@ class NotificationFlowFragment : BasicFlowFragment(), NotificationFlowView {
                         NotificationsListFragment.newInstance()
 
                     Flows.Notifications.SCREEN_EDIT_NOTIFICATION ->
-                        NotificationEditFragment.newInstance()
+                        NotificationEditFragment.newInstance(
+                            data as? NotificationEntity ?: NotificationEntity()
+                        )
 
                     else -> super.createFragment(screenKey, data)
                 }

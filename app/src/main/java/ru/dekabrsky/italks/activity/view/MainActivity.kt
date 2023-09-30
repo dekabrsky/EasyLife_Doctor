@@ -1,5 +1,9 @@
 package ru.dekabrsky.italks.activity.view
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -24,7 +28,6 @@ import ru.dekabrsky.italks.navigation.AppFlowFragmentProvider
 import ru.dekabrsky.italks.navigation.AppFlowNavigator
 import ru.dekabrsky.italks.profile.di.ProfileFeatureModule
 import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.italks.testerSettings.presentation.view.TesterSettingsFragment
 import ru.dekabrsky.login.di.module.LoginFeatureModule
 import ru.dekabrsky.scenarios.di.module.DoctorsPatientsModule
 import ru.dekabrsky.stats.di.StatsFeatureModule
@@ -34,6 +37,7 @@ import toothpick.Toothpick
 import toothpick.configuration.MultipleRootException
 import toothpick.locators.NoFactoryFoundException
 import javax.inject.Inject
+
 
 open class MainActivity : AppCompatActivity(), MainView {
 
@@ -110,6 +114,20 @@ open class MainActivity : AppCompatActivity(), MainView {
     protected open fun onSecureCreate(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main)
         presenter.onAttach()
+
+        // todo kill me please
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create the NotificationChannel.
+            val name = "TMK"
+            val descriptionText = "Price Monitor"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val mChannel = NotificationChannel("1", name, importance)
+            mChannel.description = descriptionText
+            // Register the channel with the system. You can't change the importance
+            // or other notification behaviors after this.
+            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(mChannel)
+        }
     }
 
     override fun onStart() {

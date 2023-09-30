@@ -7,9 +7,9 @@ import java.util.Date
 @Suppress("LongParameterList")
 class NotificationEntity(
     val uid: Int? = null,
-    val tabletName: String,
-    val dosage: String,
-    val note: String,
-    val hour: Int,
-    val minute: Int
+    val tabletName: String = "",
+    val dosage: String = "",
+    val note: String = "",
+    val hour: Int = 0,
+    val minute: Int = 0
 )

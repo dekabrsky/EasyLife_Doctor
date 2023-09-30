@@ -20,6 +20,7 @@ class NotificationsListFragment: BasicFragment(), NotificationsListView {
 
     private val adapter by lazy {
         NotificationsListAdapter(
+            onItemClick = presenter::onNotificationClick,
             onItemDelete = presenter::onNotificationDelete
         )
     }
