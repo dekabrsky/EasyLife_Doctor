@@ -45,7 +45,15 @@ class GardenPresenter @Inject constructor(
     }
 
     fun goToLeaves() {
-        router.navigateTo(Flows.Game.SCREEN_LEAVES)
+        router.navigateTo(
+            Flows.Common.SCREEN_BOTTOM_INFO,
+            BottomSheetScreenArgs(
+                title = "А какая погода?",
+                subtitle = "Время пособирать листики!",
+                mode = BottomSheetMode.GAME,
+                icon = R.drawable.leaf,
+                buttonState = ButtonState("Отлично") { router.navigateTo(Flows.Game.SCREEN_LEAVES) }
+        ))
     }
 
     fun goToFifteen() {

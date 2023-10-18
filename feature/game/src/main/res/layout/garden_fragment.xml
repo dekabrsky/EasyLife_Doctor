@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/sky_blue">
 
-    <com.airbnb.lottie.LottieAnimationView
+   <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/cloud_anim"
         android:layout_width="match_parent"
         android:layout_height="230dp"
@@ -185,5 +185,40 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.65" />
+
+ <androidx.cardview.widget.CardView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_marginTop="10dp"
+     android:layout_marginEnd="10dp"
+     app:cardCornerRadius="15dp"
+     app:cardElevation="10dp"
+     app:layout_constraintEnd_toEndOf="parent"
+     app:layout_constraintTop_toTopOf="parent">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/sky_blue">
+
+   <TextView
+       android:id="@+id/score"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginStart="10dp"
+       android:layout_marginTop="10dp"
+       android:layout_marginEnd="10dp"
+       android:layout_marginBottom="10dp"
+       android:fontFamily="sans-serif"
+       android:text="Твой счет:"
+       android:textColor="@color/fifteen_card_bg"
+       android:textSize="20sp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+ </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

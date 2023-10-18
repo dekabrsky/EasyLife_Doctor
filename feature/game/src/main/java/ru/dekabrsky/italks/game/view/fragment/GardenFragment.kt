@@ -1,8 +1,10 @@
 package ru.dekabrsky.italks.game.view.fragment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.asLiveData
 import gree.uniq.minigameleaves.AndroidLauncher
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
@@ -10,6 +12,7 @@ import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.GameActivity
 import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.data.ProgressDb
 import ru.dekabrsky.italks.game.databinding.GardenFragmentBinding
 import ru.dekabrsky.italks.game.view.GardenView
 import ru.dekabrsky.italks.game.view.presenter.GardenPresenter
@@ -33,6 +36,7 @@ class GardenFragment : BasicFragment(), GardenView {
             .also { Toothpick.closeScope(scopeName) }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.let {
@@ -45,6 +49,11 @@ class GardenFragment : BasicFragment(), GardenView {
             binding.barbecue.setOnClickListenerWithAnimation(it) { presenter.goToFifteen() }
             binding.bird.setOnClickListenerWithAnimation(it) { presenter.startFlappyBird() }
             binding.birdGamePad.setOnClickListenerWithAnimation(it) { presenter.startFlappyBird() }
+        }
+        val db = ProgressDb.getDb(requireContext())
+        db.getDao().getCount().asLiveData().observe(viewLifecycleOwner){ list->
+            val stringScore = list.toString()
+            binding.score.text = "Твой счет: $stringScore"
         }
     }
 

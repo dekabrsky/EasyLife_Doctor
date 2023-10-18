@@ -1,15 +1,16 @@
 package ru.dekabrsky.italks.game.view.fragment
 
-import android.R.attr.buttonStyleInset
-import android.R.attr.data
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.data.ProgressDb
 import ru.dekabrsky.italks.game.databinding.MainRoomLayoutBinding
 import ru.dekabrsky.italks.game.view.MainRoomView
 import ru.dekabrsky.italks.game.view.adapter.ShelfAdapter
@@ -20,10 +21,13 @@ import ru.dekabrsky.italks.game.view.utils.GameAnimationUtils.setOnClickListener
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 
-
+@Suppress("MagicNumber")
 class MainRoomFragment: BasicFragment(), MainRoomView {
 
     override val layoutRes = R.layout.main_room_layout
+
+    private var stringScore = ""
+    var level = 1
 
     private val binding by viewBinding(MainRoomLayoutBinding::bind)
 
@@ -44,6 +48,7 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
         (parentFragment as GameFlowFragment).setNavBarVisibility(false)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.let {
@@ -56,7 +61,22 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
         binding.scrollContainer.setOnScrollChangeListener { _, scrollX, _, _, _ ->
             binding.progressMedal.root.translationX = scrollX.toFloat()
         }
-        binding.progressMedal.root.setOnClickListener {
+        val db = ProgressDb.getDb(requireContext())
+        db.getDao().getCount().asLiveData().observe(viewLifecycleOwner){ list->
+            stringScore = list.toString()
+            binding.scoreHome.text = "Твой счет: $stringScore"
+        }
+        if (stringScore == "" || stringScore.toInt() >= 0 || stringScore.toInt() < 5000) {
+            level = 1
+            presenter.onMedalClick()
+        } else if(stringScore.toInt() >= 5000 || stringScore.toInt() < 12000) {
+            level = 2
+            presenter.onMedalClick()
+        } else if(stringScore.toInt() >= 12000 || stringScore.toInt() < 20000) {
+            level = 3
+            presenter.onMedalClick()
+        } else if(stringScore.toInt() >= 20000) {
+            level = 4
             presenter.onMedalClick()
         }
     }
