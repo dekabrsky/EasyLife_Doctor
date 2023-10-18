@@ -13,6 +13,8 @@ import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.data.Progress
+import ru.dekabrsky.italks.game.data.ProgressDb
 import ru.dekabrsky.italks.game.databinding.FragmentFifteenBinding
 import ru.dekabrsky.italks.game.view.FifteenView
 import ru.dekabrsky.italks.game.view.model.Position
@@ -102,9 +104,17 @@ class FifteenFragment : BasicFragment(), FifteenView {
             Log.i("Move", "invalid")
         }
         if (check()) {
+            val db = ProgressDb.getDb(requireContext())
             binding.winner1.text = "Вы победили!"
             binding.winner1.setTextColor(Color.GREEN)
             binding.buttonRestart.visibility = View.VISIBLE
+            val item = Progress(null,
+                "Fifteen",
+                200
+            )
+            Thread{
+                db.getDao().insertProgress(item)
+            }.start()
         }
     }
 

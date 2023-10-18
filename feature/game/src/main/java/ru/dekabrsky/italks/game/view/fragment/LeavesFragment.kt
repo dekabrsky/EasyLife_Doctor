@@ -54,9 +54,15 @@ class LeavesFragment: BasicFragment(), LeavesView {
         super.onViewCreated(view, savedInstanceState)
 
         viewBinding.removeButton.setOnClickListener { presenter.restart() }
-        viewBinding.exitGame.setOnClickListener { presenter.exitGame() }
-        viewBinding.goToHome.setOnClickListener { presenter.goToHome() }
-        viewBinding.goToGarden.setOnClickListener { presenter.goToGarden() }
+        viewBinding.exitGame.setOnClickListener {
+            presenter.exitGame()
+            leavesView.saveProgress(requireContext())}
+        viewBinding.goToHome.setOnClickListener {
+            presenter.goToHome()
+            leavesView.saveProgress(requireContext())}
+        viewBinding.goToGarden.setOnClickListener {
+            presenter.goToGarden()
+            leavesView.saveProgress(requireContext())}
     }
 
     override fun onBackPressed() {

@@ -10,6 +10,8 @@ import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.data.Progress
+import ru.dekabrsky.italks.game.data.ProgressDb
 import java.util.concurrent.CopyOnWriteArrayList
 
 @Suppress("MagicNumber")
@@ -114,6 +116,16 @@ class Leaves(context: Context) : SurfaceView(context), Runnable {
         isPlaying = false
         gameThread?.interrupt()
         timer?.cancel()
+    }
+
+    fun saveProgress(context: Context){
+        val item = Progress(null,
+            "Leaves",
+            score
+        )
+        Thread{
+            ProgressDb.getDb(context).getDao().insertProgress(item)
+        }.start()
     }
 
 

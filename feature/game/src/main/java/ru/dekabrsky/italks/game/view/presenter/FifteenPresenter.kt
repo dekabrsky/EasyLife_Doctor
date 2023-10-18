@@ -32,7 +32,7 @@ class FifteenPresenter @Inject constructor(
             Flows.Common.SCREEN_BOTTOM_INFO,
             BottomSheetScreenArgs(
                 title = "Выйти из игры?",
-                subtitle = "Твой прогресс не сохранится",
+                subtitle = "Твой прогресс не сохранится, если ты выйдешь в процессе игры",
                 mode = BottomSheetMode.GAME,
                 icon = R.drawable.barbecue,
                 buttonState = ButtonState("Да, выйти") { exitAction.invoke() }

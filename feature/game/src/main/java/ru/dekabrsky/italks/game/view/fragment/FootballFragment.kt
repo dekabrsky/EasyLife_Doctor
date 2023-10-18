@@ -14,6 +14,8 @@ import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.data.Progress
+import ru.dekabrsky.italks.game.data.ProgressDb
 import ru.dekabrsky.italks.game.databinding.FragmentFootballBinding
 import ru.dekabrsky.italks.game.view.FootballView
 import ru.dekabrsky.italks.game.view.presenter.FootballPresenter
@@ -191,6 +193,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
+                saveProgress()
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -204,6 +207,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
+                saveProgress()
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -218,6 +222,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
+                saveProgress()
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -232,6 +237,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
+                saveProgress()
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -245,6 +251,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
+                saveProgress()
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -258,6 +265,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
+                saveProgress()
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -271,6 +279,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
+                saveProgress()
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -284,11 +293,13 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
+                saveProgress()
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
             } else if (viewBinding.button1.drawable != null && viewBinding.button2.drawable != null && viewBinding.button3.drawable != null && viewBinding.button4.drawable != null && viewBinding.button5.drawable != null && viewBinding.button6.drawable != null && viewBinding.button7.drawable != null && viewBinding.button8.drawable != null && viewBinding.button9.drawable != null) {
                 viewBinding.textView.setText(R.string.draw_message)
+                viewBinding.restart.visibility = View.VISIBLE
             }
         }
 
@@ -386,6 +397,17 @@ class FootballFragment : BasicFragment(), FootballView {
                 editor.apply()
             }
         }
+
+    private fun saveProgress(){
+        val db = ProgressDb.getDb(requireContext())
+        val item = Progress(null,
+            "Football",
+            40
+        )
+        Thread{
+            db.getDao().insertProgress(item)
+        }.start()
+    }
 
     private fun hodAI() {
         val random = Random()
