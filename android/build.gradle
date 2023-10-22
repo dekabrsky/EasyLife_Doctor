@@ -163,6 +163,8 @@ dependencies {
     implementation project(':feature:stats')
     implementation project(':feature:login')
     implementation project(':feature:game')
+
+    implementation project(':feature:notifications:common')
 }
 
 firebaseAppDistribution {

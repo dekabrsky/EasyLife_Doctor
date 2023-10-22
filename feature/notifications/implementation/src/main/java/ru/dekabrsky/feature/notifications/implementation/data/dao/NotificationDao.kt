@@ -21,7 +21,7 @@ interface NotificationDao {
     fun getById(id: IntArray): Single<List<NotificationDbEntity>>
 
     @Insert
-    fun insert(notificationDbEntity: NotificationDbEntity): Completable
+    fun insert(notificationDbEntity: NotificationDbEntity): Single<Long>
 
     @Update
     fun update(notificationDbEntity: NotificationDbEntity): Completable

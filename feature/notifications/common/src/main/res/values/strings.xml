@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="easy_life_notification_channel_id">easy_life_channel</string>
+    <string name="easy_life_notification_header">EasyLife</string>
+    <string name="easy_life_notification_channel_description">Напоминание о приеме таблеток</string>
+    <string name="easy_life_first_push_message">Тестовое уведомление</string>
+</resources>

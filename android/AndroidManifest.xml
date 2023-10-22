@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/ThemeITalks"
         android:usesCleartextTraffic="true">
+
         <activity
             android:name="ru.dekabrsky.italks.activity.view.MainActivity"
             android:screenOrientation="fullSensor"
@@ -30,6 +31,13 @@
         </activity>
 
         <activity android:name="ru.dekabrsky.italks.game.GameActivity"/>
+
+
+        <receiver
+            android:name="ru.dekabrsky.feature.notifications.common.receiver.NotificationsReceiver"
+            android:enabled="true"
+            android:exported="false">
+        </receiver>
 
         <activity
             android:name="gree.uniq.minigameleaves.AndroidLauncher"
