@@ -1,15 +1,13 @@
 package ru.dekabrsky.italks.activity.view
 
-import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
 import moxy.MvpDelegate
@@ -17,6 +15,7 @@ import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.di.module.CallersBasesFeatureModule
 import ru.dekabrsky.dialings.di.DialingsFeatureModule
+import ru.dekabrsky.feature.notifications.common.NotificationChannelManager
 import ru.dekabrsky.italks.R
 import ru.dekabrsky.italks.activity.presenter.MainPresenter
 import ru.dekabrsky.italks.basic.di.inject
@@ -24,6 +23,7 @@ import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.di.module.AppModule
 import ru.dekabrsky.italks.di.module.FlowModule
 import ru.dekabrsky.italks.di.module.NetworkModule
+import ru.dekabrsky.italks.di.module.PushModule
 import ru.dekabrsky.italks.navigation.AppFlowFragmentProvider
 import ru.dekabrsky.italks.navigation.AppFlowNavigator
 import ru.dekabrsky.italks.profile.di.ProfileFeatureModule
@@ -51,6 +51,10 @@ open class MainActivity : AppCompatActivity(), MainView {
 
     private val toolbar: Toolbar? by lazy { findViewById<Toolbar>(R.id.toolbar) }
 
+    private val channelManager: NotificationChannelManager by lazy {
+        Toothpick.openScopes(Scopes.SCOPE_APP).getInstance(NotificationChannelManager::class.java)
+    }
+
     @Inject
     lateinit var flowFragmentProvider: AppFlowFragmentProvider
 
@@ -77,6 +81,7 @@ open class MainActivity : AppCompatActivity(), MainView {
                 AppModule(),
                 FlowModule(),
                 NetworkModule(),
+                PushModule(),
                 // features
                 LoginFeatureModule(),
                 CallersBasesFeatureModule(),
@@ -115,19 +120,13 @@ open class MainActivity : AppCompatActivity(), MainView {
         setContentView(R.layout.activity_main)
         presenter.onAttach()
 
-        // todo kill me please
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // Create the NotificationChannel.
-            val name = "TMK"
-            val descriptionText = "Price Monitor"
-            val importance = NotificationManager.IMPORTANCE_DEFAULT
-            val mChannel = NotificationChannel("1", name, importance)
-            mChannel.description = descriptionText
-            // Register the channel with the system. You can't change the importance
-            // or other notification behaviors after this.
-            val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.createNotificationChannel(mChannel)
-        }
+        channelManager.createNotificationChannels()
+
+        val notificationManager = ContextCompat.getSystemService(
+            applicationContext,
+            NotificationManager::class.java
+        ) as NotificationManager
+        notificationManager.cancelAll()
     }
 
     override fun onStart() {

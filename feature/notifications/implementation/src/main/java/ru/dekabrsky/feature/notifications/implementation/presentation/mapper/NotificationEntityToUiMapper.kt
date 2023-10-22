@@ -5,7 +5,7 @@ import ru.dekabrsky.feature.notifications.implementation.presentation.model.Noti
 import javax.inject.Inject
 
 class NotificationEntityToUiMapper @Inject constructor() {
-    fun mapUiToEntity(uiModel: NotificationEditUiModel, id: Int? = null) =
+    fun mapUiToEntity(uiModel: NotificationEditUiModel, id: Long? = null) =
         NotificationEntity(
             uid = id,
             tabletName = uiModel.tabletName,

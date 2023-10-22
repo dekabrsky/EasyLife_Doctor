@@ -18,4 +18,5 @@ dependencies {
     implementation project(':basic')
     implementation project(':flows')
     implementation project(':uikit')
+    implementation project(':scopes')
 }
