@@ -14,6 +14,12 @@ import javax.inject.Inject
 class GardenPresenter @Inject constructor(
     val router: FlowRouter
 ) : BasicPresenter<GardenView>(router) {
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        viewState.setupAvatar(router)
+    }
+
     fun goToHouse() {
         router.backTo(Flows.Game.SCREEN_MAIN_ROOM)
     }

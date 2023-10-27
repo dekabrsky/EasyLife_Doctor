@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rect_gold_100_4dp"
+    android:elevation="@dimen/offset_small"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/offset_small">
+
+    <ImageView
+        android:layout_width="@dimen/icon_20"
+        android:layout_height="@dimen/icon_20"
+        android:src="@drawable/ic_coin" />
+
+    <TextView
+        android:id="@+id/scoreText"
+        style="@style/TextView.Subtitle2.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/offset_small"
+        android:textColor="#BFCF801C"
+        tools:text="450" />
+
+    <ru.dekabrsky.avatar.presentation.widget.AvatarWidget
+        android:id="@+id/avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/offset_small" />
+
+</LinearLayout>

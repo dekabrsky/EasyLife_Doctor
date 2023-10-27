@@ -28,6 +28,7 @@ class MainRoomPresenter @Inject constructor(
         super.onFirstViewAttach()
         viewState.setShelfItems(mapper.map(level))
         viewState.updateItemsVisibility(level, visibilityMapper.map(level))
+        viewState.setupAvatar(router)
     }
 
     fun onDoorClick() = router.navigateTo(

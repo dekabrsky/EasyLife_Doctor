@@ -113,4 +113,5 @@ dependencies {
     implementation project(':feature:login')
     implementation project(':feature:game')
     implementation project(':feature:profile')
+    implementation project(':feature:avatar')
 }

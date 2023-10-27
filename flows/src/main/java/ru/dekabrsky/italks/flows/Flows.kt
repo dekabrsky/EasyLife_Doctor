@@ -60,6 +60,10 @@ class Flows {
         const val SCREEN_CALENDAR = "SCREEN_CALENDAR"
     }
 
+    object Avatar : Flow("FLOW_AVATAR") {
+        const val SCREEN_AVATAR_SELECTION = "SCREEN_AVATAR_SELECTION"
+    }
+
     object Common : Flow("COMMON") {
         const val SCREEN_BOTTOM_INFO = "SCREEN_BOTTOM_INFO"
     }

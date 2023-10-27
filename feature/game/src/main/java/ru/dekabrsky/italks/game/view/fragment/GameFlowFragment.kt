@@ -3,6 +3,7 @@ package ru.dekabrsky.italks.game.view.fragment
 import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.avatar.presentation.view.AvatarSelectionFragment
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider

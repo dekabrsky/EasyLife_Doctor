@@ -1,5 +1,6 @@
 package ru.dekabrsky.italks.navigation
 
+import ru.dekabrsky.avatar.presentation.view.AvatarFlowFragment
 import ru.dekabrsky.callersbase.presentation.view.ChatFlowFragment
 import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.dialings.presentation.view.DialingsFlowFragment
@@ -39,6 +40,7 @@ class AppFlowFragmentProvider @Inject constructor() : FlowFragmentProvider {
             Flows.Materials.name ->
                 MaterialsFlowFragment.newInstance()
             Flows.Game.name -> GameFlowFragment.newInstance()
+            Flows.Avatar.name -> AvatarFlowFragment.newInstance()
             Flows.Profile.name -> ProfileFlowFragment.newInstance()
             else -> null
         }

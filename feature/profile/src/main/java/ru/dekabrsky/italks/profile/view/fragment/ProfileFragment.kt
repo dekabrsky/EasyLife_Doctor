@@ -15,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.avatar.domain.AvatarType
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
+import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.profile.R
 import ru.dekabrsky.italks.profile.databinding.FragmentProfileBinding
@@ -37,7 +39,7 @@ class ProfileFragment : BasicFragment(), ProfileView {
 
     @ProvidePresenter
     fun providePresenter(): ProfilePresenter {
-        return Toothpick.openScopes(Scopes.SCOPE_FLOW_GAME, scopeName)
+        return Toothpick.openScopes(Scopes.SCOPE_FLOW_PROFILE, scopeName)
             .getInstance(ProfilePresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }
@@ -150,6 +152,17 @@ class ProfileFragment : BasicFragment(), ProfileView {
 
     override fun setParentCode(code: Int) {
         binding.textView20.text = code.toString()
+    }
+
+    override fun setupAvatars(router: FlowRouter) {
+        binding.catview.setup(router, R.dimen.icon_92)
+        val shuffledAvatars = AvatarType.values().asList().shuffled()
+        listOf(binding.cardView1, binding.cardView2, binding.cardView3, binding.cardView4)
+            .zip(shuffledAvatars)
+            .forEach { (widget, avatar) ->
+                widget.setup(router, R.dimen.icon_48)
+                widget.setAvatar(avatar)
+            }
     }
 
     companion object {

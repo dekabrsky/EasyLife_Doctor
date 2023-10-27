@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/sky_blue">
 
-   <com.airbnb.lottie.LottieAnimationView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/cloud_anim"
         android:layout_width="match_parent"
         android:layout_height="230dp"
@@ -25,137 +25,137 @@
         android:layout_height="0dp"
         android:background="@color/grass_green"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1" />
 
     <ImageView
         android:id="@+id/house"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="360:308"
         android:src="@drawable/home"
         app:layout_constraintBottom_toTopOf="@id/guideline"
-        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintDimensionRatio="360:308"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintWidth_percent="0.5" />
 
     <ImageView
         android:id="@+id/lake"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="203:47"
         android:src="@drawable/lake"
-        app:layout_constraintTop_toTopOf="@id/guideline"
-        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintDimensionRatio="203:47"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/guideline"
+        app:layout_constraintWidth_percent="0.5" />
 
     <ImageView
         android:id="@+id/football"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="360:308"
         android:src="@drawable/football"
+        app:layout_constraintDimensionRatio="360:308"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/grass"
         app:layout_constraintVertical_bias="0"
-        app:layout_constraintWidth_percent="0.7"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintWidth_percent="0.7" />
 
     <ImageView
         android:id="@+id/footballGamePad"
         android:layout_width="@dimen/icon_24"
         android:layout_height="@dimen/icon_24"
         android:src="@drawable/gamepad"
-        app:layout_constraintTop_toTopOf="@id/football"
-        app:layout_constraintEnd_toEndOf="@id/football"
         app:layout_constraintBottom_toBottomOf="@id/football"
+        app:layout_constraintEnd_toEndOf="@id/football"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="@id/football"
-        app:layout_constraintVertical_bias="0.35"
-        app:layout_constraintHorizontal_bias="0.75"/>
+        app:layout_constraintTop_toTopOf="@id/football"
+        app:layout_constraintVertical_bias="0.35" />
 
     <ImageView
         android:id="@+id/tree"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="281:376"
         android:src="@drawable/tree"
         app:layout_constraintBottom_toTopOf="@id/guideline"
+        app:layout_constraintDimensionRatio="281:376"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintWidth_percent="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintWidth_percent="0.6" />
 
     <ImageView
         android:id="@+id/treeGamePad"
         android:layout_width="@dimen/icon_24"
         android:layout_height="@dimen/icon_24"
         android:src="@drawable/gamepad"
-        app:layout_constraintTop_toTopOf="@id/tree"
-        app:layout_constraintEnd_toEndOf="@id/tree"
         app:layout_constraintBottom_toBottomOf="@id/tree"
+        app:layout_constraintEnd_toEndOf="@id/tree"
         app:layout_constraintStart_toStartOf="@id/tree"
-        app:layout_constraintVertical_bias="0.35"/>
+        app:layout_constraintTop_toTopOf="@id/tree"
+        app:layout_constraintVertical_bias="0.35" />
 
     <ImageView
         android:id="@+id/bird"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="1:1"
         android:src="@drawable/bird"
-        app:layout_constraintTop_toTopOf="@id/tree"
         app:layout_constraintBottom_toBottomOf="@id/tree"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tree"
         app:layout_constraintVertical_bias="0.15"
-        app:layout_constraintWidth_percent="0.1"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintWidth_percent="0.1" />
 
     <ImageView
         android:id="@+id/birdGamePad"
         android:layout_width="@dimen/icon_24"
         android:layout_height="@dimen/icon_24"
         android:src="@drawable/gamepad"
-        app:layout_constraintTop_toBottomOf="@id/bird"
         app:layout_constraintEnd_toEndOf="@id/bird"
         app:layout_constraintStart_toStartOf="@id/bird"
-        app:layout_constraintVertical_bias="0.35"/>
+        app:layout_constraintTop_toBottomOf="@id/bird"
+        app:layout_constraintVertical_bias="0.35" />
 
     <ImageView
         android:id="@+id/barbecue"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintDimensionRatio="198:261"
-        android:src="@drawable/barbecue"
-        app:layout_constraintWidth_percent="0.3"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="@dimen/offset_large"
-        android:layout_marginBottom="@dimen/offset_large"/>
+        android:layout_marginBottom="@dimen/offset_large"
+        android:src="@drawable/barbecue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="198:261"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.3" />
 
     <ImageView
         android:id="@+id/barbecueGamePad"
         android:layout_width="@dimen/icon_24"
         android:layout_height="@dimen/icon_24"
         android:src="@drawable/gamepad"
-        app:layout_constraintTop_toTopOf="@id/barbecue"
-        app:layout_constraintEnd_toEndOf="@id/barbecue"
         app:layout_constraintBottom_toBottomOf="@id/barbecue"
-        app:layout_constraintVertical_bias="0.35"/>
+        app:layout_constraintEnd_toEndOf="@id/barbecue"
+        app:layout_constraintTop_toTopOf="@id/barbecue"
+        app:layout_constraintVertical_bias="0.35" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/smoke_homes"
         android:layout_width="70dp"
         android:layout_height="90dp"
         android:layout_centerInParent="true"
+        android:translationY="-15dp"
+        app:layout_constraintBottom_toBottomOf="@id/house"
         app:layout_constraintEnd_toEndOf="@id/house"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="@id/house"
         app:layout_constraintTop_toTopOf="@id/house"
-        app:layout_constraintBottom_toBottomOf="@id/house"
-        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintVertical_bias="0"
-        android:translationY="-15dp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/smoke_home"
@@ -166,14 +166,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_centerInParent="true"
-        app:layout_constraintTop_toTopOf="@id/barbecue"
         app:layout_constraintBottom_toBottomOf="@id/barbecue"
-        app:layout_constraintStart_toStartOf="@id/barbecue"
         app:layout_constraintEnd_toEndOf="@id/barbecue"
-        app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintWidth_percent="0.15"
         app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@id/barbecue"
+        app:layout_constraintTop_toTopOf="@id/barbecue"
+        app:layout_constraintVertical_bias="0.2"
+        app:layout_constraintWidth_percent="0.15"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/smoke_barbecue"
@@ -186,39 +186,13 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.65" />
 
- <androidx.cardview.widget.CardView
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_marginTop="10dp"
-     android:layout_marginEnd="10dp"
-     app:cardCornerRadius="15dp"
-     app:cardElevation="10dp"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintTop_toTopOf="parent">
-
-  <androidx.constraintlayout.widget.ConstraintLayout
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@color/sky_blue">
-
-   <TextView
-       android:id="@+id/score"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginStart="10dp"
-       android:layout_marginTop="10dp"
-       android:layout_marginEnd="10dp"
-       android:layout_marginBottom="10dp"
-       android:fontFamily="sans-serif"
-       android:text="Твой счет:"
-       android:textColor="@color/fifteen_card_bg"
-       android:textSize="20sp"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent" />
-
-  </androidx.constraintlayout.widget.ConstraintLayout>
- </androidx.cardview.widget.CardView>
+    <include
+        android:id="@+id/scoreLayout"
+        layout="@layout/item_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/offset_small"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

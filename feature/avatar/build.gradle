@@ -1,0 +1,25 @@
+apply from: Base
+
+android {
+    namespace 'ru.dekabrsky.avatar'
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    dependenciesSet(this) {
+        moxy()
+        toothpick()
+    }
+
+    implementation libraries.cicerone
+    implementation libraries.glide
+
+    implementation project(':basic')
+    implementation project(':scopes')
+    implementation project(':uikit')
+    implementation project(':flows')
+    implementation project(':feature:sharedPreferences')
+    implementation project(':feature:simple-bottomsheet')
+}

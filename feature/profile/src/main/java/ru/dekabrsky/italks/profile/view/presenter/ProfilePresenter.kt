@@ -7,15 +7,22 @@ import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.profile.domain.interactor.ProfileInteractor
 import ru.dekabrsky.italks.profile.domain.model.CodeEntity
 import ru.dekabrsky.italks.profile.view.ProfileView
+import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import javax.inject.Inject
 
 class ProfilePresenter @Inject constructor(
     val router: FlowRouter,
-    private val interactor: ProfileInteractor
+    private val interactor: ProfileInteractor,
+    private val sharedPreferencesProvider: SharedPreferencesProvider
 ) : BasicPresenter<ProfileView>(router) {
 
-    fun generateParent() {
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        checkAvatars()
+        viewState.setupAvatars(router)
+    }
 
+    fun generateParent() {
         interactor.generateParentCode()
             .observeOn(RxSchedulers.main())
             .subscribe(
@@ -23,6 +30,12 @@ class ProfilePresenter @Inject constructor(
                 { }
             )
             .addFullLifeCycle()
+    }
+
+    private fun checkAvatars() {
+        if (sharedPreferencesProvider.gameAvatar.get().isEmpty()) {
+            router.startFlow(Flows.Avatar.name)
+        }
     }
 
     private fun dispatchParentCode(entity: CodeEntity) {
