@@ -11,10 +11,12 @@
     <string name="creation_date">Дата создания</string>
     <string name="elem_count">Кол-во элементов</string>
     <string name="info">Информация</string>
+    <string name="save">Сохранить</string>
 
     // pie chart
     <string name="success_finished">Успешно заверш.</string>
     <string name="scenario_not_passed">Не завершен</string>
     <string name="not_ringing">Не дозвонились</string>
     <string name="in_progress">В процессе</string>
+    <string name="more">ЕЩЁ</string>
 </resources>

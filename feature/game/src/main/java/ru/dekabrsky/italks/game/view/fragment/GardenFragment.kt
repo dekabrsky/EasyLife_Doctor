@@ -9,6 +9,7 @@ import gree.uniq.minigameleaves.AndroidLauncher
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
+import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.GameActivity
 import ru.dekabrsky.italks.game.R
@@ -53,7 +54,7 @@ class GardenFragment : BasicFragment(), GardenView {
         val db = ProgressDb.getDb(requireContext())
         db.getDao().getCount().asLiveData().observe(viewLifecycleOwner){ list->
             val stringScore = list.toString()
-            binding.score.text = "Твой счет: $stringScore"
+            binding.scoreLayout.scoreText.text = stringScore
         }
     }
 
@@ -69,6 +70,10 @@ class GardenFragment : BasicFragment(), GardenView {
     override fun startLeavesActivity() {
         val intent = Intent(context, AndroidLauncher::class.java)
         startActivity(intent)
+    }
+
+    override fun setupAvatar(router: FlowRouter) {
+        binding.scoreLayout.avatar.setup(router, R.dimen.icon_20)
     }
 
     companion object {

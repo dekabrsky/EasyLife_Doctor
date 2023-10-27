@@ -222,79 +222,85 @@
 
         <FrameLayout
             android:id="@+id/cardView"
-            android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="240dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/cardfonepink"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="@dimen/offset_large"
+            app:layout_constraintEnd_toStartOf="@id/otherCards"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-            <ImageView
+            <ru.dekabrsky.avatar.presentation.widget.AvatarWidget
                 android:id="@+id/catview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="30dp"
-                app:srcCompat="@drawable/cat" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                tools:layout_width="@dimen/icon_92"
+                tools:layout_height="@dimen/icon_92"/>
+
         </FrameLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView1"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="130dp"
-            android:foreground="@color/pink"
-            app:cardCornerRadius="10dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/otherCards"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintStart_toEndOf="@id/cardView"
+            app:layout_constraintTop_toTopOf="@id/cardView"
+            app:layout_constraintBottom_toBottomOf="@id/cardView">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="305dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="65dp"
-            android:foreground="@color/brown"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            <ru.dekabrsky.avatar.presentation.widget.AvatarWidget
+                android:id="@+id/cardView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_width="@dimen/icon_36"
+                tools:layout_height="@dimen/icon_36"/>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView3"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="240dp"
-            android:layout_marginTop="85dp"
-            android:layout_marginEnd="130dp"
-            android:foreground="@color/orange"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            <ru.dekabrsky.avatar.presentation.widget.AvatarWidget
+                android:id="@+id/cardView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/offset_small"
+                app:layout_constraintStart_toEndOf="@id/cardView1"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_width="@dimen/icon_36"
+                tools:layout_height="@dimen/icon_36" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView4"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginStart="305dp"
-            android:layout_marginTop="85dp"
-            android:layout_marginEnd="65dp"
-            android:foreground="@color/grey1"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            <ru.dekabrsky.avatar.presentation.widget.AvatarWidget
+                android:id="@+id/cardView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/offset_small"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView1"
+                tools:layout_width="@dimen/icon_36"
+                tools:layout_height="@dimen/icon_36" />
+
+            <ru.dekabrsky.avatar.presentation.widget.AvatarWidget
+                android:id="@+id/cardView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/offset_small"
+                android:layout_marginTop="@dimen/offset_small"
+                android:alpha="0.4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardView1"
+                tools:layout_width="@dimen/icon_36"
+                tools:layout_height="@dimen/icon_36" />
+
+            <TextView
+                android:id="@+id/moreAvatars"
+                style="@style/TextView.Subtitle2.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/more"
+                app:layout_constraintBottom_toBottomOf="@id/cardView4"
+                app:layout_constraintEnd_toEndOf="@id/cardView4"
+                app:layout_constraintStart_toStartOf="@id/cardView4"
+                app:layout_constraintTop_toTopOf="@id/cardView4" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/iV15"

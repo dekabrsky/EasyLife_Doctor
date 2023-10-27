@@ -28,6 +28,8 @@ dependencies {
     implementation project(':feature:tabs')
     implementation project(':feature:minigameleaves')
     implementation project(':feature:simple-bottomsheet')
+    implementation project(':feature:avatar')
+    implementation project(':feature:sharedPreferences')
 
     implementation("com.badlogicgames.gdx:gdx-backend-android:$gdxVersion")
     implementation("com.badlogicgames.gdx:gdx-box2d:$gdxVersion")

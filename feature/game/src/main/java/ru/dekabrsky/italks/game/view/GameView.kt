@@ -1,9 +1,11 @@
 package ru.dekabrsky.italks.game.view
 
 import moxy.MvpView
+import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.OneExecution
+import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 
-@OneExecution
+@AddToEndSingle
 interface GameView : MvpView {
-    fun startGameActivity()
+    fun setupAvatar(router: FlowRouter)
 }

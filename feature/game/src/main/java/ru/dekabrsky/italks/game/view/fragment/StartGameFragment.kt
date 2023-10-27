@@ -6,6 +6,7 @@ import android.view.View
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
+import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.GameActivity
 import ru.dekabrsky.italks.game.R
@@ -52,8 +53,7 @@ class StartGameFragment : BasicFragment(), GameView {
         fun newInstance() = StartGameFragment()
     }
 
-    override fun startGameActivity() {
-        val intent = Intent(context, GameActivity::class.java)
-        startActivity(intent)
+    override fun setupAvatar(router: FlowRouter) {
+        binding.avatar.setup(router)
     }
 }

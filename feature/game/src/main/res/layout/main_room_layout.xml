@@ -185,42 +185,6 @@
             app:layout_constraintStart_toStartOf="@id/sofa"
             app:layout_constraintHeight_percent="0.15" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/door"
-            app:layout_constraintStart_toEndOf="@+id/door"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/button_color">
-
-                <TextView
-                    android:id="@+id/scoreHome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="sans-serif"
-                    android:text="Твой счет:"
-                    android:textColor="@color/fifteen_card_bg"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
         <include
             android:id="@+id/progressMedal"
             android:layout_width="wrap_content"
@@ -229,6 +193,16 @@
             android:layout_margin="@dimen/offset_small"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <include
+            android:id="@+id/scoreLayout"
+            layout="@layout/item_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/offset_small"
+            app:layout_constraintStart_toEndOf="@id/progressMedal"
+            app:layout_constraintTop_toTopOf="@id/progressMedal"
+            app:layout_constraintBottom_toBottomOf="@id/progressMedal" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </HorizontalScrollView>

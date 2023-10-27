@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
+import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.R
 import ru.dekabrsky.italks.game.data.ProgressDb
@@ -60,12 +61,13 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
         initShelf()
         binding.scrollContainer.setOnScrollChangeListener { _, scrollX, _, _, _ ->
             binding.progressMedal.root.translationX = scrollX.toFloat()
+            binding.scoreLayout.root.translationX = scrollX.toFloat()
         }
         presenter.saveProgress(requireContext())
         val db = ProgressDb.getDb(requireContext())
         db.getDao().getCount().asLiveData().observe(viewLifecycleOwner){ list->
             stringScore = list.toString()
-            binding.scoreHome.text = "Твой счет: $stringScore"
+            binding.scoreLayout.scoreText.text = stringScore
         }
         if (stringScore == "" || stringScore.toInt() >= 0 || stringScore.toInt() < 5000) {
             level = 1
@@ -97,6 +99,10 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
             binding.root.findViewById<View>(it.viewId).visibility =
                 if (it.visible) View.VISIBLE else View.GONE
         }
+    }
+
+    override fun setupAvatar(router: FlowRouter) {
+        binding.scoreLayout.avatar.setup(router, R.dimen.icon_20)
     }
 
     override fun onBackPressed() {
