@@ -61,6 +61,7 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
         binding.scrollContainer.setOnScrollChangeListener { _, scrollX, _, _, _ ->
             binding.progressMedal.root.translationX = scrollX.toFloat()
         }
+        presenter.saveProgress(requireContext())
         val db = ProgressDb.getDb(requireContext())
         db.getDao().getCount().asLiveData().observe(viewLifecycleOwner){ list->
             stringScore = list.toString()
