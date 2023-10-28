@@ -1,9 +1,12 @@
 package ru.dekabrsky.italks.game.view.presenter
 
+import android.content.Context
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.data.Progress
+import ru.dekabrsky.italks.game.data.ProgressDb
 import ru.dekabrsky.italks.game.view.MainRoomView
 import ru.dekabrsky.italks.game.view.mapper.ItemsVisibilityMapper
 import ru.dekabrsky.italks.game.view.mapper.ShelfItemsUiMapper
@@ -43,5 +46,15 @@ class MainRoomPresenter @Inject constructor(
         if (this.level == 0) this.level = 1
         viewState.updateItemsVisibility(this.level, visibilityMapper.map(this.level))
         viewState.setShelfItems(mapper.map(this.level))
+    }
+
+    fun saveProgress(context: Context){
+        val item = Progress(null,
+            "Default",
+            0
+        )
+        Thread{
+            ProgressDb.getDb(context).getDao().insertProgress(item)
+        }.start()
     }
 }
