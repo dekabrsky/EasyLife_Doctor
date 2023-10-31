@@ -25,7 +25,7 @@ class LoginDataMapper @Inject constructor() {
                 Base64.encode("$login:$password".toByteArray(), Base64.DEFAULT),
                 StandardCharsets.UTF_8
             ),
-            code = code.toInt()
+            code = code
         )
     }
 

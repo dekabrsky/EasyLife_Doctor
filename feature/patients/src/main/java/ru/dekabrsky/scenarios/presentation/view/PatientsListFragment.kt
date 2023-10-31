@@ -1,7 +1,6 @@
 package ru.dekabrsky.scenarios.presentation.view
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -9,6 +8,7 @@ import android.view.MenuItem
 import android.view.View
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
@@ -16,7 +16,6 @@ import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.databinding.FragmentScenariosBinding
 import ru.dekabrsky.scenarios.presentation.adapter.ScenariosAdapter
 import ru.dekabrsky.scenarios.presentation.presenter.ScenariosListPresenter
-import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import toothpick.Toothpick
 
 
@@ -54,10 +53,11 @@ class PatientsListFragment: BasicFragment(), PatientsListView {
 
     private fun showInviteCodeConfirmation() {
         AlertDialog.Builder(context)
-            .setTitle("Пригласить нового пациента")
-            .setMessage("Создать новую учетную запись?")
-            .setPositiveButton("Да") { _, _ -> presenter.generatePatients() }
-            .setNegativeButton("Нет", null)
+            .setTitle("Приглашение нового пациента")
+            .setMessage("Пациенту исполнилось 15 лет?")
+            .setPositiveButton("Да") { _, _ -> presenter.generatePatients(true) }
+            .setNegativeButton("Нет")  { _, _ -> presenter.generatePatients(false) }
+            .setNeutralButton("Отмена", null)
             .setIcon(R.drawable.ic_round_group_24)
             .show()
     }

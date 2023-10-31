@@ -4,4 +4,8 @@
     <string name="set_calling">Назначить обзвон</string>
     <string name="this_scenario_assigned_to_dialings">Этот сценарий прикреплен к обзваниваниям:</string>
     <string name="patent_pill_schedule">Статистика приема медикаментов</string>
+    <string name="give_invite_code">Сообщите пациенту и его законному представителю их коды приглашения</string>
+    <string name="patient_code">Код пациента</string>
+    <string name="code_parent">Код законного представителя</string>
+    <string name="close_codes_disclaimer">Внимание! Перед тем, как закрыть экран, убедитесь, что коды переданы пациентам</string>
 </resources>

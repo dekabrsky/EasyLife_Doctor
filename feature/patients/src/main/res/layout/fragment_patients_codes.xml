@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/StandardToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleTextColor="@color/white"
+        app:title="Коды приглашения" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/offset_medium"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/TextView.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/give_invite_code" />
+
+        <TextView
+            style="@style/TextView.Subtitle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/patient_code"
+            android:layout_marginTop="@dimen/offset_large"/>
+
+        <TextView
+            android:id="@+id/patientCode"
+            style="@style/TextView.H4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="07895" />
+
+        <TextView
+            style="@style/TextView.Subtitle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/code_parent"
+            android:layout_marginTop="@dimen/offset_medium"/>
+
+        <TextView
+            android:id="@+id/parentCode"
+            style="@style/TextView.H4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="03827" />
+
+        <TextView
+            style="@style/TextView.Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/close_codes_disclaimer"
+            android:layout_marginTop="@dimen/offset_large" />
+
+    </LinearLayout>
+
+</LinearLayout>
