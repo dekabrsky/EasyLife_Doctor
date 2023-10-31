@@ -11,6 +11,6 @@ class ScenariosFlowPresenter @Inject constructor(
 ): BasicPresenter<ScenariosFlowView>(router) {
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        router.newRootScreen(Flows.Patients.SCREEN_SCENARIOS_LIST)
+        router.newRootScreen(Flows.Patients.SCREEN_PATIENTS_LIST)
     }
 }

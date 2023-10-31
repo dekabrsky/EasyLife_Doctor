@@ -11,6 +11,9 @@ interface DoctorPatientsApi {
     @POST("codes/generate/patient")
     fun generatePatient(): Single<PatientCodeResponse>
 
+    @POST("codes/generate/child")
+    fun generateChild(): Single<PatientCodeResponse>
+
     @GET("users/patients")
     fun getPatients(): Completable
 

@@ -2,13 +2,13 @@ package ru.dekabrsky.callersbase.presentation.presenter
 
 import io.reactivex.Single
 import ru.dekabrsky.callersbase.domain.interactor.ContactsInteractorImpl
-import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.callersbase.presentation.mapper.ChatEntityToUiMapper
 import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
-import ru.dekabrsky.callersbase.presentation.view.ChatsListView
 import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
+import ru.dekabrsky.callersbase.presentation.view.ChatsListView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.network.utils.Direction
+import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.flows.Flows
@@ -22,8 +22,8 @@ class ChatsListPresenter @Inject constructor(
     private val loginInteractor: LoginRepository
 ) : BasicPresenter<ChatsListView>(router) {
 
-    override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
+    override fun attachView(view: ChatsListView) {
+        super.attachView(view)
         load()
     }
 

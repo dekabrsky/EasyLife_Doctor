@@ -1,6 +1,7 @@
 package ru.dekabrsky.scenarios.presentation.presenter
 
-import android.content.DialogInterface
+import ru.dekabrsky.common.domain.model.PatientCodeEntity
+import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.network.utils.Direction
 import ru.dekabrsky.italks.basic.network.utils.SortVariants
@@ -9,11 +10,8 @@ import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.scenarios.domain.interactor.DoctorPatientsInteractorImpl
 import ru.dekabrsky.scenarios.presentation.mapper.ScenariosUiMapper
-import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
+import ru.dekabrsky.scenarios.presentation.model.PatientsCodesScreenArgs
 import ru.dekabrsky.scenarios.presentation.view.PatientsListView
-import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
-import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
-import ru.dekabrsky.simpleBottomsheet.view.model.ButtonState
 import javax.inject.Inject
 
 class ScenariosListPresenter @Inject constructor(
@@ -62,24 +60,22 @@ class ScenariosListPresenter @Inject constructor(
     }
 
     fun onItemClick(model: ScenarioItemUiModel) {
-        router.navigateTo(Flows.Patients.SCREEN_SCENARIO_DETAILS, model)
+        router.navigateTo(Flows.Patients.SCREEN_PATIENT_DETAILS, model)
     }
 
-    fun generatePatients() {
-        interactor.generateCode()
+    fun generatePatients(isMore15: Boolean) {
+        interactor.generateCode(isMore15.not())
             .observeOn(RxSchedulers.main())
             .subscribe(::showAddPatientsResult, viewState::showError)
             .addFullLifeCycle()
     }
 
-    private fun showAddPatientsResult(code: Int) {
+    private fun showAddPatientsResult(patientCodeEntity: PatientCodeEntity) {
         router.navigateTo(
-            Flows.Common.SCREEN_BOTTOM_INFO,
-            BottomSheetScreenArgs(
-                title = "Новый пациент создан",
-                subtitle = "Сообщите пациенту код #$code. Пациент появится в списке, когда активирует учетную запись",
-                mode = BottomSheetMode.LK,
-                buttonState = ButtonState("Готово", {})
+            Flows.Patients.SCREEN_PATIENTS_CODES,
+            PatientsCodesScreenArgs(
+                patientCode = patientCodeEntity.patientCode,
+                parentCode = patientCodeEntity.parentCode.ifEmpty { "-" }
             )
         )
     }
