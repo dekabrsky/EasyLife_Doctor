@@ -1,11 +1,13 @@
 package ru.dekabrsky.italks.activity.view
 
 import android.app.NotificationManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -97,6 +99,7 @@ open class MainActivity : AppCompatActivity(), MainView {
         setTheme(R.style.ThemeITalks)
         super.onCreate(savedInstanceState)
         tryInject(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
     }
 
     private fun tryInject(savedInstanceState: Bundle?) {

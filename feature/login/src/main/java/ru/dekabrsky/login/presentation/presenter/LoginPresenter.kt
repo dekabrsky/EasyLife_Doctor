@@ -41,6 +41,8 @@ class LoginPresenter @Inject constructor(
             LoginMode.LOGIN -> {
                 repository.login(currentLogin, currentPassword)
                     .observeOn(RxSchedulers.main())
+                    .doOnSubscribe { viewState.setLoadingVisibility(true) }
+                    .doFinally { viewState.setLoadingVisibility(false) }
                     .subscribe({
                         router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
                     }, viewState::showError)
@@ -50,6 +52,8 @@ class LoginPresenter @Inject constructor(
             LoginMode.REGISTRATION -> {
                 repository.registration(currentCode, currentLogin, currentPassword)
                     .observeOn(RxSchedulers.main())
+                    .doOnSubscribe { viewState.setLoadingVisibility(true) }
+                    .doFinally { viewState.setLoadingVisibility(false) }
                     .subscribe({
                         router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
                     }, viewState::showError)

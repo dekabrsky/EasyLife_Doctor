@@ -14,7 +14,7 @@ import ru.dekabrsky.scenarios.presentation.model.PatientsCodesScreenArgs
 import ru.dekabrsky.scenarios.presentation.view.PatientsListView
 import javax.inject.Inject
 
-class ScenariosListPresenter @Inject constructor(
+class PatientsListPresenter @Inject constructor(
     private val router: FlowRouter,
     private val uiMapper: ScenariosUiMapper,
     private val interactor: DoctorPatientsInteractorImpl
@@ -66,6 +66,8 @@ class ScenariosListPresenter @Inject constructor(
     fun generatePatients(isMore15: Boolean) {
         interactor.generateCode(isMore15.not())
             .observeOn(RxSchedulers.main())
+            .doOnSubscribe { viewState.setLoadingVisibility(true) }
+            .doFinally { viewState.setLoadingVisibility(false) }
             .subscribe(::showAddPatientsResult, viewState::showError)
             .addFullLifeCycle()
     }
