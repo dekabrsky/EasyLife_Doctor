@@ -22,6 +22,8 @@ class ChatsListPresenter @Inject constructor(
     private val loginInteractor: LoginRepository
 ) : BasicPresenter<ChatsListView>(router) {
 
+    private var isFirstLoading = true
+
     override fun attachView(view: ChatsListView) {
         super.attachView(view)
         load()
@@ -49,6 +51,11 @@ class ChatsListPresenter @Inject constructor(
             interactor.getChats()
         ) { doctors, patients, children, chats -> doctors + patients + children to chats }
             .observeOn(RxSchedulers.main())
+            .doOnSubscribe { if (isFirstLoading) viewState.setLoadingVisibility(true) }
+            .doFinally {
+                isFirstLoading = false
+                viewState.setLoadingVisibility(false)
+            }
             .map { (users, chats) -> uiMapper.prepareChatsList(users, chats) }
             .subscribe(::dispatchLoading, viewState::showError)
             .addFullLifeCycle()
@@ -84,6 +91,8 @@ class ChatsListPresenter @Inject constructor(
         } else {
             interactor.startChat(model.secondUser.id)
                 .observeOn(RxSchedulers.main())
+                .doOnSubscribe { viewState.setLoadingVisibility(true) }
+                .doFinally { viewState.setLoadingVisibility(false) }
                 .subscribe( { router.navigateTo(Flows.Chats.SCREEN_CHAT_CONVERSATION) }, viewState::showError)
                 .addFullLifeCycle()
         }

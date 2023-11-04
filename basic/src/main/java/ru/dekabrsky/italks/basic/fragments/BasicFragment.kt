@@ -1,7 +1,7 @@
 package ru.dekabrsky.italks.basic.fragments
 
-import android.R.attr.data
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +12,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.snackbar.Snackbar
@@ -38,6 +39,8 @@ abstract class BasicFragment : MvpFragmentImpl(), BasicView {
     protected open val toolbarId: Int = R.id.toolbar
     protected val toolbar: Toolbar?
         get() = if (toolbarId != 0) view?.findViewById(toolbarId) else null
+
+    private var loadingDialog: Dialog? = null
 
     @Suppress("TooGenericExceptionCaught")
     @SuppressLint("MissingSuperCall")
@@ -130,6 +133,20 @@ abstract class BasicFragment : MvpFragmentImpl(), BasicView {
 
     override fun showToast(msg: String) {
         Toast.makeText(requireActivity(), msg, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun setLoadingVisibility(isVisible: Boolean) {
+        if (isVisible) {
+            loadingDialog =
+                AlertDialog.Builder(requireActivity())
+                    .setMessage(getString(R.string.loading))
+                    .setCancelable(false)
+                    .create()
+            loadingDialog?.show()
+        } else {
+            loadingDialog?.dismiss()
+            loadingDialog = null
+        }
     }
 
     abstract fun onBackPressed()

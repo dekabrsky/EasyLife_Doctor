@@ -15,7 +15,7 @@ import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.databinding.FragmentScenariosBinding
 import ru.dekabrsky.scenarios.presentation.adapter.ScenariosAdapter
-import ru.dekabrsky.scenarios.presentation.presenter.ScenariosListPresenter
+import ru.dekabrsky.scenarios.presentation.presenter.PatientsListPresenter
 import toothpick.Toothpick
 
 
@@ -32,12 +32,12 @@ class PatientsListFragment: BasicFragment(), PatientsListView {
     private var sortByDateDescItem: MenuItem? = null
 
     @InjectPresenter
-    lateinit var presenter: ScenariosListPresenter
+    lateinit var presenter: PatientsListPresenter
 
     @ProvidePresenter
-    fun providePresenter(): ScenariosListPresenter {
+    fun providePresenter(): PatientsListPresenter {
         return Toothpick.openScopes(Scopes.SCOPE_FLOW_SCENARIOS, scopeName)
-            .getInstance(ScenariosListPresenter::class.java)
+            .getInstance(PatientsListPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }
 

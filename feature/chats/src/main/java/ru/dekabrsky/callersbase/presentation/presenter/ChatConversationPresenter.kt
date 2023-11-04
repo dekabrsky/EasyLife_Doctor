@@ -1,14 +1,12 @@
 package ru.dekabrsky.callersbase.presentation.presenter
 
 import io.reactivex.Observable
-import io.reactivex.rxkotlin.Observables
 import org.threeten.bp.LocalDateTime
 import ru.dekabrsky.callersbase.domain.interactor.ContactsInteractorImpl
 import ru.dekabrsky.callersbase.presentation.mapper.MessageEntityToUiMapper
 import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
 import ru.dekabrsky.callersbase.presentation.model.ChatMessageUiModel
 import ru.dekabrsky.callersbase.presentation.view.ChatConversationView
-import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiDateTime
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
@@ -21,6 +19,9 @@ class ChatConversationPresenter @Inject constructor(
     private val mapper: MessageEntityToUiMapper,
     private val router: FlowRouter
 ) : BasicPresenter<ChatConversationView>(router) {
+
+    private var isFirstLoading = true
+
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         loadMessages()
@@ -31,6 +32,12 @@ class ChatConversationPresenter @Inject constructor(
         Observable.interval(UPDATING_DELAY, TimeUnit.SECONDS).startWith(0)
             .flatMapSingle { interactor.getChat(args.companion.id) }
             .observeOn(RxSchedulers.main())
+            .doOnSubscribe { if (isFirstLoading) viewState.setLoadingVisibility(true) }
+            .doOnNext {
+                isFirstLoading = false
+                viewState.setLoadingVisibility(false)
+            }
+            .doFinally { viewState.setLoadingVisibility(false) }
             .map(mapper::map)
             .subscribe(viewState::setMessages, viewState::showError)
             .addFullLifeCycle()

@@ -7,4 +7,5 @@ import moxy.viewstate.strategy.alias.OneExecution
 interface BasicView: MvpView {
     fun showError(error: Throwable, action: (() -> Unit)? = null)
     fun showToast(msg: String)
+    fun setLoadingVisibility(isVisible: Boolean)
 }
