@@ -9,6 +9,9 @@ import android.os.CountDownTimer
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
+import android.view.View
+import android.widget.TextView
+import com.google.android.material.snackbar.Snackbar
 import ru.dekabrsky.italks.game.R
 import ru.dekabrsky.italks.game.data.Progress
 import ru.dekabrsky.italks.game.data.ProgressDb
@@ -118,6 +121,7 @@ class Leaves(context: Context) : SurfaceView(context), Runnable {
         timer?.cancel()
     }
 
+    @SuppressLint("ShowToast")
     fun saveProgress(context: Context){
         val item = Progress(null,
             "Leaves",
@@ -126,8 +130,17 @@ class Leaves(context: Context) : SurfaceView(context), Runnable {
         Thread{
             ProgressDb.getDb(context).getDao().insertProgress(item)
         }.start()
+        snackBarView(this)
     }
 
+    private fun snackBarView(view: View){
+        val snackBar = Snackbar.make(view, "  Ты заработал $score коинов", Snackbar.LENGTH_SHORT)
+        val snackBarLayout: View = snackBar.view
+        val textView: TextView =
+            snackBarLayout.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.coin_mini, 0, 0, 0)
+        snackBar.show()
+    }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {

@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
@@ -115,7 +116,17 @@ class FifteenFragment : BasicFragment(), FifteenView {
             Thread{
                 db.getDao().insertProgress(item)
             }.start()
+            snackBarView(requireActivity().findViewById(R.id.container))
         }
+    }
+
+    private fun snackBarView(view: View){
+        val snackBar = Snackbar.make(view, "  Ты заработал 200 коинов", Snackbar.LENGTH_SHORT)
+        val snackBarLayout: View = snackBar.view
+        val textView: TextView =
+            snackBarLayout.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.coin_mini, 0, 0, 0)
+        snackBar.show()
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

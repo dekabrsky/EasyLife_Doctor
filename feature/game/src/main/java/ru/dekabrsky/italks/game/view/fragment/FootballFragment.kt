@@ -8,7 +8,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.airbnb.lottie.LottieDrawable
+import com.google.android.material.snackbar.Snackbar
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
@@ -407,6 +409,16 @@ class FootballFragment : BasicFragment(), FootballView {
         Thread{
             db.getDao().insertProgress(item)
         }.start()
+        snackBarView(requireActivity().findViewById(R.id.football_layout))
+    }
+
+    private fun snackBarView(view: View){
+        val snackBar = Snackbar.make(view, "  Ты заработал 40 коинов", Snackbar.LENGTH_SHORT)
+        val snackBarLayout: View = snackBar.view
+        val textView: TextView =
+            snackBarLayout.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.coin_mini, 0, 0, 0)
+        snackBar.show()
     }
 
     private fun hodAI() {
