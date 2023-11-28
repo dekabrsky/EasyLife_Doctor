@@ -1,23 +1,28 @@
 
 package ru.dekabrsky.italks.game
 
-import android.content.Context
-import com.badlogic.gdx.ApplicationAdapter
+import com.badlogic.gdx.Game
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Circle
 import com.badlogic.gdx.math.Intersector
 import com.badlogic.gdx.math.Rectangle
-import ru.dekabrsky.italks.game.data.Progress
-import ru.dekabrsky.italks.game.data.ProgressDb
+import com.badlogic.gdx.scenes.scene2d.InputEvent
+import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable
 import java.util.*
 
-@Suppress("MagicNumber")
-class FlappyBird: ApplicationAdapter() {
 
+@Suppress("MagicNumber", "DEPRECATION")
+class FlappyBird: Game() {
+
+    private lateinit var stage: Stage
     private lateinit var batch: SpriteBatch
     private lateinit var background: Texture
     private lateinit var gameOver: Texture
@@ -29,6 +34,11 @@ class FlappyBird: ApplicationAdapter() {
     private lateinit var topTube: Texture
     private lateinit var bottomTube: Texture
     private lateinit var random: Random
+    private lateinit var myGameCallback: MyGameCallback
+
+    private lateinit var exitButton: ImageButton
+    private lateinit var homeButton: ImageButton
+    private lateinit var gardenButton: ImageButton
 
     private var flapState = 0
     private var birdY: Float = 0f
@@ -48,7 +58,18 @@ class FlappyBird: ApplicationAdapter() {
     private val tubeOffset = FloatArray(numberOfTubes)
     private var distanceBetweenTubes: Float = 0.toFloat()
 
+    interface MyGameCallback {
+        fun exitGame()
+        fun goToHome()
+        fun goToGarden()
+    }
+
+    fun setMyGameCallback(callback: MyGameCallback) {
+        myGameCallback = callback
+    }
+
     override fun create() {
+        stage = Stage()
         batch = SpriteBatch()
         background = Texture("bg.png")
         gameOver = Texture("gameover.png")
@@ -56,6 +77,34 @@ class FlappyBird: ApplicationAdapter() {
         font = BitmapFont()
         font.color = Color.WHITE
         font.data.setScale(10f)
+
+        val exitTexture = Texture("exit.png")
+        val homeTexture = Texture("home.png")
+        val gamesTexture = Texture("garden.png")
+
+        exitButton = ImageButton(TextureRegionDrawable(TextureRegion(exitTexture)))
+        homeButton = ImageButton(TextureRegionDrawable(TextureRegion(homeTexture)))
+        gardenButton = ImageButton(TextureRegionDrawable(TextureRegion(gamesTexture)))
+
+        val scale = 4f
+        exitButton.imageCell.size(scale * exitTexture.width, scale * exitTexture.height)
+        homeButton.imageCell.size(scale * homeTexture.width, scale * homeTexture.height)
+        gardenButton.imageCell.size(scale * gamesTexture.width, scale * gamesTexture.height)
+
+        val margin = 40f
+        val betweenButtonsMargin = 80f
+        val topMargin = 70f
+        val buttonsY = Gdx.graphics.height.toFloat() - topMargin
+
+        exitButton.setPosition(Gdx.graphics.width.toFloat() - exitButton.width - margin, buttonsY)
+        homeButton.setPosition(Gdx.graphics.width.toFloat() - homeButton.width - margin,
+            buttonsY - exitButton.height - betweenButtonsMargin)
+        gardenButton.setPosition(Gdx.graphics.width.toFloat() - gardenButton.width - margin,
+            buttonsY - 2 * exitButton.height - 2 * betweenButtonsMargin)
+
+        stage.addActor(exitButton)
+        stage.addActor(homeButton)
+        stage.addActor(gardenButton)
 
         birds = arrayOf(Texture("bird.png"), Texture("bird2.png"))
 
@@ -68,6 +117,8 @@ class FlappyBird: ApplicationAdapter() {
         distanceBetweenTubes = gdxWidth * 3f / 4f
         topTubeRectangles = arrayOfNulls(numberOfTubes)
         bottomTubeRectangles = arrayOfNulls(numberOfTubes)
+
+        Gdx.input.inputProcessor = stage
 
         topTubeWidth = topTube.width
         topTubeHeight = topTube.height
@@ -160,7 +211,32 @@ class FlappyBird: ApplicationAdapter() {
                     || Intersector.overlaps(birdCircle, bottomTubeRectangles[i])) gameState = 2
         }
 
+        exitButton.addListener(object : ClickListener() {
+            override fun clicked(event: InputEvent?, x: Float, y: Float) {
+                myGameCallback.exitGame()
+            }
+        })
+
+        homeButton.addListener(object : ClickListener() {
+            override fun clicked(event: InputEvent?, x: Float, y: Float) {
+                myGameCallback.goToHome()
+            }
+        })
+
+        gardenButton.addListener(object : ClickListener() {
+            override fun clicked(event: InputEvent?, x: Float, y: Float) {
+                myGameCallback.goToGarden()
+            }
+        })
+
         batch.end()
+
+        stage.act(Gdx.graphics.deltaTime)
+        stage.draw()
+    }
+
+    override fun dispose() {
+        stage.dispose()
     }
 
     private fun startGame() {
@@ -176,7 +252,7 @@ class FlappyBird: ApplicationAdapter() {
 
     companion object {
         private const val GRAVITY = 2f
-        private const val TUBE_VELOCITY = 4f
+        private const val TUBE_VELOCITY = 5f
         private const val GAP = 800f
     }
 }

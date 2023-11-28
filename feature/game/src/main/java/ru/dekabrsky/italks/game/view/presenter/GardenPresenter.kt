@@ -28,11 +28,11 @@ class GardenPresenter @Inject constructor(
         router.navigateTo(
             Flows.Common.SCREEN_BOTTOM_INFO,
             BottomSheetScreenArgs(
-                title = "Время понаблюдать за птицами",
-                subtitle = "Помоги птичке пройти через все преграды",
+                title = "А играл ли ты в Flappy Bird?",
+                subtitle = "Аналог популярной игры в одном клике от тебя!",
                 mode = BottomSheetMode.GAME,
                 icon = R.drawable.bird,
-                buttonState = ButtonState("Отлично", viewState::startFlappyBirdActivity)
+                buttonState = ButtonState("Играть", viewState::startFlappyBirdActivity)
             )
         )
     }
