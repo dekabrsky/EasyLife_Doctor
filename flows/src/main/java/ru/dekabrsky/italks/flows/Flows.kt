@@ -48,6 +48,7 @@ class Flows {
         const val SCREEN_START_GAME = "SCREEN_GABE"
         const val SCREEN_MAIN_ROOM = "SCREEN_MAIN_ROOM"
         const val SCREEN_GARDEN = "SCREEN_GARDEN"
+        const val SCREEN_FLAPPY = "SCREEN_FLAPPY"
         const val SCREEN_FOOTBALL = "SCREEN_FOOTBALL"
         const val SCREEN_LEAVES = "SCREEN_LEAVES"
         const val SCREEN_FIFTEEN = "SCREEN_FIFTEEN"
