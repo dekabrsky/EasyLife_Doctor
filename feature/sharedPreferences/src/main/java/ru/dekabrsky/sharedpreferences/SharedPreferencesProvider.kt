@@ -2,8 +2,6 @@ package ru.dekabrsky.sharedpreferences
 
 import android.content.Context
 import javax.inject.Inject
-import kotlin.properties.ReadWriteProperty
-import kotlin.reflect.KProperty
 
 
 class SharedPreferencesProvider @Inject constructor(
@@ -13,6 +11,7 @@ class SharedPreferencesProvider @Inject constructor(
 
     val lastLogin = StringPreference("LAST_LOGIN")
     val gameAvatar = StringPreference("GAME_AVATAR")
+    val testUrl = StringPreference("TEST_URL")
 
     inner class StringPreference(private val prefName: String) {
         fun get() = preferences.getString(prefName, "").orEmpty()

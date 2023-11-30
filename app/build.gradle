@@ -17,7 +17,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", 'ENDPOINT',  "\"http://83.222.11.163/\""
+        buildConfigField "String", 'ENDPOINT',  "\"https://easylife-project.ru/\""
     }
 
     buildFeatures {
@@ -114,4 +114,5 @@ dependencies {
     implementation project(':feature:game')
     implementation project(':feature:profile')
     implementation project(':feature:avatar')
+    implementation project(':feature:sharedPreferences')
 }

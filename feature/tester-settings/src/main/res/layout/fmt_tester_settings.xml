@@ -31,6 +31,24 @@
         android:layout_marginHorizontal="@dimen/offset_medium" />
 
     <TextView
+        android:id="@+id/server83"
+        style="@style/TextView.Caption.Black.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="http://83.222.11.163/"
+        android:layout_marginHorizontal="@dimen/offset_medium"
+        android:layout_marginTop="@dimen/offset_small"/>
+
+    <TextView
+        android:id="@+id/serverEasyLife"
+        style="@style/TextView.Caption.Black.Medium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="https://easylife-project.ru/"
+        android:layout_marginHorizontal="@dimen/offset_medium"
+        android:layout_marginTop="@dimen/offset_small"/>
+
+    <TextView
         android:id="@+id/userTypeText"
         style="@style/TextView.Caption"
         android:layout_width="match_parent"

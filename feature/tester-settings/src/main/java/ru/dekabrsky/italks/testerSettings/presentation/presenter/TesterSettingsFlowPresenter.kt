@@ -6,7 +6,7 @@ import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.testerSettings.presentation.view.TesterSettingsFlowView
 import javax.inject.Inject
 
-class TesterSettingsFlowPresenter@Inject constructor(
+class TesterSettingsFlowPresenter @Inject constructor(
     private val router: FlowRouter
 ): BasicPresenter<TesterSettingsFlowView>(router) {
     override fun onFirstViewAttach() {

@@ -1,15 +1,12 @@
 package ru.dekabrsky.italks.di.module
 
-import android.content.Context
 import ru.dekabrsky.italks.BuildConfig
+import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import javax.inject.Inject
 import javax.inject.Provider
 
-class EndPointProvider @Inject constructor(context: Context): Provider<String> {
-    private val testUrl = context
-        .getSharedPreferences("APP_PREFERENCES", Context.MODE_PRIVATE)
-        .getString("TEST_URL", "")
-        .orEmpty()
+class EndPointProvider @Inject constructor(sharedPreferencesProvider: SharedPreferencesProvider): Provider<String> {
+    private val testUrl = sharedPreferencesProvider.testUrl.get()
 
-    override fun get() = if (testUrl.isNotEmpty()) testUrl else BuildConfig.ENDPOINT
+    override fun get() = testUrl.ifEmpty { BuildConfig.ENDPOINT }
 }

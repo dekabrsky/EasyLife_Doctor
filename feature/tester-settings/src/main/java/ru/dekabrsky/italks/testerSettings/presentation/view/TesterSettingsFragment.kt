@@ -1,8 +1,5 @@
 package ru.dekabrsky.italks.testerSettings.presentation.view
 
-import android.app.Activity
-import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
 import android.view.View
 import moxy.presenter.InjectPresenter
@@ -41,6 +38,8 @@ class TesterSettingsFragment: BasicFragment(), TesterSettingsView {
         binding.saveBtn.setOnClickListener {
             presenter.onSaveBtnClicked(binding.serverAddressInput.text.toString())
         }
+        binding.server83.setOnClickListener { presenter.setSavedUrl(binding.server83.text) }
+        binding.serverEasyLife.setOnClickListener { presenter.setSavedUrl(binding.serverEasyLife.text) }
     }
 
     override fun onBackPressed() = presenter.onBackPressed()

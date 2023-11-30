@@ -1,7 +1,6 @@
 package ru.dekabrsky.italks.activity.view
 
 import android.app.NotificationManager
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -30,6 +29,7 @@ import ru.dekabrsky.italks.navigation.AppFlowFragmentProvider
 import ru.dekabrsky.italks.navigation.AppFlowNavigator
 import ru.dekabrsky.italks.profile.di.ProfileFeatureModule
 import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.italks.testerSettings.presentation.view.TesterSettingsFragment
 import ru.dekabrsky.login.di.module.LoginFeatureModule
 import ru.dekabrsky.scenarios.di.module.DoctorsPatientsModule
 import ru.dekabrsky.stats.di.StatsFeatureModule
@@ -171,12 +171,12 @@ open class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
-//        if (keyCode in setOf(KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP)
-//            && supportFragmentManager.fragments.firstOrNull { it is TesterSettingsFragment } == null
-//        ) {
-//            presenter.toTesterSettings()
-//            return true
-//        }
+        if (keyCode in setOf(KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP)
+            && supportFragmentManager.fragments.firstOrNull { it is TesterSettingsFragment } == null
+        ) {
+            presenter.toTesterSettings()
+            return true
+        }
 
         return super.onKeyDown(keyCode, event)
     }
