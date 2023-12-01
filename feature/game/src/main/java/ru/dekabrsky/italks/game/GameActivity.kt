@@ -28,8 +28,8 @@ class GameActivity: AndroidApplication(), FlappyBird.MyGameCallback {
         finish()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
         val db = ProgressDb.getDb(this)
         val item = Progress(null,
             "Flappy",
