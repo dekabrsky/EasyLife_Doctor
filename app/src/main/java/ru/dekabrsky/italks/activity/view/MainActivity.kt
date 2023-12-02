@@ -17,6 +17,7 @@ import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.di.module.CallersBasesFeatureModule
 import ru.dekabrsky.dialings.di.DialingsFeatureModule
 import ru.dekabrsky.feature.notifications.common.NotificationChannelManager
+import ru.dekabrsky.feature.notifications.implementation.data.module.NotificationFeatureModule
 import ru.dekabrsky.italks.R
 import ru.dekabrsky.italks.activity.presenter.MainPresenter
 import ru.dekabrsky.italks.basic.di.inject
@@ -90,7 +91,8 @@ open class MainActivity : AppCompatActivity(), MainView {
                 DoctorsPatientsModule(),
                 DialingsFeatureModule(),
                 StatsFeatureModule(),
-                ProfileFeatureModule()
+                ProfileFeatureModule(),
+                NotificationFeatureModule()
             )
         }.inject(this)
     }

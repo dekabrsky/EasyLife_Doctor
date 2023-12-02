@@ -46,4 +46,11 @@ class NotificationsListPresenter @Inject constructor(
     fun onNotificationClick(notificationEntity: NotificationEntity) {
         router.navigateTo(Flows.Notifications.SCREEN_EDIT_NOTIFICATION, notificationEntity)
     }
+
+    fun onItemCheckedChanged(notificationEntity: NotificationEntity, isEnabled: Boolean) {
+        notificationInteractor.update(notificationEntity.copy(enabled = isEnabled))
+            .observeOn(RxSchedulers.main())
+            .subscribe({ getAll() }, viewState::showError)
+            .addFullLifeCycle()
+    }
 }

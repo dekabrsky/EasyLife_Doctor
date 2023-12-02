@@ -19,6 +19,7 @@ dependencies {
 
     implementation libraries.cicerone
     implementation libraries.swipeRevealLayout
+    implementation libraries.weekDaysSelector
 
 
     implementation 'com.jakewharton.threetenabp:threetenabp:1.3.1'

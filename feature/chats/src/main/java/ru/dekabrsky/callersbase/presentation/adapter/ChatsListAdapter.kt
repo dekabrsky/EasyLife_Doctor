@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import main.utils.visible
 import ru.dekabrsky.callersbase.R
 import ru.dekabrsky.callersbase.databinding.ItemChatBinding
 import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
@@ -33,7 +34,7 @@ class ChatsListAdapter(
         holder.date.text = item.date
         holder.message.text = item.lastMessage
         if (item.newMessagesCount > 0) {
-            holder.count.visibility = View.VISIBLE
+            holder.count.visible()
             holder.count.text = item.newMessagesCount.toString()
             holder.message.setTextAppearance(R.style.BoldText)
             holder.message.setTextColor(holder.itemView.context.getColor(R.color.grey_600))

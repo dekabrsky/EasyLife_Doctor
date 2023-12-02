@@ -1,20 +1,27 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.model
 
+import main.utils.orZero
+import org.threeten.bp.DayOfWeek
+import org.threeten.bp.LocalDate
+import ru.dekabrsky.italks.basic.dateTime.formatDateToUiDateShort
+import ru.dekabrsky.italks.basic.dateTime.formatHourAndMinute
+
+@Suppress("LongParameterList")
 class NotificationEditUiModel(
     var tabletName: String = "",
     var dosage: String = "",
     var note: String = "",
-    var hour: Int = 0,
-    var minute: Int = 0
+    var hour: Int? = null,
+    var minute: Int? = null,
+    var selectedDays: List<DayOfWeek> = DayOfWeek.values().toList(),
+    var withDuration: Boolean = false,
+    var startDate: LocalDate? = null,
+    var endDate: LocalDate? = null,
+    var enabled: Boolean = true
 ) {
-    val time: String
-        get() {
-            val hour = if (hour < MIN_TWO_DIGIT_MINUTE) "0$hour" else hour.toString()
-            val minute = if (minute < MIN_TWO_DIGIT_MINUTE) "0$minute" else minute.toString()
-            return "$hour:$minute"
-        }
+    val time: String get() = formatHourAndMinute(hour, minute).ifEmpty { "Выберите время" }
 
-    companion object {
-        private const val MIN_TWO_DIGIT_MINUTE = 10
-    }
+    val startDateString get() = startDate?.let { formatDateToUiDateShort(it) } ?: "Начало курса"
+
+    val endDateString get() = endDate?.let { formatDateToUiDateShort(it) } ?: "Конец курса"
 }

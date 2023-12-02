@@ -2,6 +2,7 @@ package ru.dekabrsky.callersbase.presentation.view
 
 import android.os.Bundle
 import android.view.*
+import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.R
@@ -89,7 +90,7 @@ class ChatsListFragment : BasicFragment(), ChatsListView {
     }
 
     override fun showEmptyLayout() {
-       binding.emptyLayout.visibility = View.VISIBLE
+       binding.emptyLayout.visible()
     }
 
     override fun onBackPressed() = presenter.onBackPressed()

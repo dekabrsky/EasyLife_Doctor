@@ -28,12 +28,12 @@ class LoginPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.setLogin(lastLogin)
-//        repository.login("Denis", "123")
-//            .observeOn(RxSchedulers.main())
-//            .subscribe({
-//                router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
-//            }, viewState::showError)
-//            .addFullLifeCycle()
+        repository.login("Denis", "123")
+            .observeOn(RxSchedulers.main())
+            .subscribe({
+                router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
+            }, viewState::showError)
+            .addFullLifeCycle()
     }
 
     fun onDoneButtonClick() {

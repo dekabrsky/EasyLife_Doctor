@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import main.utils.setBoolVisibility
 import ru.dekabrsky.avatar.R
 import ru.dekabrsky.avatar.databinding.ItemAvatarListBinding
 import ru.dekabrsky.avatar.domain.AvatarType
@@ -38,7 +39,7 @@ class AvatarsAdapter  (
         val item = items[position]
 
         holder.image.setOnClickListener { onItemClick(item) }
-        holder.check.visibility = if (isItemSelected.invoke(item)) View.VISIBLE else View.GONE
+        holder.check.setBoolVisibility(isItemSelected.invoke(item))
 
         Glide
             .with(holder.itemView)

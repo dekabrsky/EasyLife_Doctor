@@ -3,6 +3,8 @@ package ru.dekabrsky.italks.tabs.presentation.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import main.utils.setBoolVisibility
+import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.di.inject
@@ -60,7 +62,7 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.navBar.visibility = View.VISIBLE
+        binding.navBar.visible()
         binding.navBar.initWidget(mvpDelegate)
         binding.navBar.setOnNavigationItemSelectedListener { menuItem ->
             presenter.onTabSelect(menuItem.itemId)
@@ -87,7 +89,7 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
     }
 
     fun setNavBarVisibility(isVisible: Boolean) {
-        binding.navBar.visibility = if (isVisible) View.VISIBLE else View.GONE
+        binding.navBar.setBoolVisibility(isVisible)
     }
 
     companion object {
