@@ -6,6 +6,8 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import main.utils.gone
+import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.dialings.R
@@ -106,13 +108,13 @@ class DialingsListFragment : BasicFragment(), DialingsListView {
     }
 
     override fun showEmptyLayout() {
-        binding.emptyLayout.visibility = View.VISIBLE
-        binding.basesCardsList.visibility = View.GONE
+        binding.emptyLayout.visible()
+        binding.basesCardsList.gone()
     }
 
     override fun hideEmptyLayout() {
-        binding.emptyLayout.visibility = View.GONE
-        binding.basesCardsList.visibility = View.VISIBLE
+        binding.emptyLayout.gone()
+        binding.basesCardsList.visible()
     }
 
     override fun showNoConnectionDialog() {

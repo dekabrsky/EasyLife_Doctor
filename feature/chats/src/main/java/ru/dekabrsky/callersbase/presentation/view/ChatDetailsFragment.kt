@@ -2,6 +2,7 @@ package ru.dekabrsky.callersbase.presentation.view
 
 import android.os.Bundle
 import android.view.View
+import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.R
@@ -71,9 +72,9 @@ class ChatDetailsFragment : BasicFragment(), ChatDetailsView {
     }
 
     override fun setupDialings(dialings: List<TakingMedicationsUiModel>) {
-        binding.divider.visibility = View.VISIBLE
-        binding.dialingsListTitle.visibility = View.VISIBLE
-        binding.linkedDialings.visibility = View.VISIBLE
+        binding.divider.visible()
+        binding.dialingsListTitle.visible()
+        binding.linkedDialings.visible()
         dialingsAdapter.updateItems(dialings)
     }
 

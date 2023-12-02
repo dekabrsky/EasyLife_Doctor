@@ -1,0 +1,15 @@
+[
+  {
+    "uid": 1,
+    "name": "String",
+    "dosage": "String?",
+    "note": "String?",
+    "hour": 0,
+    "minute": 0,
+    "weekDays": ["Monday", "Saturday"],
+    "duration": {
+      "startDate": "01-01-2023",
+      "endDate": "01-01-2023"
+    }
+  }
+]

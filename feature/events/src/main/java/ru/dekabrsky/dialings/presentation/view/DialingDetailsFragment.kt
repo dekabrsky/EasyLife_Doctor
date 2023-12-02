@@ -6,6 +6,8 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
+import main.utils.setBoolVisibility
+import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import org.eazegraph.lib.models.PieModel
@@ -64,19 +66,19 @@ class DialingDetailsFragment: BasicFragment(), DialingDetailsView {
         binding.base.title.text = "Базы данных"
         binding.base.value.text = model.callersBaseName
         binding.base.subValue.text = "${model.callersBaseCount} эл"
-        binding.base.root.visibility = View.VISIBLE
+        binding.base.root.visible()
 
         // scenario
         binding.scenario.title.text = "Сценарий"
         binding.scenario.value.text = model.scenarioName
         binding.scenario.subValue.text = "Шагов: ${model.scenarioStepsCount}"
-        binding.scenario.root.visibility = View.VISIBLE
+        binding.scenario.root.visible()
 
         if (model.status != DialingStatus.SCHEDULED) {
             binding.time.endValue.text = model.endDate
-            binding.time.end.visibility = View.VISIBLE
-            binding.time.endValue.visibility = View.VISIBLE
-            binding.time.root.visibility = View.VISIBLE
+            binding.time.end.visible()
+            binding.time.endValue.visible()
+            binding.time.root.visible()
         }
     }
 
@@ -84,14 +86,14 @@ class DialingDetailsFragment: BasicFragment(), DialingDetailsView {
         binding.progress.classicProgress.progress = progressInt
         binding.progress.progressValue.text = progress
         binding.progress.progressDetails.text = details
-        binding.progress.root.visibility = View.VISIBLE
+        binding.progress.root.visible()
     }
 
     override fun setupTime(startTime: String, canEdit: Boolean) {
         binding.time.beginValue.text = startTime
-        binding.time.root.visibility = View.VISIBLE
+        binding.time.root.visible()
         if (canEdit) {
-            binding.time.editBegin.visibility = View.VISIBLE
+            binding.time.editBegin.visible()
             binding.time.editBegin.setOnClickListener { presenter.onEditTimeClick() }
         }
     }
@@ -126,7 +128,7 @@ class DialingDetailsFragment: BasicFragment(), DialingDetailsView {
                 ContextCompat.getColor(requireContext(), R.color.grey_200)
             )
         )
-        binding.pieChart.root.visibility = View.VISIBLE
+        binding.pieChart.root.visible()
         binding.pieChart.piechart.startAnimation()
     }
 
@@ -145,7 +147,7 @@ class DialingDetailsFragment: BasicFragment(), DialingDetailsView {
 
         binding.lineChartLayout.lineChart.addSeries(series)
         binding.lineChartLayout.lineChart.startAnimation()
-        binding.lineChartLayout.root.visibility = View.VISIBLE
+        binding.lineChartLayout.root.visible()
     }
 
     override fun showDatePicker() {
@@ -178,7 +180,7 @@ class DialingDetailsFragment: BasicFragment(), DialingDetailsView {
     }
 
     override fun setRunNowVisibility(isVisible: Boolean) {
-        binding.progress.runNow.visibility = if (isVisible) View.VISIBLE else View.GONE
+        binding.progress.runNow.setBoolVisibility(isVisible)
     }
 
     override fun showRunNowDialog() {

@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import main.utils.visible
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.simpleBottomsheet.R
 import ru.dekabrsky.simpleBottomsheet.databinding.SimpleInfobottomSheetFragmentBinding
@@ -43,12 +44,12 @@ open class SimpleInfoBottomSheet : BottomSheetDialogFragment() {
         }
 
         args?.icon?.let { drawableRes ->
-            viewBinding.image.visibility = View.VISIBLE
+            viewBinding.image.visible()
             viewBinding.image.setImageResource(drawableRes)
         }
 
         args?.buttonState?.let { buttonState ->
-            viewBinding.customButton.visibility = View.VISIBLE
+            viewBinding.customButton.visible()
             viewBinding.customButton.text = buttonState.text
             viewBinding.customButton.setOnClickListener {
                 dismissAllowingStateLoss()

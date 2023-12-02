@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import main.utils.gone
+import main.utils.visible
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.databinding.ItemDialingBinding
 import ru.dekabrsky.common.domain.model.DialingStatus
@@ -40,12 +42,12 @@ class DialingListAdapter(
 
             when (item.status) {
                 DialingStatus.SCHEDULED -> {
-                    runLayout.visibility = View.VISIBLE
-                    progressLayout.visibility = View.GONE
+                    runLayout.visible()
+                    progressLayout.gone()
                 }
                 DialingStatus.RUN, DialingStatus.DONE -> {
-                    runLayout.visibility = View.GONE
-                    progressLayout.visibility = View.VISIBLE
+                    runLayout.gone()
+                    progressLayout.visible()
                     progressPercent.text = "${item.progress}%"
                     classicProgress.progress = item.progress
                 }

@@ -4,6 +4,10 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import main.utils.isTrue
+import main.utils.orZero
+import org.threeten.bp.DayOfWeek
+import org.threeten.bp.LocalDate
 import ru.dekabrsky.feature.notifications.common.receiver.NotificationsReceiver
 import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
@@ -32,8 +36,20 @@ class NotificationEditPresenter @Inject constructor(
         super.onFirstViewAttach()
         notification.let {
             viewState.setNotesFields(it)
-            onTimeSet(it.hour, it.minute)
+            it.hour?.let { hour -> it.minute?.let { minute -> onTimeSet(hour, minute) } }
+            if (notification.selectedDays.isEmpty()) {
+                viewState.setSelectedDays(DayOfWeek.values().map { it.value })
+            } else {
+                viewState.setSelectedDays(it.selectedDays.map { it.value })
+            }
+            if (it.withDuration) {
+                viewState.setDurationFieldsVisibility(true)
+                viewState.setDurationSwitchIsChecked(true)
+                updateDurationFieldsByModel()
+            }
+            viewState.setNotificationEnabled(it.enabled)
         }
+
     }
 
     fun onTabletNameChanged(tabletName: String) {
@@ -49,10 +65,12 @@ class NotificationEditPresenter @Inject constructor(
     }
 
     fun onTimeClick() {
-        viewState.showTimePicker(notification.hour, notification.minute)
+        viewState.showTimePicker(notification.hour.orZero(), notification.minute.orZero())
     }
 
     fun onDoneClick() {
+        if (validate().not()) return
+
         val result = mapper.mapUiToEntity(notification, existingNotification.uid)
 
         if (existingNotification.uid == null) {
@@ -76,14 +94,34 @@ class NotificationEditPresenter @Inject constructor(
 
     }
 
+    private fun validate(): Boolean {
+        val errors = mutableListOf<String>().apply {
+            if (notification.tabletName.isEmpty()) add("Введите название лекарства")
+            if (notification.hour == null) add("Выберите время")
+            if (notification.selectedDays.isEmpty()) add("Выберите минимум один день недели")
+            if (notification.withDuration && (notification.endDate == null || notification.startDate == null)) {
+                add("Укажите длительность курса")
+            }
+            if (notification.endDate?.isBefore(notification.startDate).isTrue()) add("Время начала позже времени конца")
+        }
+
+        if (errors.isNotEmpty()) {
+            viewState.showToast(errors.joinToString("\n"))
+            return false
+        }
+        return true
+    }
+
     private fun dispatchEvent(id: Long? = null) {
         if (id == null) return
+        val hour = notification.hour ?: return
+        val minute = notification.minute ?: return
 
         val calendar: Calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
 
-        calendar.set(Calendar.HOUR_OF_DAY, notification.hour)
-        calendar.set(Calendar.MINUTE, notification.minute)
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, minute)
         calendar.set(Calendar.SECOND, 0)
 
         val notifyIntent = Intent(context, NotificationsReceiver::class.java)
@@ -106,5 +144,42 @@ class NotificationEditPresenter @Inject constructor(
         notification.hour = hourOfDay
         notification.minute = minute
         viewState.setTime(notification.time)
+    }
+
+    fun onStartDateSet(date: LocalDate) {
+        notification.startDate = date
+        viewState.setStartDate(notification.startDateString)
+    }
+
+    fun onEndDateSet(date: LocalDate) {
+        notification.endDate = date
+        viewState.setEndDate(notification.endDateString)
+    }
+
+    fun onCheckedDaysChanged(selectedDays: MutableList<Int>) {
+        notification.selectedDays = selectedDays.map { DayOfWeek.values()[it - 1] }
+    }
+
+    fun onStartDateClick() =
+        viewState.showStartDatePicker(notification.startDate ?: LocalDate.now())
+
+    fun onEndDateClick() =
+        viewState.showEndDatePicker(notification.endDate ?: LocalDate.now())
+
+    fun onDurationCheckedChanged(checked: Boolean) {
+        notification.withDuration = checked
+        viewState.setDurationFieldsVisibility(checked)
+        notification.startDate = null
+        notification.endDate = null
+        updateDurationFieldsByModel()
+    }
+
+    private fun updateDurationFieldsByModel() {
+        viewState.setStartDate(notification.startDateString)
+        viewState.setEndDate(notification.endDateString)
+    }
+
+    fun onEnabledCheckedChanged(checked: Boolean) {
+        notification.enabled = checked
     }
 }

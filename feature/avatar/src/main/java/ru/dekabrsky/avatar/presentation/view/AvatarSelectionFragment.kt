@@ -3,6 +3,7 @@ package ru.dekabrsky.avatar.presentation.view
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import main.utils.setBoolVisibility
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.avatar.R
@@ -53,7 +54,7 @@ class AvatarSelectionFragment: BasicFragment(), AvatarSelectionView {
     }
 
     override fun setButtonVisibility(isVisible: Boolean) {
-        binding.saveBtn.visibility = if (isVisible) View.VISIBLE else View.GONE
+        binding.saveBtn.setBoolVisibility(isVisible)
     }
 
     override fun refreshAvatars() {

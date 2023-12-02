@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import androidx.core.content.ContextCompat
+import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import org.eazegraph.lib.models.PieModel
@@ -116,7 +117,7 @@ class StatsFragment: BasicFragment(), StatsView {
     }
 
     override fun showChildInfo() {
-        binding.myChildren.root.visibility = View.VISIBLE
+        binding.myChildren.root.visible()
         binding.myChildren.value.text = "Тестовая Белка #1789"
         binding.myChildren.speciality.text = "Пациент"
         binding.myChildren.title.text = "Мой ребенок"

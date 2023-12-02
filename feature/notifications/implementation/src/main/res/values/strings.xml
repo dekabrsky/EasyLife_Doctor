@@ -12,4 +12,9 @@
     <string name="notifications">Напоминания</string>
     <string name="notification">Напоминание</string>
     <string name="setupTime">Установите время</string>
+    <string name="course_start">Начало курса</string>
+    <string name="course_end">Конец курса</string>
+    <string name="courseDuration">Длительность курса</string>
+    <string name="notificationEnabled">Напоминание активно</string>
+    <string name="notificationEnabledDisclaimer">Напоминание можно временно выключить</string>
 </resources>

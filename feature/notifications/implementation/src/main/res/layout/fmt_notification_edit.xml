@@ -19,13 +19,13 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/offset_large">
 
             <LinearLayout
                 android:id="@+id/notificationDataContainer"
@@ -42,9 +42,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/offset_medium"
+                    android:background="@android:color/transparent"
                     android:hint="@string/enter_name"
                     android:imeOptions="actionNext"
-                    android:nextFocusDown="@id/tabletDosage" />
+                    android:nextFocusDown="@id/tabletDosage"
+                    android:paddingVertical="@dimen/offset_small" />
 
                 <View
                     android:id="@+id/divider1"
@@ -58,9 +60,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/offset_medium"
+                    android:background="@android:color/transparent"
                     android:hint="@string/enter_dosage"
                     android:imeOptions="actionNext"
-                    android:nextFocusDown="@id/tabletNote" />
+                    android:nextFocusDown="@id/tabletNote"
+                    android:paddingVertical="@dimen/offset_small" />
 
                 <View
                     android:id="@+id/divider2"
@@ -74,8 +78,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/offset_medium"
+                    android:background="@android:color/transparent"
                     android:hint="@string/enter_notes"
-                    android:imeOptions="actionDone" />
+                    android:imeOptions="actionDone"
+                    android:paddingVertical="@dimen/offset_small" />
 
             </LinearLayout>
 
@@ -87,27 +93,27 @@
                 android:orientation="horizontal"
                 android:padding="@dimen/offset_medium">
 
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/notificationDateContainer"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_weight="0.5"-->
-<!--                    android:background="?selectableItemBackground">-->
+                <!--                <LinearLayout-->
+                <!--                    android:id="@+id/notificationDateContainer"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_weight="0.5"-->
+                <!--                    android:background="?selectableItemBackground">-->
 
-<!--                    <ImageView-->
-<!--                        android:layout_width="@dimen/icon_20"-->
-<!--                        android:layout_height="@dimen/icon_20"-->
-<!--                        android:src="@drawable/ic_round_calendar_24" />-->
+                <!--                    <ImageView-->
+                <!--                        android:layout_width="@dimen/icon_20"-->
+                <!--                        android:layout_height="@dimen/icon_20"-->
+                <!--                        android:src="@drawable/ic_round_calendar_24" />-->
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/notificationDate"-->
-<!--                        style="@style/TextView.Subtitle2"-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="@dimen/offset_small"-->
-<!--                        tools:text="21.11.2022" />-->
+                <!--                    <TextView-->
+                <!--                        android:id="@+id/notificationDate"-->
+                <!--                        style="@style/TextView.Subtitle2"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginStart="@dimen/offset_small"-->
+                <!--                        tools:text="21.11.2022" />-->
 
-<!--                </LinearLayout>-->
+                <!--                </LinearLayout>-->
 
                 <LinearLayout
                     android:id="@+id/notificationTimeContainer"
@@ -119,7 +125,7 @@
                     <ImageView
                         android:layout_width="@dimen/icon_20"
                         android:layout_height="@dimen/icon_20"
-                        android:src="@drawable/round_access_time_24"/>
+                        android:src="@drawable/round_access_time_24" />
 
                     <TextView
                         android:id="@+id/notificationTime"
@@ -157,42 +163,97 @@
 
             </LinearLayout>
 
-            <RadioGroup
-                android:id="@+id/repeatVariantGroup"
+            <com.dpro.widgets.WeekdaysPicker
+                android:id="@+id/weekDaysPicker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="@dimen/offset_medium">
+                android:layout_marginHorizontal="@dimen/offset_medium"
+                app:highlight_color="@color/cyan_main"
+                app:sunday_first_day="false"
+                app:text_unselected_color="@color/grey_600" />
 
-                <RadioButton
-                    android:id="@+id/repeatNever"
-                    style="@style/TextView.Subtitle1"
-                    android:layout_width="match_parent"
+            <Switch
+                android:id="@+id/durationSwitch"
+                style="@style/TextView.Subtitle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/offset_medium"
+                android:layout_marginTop="@dimen/offset_medium"
+                android:text="@string/courseDuration" />
+
+            <LinearLayout
+                android:id="@+id/durationLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/offset_medium"
+                android:background="@drawable/edit_text_cyan_border_bg"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:padding="@dimen/offset_medium"
+                tools:visibility="visible" >
+
+                    <LinearLayout
+                        android:id="@+id/startDateContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:background="?selectableItemBackground">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_20"
+                            android:layout_height="@dimen/icon_20"
+                            android:src="@drawable/ic_round_calendar_24" />
+
+                        <TextView
+                            android:id="@+id/startDate"
+                            style="@style/TextView.Subtitle2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/offset_small"
+                            android:text="@string/course_start" />
+
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/endDateContainer"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/never" />
+                    android:layout_weight="0.5"
+                    android:background="?selectableItemBackground">
 
-                <RadioButton
-                    android:id="@+id/repeatDaily"
-                    style="@style/TextView.Subtitle1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/daily" />
+                    <ImageView
+                        android:layout_width="@dimen/icon_20"
+                        android:layout_height="@dimen/icon_20"
+                        android:src="@drawable/ic_round_new_calendar_24" />
 
-                <RadioButton
-                    android:id="@+id/repeatWeekly"
-                    style="@style/TextView.Subtitle1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/weekly" />
+                    <TextView
+                        android:id="@+id/endDate"
+                        style="@style/TextView.Subtitle2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/offset_small"
+                        android:text="@string/course_end" />
 
-                <RadioButton
-                    android:id="@+id/repeatMonthly"
-                    style="@style/TextView.Subtitle1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/monthly" />
-            </RadioGroup>
+                </LinearLayout>
 
+            </LinearLayout>
 
+            <Switch
+                android:id="@+id/enabledSwitch"
+                style="@style/TextView.Subtitle1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/offset_medium"
+                android:layout_marginHorizontal="@dimen/offset_medium"
+                android:text="@string/notificationEnabled" />
+            
+            <TextView
+                style="@style/TextView.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/notificationEnabledDisclaimer"
+                android:layout_marginHorizontal="@dimen/offset_medium" />
+            
         </LinearLayout>
 
     </ScrollView>

@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import main.utils.visible
 import ru.dekabrsky.common.presentation.model.TakingMedicationsUiModel
 import ru.dekabrsky.events.common.R
 import ru.dekabrsky.italks.uikit.databinding.ClickableTitleSubtitleItemBinding
@@ -40,7 +41,7 @@ class MiniDialingsAdapter(
         }
         item.isGameDone?.let {
             if (it && item.isMedicationTaken == true) {
-                holder.detail.visibility = View.VISIBLE
+                holder.detail.visible()
             }
         }
     }

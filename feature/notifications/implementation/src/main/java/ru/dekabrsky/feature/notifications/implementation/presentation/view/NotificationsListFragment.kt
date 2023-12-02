@@ -2,6 +2,7 @@ package ru.dekabrsky.feature.notifications.implementation.presentation.view
 
 import android.os.Bundle
 import android.view.View
+import main.utils.setBoolVisibility
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
@@ -21,7 +22,8 @@ class NotificationsListFragment: BasicFragment(), NotificationsListView {
     private val adapter by lazy {
         NotificationsListAdapter(
             onItemClick = presenter::onNotificationClick,
-            onItemDelete = presenter::onNotificationDelete
+            onItemDelete = presenter::onNotificationDelete,
+            onItemCheckedChanged = presenter::onItemCheckedChanged
         )
     }
 
@@ -52,7 +54,7 @@ class NotificationsListFragment: BasicFragment(), NotificationsListView {
     }
 
     override fun setEmptyLayoutVisibility(isVisible: Boolean) {
-        binding.emptyLayout.visibility = if (isVisible) View.VISIBLE else View.GONE
+        binding.emptyLayout.setBoolVisibility(isVisible)
     }
 
     fun setNavBarVisibility(isVisible: Boolean) {

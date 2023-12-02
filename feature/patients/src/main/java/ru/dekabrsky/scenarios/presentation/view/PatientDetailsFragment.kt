@@ -2,6 +2,7 @@ package ru.dekabrsky.scenarios.presentation.view
 
 import android.os.Bundle
 import android.view.View
+import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.common.presentation.adapter.MiniDialingsAdapter
@@ -56,8 +57,8 @@ class PatientDetailsFragment: BasicFragment(), PatientDetailsView {
     }
 
     override fun setupTakingMedications(dialings: List<TakingMedicationsUiModel>) {
-        binding.dialingsListTitle.visibility = View.VISIBLE
-        binding.linkedDialings.visibility = View.VISIBLE
+        binding.dialingsListTitle.visible()
+        binding.linkedDialings.visible()
         dialingsAdapter.updateItems(dialings)
     }
 

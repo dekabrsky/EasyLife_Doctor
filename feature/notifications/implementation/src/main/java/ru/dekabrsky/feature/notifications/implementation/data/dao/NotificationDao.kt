@@ -8,6 +8,7 @@ import androidx.room.Update
 import io.reactivex.Completable
 import io.reactivex.Single
 import ru.dekabrsky.feature.notifications.implementation.data.model.NotificationDbEntity
+import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 
 @Dao
 interface NotificationDao {

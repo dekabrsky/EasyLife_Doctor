@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import main.utils.visible
 import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.databinding.ItemScenarioBinding
 import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
@@ -34,7 +35,7 @@ class ScenariosAdapter(
         holder.root.setOnClickListener { onItemClick(item) }
         holder.title.setOnClickListener { onItemClick(item) }
         if (item.hasWarning) {
-            holder.warningIcon.visibility = View.VISIBLE
+            holder.warningIcon.visible()
         }
     }
 

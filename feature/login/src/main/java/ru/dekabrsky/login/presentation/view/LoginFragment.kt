@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
+import main.utils.gone
 import main.utils.onTextChange
+import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
@@ -53,14 +55,14 @@ class LoginFragment: BasicFragment(), LoginView {
 
     override fun setupForRegistration() {
         binding.title.text = getString(R.string.registration)
-        binding.codeLayout.visibility = View.VISIBLE
+        binding.codeLayout.visible()
         binding.changeMode.text = getString(R.string.change_mode_to_login)
         binding.bgImage.setImageResource(R.drawable.ic_divan)
     }
 
     override fun setupForLogin() {
         binding.title.text = getString(R.string.login_title)
-        binding.codeLayout.visibility = View.GONE
+        binding.codeLayout.gone()
         binding.changeMode.text = getString(R.string.registration)
         binding.bgImage.setImageResource(R.drawable.drawable_table)
     }

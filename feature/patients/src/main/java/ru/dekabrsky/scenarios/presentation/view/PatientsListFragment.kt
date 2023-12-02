@@ -6,6 +6,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
@@ -108,7 +109,7 @@ class PatientsListFragment: BasicFragment(), PatientsListView {
     }
 
     override fun showEmptyLayout() {
-        binding.emptyLayout.visibility = View.VISIBLE
+        binding.emptyLayout.visible()
     }
 
     override fun onBackPressed() = presenter.onBackPressed()
