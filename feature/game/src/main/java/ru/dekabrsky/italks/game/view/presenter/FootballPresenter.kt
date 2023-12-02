@@ -4,16 +4,23 @@ import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.view.FootballView
+import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import ru.dekabrsky.simpleBottomsheet.view.model.ButtonState
 import javax.inject.Inject
 
 class FootballPresenter @Inject constructor(
-    val router: FlowRouter
+    val router: FlowRouter,
+    private val cache: GameFlowCache
 ) : BasicPresenter<FootballView>(router) {
 
     override fun onBackPressed() = exitWithConfirm { router.back() }
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        viewState.showToast(cache.configs.joinToString { it.displayName })
+    }
 
     fun restart() {
         router.replaceScreen(Flows.Game.SCREEN_FOOTBALL)

@@ -13,8 +13,8 @@ import android.view.View
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.data.Progress
-import ru.dekabrsky.italks.game.data.ProgressDb
+import ru.dekabrsky.italks.game.data.model.Progress
+import ru.dekabrsky.italks.game.data.model.ProgressDb
 import java.util.concurrent.CopyOnWriteArrayList
 
 @Suppress("MagicNumber")

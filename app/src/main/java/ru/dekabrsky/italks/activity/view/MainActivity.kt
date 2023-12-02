@@ -25,6 +25,7 @@ import ru.dekabrsky.italks.di.module.AppModule
 import ru.dekabrsky.italks.di.module.FlowModule
 import ru.dekabrsky.italks.di.module.NetworkModule
 import ru.dekabrsky.italks.di.module.PushModule
+import ru.dekabrsky.italks.game.data.di.module.GameFeatureModule
 import ru.dekabrsky.italks.navigation.AppFlowFragmentProvider
 import ru.dekabrsky.italks.navigation.AppFlowNavigator
 import ru.dekabrsky.italks.profile.di.ProfileFeatureModule
@@ -88,6 +89,7 @@ open class MainActivity : AppCompatActivity(), MainView {
                 LoginFeatureModule(),
                 CallersBasesFeatureModule(),
                 DoctorsPatientsModule(),
+                GameFeatureModule(),
                 DialingsFeatureModule(),
                 StatsFeatureModule(),
                 ProfileFeatureModule()

@@ -13,7 +13,7 @@ import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.GameActivity
 import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.data.ProgressDb
+import ru.dekabrsky.italks.game.data.model.ProgressDb
 import ru.dekabrsky.italks.game.databinding.GardenFragmentBinding
 import ru.dekabrsky.italks.game.view.GardenView
 import ru.dekabrsky.italks.game.view.presenter.GardenPresenter

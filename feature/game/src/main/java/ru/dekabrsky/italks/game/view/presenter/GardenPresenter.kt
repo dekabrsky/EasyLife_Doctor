@@ -3,21 +3,33 @@ package ru.dekabrsky.italks.game.view.presenter
 import android.os.Build
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
+import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.domain.interactor.GameInteractor
+import ru.dekabrsky.italks.game.domain.model.GameType
 import ru.dekabrsky.italks.game.view.GardenView
+import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import ru.dekabrsky.simpleBottomsheet.view.model.ButtonState
 import javax.inject.Inject
 
 class GardenPresenter @Inject constructor(
-    val router: FlowRouter
+    val router: FlowRouter,
+    private val interactor: GameInteractor,
+    private val cache: GameFlowCache
 ) : BasicPresenter<GardenView>(router) {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.setupAvatar(router)
+        interactor.getGamesConfigs()
+            .observeOn(RxSchedulers.main())
+            .doOnSubscribe { viewState.setLoadingVisibility(true) }
+            .doFinally { viewState.setLoadingVisibility(false) }
+            .subscribe({ cache.configs = it }, viewState::showError)
+            .addFullLifeCycle()
     }
 
     fun goToHouse() {
@@ -25,11 +37,12 @@ class GardenPresenter @Inject constructor(
     }
 
     fun startFlappyBird() {
+        val flappyInfo = cache.configs.find { it.type == GameType.Flappy } ?: return
         router.navigateTo(
             Flows.Common.SCREEN_BOTTOM_INFO,
             BottomSheetScreenArgs(
-                title = "А играл ли ты в Flappy Bird?",
-                subtitle = "Аналог популярной игры в одном клике от тебя!",
+                title = flappyInfo.displayName,
+                subtitle = flappyInfo.description,
                 mode = BottomSheetMode.GAME,
                 icon = R.drawable.bird,
                 buttonState = ButtonState("Играть", viewState::startFlappyBirdActivity)

@@ -3,8 +3,8 @@ package ru.dekabrsky.italks.game
 import android.os.Bundle
 import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
-import ru.dekabrsky.italks.game.data.Progress
-import ru.dekabrsky.italks.game.data.ProgressDb
+import ru.dekabrsky.italks.game.data.model.Progress
+import ru.dekabrsky.italks.game.data.model.ProgressDb
 
 @Suppress("MagicNumber")
 class GameActivity: AndroidApplication(), FlappyBird.MyGameCallback {

@@ -1,9 +1,10 @@
-package ru.dekabrsky.italks.game.data
+package ru.dekabrsky.italks.game.data.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
+import ru.dekabrsky.italks.game.data.model.Progress
 
 @Dao
 interface Dao {

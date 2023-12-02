@@ -11,7 +11,7 @@ import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.data.ProgressDb
+import ru.dekabrsky.italks.game.data.model.ProgressDb
 import ru.dekabrsky.italks.game.databinding.MainRoomLayoutBinding
 import ru.dekabrsky.italks.game.view.MainRoomView
 import ru.dekabrsky.italks.game.view.adapter.ShelfAdapter

@@ -5,8 +5,8 @@ import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.data.Progress
-import ru.dekabrsky.italks.game.data.ProgressDb
+import ru.dekabrsky.italks.game.data.model.Progress
+import ru.dekabrsky.italks.game.data.model.ProgressDb
 import ru.dekabrsky.italks.game.view.MainRoomView
 import ru.dekabrsky.italks.game.view.mapper.ItemsVisibilityMapper
 import ru.dekabrsky.italks.game.view.mapper.ShelfItemsUiMapper
