@@ -4,16 +4,17 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import main.utils.isTrue
 import main.utils.orZero
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.LocalDate
-import ru.dekabrsky.feature.notifications.common.receiver.NotificationsReceiver
 import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.mapper.NotificationEntityToUiMapper
 import ru.dekabrsky.feature.notifications.implementation.presentation.model.NotificationEditUiModel
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationEditView
+import ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
@@ -22,7 +23,7 @@ import java.util.Calendar
 import javax.inject.Inject
 
 class NotificationEditPresenter @Inject constructor(
-    private val router: FlowRouter,
+    router: FlowRouter,
     private val interactor: NotificationInteractor,
     private val existingNotification: NotificationEntity,
     private val mapper: NotificationEntityToUiMapper,
@@ -79,7 +80,7 @@ class NotificationEditPresenter @Inject constructor(
                 .observeOn(RxSchedulers.main())
                 .withLoadingView(viewState)
                 .subscribe({
-                    dispatchEvent(it.uid)
+                    dispatchEvent(it.uid, it)
                     onBackPressed()
                 }, { viewState.showError(it) })
                 .addFullLifeCycle()
@@ -88,7 +89,7 @@ class NotificationEditPresenter @Inject constructor(
                 .observeOn(RxSchedulers.main())
                 .withLoadingView(viewState)
                 .subscribe({
-                    dispatchEvent(existingNotification.uid)
+                    dispatchEvent(existingNotification.uid, result)
                     onBackPressed()
                 }, { viewState.showError(it) })
                 .addFullLifeCycle()
@@ -115,10 +116,10 @@ class NotificationEditPresenter @Inject constructor(
         return true
     }
 
-    private fun dispatchEvent(id: Long? = null) {
+    private fun dispatchEvent(id: Long? = null, notification: NotificationEntity) {
         if (id == null) return
-        val hour = notification.hour ?: return
-        val minute = notification.minute ?: return
+        val hour = notification.hour
+        val minute = notification.minute
 
         val calendar: Calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
@@ -128,19 +129,24 @@ class NotificationEditPresenter @Inject constructor(
         calendar.set(Calendar.SECOND, 0)
 
         val notifyIntent = Intent(context, NotificationsReceiver::class.java)
+
+        notifyIntent.putExtras(
+            Bundle().apply {
+                putLong("NOTIFICATION_TIME", calendar.timeInMillis)
+                putLong("NOTIFICATION_ID", id)
+                putSerializable("NOTIFICATION", notification)
+            }
+        )
+
         val notifyPendingIntent = PendingIntent.getBroadcast(
             context,
             id.toInt(),
             notifyIntent,
-            PendingIntent.FLAG_UPDATE_CURRENT
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-        alarmManager.setRepeating(
-            AlarmManager.RTC_WAKEUP,
-            calendar.timeInMillis,
-            AlarmManager.INTERVAL_DAY,
-            notifyPendingIntent
-        )
+
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, notifyPendingIntent)
     }
 
     fun onTimeSet(hourOfDay: Int, minute: Int) {

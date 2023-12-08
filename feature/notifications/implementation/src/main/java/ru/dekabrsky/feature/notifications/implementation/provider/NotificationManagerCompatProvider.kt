@@ -1,4 +1,4 @@
-package ru.dekabrsky.feature.notifications.common.provider
+package ru.dekabrsky.feature.notifications.implementation.provider
 
 import android.content.Context
 import androidx.core.app.NotificationManagerCompat

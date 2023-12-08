@@ -1,4 +1,4 @@
-package ru.dekabrsky.feature.notifications.common
+package ru.dekabrsky.feature.notifications.implementation
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
