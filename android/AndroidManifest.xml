@@ -8,6 +8,9 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
 
     <application
         android:name=".App"
@@ -34,7 +37,7 @@
 
 
         <receiver
-            android:name="ru.dekabrsky.feature.notifications.common.receiver.NotificationsReceiver"
+            android:name="ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver"
             android:enabled="true"
             android:exported="false">
         </receiver>

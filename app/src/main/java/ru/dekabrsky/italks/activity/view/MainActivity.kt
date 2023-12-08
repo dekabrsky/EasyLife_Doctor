@@ -17,7 +17,7 @@ import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.di.module.CallersBasesFeatureModule
 import ru.dekabrsky.dialings.di.DialingsFeatureModule
-import ru.dekabrsky.feature.notifications.common.NotificationChannelManager
+import ru.dekabrsky.feature.notifications.implementation.NotificationChannelManager
 import ru.dekabrsky.feature.notifications.implementation.data.module.NotificationFeatureModule
 import ru.dekabrsky.italks.R
 import ru.dekabrsky.italks.activity.presenter.MainPresenter

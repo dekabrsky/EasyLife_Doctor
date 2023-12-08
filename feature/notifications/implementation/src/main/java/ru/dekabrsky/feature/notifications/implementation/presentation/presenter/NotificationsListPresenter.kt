@@ -1,22 +1,36 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.presenter
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import main.utils.orZero
+import org.threeten.bp.LocalDate
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.LocalTime
 import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationsListView
+import ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
+import java.util.Calendar
 import javax.inject.Inject
+
 
 class NotificationsListPresenter @Inject constructor(
     private val router: FlowRouter,
     private val notificationInteractor: NotificationInteractor,
+    private val context: Context,
     private val flowArgs: NotificationsFlowArgs
-): BasicPresenter<NotificationsListView>(router) {
+) : BasicPresenter<NotificationsListView>(router) {
 
     private var isFirstLoading = true
 
@@ -45,6 +59,66 @@ class NotificationsListPresenter @Inject constructor(
         isFirstLoading = false
         viewState.setChatsList(list)
         viewState.setEmptyLayoutVisibility(list.isEmpty())
+        list.forEach { cancelNotification(it) }
+
+        list.filter { it.enabled }.forEach { notification ->
+            addNotification(notification)
+        }
+    }
+
+    private fun addNotification(notificationEntity: NotificationEntity) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        val hour = notificationEntity.hour
+        val minute = notificationEntity.minute
+
+        val calendar: Calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+
+        val notificationTime = LocalDateTime.of(LocalDate.now(), LocalTime.of(hour, minute))
+
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
+        calendar.set(Calendar.MINUTE, minute)
+        calendar.set(Calendar.SECOND, 0)
+
+        if (LocalDateTime.now() > notificationTime) {
+            calendar.set(Calendar.DAY_OF_YEAR, LocalDate.now().dayOfYear + 1)
+        }
+
+        val notifyIntent = Intent(context, NotificationsReceiver::class.java)
+
+        notifyIntent.putExtras(
+            Bundle().apply {
+                putLong("NOTIFICATION_TIME", calendar.timeInMillis)
+                putLong("NOTIFICATION_ID", notificationEntity.uid.orZero())
+                putSerializable("NOTIFICATION", notificationEntity)
+            }
+        )
+
+        val notifyPendingIntent = PendingIntent.getBroadcast(
+            context,
+            notificationEntity.uid?.toInt().orZero(),
+            notifyIntent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        Log.d("addNotification: ", notificationEntity.uid?.toInt().orZero().toString())
+
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, notifyPendingIntent)
+    }
+
+    private fun cancelNotification(notification: NotificationEntity) {
+        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+
+        val notificationIntent = Intent(context, NotificationsReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            notification.uid?.toInt().orZero(),
+            notificationIntent,
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        alarmManager.cancel(pendingIntent)
     }
 
     fun onAddNotificationClick() {

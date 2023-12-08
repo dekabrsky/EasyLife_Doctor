@@ -10,7 +10,7 @@ import okhttp3.CookieJar
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
-import ru.dekabrsky.feature.notifications.common.NotificationChannelManager
+import ru.dekabrsky.feature.notifications.implementation.NotificationChannelManager
 import ru.dekabrsky.feature.notifications.implementation.data.provider.NotificationDatabaseProvider
 import ru.dekabrsky.italks.basic.di.NotificationDatabaseQualifier
 import ru.dekabrsky.italks.basic.di.ServerEndpoint
@@ -22,7 +22,9 @@ import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.di.provider.network.*
 import ru.dekabrsky.italks.navigation.AppFlowFragmentProvider
-import ru.dekabrsky.feature.notifications.common.provider.NotificationManagerCompatProvider
+import ru.dekabrsky.feature.notifications.implementation.provider.NotificationManagerCompatProvider
+import ru.dekabrsky.feature.notifications.implementation.provider.AppActivityProvider
+import ru.dekabrsky.italks.activity.provider.AppActivityProviderImpl
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
@@ -37,6 +39,8 @@ class AppRootModule(app: Application) : Module() {
         bind(String::class.java)
             .withName(ServerEndpoint::class.java)
             .toProvider(EndPointProvider::class.java)
+
+        bind(AppActivityProvider::class.java).to(AppActivityProviderImpl::class.java)
     }
 }
 
