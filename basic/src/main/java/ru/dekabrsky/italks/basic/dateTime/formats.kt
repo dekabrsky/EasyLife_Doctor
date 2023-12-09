@@ -16,7 +16,7 @@ fun formatDateToUiDateShort(dateTime: LocalDate): String = formatDateTime(dateTi
 
 fun formatDateTimeToUiTime(dateTime: LocalDateTime): String = formatDateTime(dateTime, "hh:mm")
 
-fun formatDateToServerString(date: LocalDate): String = formatDateTime(date, SERVER_DATE_FORMAT)
+fun formatDateToServerString(date: LocalDate): String = formatDateTime(date.atTime(0, 0), SERVER_DATE_FORMAT)
 
 fun formatHourAndMinute(hour: Int?, minute: Int?) : String {
     if (hour == null || minute == null) return ""
@@ -54,4 +54,4 @@ fun tryParseServerDate(date: String) = try {
 }
 
 private const val MIN_TWO_DIGIT_MINUTE = 10
-const val SERVER_DATE_FORMAT = "yyyy-MM-dd"
+const val SERVER_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss"

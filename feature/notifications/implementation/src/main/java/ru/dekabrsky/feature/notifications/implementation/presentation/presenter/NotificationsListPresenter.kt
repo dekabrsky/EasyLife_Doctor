@@ -6,6 +6,7 @@ import ru.dekabrsky.feature.notifications.implementation.presentation.view.Notif
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
+import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
 import javax.inject.Inject
 
@@ -13,6 +14,8 @@ class NotificationsListPresenter @Inject constructor(
     private val router: FlowRouter,
     private val notificationInteractor: NotificationInteractor
 ): BasicPresenter<NotificationsListView>(router) {
+
+    private var isFirstLoading = true
 
     override fun attachView(view: NotificationsListView) {
         super.attachView(view)
@@ -22,12 +25,14 @@ class NotificationsListPresenter @Inject constructor(
     private fun getAll() {
         notificationInteractor.getAll()
             .observeOn(RxSchedulers.main())
+            .withCustomLoadingViewIf(viewState::setListLoadingVisibility, isFirstLoading)
             .subscribe(::dispatchNotifications, viewState::showError)
             .addFullLifeCycle()
 
     }
 
     private fun dispatchNotifications(list: List<NotificationEntity>) {
+        isFirstLoading = false
         viewState.setChatsList(list)
         viewState.setEmptyLayoutVisibility(list.isEmpty())
     }

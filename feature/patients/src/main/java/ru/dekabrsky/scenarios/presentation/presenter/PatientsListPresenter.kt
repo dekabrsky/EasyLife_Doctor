@@ -7,6 +7,7 @@ import ru.dekabrsky.italks.basic.network.utils.Direction
 import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
+import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.scenarios.domain.interactor.DoctorPatientsInteractorImpl
 import ru.dekabrsky.scenarios.presentation.mapper.ScenariosUiMapper
@@ -66,8 +67,7 @@ class PatientsListPresenter @Inject constructor(
     fun generatePatients(isMore15: Boolean) {
         interactor.generateCode(isMore15.not())
             .observeOn(RxSchedulers.main())
-            .doOnSubscribe { viewState.setLoadingVisibility(true) }
-            .doFinally { viewState.setLoadingVisibility(false) }
+            .withLoadingView(viewState)
             .subscribe(::showAddPatientsResult, viewState::showError)
             .addFullLifeCycle()
     }

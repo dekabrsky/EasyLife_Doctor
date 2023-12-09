@@ -45,6 +45,7 @@
                     android:background="@android:color/transparent"
                     android:hint="@string/enter_name"
                     android:imeOptions="actionNext"
+                    android:maxLength="50"
                     android:nextFocusDown="@id/tabletDosage"
                     android:paddingVertical="@dimen/offset_small" />
 
@@ -63,6 +64,7 @@
                     android:background="@android:color/transparent"
                     android:hint="@string/enter_dosage"
                     android:imeOptions="actionNext"
+                    android:maxLength="50"
                     android:nextFocusDown="@id/tabletNote"
                     android:paddingVertical="@dimen/offset_small" />
 
@@ -81,6 +83,7 @@
                     android:background="@android:color/transparent"
                     android:hint="@string/enter_notes"
                     android:imeOptions="actionDone"
+                    android:maxLength="100"
                     android:paddingVertical="@dimen/offset_small" />
 
             </LinearLayout>
@@ -188,31 +191,31 @@
                 android:layout_margin="@dimen/offset_medium"
                 android:background="@drawable/edit_text_cyan_border_bg"
                 android:orientation="horizontal"
-                android:visibility="gone"
                 android:padding="@dimen/offset_medium"
-                tools:visibility="visible" >
+                android:visibility="gone"
+                tools:visibility="visible">
 
-                    <LinearLayout
-                        android:id="@+id/startDateContainer"
+                <LinearLayout
+                    android:id="@+id/startDateContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:background="?selectableItemBackground">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_20"
+                        android:layout_height="@dimen/icon_20"
+                        android:src="@drawable/ic_round_calendar_24" />
+
+                    <TextView
+                        android:id="@+id/startDate"
+                        style="@style/TextView.Subtitle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:background="?selectableItemBackground">
+                        android:layout_marginStart="@dimen/offset_small"
+                        android:text="@string/course_start" />
 
-                        <ImageView
-                            android:layout_width="@dimen/icon_20"
-                            android:layout_height="@dimen/icon_20"
-                            android:src="@drawable/ic_round_calendar_24" />
-
-                        <TextView
-                            android:id="@+id/startDate"
-                            style="@style/TextView.Subtitle2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/offset_small"
-                            android:text="@string/course_start" />
-
-                    </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/endDateContainer"
@@ -243,17 +246,17 @@
                 style="@style/TextView.Subtitle1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/offset_medium"
                 android:layout_marginHorizontal="@dimen/offset_medium"
+                android:layout_marginTop="@dimen/offset_medium"
                 android:text="@string/notificationEnabled" />
-            
+
             <TextView
                 style="@style/TextView.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/notificationEnabledDisclaimer"
-                android:layout_marginHorizontal="@dimen/offset_medium" />
-            
+                android:layout_marginHorizontal="@dimen/offset_medium"
+                android:text="@string/notificationEnabledDisclaimer" />
+
         </LinearLayout>
 
     </ScrollView>

@@ -17,6 +17,7 @@ import ru.dekabrsky.feature.notifications.implementation.presentation.view.Notif
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
+import ru.dekabrsky.italks.basic.rx.withLoadingView
 import java.util.Calendar
 import javax.inject.Inject
 
@@ -76,14 +77,16 @@ class NotificationEditPresenter @Inject constructor(
         if (existingNotification.uid == null) {
             interactor.add(result)
                 .observeOn(RxSchedulers.main())
+                .withLoadingView(viewState)
                 .subscribe({
-                    dispatchEvent(it)
+                    dispatchEvent(it.uid)
                     onBackPressed()
                 }, { viewState.showError(it) })
                 .addFullLifeCycle()
         } else {
             interactor.update(result)
                 .observeOn(RxSchedulers.main())
+                .withLoadingView(viewState)
                 .subscribe({
                     dispatchEvent(existingNotification.uid)
                     onBackPressed()

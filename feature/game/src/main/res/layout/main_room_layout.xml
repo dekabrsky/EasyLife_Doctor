@@ -90,6 +90,7 @@
             app:layout_constraintStart_toStartOf="@id/clock"
             app:layout_constraintEnd_toEndOf="@id/clock"
             android:layout_marginTop="@dimen/offset_large"
+            android:alpha="0.8"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/speaker" />
