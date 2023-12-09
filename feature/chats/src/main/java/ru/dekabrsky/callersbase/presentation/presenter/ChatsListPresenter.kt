@@ -11,6 +11,8 @@ import ru.dekabrsky.italks.basic.network.utils.Direction
 import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
+import ru.dekabrsky.italks.basic.rx.withLoadingView
+import ru.dekabrsky.italks.basic.rx.withLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.login.data.repository.LoginRepository
 import javax.inject.Inject
@@ -51,11 +53,7 @@ class ChatsListPresenter @Inject constructor(
             interactor.getChats()
         ) { doctors, patients, children, chats -> doctors + patients + children to chats }
             .observeOn(RxSchedulers.main())
-            .doOnSubscribe { if (isFirstLoading) viewState.setLoadingVisibility(true) }
-            .doFinally {
-                isFirstLoading = false
-                viewState.setLoadingVisibility(false)
-            }
+            .withLoadingViewIf(viewState, isFirstLoading)
             .map { (users, chats) -> uiMapper.prepareChatsList(users, chats) }
             .subscribe(::dispatchLoading, viewState::showError)
             .addFullLifeCycle()
@@ -75,6 +73,7 @@ class ChatsListPresenter @Inject constructor(
     fun loadSortByDateDesc() = load(Direction.DESC.name, SortVariants.CREATION_DATE.name)
 
     private fun dispatchLoading(items: List<ChatUiModel>) {
+        isFirstLoading = false
         if (items.isEmpty()) {
             viewState.showEmptyLayout()
         } else {
@@ -91,8 +90,7 @@ class ChatsListPresenter @Inject constructor(
         } else {
             interactor.startChat(model.secondUser.id)
                 .observeOn(RxSchedulers.main())
-                .doOnSubscribe { viewState.setLoadingVisibility(true) }
-                .doFinally { viewState.setLoadingVisibility(false) }
+                .withLoadingView(viewState)
                 .subscribe( { router.navigateTo(Flows.Chats.SCREEN_CHAT_CONVERSATION) }, viewState::showError)
                 .addFullLifeCycle()
         }

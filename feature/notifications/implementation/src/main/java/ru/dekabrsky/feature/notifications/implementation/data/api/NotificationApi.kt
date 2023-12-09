@@ -16,11 +16,11 @@ interface NotificationApi {
     fun getNotifications(): Single<List<NotificationResponse>>
 
     @POST("notifications")
-    fun postNotification(@Body request: NotificationRequest): Completable
+    fun postNotification(@Body request: NotificationRequest): Single<NotificationResponse>
 
     @DELETE("notifications/{id}")
     fun deleteNotification(@Path("id") id: Int): Completable
 
     @PUT("notifications/{id}")
-    fun putNotification(@Path("id") id: Int): Completable
+    fun putNotification(@Path("id") id: Int, @Body request: NotificationRequest): Completable
 }
