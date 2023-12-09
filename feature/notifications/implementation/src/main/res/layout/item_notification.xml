@@ -23,28 +23,28 @@
             <ImageView
                 android:layout_width="@dimen/icon_24"
                 android:layout_height="@dimen/icon_24"
-                android:src="@drawable/round_delete_forever_24"
-                app:tint="@color/white"
+                android:layout_gravity="center"
                 android:layout_margin="@dimen/offset_large"
-                android:layout_gravity="center"/>
+                android:src="@drawable/round_delete_forever_24"
+                app:tint="@color/white" />
 
         </FrameLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/content"
-            android:background="?selectableItemBackground"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
             android:paddingBottom="@dimen/offset_medium">
 
             <ImageView
                 android:id="@+id/drawable"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/offset_large"
                 android:alpha="0.5"
                 android:rotation="15"
                 android:src="@drawable/ic_logo"
-                android:layout_marginEnd="@dimen/offset_large"
                 app:layout_constraintBottom_toBottomOf="@id/dosage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -63,20 +63,28 @@
             <TextView
                 android:id="@+id/tabletName"
                 style="@style/TextView.Subtitle1.Medium"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/offset_medium"
+                android:layout_marginHorizontal="@dimen/offset_medium"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toEndOf="@id/notificationTime"
                 app:layout_constraintTop_toTopOf="@id/notificationTime"
-                tools:text="Всёпройдин" />
+                tools:text="Всёпройдин Всёпройдин Всёпройдин Всёпройдин" />
 
             <TextView
                 android:id="@+id/dosage"
                 style="@style/TextView.Caption"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/offset_medium"
                 android:layout_marginTop="@dimen/offset_small"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="@id/notificationTime"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/notificationTime"
                 tools:text="1 таблетка" />
@@ -84,8 +92,12 @@
             <TextView
                 android:id="@+id/note"
                 style="@style/TextView.Caption"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintEnd_toStartOf="@id/notificationSwitch"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@id/tabletName"
                 app:layout_constraintTop_toTopOf="@id/dosage"
                 tools:text="до еды" />

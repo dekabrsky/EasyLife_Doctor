@@ -12,23 +12,12 @@ class NotificationResponse(
     val name: String?,
     val note: String?,
     val notificationId: Int?,
-    val time: Time?,
+    val time: String?,
     val weekDays: List<String>?
 ) {
     @Keep
     data class Duration(
         val endDate: String?,
         val startDate: String?
-    )
-
-    @Keep
-    data class Time(
-        val hour: Int?,
-        val microsecond: Int?,
-        val millisecond: Int?,
-        val minute: Int?,
-        val nanosecond: Int?,
-        val second: Int?,
-        val ticks: Int?
     )
 }

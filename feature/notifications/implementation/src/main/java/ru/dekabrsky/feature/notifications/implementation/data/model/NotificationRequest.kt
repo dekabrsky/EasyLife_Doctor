@@ -10,18 +10,12 @@ class NotificationRequest(
     val enabled: Boolean,
     val name: String,
     val note: String,
-    val time: Time,
+    val time: String,
     val weekDays: List<String>
 ) {
     @Keep
     data class Duration(
-        val endDate: String,
-        val startDate: String
-    )
-
-    @Keep
-    data class Time(
-        val hour: Int,
-        val minute: Int
+        val startDate: String,
+        val endDate: String
     )
 }

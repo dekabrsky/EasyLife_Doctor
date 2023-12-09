@@ -3,6 +3,7 @@ package ru.dekabrsky.login.presentation.presenter
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
+import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.login.data.repository.LoginRepository
@@ -28,12 +29,12 @@ class LoginPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.setLogin(lastLogin)
-        repository.login("Denis", "123")
-            .observeOn(RxSchedulers.main())
-            .subscribe({
-                router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
-            }, viewState::showError)
-            .addFullLifeCycle()
+//        repository.login("Denis", "123")
+//            .observeOn(RxSchedulers.main())
+//            .subscribe({
+//                router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
+//            }, viewState::showError)
+//            .addFullLifeCycle()
     }
 
     fun onDoneButtonClick() {
@@ -41,8 +42,7 @@ class LoginPresenter @Inject constructor(
             LoginMode.LOGIN -> {
                 repository.login(currentLogin, currentPassword)
                     .observeOn(RxSchedulers.main())
-                    .doOnSubscribe { viewState.setLoadingVisibility(true) }
-                    .doFinally { viewState.setLoadingVisibility(false) }
+                    .withLoadingView(viewState)
                     .subscribe({
                         router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
                     }, viewState::showError)
@@ -52,8 +52,7 @@ class LoginPresenter @Inject constructor(
             LoginMode.REGISTRATION -> {
                 repository.registration(currentCode, currentLogin, currentPassword)
                     .observeOn(RxSchedulers.main())
-                    .doOnSubscribe { viewState.setLoadingVisibility(true) }
-                    .doFinally { viewState.setLoadingVisibility(false) }
+                    .withLoadingView(viewState)
                     .subscribe({
                         router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
                     }, viewState::showError)

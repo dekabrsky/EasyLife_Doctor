@@ -61,6 +61,10 @@ class NotificationsListFragment: BasicFragment(), NotificationsListView {
         (parentFragment as NotificationFlowFragment).setNavBarVisibility(isVisible)
     }
 
+    override fun setListLoadingVisibility(isVisible: Boolean) {
+        binding.loadingText.setBoolVisibility(isVisible)
+    }
+
     override fun onBackPressed() {
         presenter.onBackPressed()
     }

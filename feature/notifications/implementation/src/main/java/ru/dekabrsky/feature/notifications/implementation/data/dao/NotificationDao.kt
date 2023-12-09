@@ -3,6 +3,7 @@ package ru.dekabrsky.feature.notifications.implementation.data.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import io.reactivex.Completable
@@ -24,9 +25,15 @@ interface NotificationDao {
     @Insert
     fun insert(notificationDbEntity: NotificationDbEntity): Single<Long>
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(entities: List<NotificationDbEntity>): Completable
+
     @Update
     fun update(notificationDbEntity: NotificationDbEntity): Completable
 
     @Delete
     fun delete(notificationDbEntity: NotificationDbEntity): Completable
+
+    @Query("DELETE FROM ${NotificationDbEntity.TABLE_NOTIFICATIONS}")
+    fun deleteAll(): Completable
 }
