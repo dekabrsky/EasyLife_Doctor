@@ -65,6 +65,11 @@ class NotificationsListFragment: BasicFragment(), NotificationsListView {
         binding.loadingText.setBoolVisibility(isVisible)
     }
 
+    override fun setToolbarBackButton() {
+        binding.toolbar.setNavigationIcon(R.drawable.ic_round_arrow_back_24)
+        binding.toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
+    }
+
     override fun onBackPressed() {
         presenter.onBackPressed()
     }

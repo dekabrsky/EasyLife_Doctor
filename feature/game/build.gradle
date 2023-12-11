@@ -33,6 +33,7 @@ dependencies {
     implementation project(':feature:simple-bottomsheet')
     implementation project(':feature:avatar')
     implementation project(':feature:sharedPreferences')
+    implementation project(':feature:notifications:common')
 
     implementation("com.badlogicgames.gdx:gdx-backend-android:$gdxVersion")
     implementation("com.badlogicgames.gdx:gdx-box2d:$gdxVersion")

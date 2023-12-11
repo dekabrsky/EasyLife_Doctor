@@ -2,6 +2,7 @@ package ru.dekabrsky.italks.tabs.presentation.presenter
 
 import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
+import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
 import ru.dekabrsky.italks.basic.navigation.Flow
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
@@ -47,7 +48,7 @@ class TabsFlowPresenter @Inject constructor(
             Flows.Materials.name to null,
             Flows.Game.name to null,
             Flows.Profile.name to null,
-            Flows.Notifications.name to null
+            Flows.Notifications.name to NotificationsFlowArgs(Scopes.SCOPE_APP)
         )
         when (args.userType) {
            UserType.DOCTOR -> toggleScreen(Flows.Events)
@@ -73,7 +74,7 @@ class TabsFlowPresenter @Inject constructor(
                     Flows.Events.SCREEN_DIALINGS_LIST
                 )
             )
-            R.id.notifications -> toggleScreen(Flows.Notifications)
+            R.id.notifications -> toggleScreen(Flows.Notifications, NotificationsFlowArgs(Scopes.SCOPE_APP))
             R.id.patients -> toggleScreen(Flows.Patients)
             R.id.stats -> toggleScreen(Flows.Stats)
             R.id.game -> toggleScreen(Flows.Game)

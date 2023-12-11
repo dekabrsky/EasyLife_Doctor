@@ -11,4 +11,5 @@ interface MainRoomView: BasicView {
     fun setShelfItems(list: List<ShelfItemUiModel>)
     fun updateItemsVisibility(level: Int, itemsVisibility: List<ItemVisibility>)
     fun setupAvatar(router: FlowRouter)
+    fun setMusicIsOn(isOn: Boolean)
 }

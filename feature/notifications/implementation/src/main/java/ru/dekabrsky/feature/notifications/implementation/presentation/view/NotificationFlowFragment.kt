@@ -3,10 +3,12 @@ package ru.dekabrsky.feature.notifications.implementation.presentation.view
 import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.presentation.presenter.NotificationFlowPresenter
+import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
 import ru.dekabrsky.italks.basic.navigation.di.installNavigation
@@ -19,11 +21,14 @@ import javax.inject.Inject
 
 class NotificationFlowFragment : BasicFlowFragment(), NotificationFlowView {
 
+
     override val layoutRes = R.layout.basic_fragment_flow
 
     override val containerId = R.id.flowContainer
 
     override val scopeName = Scopes.SCOPE_FLOW_NOTIFICATION
+
+    private lateinit var args: NotificationsFlowArgs
 
     override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
         object : FragmentFlowNavigator(this, router, containerId) {
@@ -49,7 +54,8 @@ class NotificationFlowFragment : BasicFlowFragment(), NotificationFlowView {
     fun providePresenter() = presenter
 
     override fun injectDependencies() {
-        Toothpick.openScopes(Scopes.SCOPE_APP, scopeName)
+        Toothpick.openScopes(args.parentScopeName, scopeName)
+                .module { bind(NotificationsFlowArgs::class.java).toInstance(args) }
             .installNavigation()
             .inject(this)
     }
@@ -64,11 +70,11 @@ class NotificationFlowFragment : BasicFlowFragment(), NotificationFlowView {
     }
 
     fun setNavBarVisibility(isVisible: Boolean) {
-        (parentFragment as TabsFlowFragment).setNavBarVisibility(isVisible)
+        (parentFragment as? TabsFlowFragment)?.setNavBarVisibility(isVisible)
     }
 
     companion object {
-        fun newInstance() = NotificationFlowFragment()
+        fun newInstance(args: NotificationsFlowArgs) = NotificationFlowFragment().apply { this.args = args }
     }
 
 }

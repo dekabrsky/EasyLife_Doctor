@@ -1,5 +1,6 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.presenter
 
+import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationsListView
@@ -8,14 +9,23 @@ import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.italks.scopes.Scopes
 import javax.inject.Inject
 
 class NotificationsListPresenter @Inject constructor(
     private val router: FlowRouter,
-    private val notificationInteractor: NotificationInteractor
+    private val notificationInteractor: NotificationInteractor,
+    private val flowArgs: NotificationsFlowArgs
 ): BasicPresenter<NotificationsListView>(router) {
 
     private var isFirstLoading = true
+
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        if (flowArgs.parentScopeName != Scopes.SCOPE_APP) {
+            viewState.setToolbarBackButton()
+        }
+    }
 
     override fun attachView(view: NotificationsListView) {
         super.attachView(view)

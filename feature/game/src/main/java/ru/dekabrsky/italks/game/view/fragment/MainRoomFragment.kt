@@ -1,6 +1,7 @@
 package ru.dekabrsky.italks.game.view.fragment
 
 import android.annotation.SuppressLint
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.asLiveData
@@ -21,6 +22,7 @@ import ru.dekabrsky.italks.game.view.presenter.MainRoomPresenter
 import ru.dekabrsky.italks.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
+
 
 @Suppress("MagicNumber")
 class MainRoomFragment: BasicFragment(), MainRoomView {
@@ -56,7 +58,8 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
             binding.avatar.setOnClickListenerWithAnimation(it) {}
             binding.door.setOnClickListenerWithAnimation(it) { presenter.onDoorClick() }
             binding.window.setOnClickListenerWithAnimation(it) { presenter.onDoorClick() }
-            binding.clock.setOnClickListenerWithAnimation(it) {}
+            binding.clock.setOnClickListenerWithAnimation(it) { presenter.onClockClick() }
+            binding.speakerAnimation.setOnClickListenerWithAnimation(it) { presenter.onSpeakerClick() }
         }
         initShelf()
         binding.scrollContainer.setOnScrollChangeListener { _, scrollX, _, _, _ ->
@@ -103,6 +106,14 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
 
     override fun setupAvatar(router: FlowRouter) {
         binding.scoreLayout.avatar.setup(router, R.dimen.icon_20)
+    }
+
+    override fun setMusicIsOn(isOn: Boolean) {
+        if (isOn) {
+            binding.speakerAnimation.playAnimation()
+        } else {
+            binding.speakerAnimation.pauseAnimation()
+        }
     }
 
     override fun onBackPressed() {
