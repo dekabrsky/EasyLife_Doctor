@@ -57,4 +57,8 @@ class AvatarSelectionPresenter @Inject constructor(
         selectedAvatar?.name?.let { sharedPreferencesProvider.gameAvatar.set(it) }
         router.finishFlow()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
 }

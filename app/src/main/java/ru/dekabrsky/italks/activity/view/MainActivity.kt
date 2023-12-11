@@ -1,6 +1,7 @@
 package ru.dekabrsky.italks.activity.view
 
 import android.app.NotificationManager
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -101,7 +102,7 @@ open class MainActivity : AppCompatActivity(), MainView {
         setTheme(R.style.ThemeITalks)
         super.onCreate(savedInstanceState)
         tryInject(savedInstanceState)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
 
     private fun tryInject(savedInstanceState: Bundle?) {

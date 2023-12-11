@@ -5,6 +5,7 @@ import ru.dekabrsky.callersbase.presentation.view.ChatFlowFragment
 import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.dialings.presentation.view.DialingsFlowFragment
 import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
+import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationFlowFragment
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider
@@ -29,7 +30,7 @@ class AppFlowFragmentProvider @Inject constructor() : FlowFragmentProvider {
             Flows.Chats.name ->
                 ChatFlowFragment.newInstance(data as ChatsFlowScreenArgs)
             Flows.Notifications.name ->
-                NotificationFlowFragment.newInstance()
+                NotificationFlowFragment.newInstance(data as NotificationsFlowArgs)
             Flows.Patients.name -> ScenariosFlowFragment.newInstance()
             Flows.Events.name ->
                 DialingsFlowFragment.newInstance(data as EventsFlowScreenArgs)

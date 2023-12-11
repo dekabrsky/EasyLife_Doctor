@@ -2,6 +2,7 @@ package ru.dekabrsky.italks.di.module
 
 import android.app.Application
 import android.content.Context
+import android.media.MediaPlayer
 import androidx.core.app.NotificationManagerCompat
 import androidx.room.RoomDatabase
 import io.reactivex.Scheduler
@@ -49,6 +50,7 @@ class AppModule : Module() {
         bind(NavigatorHolder::class.java).toInstance(cicerone.navigatorHolder)
         bind(RoomDatabase::class.java).withName(NotificationDatabaseQualifier::class.java)
             .toProvider(NotificationDatabaseProvider::class.java).providesSingletonInScope()
+        bind(MediaPlayer::class.java).toProvider(MediaPlayerProvider::class.java).providesSingletonInScope()
     }
 }
 
