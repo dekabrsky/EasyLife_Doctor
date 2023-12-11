@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.data
+package ru.dekabrsky.italks.game.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

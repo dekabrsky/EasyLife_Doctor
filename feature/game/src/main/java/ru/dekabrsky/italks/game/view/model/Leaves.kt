@@ -13,8 +13,6 @@ import android.view.View
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
 import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.data.Progress
-import ru.dekabrsky.italks.game.data.ProgressDb
 import java.util.concurrent.CopyOnWriteArrayList
 
 @Suppress("MagicNumber")
@@ -122,15 +120,9 @@ class Leaves(context: Context) : SurfaceView(context), Runnable {
     }
 
     @SuppressLint("ShowToast")
-    fun saveProgress(context: Context){
-        val item = Progress(null,
-            "Leaves",
-            score
-        )
-        Thread{
-            ProgressDb.getDb(context).getDao().insertProgress(item)
-        }.start()
+    fun saveScore(): Int{
         snackBarView(this)
+        return score
     }
 
     private fun snackBarView(view: View){

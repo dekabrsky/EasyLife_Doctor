@@ -37,8 +37,6 @@ class FlappyBird: Game() {
     private lateinit var myGameCallback: MyGameCallback
 
     private lateinit var exitButton: ImageButton
-    private lateinit var homeButton: ImageButton
-    private lateinit var gardenButton: ImageButton
 
     private var flapState = 0
     private var birdY: Float = 0f
@@ -60,8 +58,6 @@ class FlappyBird: Game() {
 
     interface MyGameCallback {
         fun exitGame()
-        fun goToHome()
-        fun goToGarden()
     }
 
     fun setMyGameCallback(callback: MyGameCallback) {
@@ -79,32 +75,20 @@ class FlappyBird: Game() {
         font.data.setScale(10f)
 
         val exitTexture = Texture("exit.png")
-        val homeTexture = Texture("home.png")
-        val gamesTexture = Texture("garden.png")
 
         exitButton = ImageButton(TextureRegionDrawable(TextureRegion(exitTexture)))
-        homeButton = ImageButton(TextureRegionDrawable(TextureRegion(homeTexture)))
-        gardenButton = ImageButton(TextureRegionDrawable(TextureRegion(gamesTexture)))
 
         val scale = 4f
         exitButton.imageCell.size(scale * exitTexture.width, scale * exitTexture.height)
-        homeButton.imageCell.size(scale * homeTexture.width, scale * homeTexture.height)
-        gardenButton.imageCell.size(scale * gamesTexture.width, scale * gamesTexture.height)
+
 
         val margin = 40f
-        val betweenButtonsMargin = 80f
         val topMargin = 70f
         val buttonsY = Gdx.graphics.height.toFloat() - topMargin
 
         exitButton.setPosition(Gdx.graphics.width.toFloat() - exitButton.width - margin, buttonsY)
-        homeButton.setPosition(Gdx.graphics.width.toFloat() - homeButton.width - margin,
-            buttonsY - exitButton.height - betweenButtonsMargin)
-        gardenButton.setPosition(Gdx.graphics.width.toFloat() - gardenButton.width - margin,
-            buttonsY - 2 * exitButton.height - 2 * betweenButtonsMargin)
 
         stage.addActor(exitButton)
-        stage.addActor(homeButton)
-        stage.addActor(gardenButton)
 
         birds = arrayOf(Texture("bird.png"), Texture("bird2.png"))
 
@@ -217,18 +201,6 @@ class FlappyBird: Game() {
             }
         })
 
-        homeButton.addListener(object : ClickListener() {
-            override fun clicked(event: InputEvent?, x: Float, y: Float) {
-                myGameCallback.goToHome()
-            }
-        })
-
-        gardenButton.addListener(object : ClickListener() {
-            override fun clicked(event: InputEvent?, x: Float, y: Float) {
-                myGameCallback.goToGarden()
-            }
-        })
-
         batch.end()
 
         stage.act(Gdx.graphics.deltaTime)
@@ -248,6 +220,10 @@ class FlappyBird: Game() {
             topTubeRectangles[i] = Rectangle()
             bottomTubeRectangles[i] = Rectangle()
         }
+    }
+
+    fun score(): Int{
+        return score
     }
 
     companion object {

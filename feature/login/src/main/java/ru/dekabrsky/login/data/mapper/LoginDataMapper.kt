@@ -3,9 +3,11 @@ package ru.dekabrsky.login.data.mapper
 import android.util.Base64
 import ru.dekabrsky.italks.tabs.domain.UserType
 import ru.dekabrsky.login.data.model.CredentialsRequest
+import ru.dekabrsky.login.data.model.LoginLevelResponse
 import ru.dekabrsky.login.data.model.RegistrationRequest
 import ru.dekabrsky.login.data.model.UserInfoResponse
 import ru.dekabrsky.login.domain.model.UserInfoEntity
+import ru.dekabrsky.login.domain.model.UserLoginLevelEntity
 import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 
@@ -33,7 +35,14 @@ class LoginDataMapper @Inject constructor() {
         return UserInfoEntity(
             id = response.id ?: 0,
             name = response.name ?: "",
-            role = UserType.valueByName(response.roleName?.uppercase())
+            role = UserType.valueByName(response.roleName?.uppercase()),
+            currentLevel = mapUserLevelInfo(response.currentLevel)
         )
     }
+
+    fun mapUserLevelInfo(response: LoginLevelResponse?) =
+      UserLoginLevelEntity(
+            score = response?.score ?: 0,
+            experience = response?.experience ?: 0
+        )
 }

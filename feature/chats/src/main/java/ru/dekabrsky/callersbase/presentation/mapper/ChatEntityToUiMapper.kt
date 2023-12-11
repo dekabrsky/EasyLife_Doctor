@@ -10,6 +10,7 @@ import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiDateTime
 import ru.dekabrsky.italks.basic.dateTime.formatDateToUiDate
 import ru.dekabrsky.italks.tabs.domain.UserType
 import ru.dekabrsky.login.domain.model.UserInfoEntity
+import ru.dekabrsky.login.domain.model.UserLoginLevelEntity
 import javax.inject.Inject
 
 class ChatEntityToUiMapper @Inject constructor() {
@@ -36,7 +37,8 @@ class ChatEntityToUiMapper @Inject constructor() {
 
     private fun mapUsersForChat(userForChatEntity: UserForChatEntity): ChatUiModel {
         return ChatUiModel( // todo сделать разыне модели под новый чат и сущесвтующий, и роль прибрать
-            secondUser = UserInfoEntity(userForChatEntity.id, userForChatEntity.name, UserType.PARENT),
+            secondUser = UserInfoEntity(userForChatEntity.id, userForChatEntity.name, UserType.PARENT,
+                currentLevel = UserLoginLevelEntity(0,0)),
             chatIsStarted = false
         )
     }
