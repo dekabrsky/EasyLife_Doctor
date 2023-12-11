@@ -16,8 +16,6 @@ import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.data.Progress
-import ru.dekabrsky.italks.game.data.ProgressDb
 import ru.dekabrsky.italks.game.databinding.FragmentFootballBinding
 import ru.dekabrsky.italks.game.view.FootballView
 import ru.dekabrsky.italks.game.view.presenter.FootballPresenter
@@ -195,7 +193,8 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
-                saveProgress()
+                presenter.saveProgress(40,true)
+                snackBarView(requireActivity().findViewById(R.id.football_layout))
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -209,7 +208,8 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
-                saveProgress()
+                presenter.saveProgress(40,true)
+                snackBarView(requireActivity().findViewById(R.id.football_layout))
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -224,7 +224,8 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
-                saveProgress()
+                presenter.saveProgress(40,true)
+                snackBarView(requireActivity().findViewById(R.id.football_layout))
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -239,7 +240,8 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
-                saveProgress()
+                presenter.saveProgress(40,true)
+                snackBarView(requireActivity().findViewById(R.id.football_layout))
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -253,7 +255,8 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
-                saveProgress()
+                presenter.saveProgress(40,true)
+                snackBarView(requireActivity().findViewById(R.id.football_layout))
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -267,7 +270,8 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
-                saveProgress()
+                presenter.saveProgress(40,true)
+                snackBarView(requireActivity().findViewById(R.id.football_layout))
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -281,7 +285,8 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
-                saveProgress()
+                presenter.saveProgress(40,true)
+                snackBarView(requireActivity().findViewById(R.id.football_layout))
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -295,7 +300,8 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.anim.repeatCount = LottieDrawable.REVERSE
                 viewBinding.anim.visibility = View.VISIBLE
                 pointsOfHuman++
-                saveProgress()
+                presenter.saveProgress(40,true)
+                snackBarView(requireActivity().findViewById(R.id.football_layout))
                 viewBinding.humanPoints.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
@@ -304,6 +310,15 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.restart.visibility = View.VISIBLE
             }
         }
+
+    private fun snackBarView(view: View){
+        val snackBar = Snackbar.make(view, "  Ты заработал 40 коинов", Snackbar.LENGTH_SHORT)
+        val snackBarLayout: View = snackBar.view
+        val textView: TextView =
+            snackBarLayout.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
+        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.coin_mini, 0, 0, 0)
+        snackBar.show()
+    }
 
     @get:SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")
     val isPCWinner: Unit
@@ -399,27 +414,6 @@ class FootballFragment : BasicFragment(), FootballView {
                 editor.apply()
             }
         }
-
-    private fun saveProgress(){
-        val db = ProgressDb.getDb(requireContext())
-        val item = Progress(null,
-            "Football",
-            40
-        )
-        Thread{
-            db.getDao().insertProgress(item)
-        }.start()
-        snackBarView(requireActivity().findViewById(R.id.football_layout))
-    }
-
-    private fun snackBarView(view: View){
-        val snackBar = Snackbar.make(view, "  Ты заработал 40 коинов", Snackbar.LENGTH_SHORT)
-        val snackBarLayout: View = snackBar.view
-        val textView: TextView =
-            snackBarLayout.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
-        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.coin_mini, 0, 0, 0)
-        snackBar.show()
-    }
 
     private fun hodAI() {
         val random = Random()

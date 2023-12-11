@@ -1,8 +1,5 @@
 package ru.dekabrsky.italks.game.view.fragment
 
-import android.media.MediaPlayer
-import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
@@ -70,6 +67,10 @@ class GameFlowFragment : BasicFlowFragment(), GameFlowView {
     override fun onFinallyFinished() {
         super.onFinallyFinished()
         Toothpick.closeScope(scopeName)
+    }
+
+    override fun onBackPressed() {
+        presenter.onBackPressed()
     }
 
     fun setNavBarVisibility(isVisible: Boolean) {

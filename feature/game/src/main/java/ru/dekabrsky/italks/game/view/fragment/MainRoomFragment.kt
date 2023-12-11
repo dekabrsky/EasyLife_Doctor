@@ -1,10 +1,8 @@
 package ru.dekabrsky.italks.game.view.fragment
 
 import android.annotation.SuppressLint
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
@@ -12,7 +10,6 @@ import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.data.ProgressDb
 import ru.dekabrsky.italks.game.databinding.MainRoomLayoutBinding
 import ru.dekabrsky.italks.game.view.MainRoomView
 import ru.dekabrsky.italks.game.view.adapter.ShelfAdapter
@@ -66,12 +63,7 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
             binding.progressMedal.root.translationX = scrollX.toFloat()
             binding.scoreLayout.root.translationX = scrollX.toFloat()
         }
-        presenter.saveProgress(requireContext())
-        val db = ProgressDb.getDb(requireContext())
-        db.getDao().getCount().asLiveData().observe(viewLifecycleOwner){ list->
-            stringScore = list.toString()
-            binding.scoreLayout.scoreText.text = stringScore
-        }
+        binding.scoreLayout.scoreText.text = presenter.fullScore()
         if (stringScore == "" || stringScore.toInt() >= 0 || stringScore.toInt() < 5000) {
             level = 1
             presenter.onMedalClick()
