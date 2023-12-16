@@ -48,7 +48,7 @@ class PatientDetailsFragment: BasicFragment(), PatientDetailsView {
         binding.toolbar.setNavigationIcon(R.drawable.ic_round_arrow_back_24)
         binding.toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
         binding.linkedDialings.adapter = dialingsAdapter
-        (parentFragment as ScenariosFlowFragment).setNavBarVisibility(false)
+        (parentFragment as PatientsFlowFragment).setNavBarVisibility(false)
     }
 
 

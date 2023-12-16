@@ -1,9 +1,9 @@
 package ru.dekabrsky.callersbase.data.mapper
 
+import main.utils.orZero
 import org.threeten.bp.Instant
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneId
-import org.threeten.bp.format.DateTimeFormatter
 import ru.dekabrsky.callersbase.data.model.CallersBaseResponse
 import ru.dekabrsky.callersbase.data.model.ChatResponse
 import ru.dekabrsky.callersbase.data.model.ContentResponse
@@ -13,12 +13,12 @@ import ru.dekabrsky.callersbase.domain.model.ChatEntity
 import ru.dekabrsky.callersbase.domain.model.MessageEntity
 import ru.dekabrsky.callersbase.domain.model.UserForChatEntity
 import ru.dekabrsky.common.domain.model.CallersBaseEntity
+import ru.dekabrsky.italks.basic.dateTime.tryParseServerDate
+import ru.dekabrsky.italks.basic.dateTime.tryParseServerDateTime
 import ru.dekabrsky.login.data.mapper.LoginDataMapper
-import java.text.SimpleDateFormat
-import java.util.Locale
 import javax.inject.Inject
 
-class CallersBaseResponseToEntityMapper @Inject constructor(
+class ChatsResponseToEntityMapper @Inject constructor(
     private val userInfoMapper: LoginDataMapper
 ) {
     fun mapList(response: CallersBaseResponse): List<CallersBaseEntity> {
@@ -40,7 +40,7 @@ class CallersBaseResponseToEntityMapper @Inject constructor(
 
     fun mapChat(chat: ChatResponse): ChatEntity {
         return ChatEntity(
-            chatId = chat.chatId ?: 0,
+            chatId = chat.chatId.orZero(),
             firstUser = userInfoMapper.mapUserInfo(chat.firstUser),
             secondUser = userInfoMapper.mapUserInfo(chat.secondUser),
             messages = chat.messages?.map { mapMessage(it) } ?: emptyList()
@@ -52,11 +52,11 @@ class CallersBaseResponseToEntityMapper @Inject constructor(
             messageId = msg.messageId ?: 0,
             userId = msg.userId ?: 0,
             text = msg.text.orEmpty(),
-            createdDate = LocalDateTime.parse(msg.createdDate)
+            createdDate = msg.createdDate?.let { tryParseServerDateTime(it) } ?: LocalDateTime.now()
         )
     }
 
     fun mapUserForChat(response: UsersListIdNameResponse): List<UserForChatEntity> {
-        return response.users?.map { UserForChatEntity(it.id ?: 0, it.name.orEmpty()) }.orEmpty()
+        return response.users?.map { UserForChatEntity(it.id.orZero(), it.name.orEmpty()) }.orEmpty()
     }
 }

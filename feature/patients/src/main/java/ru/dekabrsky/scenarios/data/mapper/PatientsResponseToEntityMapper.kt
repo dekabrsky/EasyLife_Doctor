@@ -8,6 +8,6 @@ class PatientsResponseToEntityMapper @Inject constructor() {
     fun map(response: PatientCodeResponse) =
         PatientCodeEntity(
             patientCode = response.code.orEmpty(),
-            parentCode = response.parentCode.orEmpty()
+            parentCode = response.relatedCode
         )
 }

@@ -64,21 +64,7 @@ class PatientsListPresenter @Inject constructor(
         router.navigateTo(Flows.Patients.SCREEN_PATIENT_DETAILS, model)
     }
 
-    fun generatePatients(isMore15: Boolean) {
-        interactor.generateCode(isMore15.not())
-            .observeOn(RxSchedulers.main())
-            .withLoadingView(viewState)
-            .subscribe(::showAddPatientsResult, viewState::showError)
-            .addFullLifeCycle()
-    }
-
-    private fun showAddPatientsResult(patientCodeEntity: PatientCodeEntity) {
-        router.navigateTo(
-            Flows.Patients.SCREEN_PATIENTS_CODES,
-            PatientsCodesScreenArgs(
-                patientCode = patientCodeEntity.patientCode,
-                parentCode = patientCodeEntity.parentCode.ifEmpty { "-" }
-            )
-        )
+    fun onInviteClick() {
+        router.navigateTo(Flows.Patients.SCREEN_INVITE_PATIENT)
     }
 }

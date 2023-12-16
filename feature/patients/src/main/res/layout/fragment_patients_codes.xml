@@ -41,17 +41,20 @@
             tools:text="07895" />
 
         <TextView
+            android:id="@+id/parentCodeTitle"
             style="@style/TextView.Subtitle2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_medium"
             android:text="@string/code_parent"
-            android:layout_marginTop="@dimen/offset_medium"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/parentCode"
             style="@style/TextView.H4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             tools:text="03827" />
 
         <TextView
@@ -60,6 +63,13 @@
             android:layout_height="wrap_content"
             android:text="@string/close_codes_disclaimer"
             android:layout_marginTop="@dimen/offset_large" />
+
+        <Button
+            android:id="@+id/doneBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/offset_medium"
+            android:text="@string/done" />
 
     </LinearLayout>
 

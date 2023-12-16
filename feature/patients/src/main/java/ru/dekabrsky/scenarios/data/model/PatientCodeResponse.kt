@@ -5,6 +5,5 @@ import androidx.annotation.Keep
 @Keep
 class PatientCodeResponse(
     val code: String?,
-    val parentCode: String? = null,
-    val role: String?
+    val relatedCode: String? = null
 )

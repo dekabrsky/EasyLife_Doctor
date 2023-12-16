@@ -34,6 +34,7 @@ class Flows {
         const val SCREEN_PATIENTS_LIST = "SCREEN_SCENARIOS_LIST"
         const val SCREEN_PATIENT_DETAILS = "SCREEN_SCENARIO_DETAILS"
         const val SCREEN_PATIENTS_CODES = "SCREEN_PATIENTS_CODES"
+        const val SCREEN_INVITE_PATIENT = "SCREEN_INVITE_PATIENT"
     }
 
     object Stats : Flow("FLOW_STATS") {

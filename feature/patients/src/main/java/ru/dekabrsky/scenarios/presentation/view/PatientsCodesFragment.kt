@@ -2,6 +2,7 @@ package ru.dekabrsky.scenarios.presentation.view
 
 import android.os.Bundle
 import android.view.View
+import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
@@ -33,12 +34,18 @@ class PatientsCodesFragment: BasicFragment(), PatientsCodesView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.toolbar.setNavigationIcon(R.drawable.ic_round_arrow_back_24)
-        binding.toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
         model?.let {
             binding.patientCode.text = it.patientCode
-            binding.parentCode.text = it.parentCode
+            it.parentCode?.let {
+                binding.parentCode.visible()
+                binding.parentCodeTitle.visible()
+                binding.parentCode.text = it
+            }
+
         }
-        (parentFragment as ScenariosFlowFragment).setNavBarVisibility(false)
+        (parentFragment as PatientsFlowFragment).setNavBarVisibility(false)
+        binding.doneBtn.setOnClickListener { onBackPressed() }
     }
 
     override fun onBackPressed() { presenter.onBackPressed() }

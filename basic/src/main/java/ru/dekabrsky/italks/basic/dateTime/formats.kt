@@ -53,5 +53,11 @@ fun tryParseServerDate(date: String) = try {
     null
 }
 
+fun tryParseServerDateTime(date: String) = try {
+    LocalDateTime.parse(date, DateTimeFormatter.ISO_ZONED_DATE_TIME)
+} catch (e: DateTimeParseException) {
+    null
+}
+
 private const val MIN_TWO_DIGIT_MINUTE = 10
 const val SERVER_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss"

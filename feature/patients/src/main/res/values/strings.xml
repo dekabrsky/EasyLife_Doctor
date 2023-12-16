@@ -8,4 +8,10 @@
     <string name="patient_code">Код пациента</string>
     <string name="code_parent">Код законного представителя</string>
     <string name="close_codes_disclaimer">Внимание! Перед тем, как закрыть экран, убедитесь, что коды переданы пациентам</string>
+    <string name="patient_invitation">Приглашение пациента</string>
+    <string name="patient_name">Имя пациента</string>
+    <string name="patient_15_years_reached">Пациенту исполнилось 15 лет</string>
+    <string name="legal_representative_name">Имя законного представителя</string>
+    <string name="select_existing">Выбрать существующего</string>
+    <string name="lagal_representatives">Законные представители</string>
 </resources>

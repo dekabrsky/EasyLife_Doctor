@@ -71,6 +71,11 @@ class LoginFragment: BasicFragment(), LoginView {
         binding.editTextLogin.setText(lastLogin)
     }
 
+    override fun onPause() {
+        super.onPause()
+        hideKeyboard()
+    }
+
     companion object{
         fun newInstance() = LoginFragment()
     }
