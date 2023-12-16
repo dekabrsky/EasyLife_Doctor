@@ -1,18 +1,15 @@
 package ru.dekabrsky.callersbase.data.repository
 
 import io.reactivex.Observable
-import io.reactivex.Single
-import retrofit2.http.GET
 import ru.dekabrsky.callersbase.data.api.ContactsApi
-import ru.dekabrsky.callersbase.data.mapper.CallersBaseResponseToEntityMapper
+import ru.dekabrsky.callersbase.data.mapper.ChatsResponseToEntityMapper
 import ru.dekabrsky.callersbase.data.model.MessageRequest
-import ru.dekabrsky.callersbase.data.model.UserIdNameResponse
 import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import javax.inject.Inject
 
 class ContactsRepository @Inject constructor(
     private val api: ContactsApi,
-    private val mapper: CallersBaseResponseToEntityMapper
+    private val mapper: ChatsResponseToEntityMapper
 ){
     fun getCallersBases(direction: String, sortBy: String): Observable<List<CallersBaseEntity>> =
         api.getCallersBases(

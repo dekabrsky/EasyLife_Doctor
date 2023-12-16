@@ -21,7 +21,7 @@ import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class ScenariosFlowFragment : BasicFlowFragment(), ScenariosFlowView {
+class PatientsFlowFragment : BasicFlowFragment(), PatientsFlowView {
 
     override val layoutRes = R.layout.basic_fragment_flow
 
@@ -38,6 +38,8 @@ class ScenariosFlowFragment : BasicFlowFragment(), ScenariosFlowView {
                         PatientDetailsFragment.newInstance(data as ScenarioItemUiModel)
                     Flows.Patients.SCREEN_PATIENTS_CODES ->
                         PatientsCodesFragment.newInstance(data as PatientsCodesScreenArgs)
+                    Flows.Patients.SCREEN_INVITE_PATIENT ->
+                        InvitePatientFragment.newInstance()
                     SCREEN_BOTTOM_INFO -> SimpleInfoBottomSheet.newInstance(data as BottomSheetScreenArgs)
                     else -> super.createFragment(screenKey, data)
                 }
@@ -70,6 +72,6 @@ class ScenariosFlowFragment : BasicFlowFragment(), ScenariosFlowView {
     }
 
     companion object {
-        fun newInstance() = ScenariosFlowFragment()
+        fun newInstance() = PatientsFlowFragment()
     }
 }

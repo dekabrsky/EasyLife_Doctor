@@ -12,6 +12,7 @@
     <string name="elem_count">Кол-во элементов</string>
     <string name="info">Информация</string>
     <string name="save">Сохранить</string>
+    <string name="done">Готово</string>
 
     // pie chart
     <string name="success_finished">Успешно заверш.</string>

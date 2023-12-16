@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/StandardToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/patient_invitation"
+        app:titleTextColor="@color/white" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/patientNameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/offset_medium"
+        android:hint="@string/patient_name">
+
+        <EditText
+            android:id="@+id/patientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@id/parentName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Switch
+        android:id="@+id/patientAgeSwitch"
+        style="@style/TextView.Subtitle1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/offset_medium"
+        android:text="@string/patient_15_years_reached" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/parentNameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/offset_medium"
+        android:layout_marginTop="@dimen/offset_medium"
+        android:layout_marginBottom="@dimen/offset_small"
+        android:hint="@string/legal_representative_name">
+
+        <EditText
+            android:id="@+id/parentName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:imeOptions="actionDone" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/offset_medium">
+
+        <TextView
+            android:id="@+id/existingParent"
+            style="@style/TextView.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/select_existing"
+            android:textColor="@color/cyan_main"
+            android:background="?selectableItemBackground" />
+
+        <ImageView
+            android:id="@+id/existingParentCross"
+            android:layout_width="@dimen/icon_20"
+            android:layout_height="@dimen/icon_20"
+            android:src="@drawable/cross"
+            android:visibility="gone"
+            app:tint="@color/cyan_main"
+            tools:visibility="visible"
+            android:background="?selectableItemBackgroundBorderless" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/doneBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/offset_medium"
+        android:text="@string/done" />
+
+</LinearLayout>

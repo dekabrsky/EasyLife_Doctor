@@ -17,7 +17,7 @@ import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.italks.testerSettings.presentation.view.TesterSettingsFlowFragment
 import ru.dekabrsky.login.presentation.view.LoginFlowFragment
 import ru.dekabrsky.materials.presentation.view.MaterialsFlowFragment
-import ru.dekabrsky.scenarios.presentation.view.ScenariosFlowFragment
+import ru.dekabrsky.scenarios.presentation.view.PatientsFlowFragment
 import ru.dekabrsky.stats.presentation.view.StatsFlowFragment
 import javax.inject.Inject
 
@@ -31,7 +31,7 @@ class AppFlowFragmentProvider @Inject constructor() : FlowFragmentProvider {
                 ChatFlowFragment.newInstance(data as ChatsFlowScreenArgs)
             Flows.Notifications.name ->
                 NotificationFlowFragment.newInstance(data as NotificationsFlowArgs)
-            Flows.Patients.name -> ScenariosFlowFragment.newInstance()
+            Flows.Patients.name -> PatientsFlowFragment.newInstance()
             Flows.Events.name ->
                 DialingsFlowFragment.newInstance(data as EventsFlowScreenArgs)
             Flows.Stats.name ->

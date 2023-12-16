@@ -76,8 +76,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_cyan_border_bg"
                 android:imeOptions="actionNext"
+                android:nextFocusDown="@id/editTextLogin"
                 android:inputType="number"
-                android:maxLines="1" />
+                android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,8 +101,9 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_cyan_border_bg"
                 android:imeOptions="actionNext"
+                android:nextFocusDown="@id/editTextPassword"
                 android:inputType="text"
-                android:maxLines="1" />
+                android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,9 +127,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edit_text_cyan_border_bg"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:inputType="textPassword"
-                android:maxLines="1" />
+                android:singleLine="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

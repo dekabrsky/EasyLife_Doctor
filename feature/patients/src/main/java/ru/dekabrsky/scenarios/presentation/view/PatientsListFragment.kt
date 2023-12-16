@@ -47,20 +47,7 @@ class PatientsListFragment: BasicFragment(), PatientsListView {
         setHasOptionsMenu(true)
         binding.basesCardsList.adapter = adapter
         binding.toolbar.setTitle(R.string.scenarios_title)
-        binding.invitePatient.setOnClickListener {
-            showInviteCodeConfirmation()
-        }
-    }
-
-    private fun showInviteCodeConfirmation() {
-        AlertDialog.Builder(context)
-            .setTitle("Приглашение нового пациента")
-            .setMessage("Пациенту исполнилось 15 лет?")
-            .setPositiveButton("Да") { _, _ -> presenter.generatePatients(true) }
-            .setNegativeButton("Нет")  { _, _ -> presenter.generatePatients(false) }
-            .setNeutralButton("Отмена", null)
-            .setIcon(R.drawable.ic_round_group_24)
-            .show()
+        binding.invitePatient.setOnClickListener { presenter.onInviteClick() }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -74,7 +61,7 @@ class PatientsListFragment: BasicFragment(), PatientsListView {
 
     override fun onResume() {
         super.onResume()
-        (parentFragment as ScenariosFlowFragment).setNavBarVisibility(true)
+        (parentFragment as PatientsFlowFragment).setNavBarVisibility(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
