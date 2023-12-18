@@ -1,10 +1,5 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.presenter
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
-import android.os.Bundle
 import main.utils.isTrue
 import main.utils.orZero
 import org.threeten.bp.DayOfWeek
@@ -14,25 +9,32 @@ import ru.dekabrsky.feature.notifications.implementation.domain.interactor.Notif
 import ru.dekabrsky.feature.notifications.implementation.presentation.mapper.NotificationEntityToUiMapper
 import ru.dekabrsky.feature.notifications.implementation.presentation.model.NotificationEditUiModel
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationEditView
-import ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
-import java.util.Calendar
 import javax.inject.Inject
 
 class NotificationEditPresenter @Inject constructor(
     router: FlowRouter,
     private val interactor: NotificationInteractor,
     private val existingNotification: NotificationEntity,
-    private val mapper: NotificationEntityToUiMapper,
-    private val context: Context
+    private val mapper: NotificationEntityToUiMapper
 ) : BasicPresenter<NotificationEditView>(router) {
 
     private var notification = existingNotification.uid?.let {
         mapper.mapEntityToUi(existingNotification)
     } ?: NotificationEditUiModel()
+
+    private val daysInWeek = listOf(
+        DayOfWeek.SUNDAY,
+        DayOfWeek.MONDAY,
+        DayOfWeek.TUESDAY,
+        DayOfWeek.WEDNESDAY,
+        DayOfWeek.THURSDAY,
+        DayOfWeek.FRIDAY,
+        DayOfWeek.SATURDAY
+    )
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -40,9 +42,9 @@ class NotificationEditPresenter @Inject constructor(
             viewState.setNotesFields(it)
             it.hour?.let { hour -> it.minute?.let { minute -> onTimeSet(hour, minute) } }
             if (notification.selectedDays.isEmpty()) {
-                viewState.setSelectedDays(DayOfWeek.values().map { it.value })
+                viewState.setSelectedDays(daysInWeek.map { it.value % DAYS_IN_WEEK + 1 })
             } else {
-                viewState.setSelectedDays(it.selectedDays.map { it.value })
+                viewState.setSelectedDays(it.selectedDays.map { it.value % DAYS_IN_WEEK + 1 })
             }
             if (it.withDuration) {
                 viewState.setDurationFieldsVisibility(true)
@@ -80,7 +82,6 @@ class NotificationEditPresenter @Inject constructor(
                 .observeOn(RxSchedulers.main())
                 .withLoadingView(viewState)
                 .subscribe({
-                    dispatchEvent(it.uid, it)
                     onBackPressed()
                 }, { viewState.showError(it) })
                 .addFullLifeCycle()
@@ -89,13 +90,10 @@ class NotificationEditPresenter @Inject constructor(
                 .observeOn(RxSchedulers.main())
                 .withLoadingView(viewState)
                 .subscribe({
-                    dispatchEvent(existingNotification.uid, result)
                     onBackPressed()
                 }, { viewState.showError(it) })
                 .addFullLifeCycle()
         }
-
-
     }
 
     private fun validate(): Boolean {
@@ -116,39 +114,6 @@ class NotificationEditPresenter @Inject constructor(
         return true
     }
 
-    private fun dispatchEvent(id: Long? = null, notification: NotificationEntity) {
-        if (id == null) return
-        val hour = notification.hour
-        val minute = notification.minute
-
-        val calendar: Calendar = Calendar.getInstance()
-        calendar.timeInMillis = System.currentTimeMillis()
-
-        calendar.set(Calendar.HOUR_OF_DAY, hour)
-        calendar.set(Calendar.MINUTE, minute)
-        calendar.set(Calendar.SECOND, 0)
-
-        val notifyIntent = Intent(context, NotificationsReceiver::class.java)
-
-        notifyIntent.putExtras(
-            Bundle().apply {
-                putLong("NOTIFICATION_TIME", calendar.timeInMillis)
-                putLong("NOTIFICATION_ID", id)
-                putSerializable("NOTIFICATION", notification)
-            }
-        )
-
-        val notifyPendingIntent = PendingIntent.getBroadcast(
-            context,
-            id.toInt(),
-            notifyIntent,
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
-        )
-        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, notifyPendingIntent)
-    }
-
     fun onTimeSet(hourOfDay: Int, minute: Int) {
         notification.hour = hourOfDay
         notification.minute = minute
@@ -166,7 +131,7 @@ class NotificationEditPresenter @Inject constructor(
     }
 
     fun onCheckedDaysChanged(selectedDays: MutableList<Int>) {
-        notification.selectedDays = selectedDays.map { DayOfWeek.values()[it - 1] }
+        notification.selectedDays = selectedDays.map { daysInWeek[it - 1] }
     }
 
     fun onStartDateClick() =
@@ -190,5 +155,9 @@ class NotificationEditPresenter @Inject constructor(
 
     fun onEnabledCheckedChanged(checked: Boolean) {
         notification.enabled = checked
+    }
+
+    companion object {
+        private const val DAYS_IN_WEEK = 7
     }
 }
