@@ -8,10 +8,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import main.utils.orZero
-import ru.dekabrsky.feature.notifications.api.R
+import org.threeten.bp.LocalDateTime
 import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.util.sendNotification
 import java.util.Calendar
@@ -56,13 +55,18 @@ class NotificationsReceiver : BroadcastReceiver() {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-        notificationManager.sendNotification("Уведомление с ${notification?.weekDays?.count().orZero()} днями", context)
+
+        if (notification?.weekDays?.contains(LocalDateTime.now().dayOfWeek) == true) {
+            notificationManager.sendNotification(
+                "Уведомление с ${notification.weekDays.count().orZero()} днями",
+                context
+            )
+        }
+
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, notifyPendingIntent)
-
-        Toast.makeText(context, context.getText(R.string.easy_life_first_push_message), Toast.LENGTH_SHORT).show()
 
     }
 }
