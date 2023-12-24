@@ -3,4 +3,7 @@
     <string name="callers_bases_parameters">Параметры</string>
     <string name="this_base_assigned_to_dialings">Эта база данных прикреплена к обзваниваниям:</string>
     <string name="enter_message">Введите сообщение</string>
+    <string name="no_chats">Еще нет активных чатов</string>
+    <string name="no_contacts">Нет новых контактов</string>
+    <string name="start_chat_title">Начать диалог</string>
 </resources>

@@ -37,7 +37,7 @@ class TabsFlowPresenter @Inject constructor(
         router.preSetScreens(
             Flows.Chats.name to ChatsFlowScreenArgs(
                 Scopes.SCOPE_APP,
-                Flows.Chats.SCREEN_BASES_LIST
+                Flows.Chats.SCREEN_CHATS_LIST
             ),
             Flows.Patients.name to null,
             Flows.Events.name to EventsFlowScreenArgs(
@@ -64,7 +64,7 @@ class TabsFlowPresenter @Inject constructor(
                 Flows.Chats,
                 ChatsFlowScreenArgs(
                     Scopes.SCOPE_APP,
-                    Flows.Chats.SCREEN_BASES_LIST
+                    Flows.Chats.SCREEN_CHATS_LIST
                 )
             )
             R.id.events -> toggleScreen(

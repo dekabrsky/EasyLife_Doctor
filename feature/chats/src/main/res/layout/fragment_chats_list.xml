@@ -44,6 +44,7 @@
             app:tint="@color/grey_600" />
 
         <TextView
+            android:id="@+id/emptyLayoutMessage"
             style="@style/TextView.Subtitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,4 +53,26 @@
             android:textColor="@color/grey_600" />
 
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/startChat"
+        android:src="@drawable/ic_round_add_24"
+        app:tint="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="@color/cyan_main"
+        android:layout_margin="@dimen/offset_medium"
+        android:layout_alignParentRight="true"
+        app:fabSize="mini"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:id="@+id/loadingText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/loading"
+        android:visibility="gone" />
+
 </RelativeLayout>

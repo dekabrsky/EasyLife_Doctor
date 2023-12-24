@@ -44,8 +44,8 @@ class ChatEntityToUiMapper @Inject constructor() {
     }
 
     fun prepareChatsList(
-        users: List<UserForChatEntity>,
-        chats: List<ChatEntity>
+        users: List<UserForChatEntity> = listOf(),
+        chats: List<ChatEntity> = listOf()
     ): List<ChatUiModel> {
         val startedChats = chats.map { mapChat(it) }
         val startedChatsIds = startedChats.map { it.secondUser.id }

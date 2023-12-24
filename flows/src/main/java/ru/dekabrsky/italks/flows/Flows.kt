@@ -11,8 +11,9 @@ class Flows {
     }
 
     object Chats : Flow("FLOW_CALLERS_BASE") {
-        const val SCREEN_BASES_LIST = "SCREEN_BASES_LIST"
+        const val SCREEN_CHATS_LIST = "SCREEN_BASES_LIST"
         const val SCREEN_CHAT_CONVERSATION = "SCREEN_BASES_DETAILS"
+        const val SCREEN_CHAT_NEW_CONTACTS = "SCREEN_CHAT_NEW_CONTACTS"
     }
 
     object Notifications: Flow("FLOW_NOTIFICATIONS") {

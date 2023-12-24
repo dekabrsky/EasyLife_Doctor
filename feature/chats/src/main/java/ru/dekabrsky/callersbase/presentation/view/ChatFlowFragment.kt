@@ -5,6 +5,7 @@ import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.R
 import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
+import ru.dekabrsky.callersbase.presentation.model.ChatFlowCache
 import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.callersbase.presentation.presenter.ChatFlowPresenter
 import ru.dekabrsky.italks.basic.di.inject
@@ -33,9 +34,11 @@ class ChatFlowFragment : BasicFlowFragment(), ChatFlowView {
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
                 when (screenKey) {
-                    Flows.Chats.SCREEN_BASES_LIST -> ChatsListFragment.newInstance()
+                    Flows.Chats.SCREEN_CHATS_LIST -> ChatsListFragment.newInstance()
                     Flows.Chats.SCREEN_CHAT_CONVERSATION ->
                         ChatConversationFragment.newInstance(data as ChatConversationScreenArgs)
+                    Flows.Chats.SCREEN_CHAT_NEW_CONTACTS ->
+                        ChatNewContactsFragment.newInstance()
                     else -> super.createFragment(screenKey, data)
                 }
         }
@@ -49,7 +52,10 @@ class ChatFlowFragment : BasicFlowFragment(), ChatFlowView {
 
     override fun injectDependencies() {
         Toothpick.openScopes(args.parentScope, scopeName)
-            .module { bind(ChatsFlowScreenArgs::class.java).toInstance(args) }
+            .module {
+                bind(ChatsFlowScreenArgs::class.java).toInstance(args)
+                bind(ChatFlowCache::class.java).singletonInScope()
+            }
             .installNavigation()
             .inject(this)
     }
