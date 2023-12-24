@@ -5,7 +5,12 @@ import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 import ru.dekabrsky.italks.basic.fragments.BasicView
 
 @AddToEndSingle
-interface ChatsListView: BasicView {
+interface BaseChatsListView: BasicView {
     fun setChatsList(items: List<ChatUiModel>)
-    fun showEmptyLayout()
+    fun showEmptyLayout(isVisible: Boolean)
+    fun setLoadingViewVisibility(isVisible: Boolean)
 }
+
+interface ChatsListView: BaseChatsListView
+
+interface NewContactsListView: BaseChatsListView

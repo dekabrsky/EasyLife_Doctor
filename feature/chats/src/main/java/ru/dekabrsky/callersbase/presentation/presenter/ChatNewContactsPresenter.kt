@@ -1,45 +1,47 @@
 package ru.dekabrsky.callersbase.presentation.presenter
 
+import io.reactivex.Single
 import ru.dekabrsky.callersbase.domain.interactor.ContactsInteractorImpl
 import ru.dekabrsky.callersbase.presentation.mapper.ChatEntityToUiMapper
 import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
 import ru.dekabrsky.callersbase.presentation.model.ChatFlowCache
 import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 import ru.dekabrsky.callersbase.presentation.view.ChatsListView
+import ru.dekabrsky.callersbase.presentation.view.NewContactsListView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.Direction
+import ru.dekabrsky.italks.basic.network.utils.SortVariants
+import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
+import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.basic.rx.withLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.login.data.repository.LoginRepository
 import javax.inject.Inject
 
-class ChatsListPresenter @Inject constructor(
+class ChatNewContactsPresenter @Inject constructor(
     private val router: FlowRouter,
     private val interactor: ContactsInteractorImpl,
     private val uiMapper: ChatEntityToUiMapper,
     private val cache: ChatFlowCache
-) : BaseChatListPresenter<ChatsListView>(router, interactor) {
+) : BaseChatListPresenter<NewContactsListView>(router, interactor) {
 
     override fun load() {
-         interactor.getChats()
+        Single.zip(
+            interactor.getDoctors(),
+            interactor.getPatients(),
+            interactor.getChildren()
+        ) { doctors, patients, children -> doctors + patients + children }
             .observeOn(RxSchedulers.main())
             .withCustomLoadingViewIf(viewState::setLoadingViewVisibility, isFirstLoading)
-            .map { chats -> uiMapper.prepareChatsList(chats = chats) }
+            .map { users -> uiMapper.prepareChatsList(users = users.filter { it.id !in cache.existingCompanionIds }) }
             .subscribe(::dispatchLoading, viewState::showError)
             .addFullLifeCycle()
     }
 
-    override fun dispatchLoading(items: List<ChatUiModel>) {
-        cache.existingCompanionIds = items.map { it.secondUser.id }
-        super.dispatchLoading(items)
-    }
-
-    fun onStartChatClick() {
-        router.navigateTo(Flows.Chats.SCREEN_CHAT_NEW_CONTACTS)
-    }
-
     override fun navigateToChat(model: ChatUiModel) =
-        router.navigateTo(
+        router.replaceScreen(
             Flows.Chats.SCREEN_CHAT_CONVERSATION,
             ChatConversationScreenArgs(model.chatId, model.secondUser)
         )
