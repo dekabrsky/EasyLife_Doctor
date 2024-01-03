@@ -17,6 +17,7 @@ class ChatResponse(
 class MessageResponse(
     val messageId: Int?,
     val userId: Int?,
+    val chatId: Int?,
     val text: String?,
     val createdDate: String?
 )

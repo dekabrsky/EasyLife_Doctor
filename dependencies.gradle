@@ -47,7 +47,6 @@ ext.libraries = [
 
         moxyCompiler         : "com.github.moxy-community:moxy-compiler:$versions.moxy",
         toothpickCompiler    : "com.github.stephanenicolas.toothpick:toothpick-compiler:$versions.toothpick",
-        customizableCalendar : "ru.skblab.skbbank:customizable-calendar:$versions.customizableCalendar",
         material             : "com.google.android.material:material:$versions.material",
 
         cicerone             : "ru.terrakok.cicerone:cicerone:$versions.cicerone",

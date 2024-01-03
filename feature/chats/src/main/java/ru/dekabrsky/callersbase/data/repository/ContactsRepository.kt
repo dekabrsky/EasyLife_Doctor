@@ -3,13 +3,15 @@ package ru.dekabrsky.callersbase.data.repository
 import io.reactivex.Observable
 import ru.dekabrsky.callersbase.data.api.ContactsApi
 import ru.dekabrsky.callersbase.data.mapper.ChatsResponseToEntityMapper
-import ru.dekabrsky.callersbase.data.model.MessageRequest
+import ru.dekabrsky.callersbase.data.ws.ChatWsService
+import ru.dekabrsky.callersbase.domain.model.MessageEntity
 import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import javax.inject.Inject
 
 class ContactsRepository @Inject constructor(
     private val api: ContactsApi,
-    private val mapper: ChatsResponseToEntityMapper
+    private val mapper: ChatsResponseToEntityMapper,
+    private val wsService: ChatWsService
 ){
     fun getCallersBases(direction: String, sortBy: String): Observable<List<CallersBaseEntity>> =
         api.getCallersBases(
@@ -30,7 +32,10 @@ class ContactsRepository @Inject constructor(
 
     fun startChat(id: Int) = api.startChat(id)
 
-    fun getChat(id: Int) = api.getChat(id).map { mapper.mapChat(it) }
+    fun getChat(id: Int) = api.getChat(id).map(mapper::mapChat)
 
-    fun postMessage(chatId: Int, msg: String) = api.postMessage(MessageRequest(chatId, msg))
+    fun observeMessagesWs(chatId: Int): Observable<MessageEntity> =
+        wsService.subscribeMessages(chatId).map(mapper::mapMessage)
+
+    fun postMessageWs(chatId: Int, msg: String) = wsService.postMessage(chatId, msg)
 }

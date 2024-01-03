@@ -24,7 +24,25 @@ class MessageEntityToUiMapper @Inject constructor() {
             }
     }
 
-    fun mapMessageTime(date: LocalDateTime) =
+    fun mapMessage(message: MessageEntity, name: String): ChatMessageUiModel {
+        return ChatMessageUiModel(
+            userName = name,
+            isMyMessage = false,
+            message = message.text,
+            dateTime = mapMessageTime(message.createdDate)
+        )
+    }
+
+    fun mapMyMessage(text: String): ChatMessageUiModel {
+        return ChatMessageUiModel(
+            userName = "Я",
+            isMyMessage = true,
+            message = text,
+            dateTime = mapMessageTime(LocalDateTime.now())
+        )
+    }
+
+    private fun mapMessageTime(date: LocalDateTime) =
         if (date.toLocalDate().equals(LocalDate.now())) {
             formatDateTimeToUiTime(date)
         } else {

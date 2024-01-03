@@ -1,0 +1,24 @@
+apply from: Base
+
+android {
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    dependenciesSet(this) {
+        retrofit()
+        rxJava()
+        toothpick()
+        gson()
+    }
+
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.3.1'
+
+    implementation project(':basic')
+    implementation project(':flows')
+    implementation project(':uikit')
+    implementation project(':scopes')
+}

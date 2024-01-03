@@ -7,3 +7,6 @@ annotation class ServerEndpoint
 
 @Qualifier
 annotation class NotificationDatabaseQualifier
+
+@Qualifier
+annotation class WSOkHttpClient

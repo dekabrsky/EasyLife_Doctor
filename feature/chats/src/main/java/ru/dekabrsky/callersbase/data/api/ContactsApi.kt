@@ -8,8 +8,6 @@ import ru.dekabrsky.callersbase.data.model.CallersBaseResponse
 import ru.dekabrsky.callersbase.data.model.ChatResponse
 import ru.dekabrsky.callersbase.data.model.ChatsListResponse
 import ru.dekabrsky.callersbase.data.model.ContentResponse
-import ru.dekabrsky.callersbase.data.model.MessageRequest
-import ru.dekabrsky.callersbase.data.model.UserIdNameResponse
 import ru.dekabrsky.callersbase.data.model.UsersListIdNameResponse
 import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.italks.basic.network.utils.Direction
@@ -43,7 +41,4 @@ interface ContactsApi {
 
     @GET("chats")
     fun getChats(): Single<ChatsListResponse>
-
-    @POST("chats/messages")
-    fun postMessage(@Body message: MessageRequest): Completable
 }
