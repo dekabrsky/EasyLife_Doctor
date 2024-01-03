@@ -24,5 +24,7 @@ class ContactsInteractorImpl @Inject constructor(
 
     fun getChat(id: Int) = repository.getChat(id)
 
-    fun postMessage(chatId: Int, msg: String) = repository.postMessage(chatId, msg)
+    fun observeMessagesWs(chatId: Int) = repository.observeMessagesWs(chatId)
+
+    fun postMessageWs(chatId: Int, msg: String) = repository.postMessageWs(chatId, msg)
 }

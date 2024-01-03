@@ -26,6 +26,8 @@ import ru.dekabrsky.italks.navigation.AppFlowFragmentProvider
 import ru.dekabrsky.feature.notifications.implementation.provider.NotificationManagerCompatProvider
 import ru.dekabrsky.feature.notifications.implementation.provider.AppActivityProvider
 import ru.dekabrsky.italks.activity.provider.AppActivityProviderImpl
+import ru.dekabrsky.italks.basic.di.WSOkHttpClient
+import ru.dekabrsky.ws.implementation2.WsService
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
 import ru.terrakok.cicerone.Router
@@ -73,6 +75,7 @@ class NetworkModule : Module() {
 
         bind(Retrofit::class.java).toProvider(RetrofitProvider::class.java)
         bind(OkHttpClient::class.java).toProvider(OkHttpClientProvider::class.java)
+        bind(OkHttpClient::class.java).withName(WSOkHttpClient::class.java).toProvider(OkHttpClientProvider::class.java)
 
         bind(CallAdapter.Factory::class.java).toProvider(CallAdapterFactoryProvider::class.java)
             .providesSingletonInScope()
@@ -80,6 +83,8 @@ class NetworkModule : Module() {
             .singletonInScope()
         bind(CookieManager::class.java).toInstance(CookieManager())
         bind(CookieJar::class.java).toProvider(CookieJarProvider::class.java).providesSingletonInScope()
+
+        bind(WsService::class.java).singletonInScope()
     }
 }
 

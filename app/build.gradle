@@ -52,6 +52,7 @@ android {
 dependencies {
 
     implementation project(path: ':feature:notifications:common')
+    implementation project(path: ':feature:ws:implementation2')
     dependenciesSet(this) {
         room()
     }

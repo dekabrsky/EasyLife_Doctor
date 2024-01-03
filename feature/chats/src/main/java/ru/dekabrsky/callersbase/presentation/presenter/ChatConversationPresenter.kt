@@ -1,6 +1,5 @@
 package ru.dekabrsky.callersbase.presentation.presenter
 
-import io.reactivex.Observable
 import org.threeten.bp.LocalDateTime
 import ru.dekabrsky.callersbase.domain.interactor.ContactsInteractorImpl
 import ru.dekabrsky.callersbase.presentation.mapper.MessageEntityToUiMapper
@@ -10,7 +9,8 @@ import ru.dekabrsky.callersbase.presentation.view.ChatConversationView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
-import java.util.concurrent.TimeUnit
+import ru.dekabrsky.italks.basic.rx.withLoadingView
+import ru.dekabrsky.ws.implementation2.WsService
 import javax.inject.Inject
 
 class ChatConversationPresenter @Inject constructor(
@@ -20,7 +20,7 @@ class ChatConversationPresenter @Inject constructor(
     private val router: FlowRouter
 ) : BasicPresenter<ChatConversationView>(router) {
 
-    private var isFirstLoading = true
+    private val messages = mutableListOf<ChatMessageUiModel>()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -29,18 +29,31 @@ class ChatConversationPresenter @Inject constructor(
     }
 
     private fun loadMessages() {
-        Observable.interval(UPDATING_DELAY, TimeUnit.SECONDS).startWith(0)
-            .flatMapSingle { interactor.getChat(args.companion.id) }
+        interactor.getChat(args.companion.id)
             .observeOn(RxSchedulers.main())
-            .doOnSubscribe { if (isFirstLoading) viewState.setLoadingVisibility(true) }
-            .doOnNext {
-                isFirstLoading = false
-                viewState.setLoadingVisibility(false)
-            }
-            .doFinally { viewState.setLoadingVisibility(false) }
+            .withLoadingView(viewState)
             .map(mapper::map)
-            .subscribe(viewState::setMessages, viewState::showError)
+            .subscribe(::onMessagesLoaded, viewState::showError)
             .addFullLifeCycle()
+    }
+
+    private fun onMessagesLoaded(messages: List<ChatMessageUiModel>) {
+        this.messages.addAll(messages)
+        updateViewMessages()
+
+        interactor.observeMessagesWs(args.chatId)
+            .observeOn(RxSchedulers.main())
+            .map { mapper.mapMessage(it, args.companion.name) }
+            .subscribe({
+//                this.messages.add(it)
+//                updateViewMessages()
+                       viewState.addMessage(it)
+            }, viewState::showError)
+            .addFullLifeCycle()
+    }
+
+    private fun updateViewMessages() {
+        viewState.setMessages(messages)
     }
 
     fun postMessage(msg: String) {
@@ -49,21 +62,9 @@ class ChatConversationPresenter @Inject constructor(
             return
         }
 
-        interactor.postMessage(args.chatId, msg)
-            .observeOn(RxSchedulers.main())
-            .subscribe({
-                val uiMsg = ChatMessageUiModel(
-                    userName = "Я",
-                    isMyMessage = true,
-                    message = msg,
-                    dateTime = mapper.mapMessageTime(LocalDateTime.now())
-                )
-                viewState.addMessage(uiMsg)
-            }, viewState::showError)
-            .addFullLifeCycle()
-    }
-
-    companion object {
-        private const val UPDATING_DELAY = 15L
+        interactor.postMessageWs(args.chatId, msg)
+//        messages.add(mapper.mapMyMessage(msg))
+//        updateViewMessages()
+        viewState.addMessage(mapper.mapMyMessage(msg))
     }
 }
