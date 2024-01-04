@@ -1,12 +1,12 @@
-package ru.dekabrsky.login.data.model
+package ru.dekabrsky.feature.loginCommon.data.model
 
 import androidx.annotation.Keep
 
 @Keep
 class UserInfoResponse(
-    val id: Int? = 0,
-    val name: String? = "",
-    val roleName: String? = "",
+    val id: Int?,
+    val name: String?,
+    val roleId: Int?,
     val currentLevel: LoginLevelResponse?
 )
 

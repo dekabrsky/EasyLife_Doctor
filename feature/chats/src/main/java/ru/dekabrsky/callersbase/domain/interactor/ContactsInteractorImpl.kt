@@ -18,7 +18,7 @@ class ContactsInteractorImpl @Inject constructor(
 
     fun getPatients() = repository.getPatients()
 
-    fun getChildren() = repository.getChildren()
+    override fun getChildren() = repository.getChildren()
 
     fun startChat(id: Int) = repository.startChat(id)
 

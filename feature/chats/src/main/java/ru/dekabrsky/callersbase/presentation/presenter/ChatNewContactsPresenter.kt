@@ -17,7 +17,6 @@ import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.basic.rx.withLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.login.data.repository.LoginRepository
 import javax.inject.Inject
 
 class ChatNewContactsPresenter @Inject constructor(

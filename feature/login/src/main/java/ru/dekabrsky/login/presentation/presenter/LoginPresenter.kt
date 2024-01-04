@@ -1,5 +1,6 @@
 package ru.dekabrsky.login.presentation.presenter
 
+import ru.dekabrsky.feature.loginCommon.domain.interactor.LoginInteractor
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
@@ -7,13 +8,14 @@ import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.login.data.repository.LoginRepository
+import ru.dekabrsky.login.domain.interactor.LoginInteractorImpl
 import ru.dekabrsky.login.presentation.view.LoginView
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import javax.inject.Inject
 
 class LoginPresenter @Inject constructor(
     private val router: FlowRouter,
-    private val repository: LoginRepository,
+    private val interactor: LoginInteractorImpl,
     private val sharedPreferencesProvider: SharedPreferencesProvider
 ): BasicPresenter<LoginView>() {
 
@@ -40,7 +42,7 @@ class LoginPresenter @Inject constructor(
     fun onDoneButtonClick() {
         when (mode) {
             LoginMode.LOGIN -> {
-                repository.login(currentLogin, currentPassword)
+                interactor.login(currentLogin, currentPassword)
                     .observeOn(RxSchedulers.main())
                     .withLoadingView(viewState)
                     .subscribe({
@@ -50,7 +52,7 @@ class LoginPresenter @Inject constructor(
                 if (lastLogin != currentLogin) sharedPreferencesProvider.lastLogin.set(currentLogin)
             }
             LoginMode.REGISTRATION -> {
-                repository.registration(currentCode, currentLogin, currentPassword)
+                interactor.registration(currentCode, currentLogin, currentPassword)
                     .observeOn(RxSchedulers.main())
                     .withLoadingView(viewState)
                     .subscribe({

@@ -17,7 +17,7 @@
         style="@style/TextView.OverLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Моя учетная запись"
+        tools:text="Моя учетная запись"
         android:textColor="@color/grey_600" />
 
     <TextView
@@ -26,14 +26,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/offset_tiny"
-        android:text="Матафонов Денис" />
+        tools:text="Иванов Иван" />
 
     <TextView
         android:id="@+id/speciality"
         style="@style/TextView.Subtitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Врач-тестер"
+        tools:text="Врач-тестер"
         android:textColor="@color/grey_600" />
 
 </LinearLayout>

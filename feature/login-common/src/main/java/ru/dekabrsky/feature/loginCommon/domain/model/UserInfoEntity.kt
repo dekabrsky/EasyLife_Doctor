@@ -1,7 +1,5 @@
-package ru.dekabrsky.login.domain.model
+package ru.dekabrsky.feature.loginCommon.domain.model
 
-import ru.dekabrsky.italks.tabs.domain.UserType
-import ru.dekabrsky.login.data.model.LoginLevelResponse
 import java.io.Serializable
 
 class UserInfoEntity(

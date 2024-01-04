@@ -1,17 +1,19 @@
 package ru.dekabrsky.login.data.mapper
 
 import android.util.Base64
-import ru.dekabrsky.italks.tabs.domain.UserType
+import main.utils.orZero
+import ru.dekabrsky.feature.loginCommon.data.mapper.LoginDataMapper
+import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.login.data.model.CredentialsRequest
-import ru.dekabrsky.login.data.model.LoginLevelResponse
+import ru.dekabrsky.feature.loginCommon.data.model.LoginLevelResponse
 import ru.dekabrsky.login.data.model.RegistrationRequest
-import ru.dekabrsky.login.data.model.UserInfoResponse
-import ru.dekabrsky.login.domain.model.UserInfoEntity
-import ru.dekabrsky.login.domain.model.UserLoginLevelEntity
+import ru.dekabrsky.feature.loginCommon.data.model.UserInfoResponse
+import ru.dekabrsky.feature.loginCommon.domain.model.UserInfoEntity
+import ru.dekabrsky.feature.loginCommon.domain.model.UserLoginLevelEntity
 import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 
-class LoginDataMapper @Inject constructor() {
+class LoginDataMapperImpl @Inject constructor(): LoginDataMapper {
     fun mapCredentials(login: String, password: String): CredentialsRequest {
         return CredentialsRequest(
             credentials = String(
@@ -31,18 +33,18 @@ class LoginDataMapper @Inject constructor() {
         )
     }
 
-    fun mapUserInfo(response: UserInfoResponse): UserInfoEntity {
+    override fun mapUserInfo(response: UserInfoResponse): UserInfoEntity {
         return UserInfoEntity(
-            id = response.id ?: 0,
-            name = response.name ?: "",
-            role = UserType.valueByName(response.roleName?.uppercase()),
+            id = response.id.orZero(),
+            name = response.name.orEmpty(),
+            role = UserType.valueByServerId(response.roleId),
             currentLevel = mapUserLevelInfo(response.currentLevel)
         )
     }
 
-    fun mapUserLevelInfo(response: LoginLevelResponse?) =
+    private fun mapUserLevelInfo(response: LoginLevelResponse?) =
       UserLoginLevelEntity(
-            score = response?.score ?: 0,
-            experience = response?.experience ?: 0
+            score = response?.score.orZero(),
+            experience = response?.experience.orZero()
         )
 }

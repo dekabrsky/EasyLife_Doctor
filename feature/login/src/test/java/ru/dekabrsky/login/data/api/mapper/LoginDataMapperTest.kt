@@ -2,16 +2,14 @@ package ru.dekabrsky.login.data.api.mapper
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import ru.dekabrsky.italks.tabs.domain.UserType
-import ru.dekabrsky.login.data.mapper.LoginDataMapper
-import ru.dekabrsky.login.data.model.CredentialsRequest
-import ru.dekabrsky.login.data.model.UserInfoResponse
-import ru.dekabrsky.login.domain.model.UserInfoEntity
-import java.util.*
+import ru.dekabrsky.feature.loginCommon.domain.model.UserType
+import ru.dekabrsky.login.data.mapper.LoginDataMapperImpl
+import ru.dekabrsky.feature.loginCommon.data.model.UserInfoResponse
+import ru.dekabrsky.feature.loginCommon.domain.model.UserInfoEntity
 
 class LoginDataMapperTest {
 
-    private val mapper = LoginDataMapper()
+    private val mapper = LoginDataMapperImpl()
 
 //    @Test
 //    fun mapCredentials() {

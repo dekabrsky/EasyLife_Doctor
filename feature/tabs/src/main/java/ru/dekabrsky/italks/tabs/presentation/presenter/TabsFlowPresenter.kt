@@ -9,7 +9,7 @@ import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.feature.tabs.R
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.italks.tabs.domain.UserType
+import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.italks.tabs.presentation.view.TabsFlowView
 import javax.inject.Inject
@@ -27,10 +27,10 @@ class TabsFlowPresenter @Inject constructor(
 
         viewState.setTabsByRole(
             when (args.userType) {
-                UserType.DOCTOR -> R.menu.doctor_tabs_menu
-                UserType.PATIENT -> R.menu.patient_tabs_menu
-                UserType.PARENT -> R.menu.parent_tabs_menu
-                UserType.CHILD -> R.menu.child_tabs_menu
+                ru.dekabrsky.feature.loginCommon.domain.model.UserType.DOCTOR -> R.menu.doctor_tabs_menu
+                ru.dekabrsky.feature.loginCommon.domain.model.UserType.PATIENT -> R.menu.patient_tabs_menu
+                ru.dekabrsky.feature.loginCommon.domain.model.UserType.PARENT -> R.menu.parent_tabs_menu
+                ru.dekabrsky.feature.loginCommon.domain.model.UserType.CHILD -> R.menu.child_tabs_menu
             }
         )
 
@@ -51,10 +51,10 @@ class TabsFlowPresenter @Inject constructor(
             Flows.Notifications.name to NotificationsFlowArgs(Scopes.SCOPE_APP)
         )
         when (args.userType) {
-           UserType.DOCTOR -> toggleScreen(Flows.Events)
-            UserType.PATIENT -> toggleScreen(Flows.Game)
-            UserType.PARENT -> toggleScreen(Flows.Chats)
-            UserType.CHILD -> toggleScreen(Flows.Game)
+           ru.dekabrsky.feature.loginCommon.domain.model.UserType.DOCTOR -> toggleScreen(Flows.Events)
+            ru.dekabrsky.feature.loginCommon.domain.model.UserType.PATIENT -> toggleScreen(Flows.Game)
+            ru.dekabrsky.feature.loginCommon.domain.model.UserType.PARENT -> toggleScreen(Flows.Chats)
+            ru.dekabrsky.feature.loginCommon.domain.model.UserType.CHILD -> toggleScreen(Flows.Game)
         }
     }
 

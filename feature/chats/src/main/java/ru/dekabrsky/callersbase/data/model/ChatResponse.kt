@@ -1,7 +1,7 @@
 package ru.dekabrsky.callersbase.data.model
 
 import androidx.annotation.Keep
-import ru.dekabrsky.login.data.model.UserInfoResponse
+import ru.dekabrsky.feature.loginCommon.data.model.UserInfoResponse
 
 @Keep
 class ChatsListResponse(val chats: List<ChatResponse>)

@@ -1,0 +1,17 @@
+apply from: Base
+
+android {
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    dependenciesSet(this) {
+        rxJava()
+        toothpick()
+    }
+
+    implementation project(':basic')
+}

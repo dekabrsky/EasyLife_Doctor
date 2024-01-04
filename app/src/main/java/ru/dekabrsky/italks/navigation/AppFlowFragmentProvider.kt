@@ -18,7 +18,7 @@ import ru.dekabrsky.italks.testerSettings.presentation.view.TesterSettingsFlowFr
 import ru.dekabrsky.login.presentation.view.LoginFlowFragment
 import ru.dekabrsky.materials.presentation.view.MaterialsFlowFragment
 import ru.dekabrsky.scenarios.presentation.view.PatientsFlowFragment
-import ru.dekabrsky.stats.presentation.view.StatsFlowFragment
+import ru.dekabrsky.stats.presentation.view.AdultProfileFlowFragment
 import javax.inject.Inject
 
 class AppFlowFragmentProvider @Inject constructor() : FlowFragmentProvider {
@@ -35,7 +35,7 @@ class AppFlowFragmentProvider @Inject constructor() : FlowFragmentProvider {
             Flows.Events.name ->
                 DialingsFlowFragment.newInstance(data as EventsFlowScreenArgs)
             Flows.Stats.name ->
-                StatsFlowFragment.newInstance()
+                AdultProfileFlowFragment.newInstance()
             Flows.TesterSettings.name ->
                 TesterSettingsFlowFragment.newInstance()
             Flows.Materials.name ->

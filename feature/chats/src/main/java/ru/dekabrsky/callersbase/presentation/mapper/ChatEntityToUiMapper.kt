@@ -2,15 +2,15 @@ package ru.dekabrsky.callersbase.presentation.mapper
 
 import ru.dekabrsky.callersbase.domain.model.ChatEntity
 import ru.dekabrsky.callersbase.domain.model.MessageEntity
-import ru.dekabrsky.callersbase.domain.model.UserForChatEntity
+import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import ru.dekabrsky.common.presentation.model.CallersBaseUiModel
 import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiDateTime
 import ru.dekabrsky.italks.basic.dateTime.formatDateToUiDate
-import ru.dekabrsky.italks.tabs.domain.UserType
-import ru.dekabrsky.login.domain.model.UserInfoEntity
-import ru.dekabrsky.login.domain.model.UserLoginLevelEntity
+import ru.dekabrsky.feature.loginCommon.domain.model.UserType
+import ru.dekabrsky.feature.loginCommon.domain.model.UserInfoEntity
+import ru.dekabrsky.feature.loginCommon.domain.model.UserLoginLevelEntity
 import javax.inject.Inject
 
 class ChatEntityToUiMapper @Inject constructor() {
@@ -35,16 +35,17 @@ class ChatEntityToUiMapper @Inject constructor() {
         )
     }
 
-    private fun mapUsersForChat(userForChatEntity: UserForChatEntity): ChatUiModel {
+    private fun mapUsersForChat(userForChatEntity: ContactEntity): ChatUiModel {
         return ChatUiModel( // todo сделать разыне модели под новый чат и сущесвтующий, и роль прибрать
             secondUser = UserInfoEntity(userForChatEntity.id, userForChatEntity.name, UserType.PARENT,
-                currentLevel = UserLoginLevelEntity(0,0)),
+                currentLevel = UserLoginLevelEntity(0,0)
+            ),
             chatIsStarted = false
         )
     }
 
     fun prepareChatsList(
-        users: List<UserForChatEntity> = listOf(),
+        users: List<ContactEntity> = listOf(),
         chats: List<ChatEntity> = listOf()
     ): List<ChatUiModel> {
         val startedChats = chats.map { mapChat(it) }
