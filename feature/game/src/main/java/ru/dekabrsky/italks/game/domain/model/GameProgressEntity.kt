@@ -4,14 +4,14 @@ package ru.dekabrsky.italks.game.domain.model
 class GameProgressEntity (
     val score: Int,
     val experience: Int,
-    val currentLevel: GameLevelResponseEntity,
-    val nextLevel: GameLevelResponseEntity,
-    val levelUpgraded: Boolean,
-    val maxLevelReached: Boolean
+    val currentLevel: GameLevelResponseEntity = GameLevelResponseEntity(),
+    val nextLevel: GameLevelResponseEntity = GameLevelResponseEntity(),
+    val levelUpgraded: Boolean = false,
+    val maxLevelReached: Boolean = false
 )
 
 class GameLevelResponseEntity (
-    val id: Int,
-    val nextLevelExperience: Int
+    val id: Int = 0,
+    val nextLevelExperience: Int = 0
 )
 

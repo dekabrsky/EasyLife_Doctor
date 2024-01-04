@@ -28,6 +28,7 @@ dependencies {
     implementation project(':scopes')
     implementation project(':uikit')
     implementation project(':flows')
-    implementation project(':feature:login')
+    implementation project(':feature:login-common')
+    implementation project(':feature:chats-common')
     implementation project(':feature:tabs')
 }

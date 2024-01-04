@@ -11,31 +11,31 @@ import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.stats.R
-import ru.dekabrsky.stats.presentation.presenter.StatsFlowPresenter
+import ru.dekabrsky.stats.presentation.presenter.AdultProfileFlowPresenter
 import toothpick.Toothpick
 import javax.inject.Inject
 
-class StatsFlowFragment: BasicFlowFragment(), StatsFlowView {
+class AdultProfileFlowFragment: BasicFlowFragment(), AdultProfileFlowView {
 
     override val layoutRes = R.layout.basic_fragment_flow
 
     override val containerId = R.id.flowContainer
 
-    override val scopeName = Scopes.SCOPE_FLOW_STATS
+    override val scopeName = Scopes.SCOPE_FLOW_ADULT_PROFILE
 
     @Suppress("UseIfInsteadOfWhen")
     override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
                 when (screenKey) {
-                    Flows.Stats.SCREEN_MAIN_STATS -> StatsFragment.newInstance()
+                    Flows.Stats.SCREEN_MAIN_STATS -> AdultProfileFragment.newInstance()
                     else -> super.createFragment(screenKey, data)
                 }
         }
 
     @Inject
     @InjectPresenter
-    lateinit var presenter: StatsFlowPresenter
+    lateinit var presenter: AdultProfileFlowPresenter
 
     @ProvidePresenter
     fun providePresenter() = presenter
@@ -56,6 +56,6 @@ class StatsFlowFragment: BasicFlowFragment(), StatsFlowView {
     }
 
     companion object {
-        fun newInstance() = StatsFlowFragment()
+        fun newInstance() = AdultProfileFlowFragment()
     }
 }

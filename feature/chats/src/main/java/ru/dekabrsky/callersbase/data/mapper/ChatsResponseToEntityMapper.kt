@@ -11,11 +11,10 @@ import ru.dekabrsky.callersbase.data.model.MessageResponse
 import ru.dekabrsky.callersbase.data.model.UsersListIdNameResponse
 import ru.dekabrsky.callersbase.domain.model.ChatEntity
 import ru.dekabrsky.callersbase.domain.model.MessageEntity
-import ru.dekabrsky.callersbase.domain.model.UserForChatEntity
+import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.domain.model.CallersBaseEntity
-import ru.dekabrsky.italks.basic.dateTime.tryParseServerDate
+import ru.dekabrsky.feature.loginCommon.data.mapper.LoginDataMapper
 import ru.dekabrsky.italks.basic.dateTime.tryParseServerDateTime
-import ru.dekabrsky.login.data.mapper.LoginDataMapper
 import javax.inject.Inject
 
 class ChatsResponseToEntityMapper @Inject constructor(
@@ -56,7 +55,7 @@ class ChatsResponseToEntityMapper @Inject constructor(
         )
     }
 
-    fun mapUserForChat(response: UsersListIdNameResponse): List<UserForChatEntity> {
-        return response.users?.map { UserForChatEntity(it.id.orZero(), it.name.orEmpty()) }.orEmpty()
+    fun mapUserForChat(response: UsersListIdNameResponse): List<ContactEntity> {
+        return response.users?.map { ContactEntity(it.id.orZero(), it.name.orEmpty()) }.orEmpty()
     }
 }

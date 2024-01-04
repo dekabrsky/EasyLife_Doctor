@@ -1,9 +1,7 @@
 package ru.dekabrsky.callersbase.domain.model
 
 import org.threeten.bp.LocalDateTime
-import ru.dekabrsky.login.data.model.UserInfoResponse
-import ru.dekabrsky.login.domain.model.UserInfoEntity
-import java.time.LocalDate
+import ru.dekabrsky.feature.loginCommon.domain.model.UserInfoEntity
 
 class ChatEntity(
     val chatId: Int,
