@@ -2,8 +2,6 @@ package ru.dekabrsky.feature.notifications.implementation.data.repository
 
 import main.utils.orZero
 import ru.dekabrsky.feature.notifications.implementation.data.api.NotificationApi
-import ru.dekabrsky.feature.notifications.implementation.data.dao.NotificationDao
-import ru.dekabrsky.feature.notifications.implementation.data.mapper.NotificationDbToEntityMapper
 import ru.dekabrsky.feature.notifications.implementation.data.mapper.NotificationResponseToEntityMapper
 import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import javax.inject.Inject
@@ -16,7 +14,7 @@ class NotificationApiRepository @Inject constructor(
 //    private val dbRepository: NotificationRepository
 ) {
 
-    fun getAll() = api.getNotifications().map { list -> list.map { mapper.mapResponseToEntity(it) } }
+    fun getAll() = api.getNotifications().map { list -> list.sortedBy { it.time }.map { mapper.mapResponseToEntity(it) } }
 //    На случай, если нужно будет сохранять в бд
 //    fun getAll() =
 //        api

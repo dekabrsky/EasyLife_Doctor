@@ -42,7 +42,7 @@ class NotificationsReceiver : BroadcastReceiver() {
 
         notifyIntent.putExtras(
             Bundle().apply {
-                putLong("NOTIFICATION_TIME", dateTime)
+                putLong("NOTIFICATION_TIME", calendar.timeInMillis)
                 putLong("NOTIFICATION_ID", id)
                 putSerializable("NOTIFICATION", notification)
             }
@@ -55,14 +55,12 @@ class NotificationsReceiver : BroadcastReceiver() {
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
 
-
         if (notification?.weekDays?.contains(LocalDateTime.now().dayOfWeek) == true) {
             notificationManager.sendNotification(
                 "Уведомление с ${notification.weekDays.count().orZero()} днями",
                 context
             )
         }
-
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
