@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable
+import ru.dekabrsky.italks.game.domain.interactor.GameInteractor
 import java.util.*
 
 
@@ -58,6 +59,7 @@ class FlappyBird: Game() {
 
     interface MyGameCallback {
         fun exitGame()
+        fun onLost(score: Int)
     }
 
     fun setMyGameCallback(callback: MyGameCallback) {
@@ -172,6 +174,8 @@ class FlappyBird: Game() {
             batch.draw(gameOver,
                     gdxWidth / 2f - gameOver.width / 2f,
                     gdxHeight / 2f - gameOver.height / 2f)
+
+            myGameCallback.onLost(score)
 
             if (Gdx.input.justTouched()) {
                 gameState = 1

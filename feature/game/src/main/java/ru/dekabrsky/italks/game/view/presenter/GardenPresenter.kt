@@ -52,7 +52,7 @@ class GardenPresenter @Inject constructor(
                     subtitle = flappyInfo.description,
                     mode = BottomSheetMode.GAME,
                     icon = R.drawable.bird,
-                    buttonState = ButtonState("Играть", viewState::startFlappyBirdActivity)
+                    buttonState = ButtonState("Играть", { viewState.startFlappyBirdActivity(flappyInfo.gameId) })
                 )
             )
         }

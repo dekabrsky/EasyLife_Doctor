@@ -1,17 +1,36 @@
 package ru.dekabrsky.italks.game
 
+import android.R.attr.data
 import android.os.Bundle
+import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
-import ru.dekabrsky.italks.game.data.model.Progress
-import ru.dekabrsky.italks.game.data.model.ProgressDb
+import com.google.android.material.snackbar.Snackbar
+import io.reactivex.android.schedulers.AndroidSchedulers
+import ru.dekabrsky.italks.basic.di.inject
+import ru.dekabrsky.italks.game.domain.interactor.GameInteractor
+import ru.dekabrsky.italks.game.view.cache.GameFlowCache
+import ru.dekabrsky.italks.scopes.Scopes
+import toothpick.Toothpick
+import javax.inject.Inject
 
-@Suppress("MagicNumber")
 class GameActivity: AndroidApplication(), FlappyBird.MyGameCallback {
+
+    // нужен рефакторинг
+    @Inject
+    lateinit var gameInteractor: GameInteractor
+
+    @Inject
+    lateinit var cache: GameFlowCache
+
+    private var progressIsLoaded = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val flappy = FlappyBird()
+        Toothpick.openScope(Scopes.SCOPE_FLOW_GAME).inject(this)
         flappy.setMyGameCallback(this)
         initialize(flappy, AndroidApplicationConfiguration())
     }
@@ -20,15 +39,24 @@ class GameActivity: AndroidApplication(), FlappyBird.MyGameCallback {
         finish()
     }
 
-    override fun onPause() {
-        super.onPause()
-        val db = ProgressDb.getDb(this)
-        val item = Progress(null,
-            "Flappy",
-            40
-        )
-        Thread{
-            db.getDao().insertProgress(item)
-        }.start()
+    override fun onLost(score: Int) {
+        if (progressIsLoaded) return
+        progressIsLoaded = true
+        val gameId = intent.getIntExtra("gameId", 0)
+        val multipliedScore = score * SCORE_MULTIPLIER
+        gameInteractor.postGameProgress(gameId, multipliedScore, true)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                showToast(multipliedScore)
+                cache.experience = it
+            }, {})
+    }
+
+    private fun showToast(score: Int) {
+        Toast.makeText(this, "Ты заработал $score коинов", Toast.LENGTH_LONG).show()
+    }
+
+    companion object {
+        private const val SCORE_MULTIPLIER = 5
     }
 }

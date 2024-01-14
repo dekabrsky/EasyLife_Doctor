@@ -56,8 +56,9 @@ class GardenFragment : BasicFragment(), GardenView {
         presenter.onBackPressed()
     }
 
-    override fun startFlappyBirdActivity() {
+    override fun startFlappyBirdActivity(gameId: Int) {
         val intent = Intent(context, GameActivity::class.java)
+        intent.putExtra("gameId", gameId)
         startActivity(intent)
     }
 
