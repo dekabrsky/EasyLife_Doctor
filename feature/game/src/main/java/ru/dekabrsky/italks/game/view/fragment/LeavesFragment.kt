@@ -58,14 +58,6 @@ class LeavesFragment: BasicFragment(), LeavesView {
             presenter.exitGame()
             progress()
         }
-        viewBinding.goToHome.setOnClickListener {
-            presenter.goToHome()
-            progress()
-        }
-        viewBinding.goToGarden.setOnClickListener {
-            presenter.goToGarden()
-            progress()
-        }
     }
 
     private fun progress(){

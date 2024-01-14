@@ -1,16 +1,13 @@
 package ru.dekabrsky.italks.game
 
-import android.R.attr.data
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
-import com.google.android.material.snackbar.Snackbar
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ru.dekabrsky.italks.basic.di.inject
-import ru.dekabrsky.italks.game.domain.interactor.GameInteractor
+import ru.dekabrsky.italks.game.data.domain.interactor.GameInteractor
 import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
@@ -39,6 +36,7 @@ class GameActivity: AndroidApplication(), FlappyBird.MyGameCallback {
         finish()
     }
 
+    @SuppressLint("CheckResult")
     override fun onLost(score: Int) {
         if (progressIsLoaded) return
         progressIsLoaded = true

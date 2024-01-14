@@ -176,8 +176,6 @@ class FootballFragment : BasicFragment(), FootballView {
 
         viewBinding.restart.setOnClickListener { presenter.restart() }
         viewBinding.exitGame.setOnClickListener { presenter.exitGame() }
-        viewBinding.goToHome.setOnClickListener { presenter.goToHome() }
-        viewBinding.goToGarden.setOnClickListener { presenter.goToGarden() }
     }
 
     @get:SuppressLint("UseCompatLoadingForDrawables", "SetTextI18n")

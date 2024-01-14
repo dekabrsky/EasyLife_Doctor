@@ -4,7 +4,7 @@ import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.game.domain.model.GameProgressEntity
+import ru.dekabrsky.italks.game.data.domain.model.GameProgressEntity
 import ru.dekabrsky.italks.game.view.GameFlowView
 import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import javax.inject.Inject

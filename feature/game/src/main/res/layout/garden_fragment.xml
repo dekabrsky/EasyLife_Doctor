@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/sky_blue">
 
-    <com.airbnb.lottie.LottieAnimationView
+   <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/cloud_anim"
         android:layout_width="match_parent"
         android:layout_height="230dp"
@@ -100,51 +100,59 @@
         app:layout_constraintTop_toTopOf="@id/tree"
         app:layout_constraintVertical_bias="0.35" />
 
-    <ImageView
-        android:id="@+id/bird"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/bird"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/helicopter"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_centerInParent="true"
+        android:translationY="-55dp"
         app:layout_constraintBottom_toBottomOf="@id/tree"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/tree"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="@id/tree"
         app:layout_constraintTop_toTopOf="@id/tree"
-        app:layout_constraintVertical_bias="0.15"
-        app:layout_constraintWidth_percent="0.1" />
+        app:layout_constraintVertical_bias="0.0"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/helicopter"
+        tools:ignore="MissingClass" />
 
     <ImageView
         android:id="@+id/birdGamePad"
         android:layout_width="@dimen/icon_24"
         android:layout_height="@dimen/icon_24"
         android:src="@drawable/gamepad"
-        app:layout_constraintEnd_toEndOf="@id/bird"
-        app:layout_constraintStart_toStartOf="@id/bird"
-        app:layout_constraintTop_toBottomOf="@id/bird"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintTop_toTopOf="@id/helicopter"
+        app:layout_constraintEnd_toEndOf="@id/helicopter"
+        app:layout_constraintStart_toStartOf="@id/helicopter"
+        app:layout_constraintTop_toBottomOf="@id/helicopter" />
 
-    <ImageView
-        android:id="@+id/barbecue"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="@dimen/offset_large"
-        android:layout_marginBottom="@dimen/offset_large"
-        android:src="@drawable/barbecue"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/hedgehog"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="24dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/hedgehog"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="198:261"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintWidth_percent="0.3" />
+        tools:ignore="MissingClass"/>
 
     <ImageView
-        android:id="@+id/barbecueGamePad"
+        android:id="@+id/hedgehogGamePad"
         android:layout_width="@dimen/icon_24"
         android:layout_height="@dimen/icon_24"
+        android:layout_marginEnd="26dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/gamepad"
-        app:layout_constraintBottom_toBottomOf="@id/barbecue"
-        app:layout_constraintEnd_toEndOf="@id/barbecue"
-        app:layout_constraintTop_toTopOf="@id/barbecue"
-        app:layout_constraintVertical_bias="0.35" />
+        app:layout_constraintEnd_toEndOf="@id/hedgehog"
+        app:layout_constraintTop_toTopOf="@id/hedgehog"
+        app:layout_constraintVertical_bias="0.25" />
 
-    <com.airbnb.lottie.LottieAnimationView
+  <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/smoke_homes"
         android:layout_width="70dp"
         android:layout_height="90dp"
@@ -161,24 +169,6 @@
         app:lottie_rawRes="@raw/smoke_home"
         tools:ignore="MissingClass" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/smoke_barb"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_centerInParent="true"
-        app:layout_constraintBottom_toBottomOf="@id/barbecue"
-        app:layout_constraintEnd_toEndOf="@id/barbecue"
-        app:layout_constraintHeight_percent="0.1"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="@id/barbecue"
-        app:layout_constraintTop_toTopOf="@id/barbecue"
-        app:layout_constraintVertical_bias="0.2"
-        app:layout_constraintWidth_percent="0.15"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/smoke_barbecue"
-        tools:ignore="MissingClass" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -186,7 +176,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.65" />
 
-    <include
+   <include
         android:id="@+id/scoreLayout"
         layout="@layout/item_score"
         android:layout_width="wrap_content"

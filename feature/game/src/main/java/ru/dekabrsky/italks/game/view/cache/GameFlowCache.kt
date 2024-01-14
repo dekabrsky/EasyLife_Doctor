@@ -1,8 +1,8 @@
 package ru.dekabrsky.italks.game.view.cache
 
 import io.reactivex.subjects.BehaviorSubject
-import ru.dekabrsky.italks.game.domain.model.GameConfigEntity
-import ru.dekabrsky.italks.game.domain.model.GameProgressEntity
+import ru.dekabrsky.italks.game.data.domain.model.GameConfigEntity
+import ru.dekabrsky.italks.game.data.domain.model.GameProgressEntity
 import javax.inject.Inject
 
 class GameFlowCache @Inject constructor() {

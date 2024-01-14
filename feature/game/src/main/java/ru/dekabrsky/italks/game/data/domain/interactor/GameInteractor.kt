@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.domain.interactor
+package ru.dekabrsky.italks.game.data.domain.interactor
 
 import ru.dekabrsky.italks.game.data.repository.GameRepository
 import javax.inject.Inject

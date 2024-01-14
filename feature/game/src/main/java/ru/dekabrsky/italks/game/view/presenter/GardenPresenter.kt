@@ -1,14 +1,13 @@
 package ru.dekabrsky.italks.game.view.presenter
 
-import android.os.Build
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.domain.interactor.GameInteractor
-import ru.dekabrsky.italks.game.domain.model.GameType
+import ru.dekabrsky.italks.game.data.domain.interactor.GameInteractor
+import ru.dekabrsky.italks.game.data.domain.model.GameType
 import ru.dekabrsky.italks.game.view.GardenView
 import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
@@ -51,8 +50,12 @@ class GardenPresenter @Inject constructor(
                     title = flappyInfo.displayName,
                     subtitle = flappyInfo.description,
                     mode = BottomSheetMode.GAME,
-                    icon = R.drawable.bird,
-                    buttonState = ButtonState("Играть", { viewState.startFlappyBirdActivity(flappyInfo.gameId) })
+                    icon = R.drawable.helicopter_preview,
+                    buttonState = ButtonState("Играть") {
+                        viewState.startFlappyBirdActivity(
+                            flappyInfo.gameId
+                        )
+                    }
                 )
             )
         }
@@ -98,19 +101,16 @@ class GardenPresenter @Inject constructor(
         if (!barbecueInfo.enabled) {
             viewState.showToast("Сейчас мы улучшаем игру, она скоро снова будет доступна!")
         } else {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                router.navigateTo(Flows.Game.SCREEN_FIFTEEN)
-            } else {
-                router.navigateTo(
-                    Flows.Common.SCREEN_BOTTOM_INFO,
-                    BottomSheetScreenArgs(
-                        title = barbecueInfo.displayName,
-                        subtitle = barbecueInfo.description,
-                        mode = BottomSheetMode.GAME,
-                        buttonState = ButtonState("Отлично") { router.navigateTo(Flows.Game.SCREEN_FIFTEEN) }
-                    )
+            router.navigateTo(
+                Flows.Common.SCREEN_BOTTOM_INFO,
+                BottomSheetScreenArgs(
+                    title = barbecueInfo.displayName,
+                    subtitle = barbecueInfo.description,
+                    mode = BottomSheetMode.GAME,
+                    icon = R.drawable.hedgehog,
+                    buttonState = ButtonState("Отлично") { router.navigateTo(Flows.Game.SCREEN_FIFTEEN) }
                 )
-            }
+            )
         }
     }
 }

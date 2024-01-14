@@ -3,10 +3,10 @@ package ru.dekabrsky.italks.game.data.mapper
 import ru.dekabrsky.italks.game.data.model.GameConfigResponse
 import ru.dekabrsky.italks.game.data.model.GameLevelResponse
 import ru.dekabrsky.italks.game.data.model.GameProgressResponse
-import ru.dekabrsky.italks.game.domain.model.GameConfigEntity
-import ru.dekabrsky.italks.game.domain.model.GameLevelResponseEntity
-import ru.dekabrsky.italks.game.domain.model.GameProgressEntity
-import ru.dekabrsky.italks.game.domain.model.GameType
+import ru.dekabrsky.italks.game.data.domain.model.GameConfigEntity
+import ru.dekabrsky.italks.game.data.domain.model.GameLevelResponseEntity
+import ru.dekabrsky.italks.game.data.domain.model.GameProgressEntity
+import ru.dekabrsky.italks.game.data.domain.model.GameType
 import javax.inject.Inject
 
 class GameResponseToEntityMapper @Inject constructor() {

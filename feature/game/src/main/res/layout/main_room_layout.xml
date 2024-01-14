@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="@dimen/game_screen_width"
         android:layout_height="match_parent"
-        android:background="@color/button_color">
+        android:background="@color/wall_color">
 
         <View
             android:id="@+id/floor"

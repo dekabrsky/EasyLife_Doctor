@@ -44,9 +44,9 @@ class GardenFragment : BasicFragment(), GardenView {
             binding.footballGamePad.setOnClickListenerWithAnimation(it) { presenter.goToFootball() }
             binding.tree.setOnClickListenerWithAnimation(it) { presenter.goToLeaves() }
             binding.treeGamePad.setOnClickListenerWithAnimation(it) { presenter.goToLeaves() }
-            binding.barbecueGamePad.setOnClickListenerWithAnimation(it) { presenter.goToFifteen() }
-            binding.barbecue.setOnClickListenerWithAnimation(it) { presenter.goToFifteen() }
-            binding.bird.setOnClickListenerWithAnimation(it) { presenter.startFlappyBird() }
+            binding.hedgehogGamePad.setOnClickListenerWithAnimation(it) { presenter.goToFifteen() }
+            binding.hedgehog.setOnClickListenerWithAnimation(it) { presenter.goToFifteen() }
+            binding.helicopter.setOnClickListenerWithAnimation(it) { presenter.startFlappyBird() }
             binding.birdGamePad.setOnClickListenerWithAnimation(it) { presenter.startFlappyBird() }
         }
             binding.scoreLayout.scoreText.text = presenter.fullScore()
