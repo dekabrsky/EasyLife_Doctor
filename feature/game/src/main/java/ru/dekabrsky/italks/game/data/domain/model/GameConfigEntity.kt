@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.domain.model
+package ru.dekabrsky.italks.game.data.domain.model
 
 class GameConfigEntity (
     val gameId: Int,

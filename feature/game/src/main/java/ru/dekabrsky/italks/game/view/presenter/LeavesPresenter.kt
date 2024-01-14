@@ -6,8 +6,8 @@ import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.domain.interactor.GameInteractor
-import ru.dekabrsky.italks.game.domain.model.GameType
+import ru.dekabrsky.italks.game.data.domain.interactor.GameInteractor
+import ru.dekabrsky.italks.game.data.domain.model.GameType
 import ru.dekabrsky.italks.game.view.LeavesView
 import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
@@ -38,14 +38,6 @@ class LeavesPresenter @Inject constructor(
     }
 
     fun exitGame() {
-        exitWithConfirm { router.backTo(Flows.Game.SCREEN_START_GAME) }
-    }
-
-    fun goToHome() {
-        exitWithConfirm { router.backTo(Flows.Game.SCREEN_MAIN_ROOM) }
-    }
-
-    fun goToGarden() {
         exitWithConfirm { router.backTo(Flows.Game.SCREEN_GARDEN) }
     }
 
