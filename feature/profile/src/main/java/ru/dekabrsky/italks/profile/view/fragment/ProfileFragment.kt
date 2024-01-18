@@ -1,6 +1,5 @@
 package ru.dekabrsky.italks.profile.view.fragment
 
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
@@ -21,7 +20,6 @@ import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.profile.R
 import ru.dekabrsky.italks.profile.databinding.FragmentProfileBinding
-import ru.dekabrsky.italks.profile.view.DailyActivity
 import ru.dekabrsky.italks.profile.view.ProfileView
 import ru.dekabrsky.italks.profile.view.presenter.ProfilePresenter
 import ru.dekabrsky.italks.scopes.Scopes
@@ -96,10 +94,10 @@ class ProfileFragment : BasicFragment(), ProfileView {
         binding.textView19.setOnClickListener {
             presenter.generateParent()
         }
-        binding.iV15.setOnClickListener {
-            val intent = Intent(this@ProfileFragment.requireContext(), DailyActivity::class.java)
-            startActivity(intent)
-        }
+        //binding.iV15.setOnClickListener {
+        //    val intent = Intent(this@ProfileFragment.requireContext(), DailyActivity::class.java)
+        //    startActivity(intent)
+        //}
         tapCat()
         binding.logout.setOnClickListener { presenter.onLogoutClick() }
     }
