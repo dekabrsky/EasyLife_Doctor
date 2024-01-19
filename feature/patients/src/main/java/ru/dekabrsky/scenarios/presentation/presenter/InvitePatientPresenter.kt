@@ -1,6 +1,9 @@
 package ru.dekabrsky.scenarios.presentation.presenter
 
+import io.reactivex.android.schedulers.AndroidSchedulers
 import main.utils.isBlankOrEmpty
+import ru.dekabrsky.common.domain.interactor.ContactsInteractor
+import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.domain.model.PatientCodeEntity
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
@@ -10,18 +13,27 @@ import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.scenarios.domain.interactor.DoctorPatientsInteractorImpl
 import ru.dekabrsky.scenarios.presentation.model.PatientInvitationUiModel
 import ru.dekabrsky.scenarios.presentation.model.PatientsCodesScreenArgs
+import ru.dekabrsky.scenarios.presentation.model.SelectParentArgs
 import ru.dekabrsky.scenarios.presentation.view.InvitePatientView
 import javax.inject.Inject
 
 class InvitePatientPresenter @Inject constructor(
     private val router: FlowRouter,
-    private val interactor: DoctorPatientsInteractorImpl
+    private val interactor: DoctorPatientsInteractorImpl,
+    private val contactsInteractor: ContactsInteractor
 ): BasicPresenter<InvitePatientView>(router) {
 
     private val invitation: PatientInvitationUiModel = PatientInvitationUiModel()
+    
+    private var parents: List<ContactEntity> = listOf()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        contactsInteractor.getParents()
+            .observeOn(AndroidSchedulers.mainThread())
+            .withLoadingView(viewState)
+            .subscribe({ parents = it }, viewState::showError)
+            .addFullLifeCycle()
     }
 
     fun onPatientNameChanged(name: String) {
@@ -47,7 +59,12 @@ class InvitePatientPresenter @Inject constructor(
             return
         }
 
-        interactor.generateCode(invitation.patientName, invitation.older15, invitation.patientName, invitation.parentId)
+        interactor.generateCode(
+            invitation.patientName,
+            invitation.older15.not(),
+            invitation.parentName,
+            invitation.parentId
+        )
             .observeOn(RxSchedulers.main())
             .withLoadingView(viewState)
             .subscribe(::showAddPatientsResult, viewState::showError)
@@ -62,5 +79,29 @@ class InvitePatientPresenter @Inject constructor(
                 parentCode = patientCodeEntity.parentCode
             )
         )
+    }
+
+    fun onParentsListClick() {
+        router.navigateTo(Flows.Patients.SCREEN_SELECT_PARENT, SelectParentArgs(invitation.parentId, parents))
+        router.setResultListener(SelectParentPresenter.SELECT_PARENT_RESULT_CODE) {
+            router.removeResultListener(SelectParentPresenter.SELECT_PARENT_RESULT_CODE)
+            if (it !is ContactEntity) return@setResultListener
+            invitation.parentId = it.id
+            invitation.parentName = it.name
+            setParentToView()
+        }
+    }
+
+    private fun setParentToView() {
+        val isSelected = invitation.parentId != null
+        val parentName = invitation.parentName.takeIf { isSelected }.orEmpty()
+        val link = invitation.parentName.takeIf { isSelected } ?: "Выбрать существующего"
+        viewState.setParentState(isSelected, parentName, link)
+    }
+
+    fun onParentCrossClick() {
+        invitation.parentId = null
+        invitation.patientName = ""
+        setParentToView()
     }
 }

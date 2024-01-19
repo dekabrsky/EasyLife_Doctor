@@ -16,4 +16,6 @@ interface ContactsInteractor {
     fun getCallersBase(id: Int): Observable<CallersBaseEntity>
 
     fun getChildren(): Single<List<ContactEntity>>
+
+    fun getParents(): Single<List<ContactEntity>>
 }

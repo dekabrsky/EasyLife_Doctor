@@ -1,6 +1,5 @@
 package ru.dekabrsky.scenarios.presentation.view
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -37,7 +36,7 @@ class PatientsListFragment: BasicFragment(), PatientsListView {
 
     @ProvidePresenter
     fun providePresenter(): PatientsListPresenter {
-        return Toothpick.openScopes(Scopes.SCOPE_FLOW_SCENARIOS, scopeName)
+        return Toothpick.openScopes(Scopes.SCOPE_FLOW_PATIENTS, scopeName)
             .getInstance(PatientsListPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }

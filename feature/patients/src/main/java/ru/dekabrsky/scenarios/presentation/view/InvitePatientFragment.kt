@@ -3,6 +3,7 @@ package ru.dekabrsky.scenarios.presentation.view
 import android.os.Bundle
 import android.view.View
 import main.utils.onTextChange
+import main.utils.setBoolVisibility
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
@@ -24,7 +25,7 @@ class InvitePatientFragment: BasicFragment(), InvitePatientView {
 
     @ProvidePresenter
     fun providePresenter(): InvitePatientPresenter {
-        return Toothpick.openScopes(Scopes.SCOPE_FLOW_SCENARIOS, scopeName)
+        return Toothpick.openScopes(Scopes.SCOPE_FLOW_PATIENTS, scopeName)
             .getInstance(InvitePatientPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }
@@ -41,6 +42,8 @@ class InvitePatientFragment: BasicFragment(), InvitePatientView {
             presenter.isPatientOlder15CheckedChanged(isChecked)
         }
         binding.doneBtn.setOnClickListener { presenter.onDoneClick() }
+        binding.existingParent.setOnClickListener { presenter.onParentsListClick() }
+        binding.existingParentCross.setOnClickListener { presenter.onParentCrossClick() }
     }
 
     override fun onPause() {
@@ -49,6 +52,13 @@ class InvitePatientFragment: BasicFragment(), InvitePatientView {
     }
 
     override fun onBackPressed() { presenter.onBackPressed() }
+
+    override fun setParentState(selected: Boolean, parentName: String, link: String) {
+        binding.parentName.isEnabled = selected.not()
+        binding.parentName.setText(parentName)
+        binding.existingParent.text = link
+        binding.existingParentCross.setBoolVisibility(selected)
+    }
 
     companion object {
         fun newInstance() = InvitePatientFragment()

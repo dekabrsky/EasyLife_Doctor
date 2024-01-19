@@ -27,5 +27,6 @@ dependencies {
     implementation project(':flows')
     implementation project(':feature:patients-common')
     implementation project(':feature:events-common')
+    implementation project(':feature:chats-common')
     implementation project(':feature:tabs')
 }

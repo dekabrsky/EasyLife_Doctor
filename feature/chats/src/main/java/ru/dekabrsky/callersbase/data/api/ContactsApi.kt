@@ -33,6 +33,9 @@ interface ContactsApi {
     @GET("users/children")
     fun getChildren(): Single<UsersListIdNameResponse>
 
+    @GET("users/parents")
+    fun getParents(): Single<UsersListIdNameResponse>
+
     @POST("chats")
     fun startChat(@Query("companionUserId") userId: Int): Completable
 
