@@ -18,8 +18,8 @@
         android:id="@+id/existingParentsList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_existing_parent"
-        android:visibility="gone"
         tools:visibility="visible" />
 
 </LinearLayout>

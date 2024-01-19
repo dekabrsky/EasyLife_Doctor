@@ -33,7 +33,7 @@ class PatientDetailsFragment: BasicFragment(), PatientDetailsView {
 
     @ProvidePresenter
     fun providePresenter(): PatientDetailsPresenter {
-        return Toothpick.openScopes(Scopes.SCOPE_FLOW_SCENARIOS, scopeName)
+        return Toothpick.openScopes(Scopes.SCOPE_FLOW_PATIENTS, scopeName)
             .module { bind(ScenarioItemUiModel::class.java).toInstance(model) }
             .getInstance(PatientDetailsPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }

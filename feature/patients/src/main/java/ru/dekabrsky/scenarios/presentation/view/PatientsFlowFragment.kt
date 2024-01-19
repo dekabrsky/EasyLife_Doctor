@@ -15,6 +15,7 @@ import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
 import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.presentation.model.PatientsCodesScreenArgs
+import ru.dekabrsky.scenarios.presentation.model.SelectParentArgs
 import ru.dekabrsky.scenarios.presentation.presenter.ScenariosFlowPresenter
 import ru.dekabrsky.simpleBottomsheet.view.fragment.SimpleInfoBottomSheet
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
@@ -27,7 +28,7 @@ class PatientsFlowFragment : BasicFlowFragment(), PatientsFlowView {
 
     override val containerId = R.id.flowContainer
 
-    override val scopeName = Scopes.SCOPE_FLOW_SCENARIOS
+    override val scopeName = Scopes.SCOPE_FLOW_PATIENTS
 
     override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
         object : FragmentFlowNavigator(this, router, containerId) {
@@ -40,6 +41,8 @@ class PatientsFlowFragment : BasicFlowFragment(), PatientsFlowView {
                         PatientsCodesFragment.newInstance(data as PatientsCodesScreenArgs)
                     Flows.Patients.SCREEN_INVITE_PATIENT ->
                         InvitePatientFragment.newInstance()
+                    Flows.Patients.SCREEN_SELECT_PARENT ->
+                        SelectParentFragment.newInstance(data as SelectParentArgs)
                     SCREEN_BOTTOM_INFO -> SimpleInfoBottomSheet.newInstance(data as BottomSheetScreenArgs)
                     else -> super.createFragment(screenKey, data)
                 }

@@ -38,4 +38,5 @@ class ContactsRepository @Inject constructor(
         wsService.subscribeMessages(chatId).map(mapper::mapMessage)
 
     fun postMessageWs(chatId: Int, msg: String) = wsService.postMessage(chatId, msg)
+    fun getParents() = api.getParents().map { mapper.mapUserForChat(it) }.onErrorReturn { emptyList() }
 }

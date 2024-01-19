@@ -1,4 +1,4 @@
-package ru.dekabrsky.common.domain.model
+package ru.dekabrsky.scenarios.data.model
 
 import androidx.annotation.Keep
 

@@ -26,7 +26,7 @@ class PatientsCodesFragment: BasicFragment(), PatientsCodesView {
 
     @ProvidePresenter
     fun providePresenter(): PatientsCodesPresenter {
-        return Toothpick.openScopes(Scopes.SCOPE_FLOW_SCENARIOS, scopeName)
+        return Toothpick.openScopes(Scopes.SCOPE_FLOW_PATIENTS, scopeName)
             .getInstance(PatientsCodesPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }

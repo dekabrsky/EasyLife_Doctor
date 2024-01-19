@@ -1,7 +1,7 @@
 package ru.dekabrsky.scenarios.data.repository
 
 import io.reactivex.Single
-import ru.dekabrsky.common.domain.model.InvitePatientRequest
+import ru.dekabrsky.scenarios.data.model.InvitePatientRequest
 import ru.dekabrsky.common.domain.model.PatientCodeEntity
 import ru.dekabrsky.scenarios.data.api.DoctorPatientsApi
 import ru.dekabrsky.scenarios.data.mapper.PatientsResponseToEntityMapper
