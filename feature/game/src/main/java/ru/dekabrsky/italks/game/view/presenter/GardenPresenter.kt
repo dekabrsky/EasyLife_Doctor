@@ -7,6 +7,7 @@ import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
 import ru.dekabrsky.italks.game.data.domain.interactor.GameInteractor
+import ru.dekabrsky.italks.game.data.domain.model.GameConfigEntity
 import ru.dekabrsky.italks.game.data.domain.model.GameType
 import ru.dekabrsky.italks.game.view.GardenView
 import ru.dekabrsky.italks.game.view.cache.GameFlowCache
@@ -27,8 +28,24 @@ class GardenPresenter @Inject constructor(
         interactor.getGamesConfigs()
             .observeOn(RxSchedulers.main())
             .withLoadingView(viewState)
-            .subscribe({ cache.configs = it }, viewState::showError)
+            .subscribe(::dispatchConfigs, viewState::showError)
             .addFullLifeCycle()
+    }
+
+    private fun dispatchConfigs(config: List<GameConfigEntity>) {
+        cache.configs = config
+        if (cache.isFromNotification) {
+            when (cache.configs.map { it.type }.random()) {
+                GameType.Flappy -> startFlappyBird()
+                GameType.Barbecue -> goToFifteen()
+                GameType.Leaves -> goToLeaves()
+                GameType.TicTacToe -> goToFootball()
+                else -> {}
+            }
+
+            cache.isFromNotification = false
+        }
+
     }
 
     fun goToHouse() {

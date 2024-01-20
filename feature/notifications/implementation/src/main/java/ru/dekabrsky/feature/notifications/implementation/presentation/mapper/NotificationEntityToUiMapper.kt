@@ -1,8 +1,8 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.mapper
 
 import main.utils.orZero
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationDurationEntity
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationDurationEntity
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.presentation.model.NotificationEditUiModel
 import javax.inject.Inject
 

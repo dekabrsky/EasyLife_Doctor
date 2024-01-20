@@ -21,13 +21,16 @@ class MainRoomPresenter @Inject constructor(
     private val mapper: ShelfItemsUiMapper,
     private val visibilityMapper: ItemsVisibilityMapper,
     private val mediaPlayer: MediaPlayer,
-    private val gameFlowCache: GameFlowCache
+    private val gameFlowCache: GameFlowCache,
 ) : BasicPresenter<MainRoomView>(router) {
 
     var level = 1
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+
+        if (gameFlowCache.isFromNotification) router.navigateTo(Flows.Game.SCREEN_GARDEN)
+
         viewState.setShelfItems(mapper.map(level))
         viewState.updateItemsVisibility(level, visibilityMapper.map(level))
         viewState.setupAvatar(router)

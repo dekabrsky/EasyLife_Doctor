@@ -12,10 +12,11 @@ import javax.inject.Inject
 class GameFlowPresenter @Inject constructor(
     private val router: FlowRouter,
     private val loginDataCache: LoginDataCache,
-    private val gameFlowCache: GameFlowCache
+    private val gameFlowCache: GameFlowCache,
 ) : BasicPresenter<GameFlowView>(router) {
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+
         router.newRootScreen(Flows.Game.SCREEN_START_GAME)
         loginDataCache.currentUserData?.currentLevel?.let {
             gameFlowCache.experience = GameProgressEntity(it.score, it.experience)

@@ -3,12 +3,10 @@ package ru.dekabrsky.feature.notifications.implementation.data.mapper
 import main.utils.isTrue
 import main.utils.orZero
 import org.threeten.bp.DayOfWeek
-import ru.dekabrsky.feature.notifications.implementation.data.model.NotificationDbEntity
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationDurationEntity
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.data.model.NotificationRequest
 import ru.dekabrsky.feature.notifications.implementation.data.model.NotificationResponse
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationDurationEntity
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
-import ru.dekabrsky.italks.basic.dateTime.formatDateToServerString
 import ru.dekabrsky.italks.basic.dateTime.formatHourAndMinute
 import ru.dekabrsky.italks.basic.dateTime.hourAndMinuteFromString
 import ru.dekabrsky.italks.basic.dateTime.tryParseServerDate
@@ -48,11 +46,11 @@ class NotificationResponseToEntityMapper @Inject constructor() {
             time = formatHourAndMinute(entity.hour, entity.minute),
             enabled = entity.enabled,
             weekDays = entity.weekDays.map { it.name },
-            duration = entity.duration?.startDate?.let { formatDateToServerString(it) }?.let { start ->
-                entity.duration.endDate.let { formatDateToServerString(it) }.let { end ->
-                    NotificationRequest.Duration(start, end)
-                }
-            }
+//            duration = entity.duration?.startDate?.let { formatDateToServerString(it) }?.let { start ->
+//                entity.duration?.endDate?.let { formatDateToServerString(it) }.let { end ->
+//                    NotificationRequest.Duration(start, end)
+//                }
+//            }
         )
     }
 }

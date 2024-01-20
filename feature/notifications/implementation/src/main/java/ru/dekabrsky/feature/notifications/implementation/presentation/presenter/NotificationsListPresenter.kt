@@ -10,8 +10,8 @@ import main.utils.orZero
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.LocalTime
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationsListView
 import ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver

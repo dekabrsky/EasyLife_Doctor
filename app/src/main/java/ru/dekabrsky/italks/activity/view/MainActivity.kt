@@ -1,7 +1,6 @@
 package ru.dekabrsky.italks.activity.view
 
 import android.app.NotificationManager
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
@@ -76,9 +75,8 @@ open class MainActivity : AppCompatActivity(), MainView {
     @ProvidePresenter
     fun providePresenter(): MainPresenter =
         Toothpick.openScopes(Scopes.SCOPE_APP, scopeName)
-            .getInstance(MainPresenter::class.java).also {
-                Toothpick.closeScope(scopeName)
-            }
+            .getInstance(MainPresenter::class.java)
+            .also { Toothpick.closeScope(scopeName) }
 
     private fun injectDependencies() {
         Toothpick.openScopes(Scopes.SCOPE_APP_ROOT, Scopes.SCOPE_APP).apply {

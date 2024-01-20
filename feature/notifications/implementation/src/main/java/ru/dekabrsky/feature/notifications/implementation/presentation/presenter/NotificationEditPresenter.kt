@@ -4,7 +4,7 @@ import main.utils.isTrue
 import main.utils.orZero
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.LocalDate
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.mapper.NotificationEntityToUiMapper
 import ru.dekabrsky.feature.notifications.implementation.presentation.model.NotificationEditUiModel

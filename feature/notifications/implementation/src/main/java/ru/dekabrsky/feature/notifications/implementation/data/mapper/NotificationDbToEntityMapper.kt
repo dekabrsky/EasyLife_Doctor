@@ -2,9 +2,9 @@ package ru.dekabrsky.feature.notifications.implementation.data.mapper
 
 import main.utils.isTrue
 import org.threeten.bp.DayOfWeek
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationDurationEntity
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.data.model.NotificationDbEntity
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationDurationEntity
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.italks.basic.dateTime.formatDateToServerString
 import ru.dekabrsky.italks.basic.dateTime.formatHourAndMinute
 import ru.dekabrsky.italks.basic.dateTime.hourAndMinuteFromString

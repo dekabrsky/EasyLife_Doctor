@@ -3,8 +3,8 @@ package ru.dekabrsky.italks.navigation
 import ru.dekabrsky.avatar.presentation.view.AvatarFlowFragment
 import ru.dekabrsky.callersbase.presentation.view.ChatFlowFragment
 import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
-import ru.dekabrsky.dialings.presentation.view.DialingsFlowFragment
 import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
+import ru.dekabrsky.dialings.presentation.view.DialingsFlowFragment
 import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationFlowFragment
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment

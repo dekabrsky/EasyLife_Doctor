@@ -3,7 +3,6 @@ package ru.dekabrsky.italks
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
 import ru.dekabrsky.italks.di.module.AppRootModule
-import ru.dekabrsky.italks.di.module.PushModule
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 import toothpick.configuration.Configuration

@@ -2,7 +2,6 @@ package ru.dekabrsky.italks.tabs.presentation.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import main.utils.setBoolVisibility
 import main.utils.visible
 import moxy.presenter.InjectPresenter
@@ -12,17 +11,15 @@ import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider
 import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
-import ru.dekabrsky.italks.basic.navigation.di.installNavigation
-import ru.dekabrsky.italks.basic.navigation.di.localNavigationModules
+import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.italks.feature.tabs.R
 import ru.dekabrsky.italks.feature.tabs.databinding.TabsFragmentBinding
+import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.italks.tabs.presentation.presenter.TabsFlowPresenter
 import ru.dekabrsky.italks.tabs.presentation.view.TabsFlowView
-import ru.terrakok.cicerone.Navigator
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -54,7 +51,7 @@ class TabsFlowFragment : BasicFlowFragment(), TabsFlowView {
 
     override fun injectDependencies() {
         Toothpick.openScopes(Scopes.SCOPE_APP, Scopes.SCOPE_FLOW_TABS)
-            .installNavigation()
+            .moduleFlow()
             .inject(this)
     }
 

@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chauthai.swipereveallayout.ViewBinderHelper
 import main.utils.setIsCheckedWithoutEffects
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.databinding.ItemNotificationBinding
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 
 class NotificationsListAdapter(
     private val onItemClick: (NotificationEntity) -> Unit,

@@ -10,9 +10,9 @@ import main.utils.setIsCheckedWithoutEffects
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import org.threeten.bp.LocalDate
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.databinding.FmtNotificationEditBinding
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.presentation.model.NotificationEditUiModel
 import ru.dekabrsky.feature.notifications.implementation.presentation.presenter.NotificationEditPresenter
 import ru.dekabrsky.italks.basic.di.module
