@@ -1,6 +1,9 @@
 package ru.dekabrsky.italks.tabs.presentation.model
 
 import ru.dekabrsky.feature.loginCommon.domain.model.UserType
+import java.io.Serializable
 
 
-class TabsFlowArgs (val userType: UserType)
+data class TabsFlowArgs (
+    val userType: UserType,
+): Serializable

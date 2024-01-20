@@ -7,7 +7,7 @@ import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider
 import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
-import ru.dekabrsky.italks.basic.navigation.di.installNavigation
+import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.flows.R
@@ -48,7 +48,7 @@ class ProfileFlowFragment : BasicFlowFragment(), ProfileFlowView {
 
     override fun injectDependencies() {
         Toothpick.openScopes(Scopes.SCOPE_APP, scopeName)
-            .installNavigation()
+            .moduleFlow()
             .inject(this)
     }
 

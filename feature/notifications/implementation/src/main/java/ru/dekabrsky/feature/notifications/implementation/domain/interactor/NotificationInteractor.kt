@@ -1,9 +1,8 @@
 package ru.dekabrsky.feature.notifications.implementation.domain.interactor
 
 import main.utils.orZero
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.data.repository.NotificationApiRepository
-import ru.dekabrsky.feature.notifications.implementation.data.repository.NotificationRepository
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import javax.inject.Inject
 
 class NotificationInteractor @Inject constructor(

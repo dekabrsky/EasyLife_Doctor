@@ -11,7 +11,7 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import main.utils.orZero
 import org.threeten.bp.LocalDateTime
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.util.sendNotification
 import java.util.Calendar
 
@@ -56,10 +56,7 @@ class NotificationsReceiver : BroadcastReceiver() {
         )
 
         if (notification?.weekDays?.contains(LocalDateTime.now().dayOfWeek) == true) {
-            notificationManager.sendNotification(
-                "Уведомление с ${notification.weekDays.count().orZero()} днями",
-                context
-            )
+            notificationManager.sendNotification("Пора зайти в EasyLife", context, notification)
         }
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager

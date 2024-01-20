@@ -1,14 +1,15 @@
 package ru.dekabrsky.login.presentation.view
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import main.utils.gone
 import main.utils.onTextChange
 import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
+import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
@@ -30,16 +31,19 @@ class LoginFragment: BasicFragment(), LoginView {
     @ProvidePresenter
     fun providePresenter(): LoginPresenter {
         return Toothpick.openScopes(Scopes.SCOPE_FLOW_LOGIN, scopeName)
+            .module {
+                bind(NotificationEntity::class.java).toInstance(getTransitData(requireActivity().intent))
+            }
             .getInstance(LoginPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }
 
-    override fun onBackPressed() {
-        presenter.onBackPressed()
+    private fun getTransitData(intent: Intent): NotificationEntity {
+        return intent.extras?.getSerializable("NOTIFICATION") as? NotificationEntity ?: NotificationEntity()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onBackPressed() {
+        presenter.onBackPressed()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

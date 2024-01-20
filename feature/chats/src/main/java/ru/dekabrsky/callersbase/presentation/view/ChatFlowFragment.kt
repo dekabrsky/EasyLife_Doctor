@@ -6,13 +6,13 @@ import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.R
 import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
 import ru.dekabrsky.callersbase.presentation.model.ChatFlowCache
-import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.callersbase.presentation.presenter.ChatFlowPresenter
+import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
-import ru.dekabrsky.italks.basic.navigation.di.installNavigation
+import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes.SCOPE_FLOW_CHATS
@@ -56,7 +56,7 @@ class ChatFlowFragment : BasicFlowFragment(), ChatFlowView {
                 bind(ChatsFlowScreenArgs::class.java).toInstance(args)
                 bind(ChatFlowCache::class.java).singletonInScope()
             }
-            .installNavigation()
+            .moduleFlow()
             .inject(this)
     }
 

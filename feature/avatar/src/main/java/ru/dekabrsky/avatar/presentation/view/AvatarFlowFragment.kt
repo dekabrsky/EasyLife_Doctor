@@ -1,7 +1,6 @@
 package ru.dekabrsky.avatar.presentation.view
 
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.avatar.R
@@ -9,7 +8,7 @@ import ru.dekabrsky.avatar.presentation.presenter.AvatarFlowPresenter
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
-import ru.dekabrsky.italks.basic.navigation.di.installNavigation
+import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
@@ -45,7 +44,7 @@ class AvatarFlowFragment : BasicFlowFragment(), AvatarFlowView {
 
     override fun injectDependencies() {
         Toothpick.openScopes(Scopes.SCOPE_APP, scopeName)
-            .installNavigation()
+            .moduleFlow()
             .inject(this)
     }
 

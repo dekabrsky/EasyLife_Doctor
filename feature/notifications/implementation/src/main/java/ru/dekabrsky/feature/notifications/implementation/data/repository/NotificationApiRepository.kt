@@ -1,9 +1,9 @@
 package ru.dekabrsky.feature.notifications.implementation.data.repository
 
 import main.utils.orZero
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.data.api.NotificationApi
 import ru.dekabrsky.feature.notifications.implementation.data.mapper.NotificationResponseToEntityMapper
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import javax.inject.Inject
 
 class NotificationApiRepository @Inject constructor(

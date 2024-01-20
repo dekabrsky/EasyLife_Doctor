@@ -9,21 +9,19 @@ import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.feature.tabs.R
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.italks.tabs.presentation.view.TabsFlowView
 import javax.inject.Inject
 
 class TabsFlowPresenter @Inject constructor(
-    private val router: FlowRouter,
-    private val args: TabsFlowArgs
+    private val args: TabsFlowArgs,
+    private val router: FlowRouter
 ) : BasicPresenter<TabsFlowView>(router) {
 
     private var currentFlow: Flow? = null
     private val screensChain by lazy { LinkedHashSet<Flow>() }
 
     override fun onFirstViewAttach() {
-        super.onFirstViewAttach()
 
         viewState.setTabsByRole(
             when (args.userType) {

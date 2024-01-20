@@ -3,14 +3,14 @@ package ru.dekabrsky.dialings.presentation.view
 import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.presentation.presenter.DialingsFlowPresenter
-import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
-import ru.dekabrsky.italks.basic.navigation.di.installNavigation
+import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
@@ -49,7 +49,7 @@ class DialingsFlowFragment : BasicFlowFragment(), DialingsFlowView {
     override fun injectDependencies() {
         Toothpick.openScopes(args.parentScope, scopeName)
             .module { bind(EventsFlowScreenArgs::class.java).toInstance(args) }
-            .installNavigation()
+            .moduleFlow()
             .inject(this)
     }
 

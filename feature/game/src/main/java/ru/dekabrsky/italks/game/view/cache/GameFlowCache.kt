@@ -9,4 +9,5 @@ class GameFlowCache @Inject constructor() {
     var experience: GameProgressEntity? = null
     var configs: List<GameConfigEntity> = listOf()
     val isMusicOnSubject : BehaviorSubject<Boolean> = BehaviorSubject.createDefault(true)
+    var isFromNotification: Boolean = false
 }

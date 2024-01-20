@@ -3,15 +3,15 @@ package ru.dekabrsky.feature.notifications.implementation.presentation.view
 import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
-import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.feature.notifications.implementation.R
-import ru.dekabrsky.feature.notifications.implementation.domain.entity.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.presentation.presenter.NotificationFlowPresenter
+import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
-import ru.dekabrsky.italks.basic.navigation.di.installNavigation
+import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
@@ -55,8 +55,8 @@ class NotificationFlowFragment : BasicFlowFragment(), NotificationFlowView {
 
     override fun injectDependencies() {
         Toothpick.openScopes(args.parentScopeName, scopeName)
-                .module { bind(NotificationsFlowArgs::class.java).toInstance(args) }
-            .installNavigation()
+            .module { bind(NotificationsFlowArgs::class.java).toInstance(args) }
+            .moduleFlow()
             .inject(this)
     }
 

@@ -4,7 +4,6 @@ import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
 import toothpick.Scope
-import toothpick.Toothpick
 import toothpick.config.Module
 
 fun localNavigationModules(func: (Module.() -> Unit)?) = object : Module() {
@@ -16,7 +15,7 @@ fun localNavigationModules(func: (Module.() -> Unit)?) = object : Module() {
     }
 }
 
-fun Scope.installNavigation(func: (Module.() -> Unit)? = null): Scope {
+fun Scope.moduleFlow(func: (Module.() -> Unit)? = null): Scope {
     installModules(localNavigationModules { func?.invoke(this) })
     return this
 }

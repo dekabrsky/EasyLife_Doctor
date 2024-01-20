@@ -1,4 +1,4 @@
-package ru.dekabrsky.feature.notifications.implementation.domain.entity
+package ru.dekabrsky.feature.notifications.common.domain.model
 
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.LocalDate
