@@ -14,4 +14,5 @@
     <string name="legal_representative_name">Имя законного представителя</string>
     <string name="select_existing">Выбрать существующего</string>
     <string name="lagal_representatives">Законные представители</string>
+    <string name="patient_cards_in_develop">Раздел "Карточки пациента" в разработке</string>
 </resources>

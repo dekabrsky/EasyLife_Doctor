@@ -13,46 +13,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:gravity="center"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <include
             android:id="@+id/humanPoints"
-            android:layout_width="0dp"
+            layout="@layout/item_score"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="2dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="00"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:layout_margin="@dimen/offset_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <TextView
+        <include
             android:id="@+id/pcPoints"
-            android:layout_width="0dp"
+            layout="@layout/item_score"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="2dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="00"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
+            android:layout_margin="@dimen/offset_small"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
 
@@ -80,19 +64,20 @@
 
     <TextView
         android:id="@+id/textView"
+        style="@style/TextView.H4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pointsLine"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textColor="@color/cyan_main"
+        android:paddingVertical="@dimen/offset_small"
+        android:background="@drawable/background_button_focused"
+        android:backgroundTint="@color/cyan_main_50"
         app:layout_constraintVertical_bias="0.5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Сегодня ты хорош!"/>
 
     <GridLayout
         android:id="@+id/gridLayout"
