@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
@@ -57,6 +58,7 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
             binding.window.setOnClickListenerWithAnimation(it) { presenter.onDoorClick() }
             binding.clock.setOnClickListenerWithAnimation(it) { presenter.onClockClick() }
             binding.speakerAnimation.setOnClickListenerWithAnimation(it) { presenter.onSpeakerClick() }
+            binding.colorsAnimation.setOnClickListenerWithAnimation(it) { presenter.onColorsClick() }
         }
         initShelf()
         binding.scrollContainer.setOnScrollChangeListener { _, scrollX, _, _, _ ->
@@ -106,6 +108,25 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
         } else {
             binding.speakerAnimation.pauseAnimation()
         }
+    }
+
+    override fun showColorsDialog(selectedVariantIndex: Int, variants: Array<String>) {
+        var selectedVariant = selectedVariantIndex
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("В какой цвет покрасить комнату?")
+            .setSingleChoiceItems(variants, selectedVariantIndex) { _, which ->
+                selectedVariant = which
+            }
+            .setPositiveButton("Ок") { _, _ ->
+                showToast("Покрашено в ${variants[selectedVariant]}!")
+                presenter.onColorSelected(selectedVariant)
+            }
+            .setNegativeButton("Отмена") { dialog, _ -> dialog.dismiss() }
+            .show()
+    }
+
+    override fun setRoomColor(res: Int) {
+        context?.getColor(res)?.let { binding.roomContainer.setBackgroundColor(it) }
     }
 
     override fun onBackPressed() {

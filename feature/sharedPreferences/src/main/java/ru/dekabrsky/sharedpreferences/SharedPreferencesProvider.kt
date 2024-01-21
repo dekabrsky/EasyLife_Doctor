@@ -12,6 +12,7 @@ class SharedPreferencesProvider @Inject constructor(
     val lastLogin = StringPreference("LAST_LOGIN")
     val gameAvatar = StringPreference("GAME_AVATAR")
     val testUrl = StringPreference("TEST_URL")
+    val wallColor = StringPreference("WALL_COLOR")
 
     inner class StringPreference(private val prefName: String) {
         fun get() = preferences.getString(prefName, "").orEmpty()

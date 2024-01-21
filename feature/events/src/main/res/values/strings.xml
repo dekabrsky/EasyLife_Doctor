@@ -9,7 +9,7 @@
     <string name="run">Текущий</string>
     <string name="scheduled">Запланирован</string>
     <string name="state_done">Завершен</string>
-    <string name="no_dialings">Приемов не назначено</string>
+    <string name="no_dialings">Раздел "Расписание приемов" в разработке</string>
     <string name="run_now">Запустить сейчас</string>
     <string name="progress">Прогресс</string>
     <string name="begin">начало:</string>

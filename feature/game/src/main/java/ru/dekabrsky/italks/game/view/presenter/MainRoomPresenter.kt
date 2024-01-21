@@ -10,18 +10,21 @@ import ru.dekabrsky.italks.game.view.MainRoomView
 import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import ru.dekabrsky.italks.game.view.mapper.ItemsVisibilityMapper
 import ru.dekabrsky.italks.game.view.mapper.ShelfItemsUiMapper
+import ru.dekabrsky.italks.game.view.model.RoomColor
+import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import ru.dekabrsky.simpleBottomsheet.view.model.ButtonState
 import javax.inject.Inject
 
-@Suppress("MagicNumber")
+@Suppress("MagicNumber", "LongParameterList")
 class MainRoomPresenter @Inject constructor(
     val router: FlowRouter,
     private val mapper: ShelfItemsUiMapper,
     private val visibilityMapper: ItemsVisibilityMapper,
     private val mediaPlayer: MediaPlayer,
     private val gameFlowCache: GameFlowCache,
+    private val sharedPreferencesProvider: SharedPreferencesProvider
 ) : BasicPresenter<MainRoomView>(router) {
 
     var level = 1
@@ -35,6 +38,7 @@ class MainRoomPresenter @Inject constructor(
         viewState.updateItemsVisibility(level, visibilityMapper.map(level))
         viewState.setupAvatar(router)
         observeMusicState()
+        updateRoomColor()
     }
 
     override fun attachView(view: MainRoomView) {
@@ -92,6 +96,25 @@ class MainRoomPresenter @Inject constructor(
         updateMusicState(false)
         // переход не работает, надо починить
     // router.startFlow(Flows.Notifications.name, NotificationsFlowArgs(Scopes.SCOPE_FLOW_GAME))
+    }
+
+    fun onColorsClick() {
+        val selectedVariant = sharedPreferencesProvider.wallColor.get()
+
+        viewState.showColorsDialog(
+            selectedVariantIndex = RoomColor.indexOfRusName(selectedVariant),
+            variants = RoomColor.values().map { it.rusName }.toTypedArray()
+        )
+    }
+
+    fun onColorSelected(which: Int) {
+        sharedPreferencesProvider.wallColor.set(RoomColor.getByIndex(which).rusName)
+        updateRoomColor()
+    }
+
+    private fun updateRoomColor() {
+        val selectedVariant = RoomColor.getByRusName(sharedPreferencesProvider.wallColor.get())
+        viewState.setRoomColor(selectedVariant.res)
     }
 
     override fun onBackPressed() {

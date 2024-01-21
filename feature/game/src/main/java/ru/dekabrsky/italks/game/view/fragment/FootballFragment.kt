@@ -3,6 +3,7 @@ package ru.dekabrsky.italks.game.view.fragment
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -61,9 +62,15 @@ class FootballFragment : BasicFragment(), FootballView {
         sharedPreferences = requireActivity().getSharedPreferences("krestikNolik", Context.MODE_PRIVATE)
         editor = sharedPreferences.edit()
         pointsOfHuman = sharedPreferences.getInt("pointsOfHuman", 0)
-        viewBinding.humanPoints.text = "" + pointsOfHuman
+        viewBinding.humanPoints.icon.setImageResource(R.drawable.account)
+        viewBinding.humanPoints.icon.imageTintList = context?.getColor(R.color.score_gold)
+            ?.let { ColorStateList.valueOf(it) }
+        viewBinding.humanPoints.scoreText.text = pointsOfHuman.toString()
         pointsOfAI = sharedPreferences.getInt("pointsOfAI", 0)
-        viewBinding.pcPoints.text = "" + pointsOfAI
+        viewBinding.pcPoints.scoreText.text = pointsOfAI.toString()
+        viewBinding.pcPoints.icon.setImageResource(R.drawable.ic_game_android)
+        viewBinding.pcPoints.icon.imageTintList = context?.getColor(R.color.score_gold)
+            ?.let { ColorStateList.valueOf(it) }
         viewBinding.textView.text = ""
         @SuppressLint("DiscouragedApi") val idView1 = resources.getIdentifier("button1", "id", context?.packageName)
         val eventView1 = view.findViewById<View>(idView1)
@@ -193,7 +200,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 pointsOfHuman++
                 presenter.saveProgress(40,true)
                 snackBarView(requireActivity().findViewById(R.id.football_layout))
-                viewBinding.humanPoints.text = "" + pointsOfHuman
+                viewBinding.humanPoints.scoreText.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
             } else if (viewBinding.button4.tag.toString()
@@ -208,7 +215,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 pointsOfHuman++
                 presenter.saveProgress(40,true)
                 snackBarView(requireActivity().findViewById(R.id.football_layout))
-                viewBinding.humanPoints.text = "" + pointsOfHuman
+                viewBinding.humanPoints.scoreText.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
             } else if (viewBinding.button7.tag.toString()
@@ -224,7 +231,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 pointsOfHuman++
                 presenter.saveProgress(40,true)
                 snackBarView(requireActivity().findViewById(R.id.football_layout))
-                viewBinding.humanPoints.text = "" + pointsOfHuman
+                viewBinding.humanPoints.scoreText.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
             } else if (viewBinding.button1.tag.toString()
@@ -240,7 +247,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 pointsOfHuman++
                 presenter.saveProgress(40,true)
                 snackBarView(requireActivity().findViewById(R.id.football_layout))
-                viewBinding.humanPoints.text = "" + pointsOfHuman
+                viewBinding.humanPoints.scoreText.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
             } else if (viewBinding.button2.tag.toString()
@@ -255,7 +262,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 pointsOfHuman++
                 presenter.saveProgress(40,true)
                 snackBarView(requireActivity().findViewById(R.id.football_layout))
-                viewBinding.humanPoints.text = "" + pointsOfHuman
+                viewBinding.humanPoints.scoreText.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
             } else if (viewBinding.button3.tag.toString()
@@ -270,7 +277,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 pointsOfHuman++
                 presenter.saveProgress(40,true)
                 snackBarView(requireActivity().findViewById(R.id.football_layout))
-                viewBinding.humanPoints.text = "" + pointsOfHuman
+                viewBinding.humanPoints.scoreText.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
             } else if (viewBinding.button1.tag.toString()
@@ -285,7 +292,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 pointsOfHuman++
                 presenter.saveProgress(40,true)
                 snackBarView(requireActivity().findViewById(R.id.football_layout))
-                viewBinding.humanPoints.text = "" + pointsOfHuman
+                viewBinding.humanPoints.scoreText.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
             } else if (viewBinding.button3.tag.toString()
@@ -300,7 +307,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 pointsOfHuman++
                 presenter.saveProgress(40,true)
                 snackBarView(requireActivity().findViewById(R.id.football_layout))
-                viewBinding.humanPoints.text = "" + pointsOfHuman
+                viewBinding.humanPoints.scoreText.text = "" + pointsOfHuman
                 editor.putInt("pointsOfHuman", pointsOfHuman)
                 editor.apply()
             } else if (viewBinding.button1.drawable != null && viewBinding.button2.drawable != null && viewBinding.button3.drawable != null && viewBinding.button4.drawable != null && viewBinding.button5.drawable != null && viewBinding.button6.drawable != null && viewBinding.button7.drawable != null && viewBinding.button8.drawable != null && viewBinding.button9.drawable != null) {
@@ -330,7 +337,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.textView.setText(R.string.pc_winner_message)
                 viewBinding.restart.visibility = View.VISIBLE
                 pointsOfAI++
-                viewBinding.pcPoints.text = "" + pointsOfAI
+                viewBinding.pcPoints.scoreText.text = "" + pointsOfAI
                 editor.putInt("pointsOfAI", pointsOfAI)
                 editor.apply()
             } else if (viewBinding.button4.tag.toString()
@@ -341,7 +348,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.textView.setText(R.string.pc_winner_message)
                 viewBinding.restart.visibility = View.VISIBLE
                 pointsOfAI++
-                viewBinding.pcPoints.text = "" + pointsOfAI
+                viewBinding.pcPoints.scoreText.text = "" + pointsOfAI
                 editor.putInt("pointsOfAI", pointsOfAI)
                 editor.apply()
             } else if (viewBinding.button7.tag.toString()
@@ -352,7 +359,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.textView.setText(R.string.pc_winner_message)
                 viewBinding.restart.visibility = View.VISIBLE
                 pointsOfAI++
-                viewBinding.pcPoints.text = "" + pointsOfAI
+                viewBinding.pcPoints.scoreText.text = "" + pointsOfAI
                 editor.putInt("pointsOfAI", pointsOfAI)
                 editor.apply()
             } else if (viewBinding.button1.tag.toString()
@@ -363,7 +370,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.textView.setText(R.string.pc_winner_message)
                 viewBinding.restart.visibility = View.VISIBLE
                 pointsOfAI++
-                viewBinding.pcPoints.text = "" + pointsOfAI
+                viewBinding.pcPoints.scoreText.text = "" + pointsOfAI
                 editor.putInt("pointsOfAI", pointsOfAI)
                 editor.apply()
             } else if (viewBinding.button2.tag.toString()
@@ -374,7 +381,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.textView.setText(R.string.pc_winner_message)
                 viewBinding.restart.visibility = View.VISIBLE
                 pointsOfAI++
-                viewBinding.pcPoints.text = "" + pointsOfAI
+                viewBinding.pcPoints.scoreText.text = "" + pointsOfAI
                 editor.putInt("pointsOfAI", pointsOfAI)
                 editor.apply()
             } else if (viewBinding.button3.tag.toString()
@@ -385,7 +392,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.textView.setText(R.string.pc_winner_message)
                 viewBinding.restart.visibility = View.VISIBLE
                 pointsOfAI++
-                viewBinding.pcPoints.text = "" + pointsOfAI
+                viewBinding.pcPoints.scoreText.text = "" + pointsOfAI
                 editor.putInt("pointsOfAI", pointsOfAI)
                 editor.apply()
             } else if (viewBinding.button1.tag.toString()
@@ -396,7 +403,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.textView.setText(R.string.pc_winner_message)
                 viewBinding.restart.visibility = View.VISIBLE
                 pointsOfAI++
-                viewBinding.pcPoints.text = "" + pointsOfAI
+                viewBinding.pcPoints.scoreText.text = "" + pointsOfAI
                 editor.putInt("pointsOfAI", pointsOfAI)
                 editor.apply()
             } else if (viewBinding.button3.tag.toString()
@@ -407,7 +414,7 @@ class FootballFragment : BasicFragment(), FootballView {
                 viewBinding.textView.setText(R.string.pc_winner_message)
                 viewBinding.restart.visibility = View.VISIBLE
                 pointsOfAI++
-                viewBinding.pcPoints.text = "" + pointsOfAI
+                viewBinding.pcPoints.scoreText.text = "" + pointsOfAI
                 editor.putInt("pointsOfAI", pointsOfAI)
                 editor.apply()
             }

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -17,12 +18,14 @@ import ru.dekabrsky.simpleBottomsheet.R
 import ru.dekabrsky.simpleBottomsheet.databinding.SimpleInfobottomSheetFragmentBinding
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 
+
 open class SimpleInfoBottomSheet : BottomSheetDialogFragment() {
     private val viewBinding by viewBinding(SimpleInfobottomSheetFragmentBinding::bind)
 
     private val bottomSheet get() = dialog?.findViewById<View>(R.id.design_bottom_sheet)
     protected open val initState = BottomSheetBehavior.STATE_EXPANDED
     protected open val skipCollapsed = false
+    private val animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.bounce_animation) }
 
     override fun getTheme(): Int = R.style.Dialog_Bottom
 
@@ -46,6 +49,7 @@ open class SimpleInfoBottomSheet : BottomSheetDialogFragment() {
         args?.icon?.let { drawableRes ->
             viewBinding.image.visible()
             viewBinding.image.setImageResource(drawableRes)
+            viewBinding.image.startAnimation(animation)
         }
 
         args?.buttonState?.let { buttonState ->

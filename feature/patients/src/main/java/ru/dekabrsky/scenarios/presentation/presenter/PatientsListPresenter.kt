@@ -23,7 +23,8 @@ class PatientsListPresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        load()
+        //load()
+        viewState.showEmptyLayout()
     }
 
     private fun load(

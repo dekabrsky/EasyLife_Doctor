@@ -11,5 +11,11 @@
     <color name="pale_cyan">#d0ebf3</color>
     <color name="fifteen_card_bg">#747474</color>
     <color name="tree_green">#2a5c03</color>
-    <color name="wall_color">#FFF0F5</color>
+    <color name="wall_color_pink">#FFF0F5</color>
+    <color name="wall_color_cyan">#DAFFEE</color>
+    <color name="wall_color_green">#BFFDA5</color>
+    <color name="wall_color_yellow">#FFF6AA</color>
+    <color name="wall_color_purple">#D4BEFB</color>
+    <color name="wall_color_blue">#A5D7FF</color>
+    <color name="score_gold">#FFFFA800</color>
 </resources>
