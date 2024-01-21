@@ -27,9 +27,6 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
 
     override val layoutRes = R.layout.main_room_layout
 
-    private var stringScore = ""
-    var level = 1
-
     private val binding by viewBinding(MainRoomLayoutBinding::bind)
 
     private val shelfAdapter by lazy { ShelfAdapter() }
@@ -65,20 +62,6 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
             binding.progressMedal.root.translationX = scrollX.toFloat()
             binding.scoreLayout.root.translationX = scrollX.toFloat()
         }
-        binding.scoreLayout.scoreText.text = presenter.fullScore()
-        if (stringScore == "" || stringScore.toInt() >= 0 || stringScore.toInt() < 5000) {
-            level = 1
-            presenter.onMedalClick()
-        } else if(stringScore.toInt() >= 5000 || stringScore.toInt() < 12000) {
-            level = 2
-            presenter.onMedalClick()
-        } else if(stringScore.toInt() >= 12000 || stringScore.toInt() < 20000) {
-            level = 3
-            presenter.onMedalClick()
-        } else if(stringScore.toInt() >= 20000) {
-            level = 4
-            presenter.onMedalClick()
-        }
     }
 
     private fun initShelf() {
@@ -88,6 +71,10 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
 
     override fun setShelfItems(list: List<ShelfItemUiModel>) {
         shelfAdapter.updateItems(list)
+    }
+
+    override fun setScore(score: String) {
+        binding.scoreLayout.scoreText.text = score
     }
 
     override fun updateItemsVisibility(level: Int, itemsVisibility: List<ItemVisibility>) {

@@ -1,5 +1,7 @@
 package ru.dekabrsky.login.presentation.presenter
 
+import ru.dekabrsky.analytics.AnalyticsSender
+import ru.dekabrsky.feature.loginCommon.domain.interactor.LoginInteractor
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
@@ -17,7 +19,8 @@ class LoginPresenter @Inject constructor(
     private val interactor: LoginInteractorImpl,
     private val sharedPreferencesProvider: SharedPreferencesProvider,
     private val notification: NotificationEntity,
-) : BasicPresenter<LoginView>() {
+    private val analyticsSender: AnalyticsSender
+): BasicPresenter<LoginView>() {
 
     enum class LoginMode { LOGIN, REGISTRATION }
 
@@ -31,6 +34,8 @@ class LoginPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.setLogin(lastLogin)
+        analyticsSender.sendLogin()
+//        repository.login("Denis", "123")
 
         if (notification.tabletName.isNotEmpty()) {
             viewState.showToast("Авторизуйся, чтобы посмотерть уведомление")
@@ -51,6 +56,7 @@ class LoginPresenter @Inject constructor(
                     .withLoadingView(viewState)
                     .subscribe({
                         router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
+                        analyticsSender.setUserId(it.id)
                     }, viewState::showError)
                     .addFullLifeCycle()
                 if (lastLogin != currentLogin) sharedPreferencesProvider.lastLogin.set(currentLogin)

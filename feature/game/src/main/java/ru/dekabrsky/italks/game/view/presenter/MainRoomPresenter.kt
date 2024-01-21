@@ -1,6 +1,8 @@
 package ru.dekabrsky.italks.game.view.presenter
 
 import android.media.MediaPlayer
+import ru.dekabrsky.analytics.AnalyticsSender
+import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
@@ -24,26 +26,30 @@ class MainRoomPresenter @Inject constructor(
     private val visibilityMapper: ItemsVisibilityMapper,
     private val mediaPlayer: MediaPlayer,
     private val gameFlowCache: GameFlowCache,
-    private val sharedPreferencesProvider: SharedPreferencesProvider
+    private val sharedPreferencesProvider: SharedPreferencesProvider,
+    private val analyticsSender: AnalyticsSender
 ) : BasicPresenter<MainRoomView>(router) {
 
-    var level = 1
+    private val score get() = gameFlowCache.experience?.score ?: 0
+    private var level = getLevel()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
 
         if (gameFlowCache.isFromNotification) router.navigateTo(Flows.Game.SCREEN_GARDEN)
 
-        viewState.setShelfItems(mapper.map(level))
-        viewState.updateItemsVisibility(level, visibilityMapper.map(level))
+        setNewLevel()
         viewState.setupAvatar(router)
         observeMusicState()
         updateRoomColor()
+        AnalyticsUtils.sendScreenOpen(this, analyticsSender)
     }
 
     override fun attachView(view: MainRoomView) {
         super.attachView(view)
         gameFlowCache.isMusicOnSubject.value?.let { updateMusicState(it) }
+        viewState.setScore(score.toString())
+        updateLevel()
     }
 
     private fun observeMusicState() {
@@ -51,10 +57,6 @@ class MainRoomPresenter @Inject constructor(
             .observeOn(RxSchedulers.main())
             .subscribe(::updateMusicState)
             .addFullLifeCycle()
-    }
-
-    fun fullScore(): String{
-        return gameFlowCache.experience?.score.toString()
     }
 
     fun onDoorClick() = router.navigateTo(
@@ -68,11 +70,37 @@ class MainRoomPresenter @Inject constructor(
             buttonState = ButtonState("Вперед!") { router.navigateTo(Flows.Game.SCREEN_GARDEN) }
         )
     )
-    fun onMedalClick() {
-    //    this.level = (this.level + 1) % 5
-        if (this.level == 0) this.level = 1
-        viewState.updateItemsVisibility(this.level, visibilityMapper.map(this.level))
-        viewState.setShelfItems(mapper.map(this.level))
+    private fun setNewLevel() {
+        viewState.updateItemsVisibility(level, visibilityMapper.map(level))
+        viewState.setShelfItems(mapper.map(level))
+    }
+
+    private fun updateLevel() {
+        val oldLevel = level
+        level = getLevel()
+        if (level != oldLevel) {
+            setNewLevel()
+            showNewLevelDialog()
+        }
+    }
+
+    private fun getLevel() = when {
+        score < 500 -> 1
+        score < 1500 -> 2
+        score < 4000 -> 3
+        else -> 4
+    }
+
+    private fun showNewLevelDialog() {
+        router.navigateTo(
+            Flows.Common.SCREEN_BOTTOM_INFO,
+            BottomSheetScreenArgs(
+                title = "Уровень повышен!",
+                subtitle = "Интерьер обновлен до $level уровня",
+                mode = BottomSheetMode.GAME,
+                icon = R.drawable.cup
+            )
+        )
     }
 
     fun onSpeakerClick() {

@@ -4,6 +4,8 @@ import main.utils.isTrue
 import main.utils.orZero
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.LocalDate
+import ru.dekabrsky.analytics.AnalyticsSender
+import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.mapper.NotificationEntityToUiMapper
@@ -19,7 +21,8 @@ class NotificationEditPresenter @Inject constructor(
     router: FlowRouter,
     private val interactor: NotificationInteractor,
     private val existingNotification: NotificationEntity,
-    private val mapper: NotificationEntityToUiMapper
+    private val mapper: NotificationEntityToUiMapper,
+    private val analyticsSender: AnalyticsSender
 ) : BasicPresenter<NotificationEditView>(router) {
 
     private var notification = existingNotification.uid?.let {
@@ -38,6 +41,7 @@ class NotificationEditPresenter @Inject constructor(
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        AnalyticsUtils.sendScreenOpen(this, analyticsSender)
         notification.let {
             viewState.setNotesFields(it)
             it.hour?.let { hour -> it.minute?.let { minute -> onTimeSet(hour, minute) } }

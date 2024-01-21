@@ -1,5 +1,7 @@
 package ru.dekabrsky.italks.game.view.presenter
 
+import ru.dekabrsky.analytics.AnalyticsSender
+import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
@@ -19,7 +21,8 @@ import javax.inject.Inject
 class GardenPresenter @Inject constructor(
     val router: FlowRouter,
     private val interactor: GameInteractor,
-    private val cache: GameFlowCache
+    private val cache: GameFlowCache,
+    private val analyticsSender: AnalyticsSender
 ) : BasicPresenter<GardenView>(router) {
 
     override fun onFirstViewAttach() {
@@ -30,6 +33,7 @@ class GardenPresenter @Inject constructor(
             .withLoadingView(viewState)
             .subscribe(::dispatchConfigs, viewState::showError)
             .addFullLifeCycle()
+        AnalyticsUtils.sendScreenOpen(this, analyticsSender)
     }
 
     private fun dispatchConfigs(config: List<GameConfigEntity>) {

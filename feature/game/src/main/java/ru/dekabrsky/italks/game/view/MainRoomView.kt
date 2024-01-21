@@ -17,4 +17,5 @@ interface MainRoomView: BasicView {
     @OneExecution
     fun showColorsDialog(selectedVariantIndex: Int, variants: Array<String>)
     fun setRoomColor(res: Int)
+    fun setScore(score: String)
 }

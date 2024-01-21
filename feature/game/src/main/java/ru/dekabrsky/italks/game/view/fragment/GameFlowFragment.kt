@@ -68,10 +68,6 @@ class GameFlowFragment : BasicFlowFragment(), GameFlowView {
         Toothpick.closeScope(scopeName)
     }
 
-    override fun onBackPressed() {
-        presenter.onBackPressed()
-    }
-
     fun setNavBarVisibility(isVisible: Boolean) {
         (parentFragment as TabsFlowFragment).setNavBarVisibility(isVisible)
     }

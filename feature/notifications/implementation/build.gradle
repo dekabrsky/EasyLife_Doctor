@@ -32,4 +32,5 @@ dependencies {
     implementation project(':uikit')
     implementation project(':flows')
     implementation project(':feature:tabs')
+    implementation project(':feature:analytics')
 }

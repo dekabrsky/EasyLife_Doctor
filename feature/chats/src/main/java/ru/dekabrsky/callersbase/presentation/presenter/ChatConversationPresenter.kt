@@ -1,6 +1,8 @@
 package ru.dekabrsky.callersbase.presentation.presenter
 
 import org.threeten.bp.LocalDateTime
+import ru.dekabrsky.analytics.AnalyticsSender
+import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.callersbase.domain.interactor.ContactsInteractorImpl
 import ru.dekabrsky.callersbase.presentation.mapper.MessageEntityToUiMapper
 import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
@@ -17,7 +19,8 @@ class ChatConversationPresenter @Inject constructor(
     private val interactor: ContactsInteractorImpl,
     private val args: ChatConversationScreenArgs,
     private val mapper: MessageEntityToUiMapper,
-    private val router: FlowRouter
+    private val router: FlowRouter,
+    private val analyticsSender: AnalyticsSender
 ) : BasicPresenter<ChatConversationView>(router) {
 
     private val messages = mutableListOf<ChatMessageUiModel>()
@@ -26,6 +29,7 @@ class ChatConversationPresenter @Inject constructor(
         super.onFirstViewAttach()
         loadMessages()
         viewState.setTitle("Чат с ${args.companion.name}")
+        AnalyticsUtils.sendScreenOpen(this, analyticsSender)
     }
 
     private fun loadMessages() {

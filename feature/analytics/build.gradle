@@ -1,0 +1,11 @@
+apply from: Base
+
+dependencies {
+
+    dependenciesSet(this) {
+        toothpick()
+        analytics()
+    }
+
+    implementation project(':scopes')
+}

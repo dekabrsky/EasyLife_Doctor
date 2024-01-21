@@ -29,4 +29,5 @@ dependencies {
     implementation project(':feature:events-common')
     implementation project(':feature:tabs')
     implementation project(':feature:ws:implementation2')
+    implementation project(':feature:analytics')
 }

@@ -5,11 +5,13 @@ import android.content.Context
 import android.media.MediaPlayer
 import androidx.core.app.NotificationManagerCompat
 import androidx.room.RoomDatabase
+import com.google.firebase.analytics.FirebaseAnalytics
 import io.reactivex.Scheduler
 import okhttp3.CookieJar
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
+import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.feature.notifications.implementation.NotificationChannelManager
 import ru.dekabrsky.feature.notifications.implementation.data.provider.NotificationDatabaseProvider
@@ -58,6 +60,8 @@ class AppModule : Module() {
         bind(RoomDatabase::class.java).withName(NotificationDatabaseQualifier::class.java)
             .toProvider(NotificationDatabaseProvider::class.java).providesSingletonInScope()
         bind(MediaPlayer::class.java).toProvider(MediaPlayerProvider::class.java).providesSingletonInScope()
+        bind(FirebaseAnalytics::class.java).toProvider(FirebaseAnalyticsProvider::class.java).providesSingletonInScope()
+        bind(AnalyticsSender::class.java).singletonInScope()
         bind(LoginDataCache::class.java).singletonInScope()
     }
 }
