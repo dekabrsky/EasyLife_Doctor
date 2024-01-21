@@ -7,6 +7,6 @@ import ru.dekabrsky.italks.basic.fragments.BasicView
 @AddToEndSingle
 interface ChatConversationView: BasicView {
     fun setMessages(messages: List<ChatMessageUiModel>)
-    fun addMessage(uiMsg: ChatMessageUiModel)
+    fun addMessage(uiMsg: ChatMessageUiModel, withClean: Boolean = false)
     fun setTitle(title: String)
 }

@@ -10,8 +10,6 @@ import ru.dekabrsky.callersbase.presentation.adapter.ChatMessagesAdapter
 import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
 import ru.dekabrsky.callersbase.presentation.model.ChatMessageUiModel
 import ru.dekabrsky.callersbase.presentation.presenter.ChatConversationPresenter
-import ru.dekabrsky.callersbase.presentation.presenter.ChatsListPresenter
-import ru.dekabrsky.italks.basic.di.IntWrapper
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
@@ -60,9 +58,9 @@ class ChatConversationFragment: BasicFragment(), ChatConversationView {
         adapter.updateItems(messages)
     }
 
-    override fun addMessage(uiMsg: ChatMessageUiModel) {
+    override fun addMessage(uiMsg: ChatMessageUiModel, withClean: Boolean) {
         adapter.addMessage(uiMsg)
-        binding.chatInput.setText("")
+        if (withClean) binding.chatInput.setText("")
         binding.messagesList.scrollToPosition(0)
     }
 

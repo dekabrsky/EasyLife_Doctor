@@ -1,6 +1,5 @@
 package ru.dekabrsky.callersbase.presentation.presenter
 
-import org.threeten.bp.LocalDateTime
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.callersbase.domain.interactor.ContactsInteractorImpl
@@ -12,7 +11,6 @@ import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
-import ru.dekabrsky.ws.implementation2.WsService
 import javax.inject.Inject
 
 class ChatConversationPresenter @Inject constructor(
@@ -69,6 +67,6 @@ class ChatConversationPresenter @Inject constructor(
         interactor.postMessageWs(args.chatId, msg)
 //        messages.add(mapper.mapMyMessage(msg))
 //        updateViewMessages()
-        viewState.addMessage(mapper.mapMyMessage(msg))
+        viewState.addMessage(mapper.mapMyMessage(msg), withClean = true)
     }
 }
