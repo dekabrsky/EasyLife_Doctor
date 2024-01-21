@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -55,6 +56,7 @@ dependencies {
     implementation project(path: ':feature:ws:implementation2')
     dependenciesSet(this) {
         room()
+        analytics()
     }
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -117,4 +119,5 @@ dependencies {
     implementation project(':feature:profile')
     implementation project(':feature:avatar')
     implementation project(':feature:sharedPreferences')
+    implementation project(':feature:analytics')
 }

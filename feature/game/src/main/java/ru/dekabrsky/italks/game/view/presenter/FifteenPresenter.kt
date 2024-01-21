@@ -1,5 +1,7 @@
 package ru.dekabrsky.italks.game.view.presenter
 
+import ru.dekabrsky.analytics.AnalyticsSender
+import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
@@ -18,7 +20,8 @@ import javax.inject.Inject
 class FifteenPresenter @Inject constructor(
     private val router: FlowRouter,
     private val interactor: GameInteractor,
-    private val cache: GameFlowCache
+    private val cache: GameFlowCache,
+    private val analyticsSender: AnalyticsSender
 ): BasicPresenter<FifteenView>(router) {
     override fun onBackPressed() = exitWithConfirm { router.back() }
 
@@ -30,6 +33,7 @@ class FifteenPresenter @Inject constructor(
             .withLoadingView(viewState)
             .subscribe({ cache.experience = it }, viewState::showError)
             .addFullLifeCycle()
+        AnalyticsUtils.sendScreenOpen(this, analyticsSender)
     }
 
     fun restart() {
