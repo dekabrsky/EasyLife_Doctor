@@ -1,4 +1,5 @@
 apply plugin: 'com.google.firebase.appdistribution'
+apply plugin: 'com.google.firebase.crashlytics'
 
 android {
     buildToolsVersion "30.0.3"
@@ -23,7 +24,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 33
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1-crashlytics"
 
         buildConfigField "String", 'ENDPOINT', "\"http://83.222.11.163/\""
     }

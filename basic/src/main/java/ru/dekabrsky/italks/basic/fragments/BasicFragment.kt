@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import ru.dekabrsky.italks.basic.R
@@ -88,6 +89,12 @@ abstract class BasicFragment : MvpFragmentImpl(), BasicView {
         compatActivity?.setSupportActionBar(toolbar)
     }
 
+    override fun onResume() {
+        super.onResume()
+        FirebaseCrashlytics.getInstance()
+            .setCustomKey("CURRENT_SCREEN", "Fragment: ${this.javaClass.simpleName}, Title: ${activity?.title}")
+    }
+
     protected fun Disposable.addLifeCycle(): Disposable {
         lifeCycleDisposable.add(this)
         return this
@@ -129,6 +136,7 @@ abstract class BasicFragment : MvpFragmentImpl(), BasicView {
         snackBar.show()
 
         Log.d(scopeName, error.stackTraceToString())
+        FirebaseCrashlytics.getInstance().recordException(error)
     }
 
     override fun showToast(msg: String) {
