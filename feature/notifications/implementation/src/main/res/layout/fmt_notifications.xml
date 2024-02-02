@@ -21,6 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
+        android:paddingTop="@dimen/offset_medium"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/offset_large"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="3"
         tools:listitem="@layout/item_notification" />

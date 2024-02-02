@@ -23,7 +23,8 @@ class NotificationsListFragment: BasicFragment(), NotificationsListView {
         NotificationsListAdapter(
             onItemClick = presenter::onNotificationClick,
             onItemDelete = presenter::onNotificationDelete,
-            onItemCheckedChanged = presenter::onItemCheckedChanged
+            onItemCheckedChanged = presenter::onItemCheckedChanged,
+            formatDosage = presenter::formatDosage
         )
     }
 

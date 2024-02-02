@@ -11,7 +11,9 @@ import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.LocalTime
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationMedicineEntity
 import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
+import ru.dekabrsky.feature.notifications.common.utils.NotificationToStringFormatter
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationsListView
 import ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver
@@ -26,12 +28,14 @@ import java.util.Calendar
 import javax.inject.Inject
 
 
+@Suppress("LongParameterList")
 class NotificationsListPresenter @Inject constructor(
     private val router: FlowRouter,
     private val notificationInteractor: NotificationInteractor,
     private val context: Context,
     private val flowArgs: NotificationsFlowArgs,
-    private val sharedPreferencesProvider: SharedPreferencesProvider
+    private val sharedPreferencesProvider: SharedPreferencesProvider,
+    private val formatter: NotificationToStringFormatter
 ) : BasicPresenter<NotificationsListView>(router) {
 
     private var isFirstLoading = true
@@ -154,6 +158,9 @@ class NotificationsListPresenter @Inject constructor(
             .subscribe({ getAll() }, viewState::showError)
             .addFullLifeCycle()
     }
+
+    fun formatDosage(medicineEntity: NotificationMedicineEntity) =
+        formatter.formatDosage(medicineEntity)
 
     companion object {
         private const val NOTIFICATIONS_LIST: String = "NOTIFICATIONS_LIST"

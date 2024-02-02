@@ -18,4 +18,5 @@ interface MainRoomView: BasicView {
     fun showColorsDialog(selectedVariantIndex: Int, variants: Array<String>)
     fun setRoomColor(res: Int)
     fun setScore(score: String)
+    fun scrollToAvatar()
 }

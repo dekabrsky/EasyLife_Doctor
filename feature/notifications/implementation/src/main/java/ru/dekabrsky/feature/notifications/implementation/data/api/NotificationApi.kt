@@ -16,7 +16,7 @@ interface NotificationApi {
     fun getNotifications(): Single<List<NotificationResponse>>
 
     @POST("notifications")
-    fun postNotification(@Body request: NotificationRequest): Single<NotificationResponse>
+    fun postNotification(@Body request: NotificationRequest): Completable
 
     @DELETE("notifications/{id}")
     fun deleteNotification(@Path("id") id: Int): Completable

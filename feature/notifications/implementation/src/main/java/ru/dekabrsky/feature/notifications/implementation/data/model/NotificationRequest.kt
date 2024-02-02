@@ -5,17 +5,22 @@ import androidx.annotation.Keep
 @Keep
 @Suppress("LongParameterList")
 class NotificationRequest(
-    val dosage: String,
+    val medicines: List<MedicineRequest>,
 //    val duration: Duration?,
     val enabled: Boolean,
-    val name: String,
-    val note: String,
     val time: String,
     val weekDays: List<String>
 ) {
-//    @Keep
+    //    @Keep
 //    data class Duration(
 //        val startDate: String,
 //        val endDate: String
 //    )
+    @Keep
+    class MedicineRequest(
+        val name: String,
+        val unit: String,
+        val dosage: String,
+        val note: String
+    )
 }

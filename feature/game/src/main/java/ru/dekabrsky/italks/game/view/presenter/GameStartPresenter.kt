@@ -3,8 +3,11 @@ package ru.dekabrsky.italks.game.view.presenter
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.italks.game.view.GameView
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationMedicineEntity
+import ru.dekabrsky.feature.notifications.common.utils.NotificationToStringFormatter
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
+import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
 import ru.dekabrsky.italks.game.view.cache.GameFlowCache
@@ -14,18 +17,20 @@ import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import ru.dekabrsky.simpleBottomsheet.view.model.ButtonState
 import javax.inject.Inject
 
+@Suppress("LongParameterList")
 class GameStartPresenter @Inject constructor(
     val router: FlowRouter,
     private val sharedPreferencesProvider: SharedPreferencesProvider,
     private val analyticsSender: AnalyticsSender,
     private val notification: NotificationEntity,
-    private val cache: GameFlowCache
+    private val cache: GameFlowCache,
+    private val notificationToStringFormatter: NotificationToStringFormatter
 ) : BasicPresenter<GameView>(router) {
 
     override fun onFirstViewAttach() {
         viewState.setupAvatar(router)
 
-        if (!notification.tabletName.isNullOrEmpty()) {
+        if (notification.medicines.isNotEmpty()) {
             openBottomSheet(notification)
         }
     }
@@ -36,7 +41,7 @@ class GameStartPresenter @Inject constructor(
             Flows.Common.SCREEN_BOTTOM_INFO,
             BottomSheetScreenArgs(
                 title = "Меня просили напомнить",
-                subtitle = notification.tabletName + "\n" + notification.dosage + "\n" + notification.note,
+                subtitle = notificationToStringFormatter.formatMedicines(notification),
                 mode = BottomSheetMode.GAME,
                 buttonState = ButtonState(
                     text = "Так точно, капитан!",

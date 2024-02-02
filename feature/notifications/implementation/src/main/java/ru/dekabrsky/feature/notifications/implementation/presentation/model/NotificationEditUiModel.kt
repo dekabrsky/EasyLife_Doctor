@@ -8,9 +8,10 @@ import ru.dekabrsky.italks.basic.dateTime.formatHourAndMinute
 
 @Suppress("LongParameterList")
 class NotificationEditUiModel(
-    var tabletName: String = "",
-    var dosage: String = "",
-    var note: String = "",
+//    var tabletName: String = "",
+//    var dosage: String = "",
+//    var note: String = "",
+    var medicines: MutableList<MedicineItemUiModel> = mutableListOf(MedicineItemUiModel()),
     var hour: Int? = null,
     var minute: Int? = null,
     var selectedDays: List<DayOfWeek> = DayOfWeek.values().toList(),

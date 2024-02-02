@@ -42,6 +42,7 @@ class MainRoomPresenter @Inject constructor(
         viewState.setupAvatar(router)
         observeMusicState()
         updateRoomColor()
+        viewState.scrollToAvatar()
         AnalyticsUtils.sendScreenOpen(this, analyticsSender)
     }
 

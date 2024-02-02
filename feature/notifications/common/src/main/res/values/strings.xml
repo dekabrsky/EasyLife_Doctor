@@ -4,4 +4,20 @@
     <string name="easy_life_notification_header">EasyLife</string>
     <string name="easy_life_notification_channel_description">Напоминание о приеме таблеток</string>
     <string name="easy_life_first_push_message">Тестовое уведомление</string>
+
+    <plurals name="plural_pill">
+        <item quantity="one">таблетка</item>
+        <item quantity="two">таблетки</item>
+        <item quantity="few">таблетки</item>
+        <item quantity="many">таблеток</item>
+        <item quantity="other">таблеток</item>
+    </plurals>
+
+    <plurals name="plural_ml">
+        <item quantity="one">мл</item>
+        <item quantity="two">мл</item>
+        <item quantity="few">мл</item>
+        <item quantity="many">мл</item>
+        <item quantity="other">мл</item>
+    </plurals>
 </resources>

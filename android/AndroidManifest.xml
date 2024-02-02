@@ -3,16 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mygdx.game">
 
-    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
         android:name=".App"
@@ -26,30 +28,23 @@
 
         <activity
             android:name="ru.dekabrsky.italks.activity.view.MainActivity"
-            android:screenOrientation="fullSensor"
             android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name="ru.dekabrsky.italks.game.GameActivity"/>
-
+        <activity
+            android:name="ru.dekabrsky.italks.game.GameActivity"
+            android:screenOrientation="portrait" />
 
         <receiver
             android:name="ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver"
             android:enabled="true"
-            android:exported="false">
-        </receiver>
-
-        <activity
-            android:name="gree.uniq.minigameleaves.AndroidLauncher"
-            android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
-            android:exported="true"
-            android:screenOrientation="fullSensor">
-        </activity>
+            android:exported="false"></receiver>
     </application>
 
 </manifest>

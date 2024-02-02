@@ -3,8 +3,10 @@ package ru.dekabrsky.feature.notifications.implementation.data.mapper
 import main.utils.isTrue
 import main.utils.orZero
 import org.threeten.bp.DayOfWeek
+import ru.dekabrsky.feature.notifications.common.domain.model.DosageUnit
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationDurationEntity
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationMedicineEntity
 import ru.dekabrsky.feature.notifications.implementation.data.model.NotificationRequest
 import ru.dekabrsky.feature.notifications.implementation.data.model.NotificationResponse
 import ru.dekabrsky.italks.basic.dateTime.formatHourAndMinute
@@ -17,9 +19,14 @@ class NotificationResponseToEntityMapper @Inject constructor() {
         val (hour, minute) = hourAndMinuteFromString(response.time.orEmpty())
         return NotificationEntity(
             uid = response.notificationId.orZero().toLong(),
-            tabletName = response.name.orEmpty(),
-            dosage = response.dosage.orEmpty(),
-            note = response.note.orEmpty(),
+            medicines = response.medicines.map {
+                NotificationMedicineEntity(
+                    name = it.name.orEmpty(),
+                    unit = DosageUnit.getByValue(it.unit),
+                    dosage = it.dosage.orEmpty(),
+                    note = it.note.orEmpty(),
+                )
+            },
             hour = hour,
             minute = minute,
             enabled = response.enabled.isTrue(),
@@ -40,9 +47,14 @@ class NotificationResponseToEntityMapper @Inject constructor() {
 
     fun mapEntityToRequest(entity: NotificationEntity): NotificationRequest {
         return NotificationRequest(
-            name = entity.tabletName,
-            dosage = entity.dosage,
-            note = entity.note,
+            medicines = entity.medicines.map {
+                NotificationRequest.MedicineRequest(
+                    name = it.name,
+                    unit = it.unit?.toString().orEmpty(),
+                    dosage = it.dosage,
+                    note = it.note
+                )
+            },
             time = formatHourAndMinute(entity.hour, entity.minute),
             enabled = entity.enabled,
             weekDays = entity.weekDays.map { it.name },

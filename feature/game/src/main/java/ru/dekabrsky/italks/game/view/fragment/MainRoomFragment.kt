@@ -3,8 +3,12 @@ package ru.dekabrsky.italks.game.view.fragment
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
@@ -20,6 +24,7 @@ import ru.dekabrsky.italks.game.view.presenter.MainRoomPresenter
 import ru.dekabrsky.italks.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
+import java.util.concurrent.TimeUnit
 
 
 @Suppress("MagicNumber")
@@ -56,6 +61,9 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
             binding.clock.setOnClickListenerWithAnimation(it) { presenter.onClockClick() }
             binding.speakerAnimation.setOnClickListenerWithAnimation(it) { presenter.onSpeakerClick() }
             binding.colorsAnimation.setOnClickListenerWithAnimation(it) { presenter.onColorsClick() }
+//            Observable.interval(10L, TimeUnit.SECONDS)
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe({ binding.avatar.startAnimation(AnimationUtils.loadAnimation(context, R.anim.anum_jump)) }, {})
         }
         initShelf()
         binding.scrollContainer.setOnScrollChangeListener { _, scrollX, _, _, _ ->
@@ -114,6 +122,15 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
 
     override fun setRoomColor(res: Int) {
         context?.getColor(res)?.let { binding.roomContainer.setBackgroundColor(it) }
+    }
+
+    override fun scrollToAvatar() {
+        view?.post {
+            binding.scrollContainer.smoothScrollTo(
+                binding.window.x.toInt(), // так кот оказывается посередине
+                binding.scrollContainer.y.toInt()
+            )
+        }
     }
 
     override fun onBackPressed() {
