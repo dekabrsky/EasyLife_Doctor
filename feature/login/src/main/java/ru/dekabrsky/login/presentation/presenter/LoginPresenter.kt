@@ -1,6 +1,8 @@
 package ru.dekabrsky.login.presentation.presenter
 
 import ru.dekabrsky.analytics.AnalyticsSender
+import ru.dekabrsky.feature.loginCommon.domain.interactor.LoginInteractor
+import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.italks.basic.navigation.BaseScreens
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
@@ -37,7 +39,7 @@ class LoginPresenter @Inject constructor(
         analyticsSender.sendLogin()
 //        repository.login("Denis", "123")
 
-        if (notification.tabletName.isNotEmpty()) {
+        if (notification.medicines.isNotEmpty()) {
             viewState.showToast("Авторизуйся, чтобы посмотерть уведомление")
         }
 //        interactor.login("dobryden", "123")
@@ -102,7 +104,6 @@ class LoginPresenter @Inject constructor(
     fun onCodeTextChanged(text: String) {
         currentCode = text
     }
-
 
     fun onGrantPermissionBySettingsClicked() {
         router.startFlow(BaseScreens.SCREEN_OPEN_SETTINGS)

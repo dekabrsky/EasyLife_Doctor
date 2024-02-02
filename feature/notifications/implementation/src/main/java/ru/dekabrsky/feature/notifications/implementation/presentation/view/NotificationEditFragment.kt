@@ -2,9 +2,9 @@ package ru.dekabrsky.feature.notifications.implementation.presentation.view
 
 import android.os.Bundle
 import android.view.View
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
-import main.utils.onTextChange
 import main.utils.setBoolVisibility
 import main.utils.setIsCheckedWithoutEffects
 import moxy.presenter.InjectPresenter
@@ -13,7 +13,7 @@ import org.threeten.bp.LocalDate
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.databinding.FmtNotificationEditBinding
-import ru.dekabrsky.feature.notifications.implementation.presentation.model.NotificationEditUiModel
+import ru.dekabrsky.feature.notifications.implementation.presentation.adapter.MedicineAdapter
 import ru.dekabrsky.feature.notifications.implementation.presentation.presenter.NotificationEditPresenter
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
@@ -30,6 +30,8 @@ class NotificationEditFragment: BasicFragment(), NotificationEditView {
     @InjectPresenter
     lateinit var presenter: NotificationEditPresenter
 
+    private val adapter by lazy { MedicineAdapter(presenter) }
+
     @ProvidePresenter
     fun providePresenter(): NotificationEditPresenter {
         return Toothpick.openScopes(Scopes.SCOPE_FLOW_NOTIFICATION, scopeName)
@@ -45,23 +47,21 @@ class NotificationEditFragment: BasicFragment(), NotificationEditView {
         binding.toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
         binding.toolbar.setTitle(R.string.notification)
 
-        binding.tabletName.onTextChange(presenter::onTabletNameChanged)
-        binding.tabletDosage.onTextChange(presenter::onDosageChanged)
-        binding.tabletNote.onTextChange(presenter::onNoteChanged)
-
         binding.notificationTimeContainer.setOnClickListener { presenter.onTimeClick() }
         binding.startDateContainer.setOnClickListener { presenter.onStartDateClick() }
         binding.endDateContainer.setOnClickListener { presenter.onEndDateClick() }
 
         binding.doneBtn.setOnClickListener { presenter.onDoneClick() }
 
-        binding.weekDaysPicker.setOnWeekdaysChangeListener { _, _, selectedDays ->
-            presenter.onCheckedDaysChanged(selectedDays)
-        }
-
         binding.durationSwitch.setOnCheckedChangeListener { _, isChecked -> presenter.onDurationCheckedChanged(isChecked) }
 
         binding.enabledSwitch.setOnCheckedChangeListener { _, isChecked -> presenter.onEnabledCheckedChanged(isChecked) }
+
+        binding.notificationsDataList.adapter = adapter
+
+        binding.addButton.setOnClickListener { presenter.onAddMedicineClicked() }
+
+        binding.weekDaysLayout.setOnClickListener { presenter.onWeekDaysLayoutClicked() }
 
         (parentFragment as NotificationFlowFragment).setNavBarVisibility(false)
     }
@@ -104,6 +104,8 @@ class NotificationEditFragment: BasicFragment(), NotificationEditView {
         binding.enabledSwitch.setIsCheckedWithoutEffects(enabled, presenter::onEnabledCheckedChanged)
     }
 
+    override fun updateMedicines() = adapter.notifyDataSetChanged()
+
     private fun showDatePicker(date: LocalDate, callback: (LocalDate) -> Unit, tag: String) {
         val dpd: DatePickerDialog = DatePickerDialog.newInstance(null, date.year, date.monthValue - 1, date.dayOfMonth)
 
@@ -120,14 +122,23 @@ class NotificationEditFragment: BasicFragment(), NotificationEditView {
         binding.notificationTime.text = time
     }
 
-    override fun setNotesFields(uiModel: NotificationEditUiModel) {
-        binding.tabletName.setText(uiModel.tabletName)
-        binding.tabletDosage.setText(uiModel.dosage)
-        binding.tabletNote.setText(uiModel.note)
+    override fun showDaysDialog(selectedVariantIndices: BooleanArray, variants: Array<String>) {
+        val result = selectedVariantIndices.toMutableList()
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Дни недели")
+            .setMultiChoiceItems(variants, selectedVariantIndices) { _, _, _ -> }
+            .setMultiChoiceItems(variants, selectedVariantIndices) { _, which, isChecked ->
+                result[which] = isChecked
+            }
+            .setPositiveButton("Ок") { _, _ ->
+                presenter.onDaysSelected(result)
+            }
+            .setNegativeButton("Отмена") { dialog, _ -> dialog.dismiss() }
+            .show()
     }
 
-    override fun setSelectedDays(selectedDays: List<Int>) {
-        binding.weekDaysPicker.selectedDays = selectedDays
+    override fun showSelectedDays(selectedDays: String) {
+        binding.selectedDays.text = selectedDays
     }
 
     override fun onBackPressed() {

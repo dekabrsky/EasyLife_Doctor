@@ -4,17 +4,22 @@ import main.utils.isTrue
 import main.utils.orZero
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.LocalDate
+import org.threeten.bp.format.TextStyle
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
+import ru.dekabrsky.feature.notifications.common.domain.model.DosageUnit
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
+import ru.dekabrsky.feature.notifications.implementation.presentation.adapter.MedicineAdapter
 import ru.dekabrsky.feature.notifications.implementation.presentation.mapper.NotificationEntityToUiMapper
+import ru.dekabrsky.feature.notifications.implementation.presentation.model.MedicineItemUiModel
 import ru.dekabrsky.feature.notifications.implementation.presentation.model.NotificationEditUiModel
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationEditView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
+import java.util.Locale
 import javax.inject.Inject
 
 class NotificationEditPresenter @Inject constructor(
@@ -23,33 +28,29 @@ class NotificationEditPresenter @Inject constructor(
     private val existingNotification: NotificationEntity,
     private val mapper: NotificationEntityToUiMapper,
     private val analyticsSender: AnalyticsSender
-) : BasicPresenter<NotificationEditView>(router) {
+) : BasicPresenter<NotificationEditView>(router), MedicineAdapter.DataStore {
 
     private var notification = existingNotification.uid?.let {
         mapper.mapEntityToUi(existingNotification)
     } ?: NotificationEditUiModel()
 
     private val daysInWeek = listOf(
-        DayOfWeek.SUNDAY,
         DayOfWeek.MONDAY,
         DayOfWeek.TUESDAY,
         DayOfWeek.WEDNESDAY,
         DayOfWeek.THURSDAY,
         DayOfWeek.FRIDAY,
-        DayOfWeek.SATURDAY
+        DayOfWeek.SATURDAY,
+        DayOfWeek.SUNDAY
     )
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         AnalyticsUtils.sendScreenOpen(this, analyticsSender)
         notification.let {
-            viewState.setNotesFields(it)
+            viewState.updateMedicines()
             it.hour?.let { hour -> it.minute?.let { minute -> onTimeSet(hour, minute) } }
-            if (notification.selectedDays.isEmpty()) {
-                viewState.setSelectedDays(daysInWeek.map { it.value % DAYS_IN_WEEK + 1 })
-            } else {
-                viewState.setSelectedDays(it.selectedDays.map { it.value % DAYS_IN_WEEK + 1 })
-            }
+            updateSelectedDays()
             if (it.withDuration) {
                 viewState.setDurationFieldsVisibility(true)
                 viewState.setDurationSwitchIsChecked(true)
@@ -58,18 +59,6 @@ class NotificationEditPresenter @Inject constructor(
             viewState.setNotificationEnabled(it.enabled)
         }
 
-    }
-
-    fun onTabletNameChanged(tabletName: String) {
-        notification.tabletName = tabletName
-    }
-
-    fun onDosageChanged(dosage: String) {
-        notification.dosage = dosage
-    }
-
-    fun onNoteChanged(note: String) {
-        notification.note = note
     }
 
     fun onTimeClick() {
@@ -102,7 +91,7 @@ class NotificationEditPresenter @Inject constructor(
 
     private fun validate(): Boolean {
         val errors = mutableListOf<String>().apply {
-            if (notification.tabletName.isEmpty()) add("Введите название лекарства")
+            if (notification.medicines.any { it.name.isEmpty() }) add("Введите название лекарства")
             if (notification.hour == null) add("Выберите время")
             if (notification.selectedDays.isEmpty()) add("Выберите минимум один день недели")
             if (notification.withDuration && (notification.endDate == null || notification.startDate == null)) {
@@ -134,10 +123,6 @@ class NotificationEditPresenter @Inject constructor(
         viewState.setEndDate(notification.endDateString)
     }
 
-    fun onCheckedDaysChanged(selectedDays: MutableList<Int>) {
-        notification.selectedDays = selectedDays.map { daysInWeek[it - 1] }
-    }
-
     fun onStartDateClick() =
         viewState.showStartDatePicker(notification.startDate ?: LocalDate.now())
 
@@ -161,7 +146,62 @@ class NotificationEditPresenter @Inject constructor(
         notification.enabled = checked
     }
 
-    companion object {
-        private const val DAYS_IN_WEEK = 7
+    override var items: MutableList<MedicineItemUiModel>
+        get() = notification.medicines
+        set(value) {
+            notification.medicines = value
+        }
+
+    override fun onNameChanged(text: String, position: Int) {
+        items[position].name = text
+    }
+
+    override fun onDosageChanged(text: String, position: Int) {
+        items[position].dosage = text
+    }
+
+    override fun onNoteChanged(text: String, position: Int) {
+        items[position].note = text
+    }
+
+    override fun onUnitChanged(unit: DosageUnit, position: Int) {
+        items[position].unit = unit
+    }
+
+    fun onAddMedicineClicked() {
+        items.add(MedicineItemUiModel())
+        viewState.updateMedicines()
+    }
+
+    override fun onDelete(position: Int) {
+        items.removeAt(position)
+        viewState.updateMedicines()
+    }
+
+    fun onDaysSelected(result: MutableList<Boolean>) {
+        notification.selectedDays =
+            daysInWeek
+                .mapIndexed { index, item -> index to item }
+                .filter { (index, _) -> result[index] }
+                .map { (_, item) -> item }
+                .toList()
+        updateSelectedDays()
+    }
+
+    fun onWeekDaysLayoutClicked() {
+        viewState.showDaysDialog(
+            selectedVariantIndices = daysInWeek.map { it in notification.selectedDays }
+                .toBooleanArray(),
+            variants = daysInWeek.map { it.getDisplayName(TextStyle.FULL, Locale.getDefault()) }
+                .toTypedArray()
+        )
+    }
+
+    private fun updateSelectedDays() {
+        viewState.showSelectedDays(
+            notification.selectedDays.joinToString {
+                it.getDisplayName(TextStyle.SHORT, Locale.getDefault())
+            }
+        )
     }
 }

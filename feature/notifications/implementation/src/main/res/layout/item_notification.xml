@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/offset_medium">
+    android:layout_marginHorizontal="@dimen/offset_medium"
+    android:layout_marginBottom="@dimen/offset_medium"
+    app:cardCornerRadius="@dimen/radius_12"
+    app:cardElevation="4dp">
 
     <com.chauthai.swipereveallayout.SwipeRevealLayout
         android:id="@+id/swipeReveal"

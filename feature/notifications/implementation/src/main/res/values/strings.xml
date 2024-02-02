@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="enter_name">Введите название</string>
-    <string name="enter_dosage">Введите дозировку</string>
+    <string name="enter_name">Название</string>
+    <string name="enter_dosage">Дозировка</string>
     <string name="enter_notes">Заметки</string>
     <string name="notification_repeat">Повтор</string>
     <string name="never">Никогда</string>
@@ -17,4 +17,7 @@
     <string name="courseDuration">Длительность курса</string>
     <string name="notificationEnabled">Напоминание активно</string>
     <string name="notificationEnabledDisclaimer">Напоминание можно временно выключить</string>
+    <string name="pills">таблетки</string>
+    <string name="ml">мл</string>
+    <string name="delete">Удалить</string>
 </resources>

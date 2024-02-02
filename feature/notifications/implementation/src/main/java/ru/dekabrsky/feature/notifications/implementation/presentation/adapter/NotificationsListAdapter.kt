@@ -5,15 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chauthai.swipereveallayout.ViewBinderHelper
+import main.utils.orZero
 import main.utils.setIsCheckedWithoutEffects
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
+import ru.dekabrsky.feature.notifications.common.domain.model.NotificationMedicineEntity
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.databinding.ItemNotificationBinding
 
 class NotificationsListAdapter(
     private val onItemClick: (NotificationEntity) -> Unit,
     private val onItemDelete: (NotificationEntity) -> Unit,
-    private val onItemCheckedChanged: (NotificationEntity, Boolean) -> Unit
+    private val onItemCheckedChanged: (NotificationEntity, Boolean) -> Unit,
+    private val formatDosage: (NotificationMedicineEntity) -> String
 ): RecyclerView.Adapter<NotificationsListAdapter.NotificationHolder>() {
 
     private var items: MutableList<NotificationEntity> = arrayListOf()
@@ -37,21 +40,10 @@ class NotificationsListAdapter(
     override fun onBindViewHolder(holder: NotificationHolder, position: Int) {
         val item = items[position]
 
+        holder.bind(item)
         viewBinderHelper.setOpenOnlyOne(true)
         viewBinderHelper.bind(holder.binding.swipeReveal, item.uid.toString())
         viewBinderHelper.closeLayout(item.uid.toString())
-
-        with (holder.binding) {
-            tabletName.text = item.tabletName
-            dosage.text = item.dosage
-            note.text = item.note
-            notificationTime.text = mapTime(item.hour, item.minute)
-            notificationSwitch.setIsCheckedWithoutEffects(item.enabled) { isChecked ->
-                onItemCheckedChanged.invoke(item, isChecked)
-            }
-            deleteWrapper.setOnClickListener { onItemDelete(item) }
-            content.setOnClickListener { onItemClick(item) }
-        }
     }
 
     private fun mapTime(hour: Int, minute: Int): String {
@@ -62,8 +54,26 @@ class NotificationsListAdapter(
 
     override fun getItemCount(): Int = items.size
 
-    class NotificationHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class NotificationHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val binding = ItemNotificationBinding.bind(itemView)
+
+        fun bind(item: NotificationEntity) {
+            val firstMedicine = item.medicines.firstOrNull()
+
+            with (binding) {
+                tabletName.text = item.medicines.joinToString { it.name }
+                firstMedicine?.let {
+                    dosage.text = formatDosage(it).takeIf { item.medicines.size == 1 }.orEmpty()
+                    note.text = it.note.takeIf { item.medicines.size == 1 }.orEmpty()
+                }
+                notificationTime.text = mapTime(item.hour, item.minute)
+                notificationSwitch.setIsCheckedWithoutEffects(item.enabled) { isChecked ->
+                    onItemCheckedChanged.invoke(item, isChecked)
+                }
+                deleteWrapper.setOnClickListener { onItemDelete(item) }
+                content.setOnClickListener { onItemClick(item) }
+            }
+        }
     }
 
     companion object {

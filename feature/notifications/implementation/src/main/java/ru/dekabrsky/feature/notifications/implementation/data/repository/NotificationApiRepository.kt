@@ -29,7 +29,6 @@ class NotificationApiRepository @Inject constructor(
     fun add(notification: NotificationEntity) =
         api
             .postNotification(mapper.mapEntityToRequest(notification))
-            .map { mapper.mapResponseToEntity(it) }
 
     fun delete(notificationId: Int) = api.deleteNotification(notificationId)
 

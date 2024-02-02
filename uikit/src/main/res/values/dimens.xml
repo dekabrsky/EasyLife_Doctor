@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="offset_zero">0dp</dimen>
     <dimen name="offset_tiny">4dp</dimen>
     <dimen name="offset_small">8dp</dimen>
     <dimen name="offset_medium">16dp</dimen>
@@ -10,4 +11,6 @@
     <dimen name="icon_36">36dp</dimen>
     <dimen name="icon_24">24dp</dimen>
     <dimen name="icon_20">20dp</dimen>
+
+    <dimen name="radius_12">12dp</dimen>
 </resources>
