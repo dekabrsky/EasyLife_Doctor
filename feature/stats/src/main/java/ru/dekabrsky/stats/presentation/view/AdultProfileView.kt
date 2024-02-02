@@ -9,4 +9,5 @@ import ru.dekabrsky.feature.loginCommon.domain.model.UserInfoEntity
 interface AdultProfileView: BasicView {
     fun showMyInfo(infoEntity: UserInfoEntity?)
     fun showChildInfo(children: List<ContactEntity>)
+    fun showLogoutDialog()
 }

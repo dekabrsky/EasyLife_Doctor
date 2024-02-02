@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import main.utils.visible
+import androidx.appcompat.app.AlertDialog
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.common.domain.model.ContactEntity
@@ -51,7 +51,7 @@ class AdultProfileFragment: BasicFragment(), AdultProfileView {
         setHasOptionsMenu(true)
         binding.toolbar.setTitle(R.string.general_stats)
         binding.childrenRecycler.adapter = adapter
-        binding.logoutBtn.setOnClickListener { presenter.onLogoutClick() }
+        binding.logoutBtn.setOnClickListener { presenter.onLogoutClicked() }
     }
 
     override fun showMyInfo(infoEntity: UserInfoEntity?) {
@@ -64,6 +64,15 @@ class AdultProfileFragment: BasicFragment(), AdultProfileView {
 
     override fun showChildInfo(children: List<ContactEntity>) {
         adapter.updateItems(children)
+    }
+
+    override fun showLogoutDialog() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage(getString(R.string.confirm_logout_msg))
+        builder.setTitle(getString(R.string.confirm_logout_title))
+        builder.setPositiveButton(getString(R.string.yes)) { _, _ -> presenter.onLogoutConfirmed() }
+        builder.setNegativeButton(getString(R.string.no)) { _, _ -> }
+        builder.show()
     }
 
     companion object{

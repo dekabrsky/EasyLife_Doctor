@@ -7,10 +7,14 @@ import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.italks.profile.R
 import ru.dekabrsky.italks.profile.domain.interactor.ProfileInteractor
 import ru.dekabrsky.italks.profile.domain.model.CodeEntity
 import ru.dekabrsky.italks.profile.view.ProfileView
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
+import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
+import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
+import ru.dekabrsky.simpleBottomsheet.view.model.ButtonState
 import javax.inject.Inject
 
 class ProfilePresenter @Inject constructor(
@@ -47,6 +51,19 @@ class ProfilePresenter @Inject constructor(
     }
 
     fun onLogoutClick() {
+        router.navigateTo(
+            Flows.Common.SCREEN_BOTTOM_INFO,
+            BottomSheetScreenArgs(
+                title = "Выйти из учетной записи?",
+                subtitle = "Придется снова ввести пароль",
+                mode = BottomSheetMode.GAME,
+                icon = R.drawable.bye,
+                buttonState = ButtonState(text = "Да, выйти", action = ::makeLogout)
+            )
+        )
+    }
+
+    private fun makeLogout() {
         loginInteractor.logout()
             .observeOn(AndroidSchedulers.mainThread())
             .withLoadingView(viewState)

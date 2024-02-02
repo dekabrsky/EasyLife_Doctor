@@ -14,6 +14,8 @@ import ru.dekabrsky.italks.flows.R
 import ru.dekabrsky.italks.profile.view.ProfileFlowView
 import ru.dekabrsky.italks.profile.view.presenter.ProfileFlowPresenter
 import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.simpleBottomsheet.view.fragment.SimpleInfoBottomSheet
+import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -30,10 +32,10 @@ class ProfileFlowFragment : BasicFlowFragment(), ProfileFlowView {
     override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
-                if (screenKey == Flows.Profile.SCREEN_PROFILE) {
-                    ProfileFragment.newInstance()
-                } else {
-                    super.createFragment(screenKey, data)
+                when (screenKey) {
+                    Flows.Profile.SCREEN_PROFILE -> ProfileFragment.newInstance()
+                    Flows.Common.SCREEN_BOTTOM_INFO -> SimpleInfoBottomSheet.newInstance(data as BottomSheetScreenArgs)
+                    else -> super.createFragment(screenKey, data)
                 }
         }
 

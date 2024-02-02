@@ -13,6 +13,8 @@
     <string name="info">Информация</string>
     <string name="save">Сохранить</string>
     <string name="done">Готово</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 
     // pie chart
     <string name="success_finished">Успешно заверш.</string>
