@@ -1,8 +1,8 @@
 package ru.dekabrsky.login.presentation.presenter
 
 import ru.dekabrsky.analytics.AnalyticsSender
-import ru.dekabrsky.feature.loginCommon.domain.interactor.LoginInteractor
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
+import ru.dekabrsky.italks.basic.navigation.BaseScreens
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
@@ -101,5 +101,10 @@ class LoginPresenter @Inject constructor(
 
     fun onCodeTextChanged(text: String) {
         currentCode = text
+    }
+
+
+    fun onGrantPermissionBySettingsClicked() {
+        router.startFlow(BaseScreens.SCREEN_OPEN_SETTINGS)
     }
 }

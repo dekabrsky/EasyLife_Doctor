@@ -3,7 +3,9 @@ package ru.dekabrsky.italks.basic.navigation
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentActivity
@@ -18,10 +20,17 @@ abstract class FlowNavigator(
     private val containerId: Int
 ) : SupportAppNavigator(activity, containerId) {
 
-    protected val fragmentManager get() = activity.supportFragmentManager
+    private val fragmentManager get() = activity.supportFragmentManager
 
+    @Suppress("UseIfInsteadOfWhen")
     override fun createActivityIntent(context: Context, screenKey: String, data: Any?): Intent? {
         return when (screenKey) {
+            BaseScreens.SCREEN_OPEN_SETTINGS -> {
+                return Intent(
+                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.parse("package:" + context.packageName)
+                )
+            }
             else -> null // base screens
         }
 

@@ -1,8 +1,16 @@
 package ru.dekabrsky.login.presentation.view
 
+import android.Manifest
+import android.app.NotificationManager
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import com.tbruyelle.rxpermissions3.RxPermissions
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import main.utils.gone
 import main.utils.onTextChange
 import main.utils.visible
@@ -19,6 +27,8 @@ import ru.dekabrsky.login.presentation.presenter.LoginPresenter
 import toothpick.Toothpick
 
 class LoginFragment: BasicFragment(), LoginView {
+
+    private val compositeDisposable by lazy { CompositeDisposable() }
 
     override val layoutRes: Int
     get() = R.layout.fmt_login
@@ -55,6 +65,43 @@ class LoginFragment: BasicFragment(), LoginView {
 
         binding.loginCardBtn.setOnClickListener { presenter.onDoneButtonClick() }
         binding.changeMode.setOnClickListener { presenter.onChangeModeClick() }
+
+        val notificationManager = ContextCompat.getSystemService(
+            requireActivity().applicationContext,
+            NotificationManager::class.java
+        ) as NotificationManager
+
+        when {
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> getNotificationRxPermission()
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.N -> getNotificationManagerPermission(notificationManager)
+        }
+    }
+
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun getNotificationManagerPermission(notificationManager: NotificationManager) {
+        if (notificationManager.areNotificationsEnabled().not()) showAlertDialog()
+    }
+
+    private fun showAlertDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Перейдите в настройки и разрешите уведомления")
+            .setMessage("Так вы сможете получать напоминания")
+            .setPositiveButton("Перейти") { _, _ -> presenter.onGrantPermissionBySettingsClicked() }
+            .setNegativeButton("Отменить", null)
+            .setCancelable(false)
+            .show()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun getNotificationRxPermission() {
+        val disposable = RxPermissions(this).requestEach(Manifest.permission.POST_NOTIFICATIONS)
+            .subscribe {
+                if (it.granted.not()) showAlertDialog()
+            }
+
+
+        compositeDisposable.add(disposable)
     }
 
     override fun setupForRegistration() {
@@ -78,6 +125,11 @@ class LoginFragment: BasicFragment(), LoginView {
     override fun onPause() {
         super.onPause()
         hideKeyboard()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.dispose()
     }
 
     companion object{
