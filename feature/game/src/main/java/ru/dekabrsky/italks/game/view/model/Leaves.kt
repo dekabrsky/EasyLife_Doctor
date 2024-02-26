@@ -2,15 +2,14 @@ package ru.dekabrsky.italks.game.view.model
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.BitmapFactory
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
 import android.os.CountDownTimer
 import android.view.MotionEvent
 import android.view.SurfaceHolder
 import android.view.SurfaceView
 import android.view.View
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import ru.dekabrsky.italks.game.R
 import java.util.concurrent.CopyOnWriteArrayList
@@ -31,7 +30,8 @@ class Leaves(context: Context) : SurfaceView(context), Runnable {
     private val leafBitmap = BitmapFactory.decodeResource(resources, R.drawable.leaf)
 
     private val treeRect = Rect(0, 0, screenWidth, screenHeight)
-    private val boxRect = Rect(screenWidth / 2 - 150, screenHeight - 400, screenWidth / 2 + 150, screenHeight - 150)
+    private val boxRect = Rect(screenWidth / 2 - 150,
+        screenHeight - 400, screenWidth / 2 + 150, screenHeight - 150)
 
     private val fallLeaves = CopyOnWriteArrayList<Leaf>()
     private var score = 0
@@ -89,8 +89,32 @@ class Leaves(context: Context) : SurfaceView(context), Runnable {
                 canvas.drawBitmap(leafBitmap, null, leaf.rect, null)
             }
 
-            canvas.drawText("Счет: $score", 50f, 100f, paint)
-            canvas.drawText("Время: ${timeLeft / 1000}", screenWidth - 400f, 100f, paint)
+            val iconDrawable = ContextCompat.getDrawable(context, R.drawable.coin)
+
+            val bitmap = Bitmap.createBitmap(iconDrawable!!.intrinsicWidth,
+                iconDrawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
+            val canvasIcon = Canvas(bitmap)
+            iconDrawable.setBounds(0, 0, canvasIcon.width, canvasIcon.height)
+            iconDrawable.draw(canvasIcon)
+
+            val scoreRect = RectF(20f, 20f, 420f, 120f)
+            paint.color = ContextCompat.getColor(context, R.color.score_gold)
+            paint.typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
+            canvas.drawRoundRect(scoreRect, 20f, 20f, paint)
+            val iconLeft = 30f
+            val iconTop = (scoreRect.top + scoreRect.bottom - bitmap.height) / 2
+            canvas.drawBitmap(bitmap, iconLeft, iconTop, paint)
+
+            val textLeft = iconLeft + bitmap.width + 10f
+            paint.color = Color.WHITE
+            canvas.drawText("Счет: $score", textLeft, 100f, paint)
+
+            val timeRect = RectF(screenWidth - 450f, 20f, screenWidth - 100f, 120f)
+            paint.color = Color.parseColor("#80FFFFFF")
+            paint.typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
+            canvas.drawRoundRect(timeRect, 20f, 20f, paint)
+            paint.color = Color.BLACK
+            canvas.drawText("Время: ${timeLeft / 1000}", screenWidth - 420f, 100f, paint)
         } finally {
             surfaceHolder.unlockCanvasAndPost(canvas)
         }
@@ -117,6 +141,8 @@ class Leaves(context: Context) : SurfaceView(context), Runnable {
         isPlaying = false
         gameThread?.interrupt()
         timer?.cancel()
+
+        saveScore()
     }
 
     @SuppressLint("ShowToast")

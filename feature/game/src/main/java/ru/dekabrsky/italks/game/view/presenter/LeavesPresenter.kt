@@ -50,7 +50,7 @@ class LeavesPresenter @Inject constructor(
             Flows.Common.SCREEN_BOTTOM_INFO,
             BottomSheetScreenArgs(
                 title = "Выйти из игры?",
-                subtitle = "Твой прогресс не сохранится, если ты выйдешь в процессе игры",
+                subtitle = "Ты можешь заработать больше коинов, если продолжишь играть!",
                 mode = BottomSheetMode.GAME,
                 icon = R.drawable.barbecue,
                 buttonState = ButtonState("Да, выйти") { exitAction.invoke() }

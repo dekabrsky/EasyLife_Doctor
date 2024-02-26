@@ -1,5 +1,6 @@
 package ru.dekabrsky.italks.game.view.fragment
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -67,6 +68,7 @@ class LeavesFragment: BasicFragment(), LeavesView {
 
     override fun onBackPressed() {
         presenter.onBackPressed()
+        progress()
     }
 
     private fun startGame() {
