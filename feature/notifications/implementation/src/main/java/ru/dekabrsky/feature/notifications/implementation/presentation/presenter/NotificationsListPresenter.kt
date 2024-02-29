@@ -4,10 +4,8 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import com.google.gson.Gson
 import main.utils.orZero
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
@@ -15,7 +13,6 @@ import org.threeten.bp.LocalTime
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
-import ru.dekabrsky.feature.notifications.implementation.presentation.model.NotificationsSharedPreferencesItems
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationsListView
 import ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
@@ -24,6 +21,7 @@ import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import java.util.Calendar
 import javax.inject.Inject
 
@@ -32,18 +30,22 @@ class NotificationsListPresenter @Inject constructor(
     private val router: FlowRouter,
     private val notificationInteractor: NotificationInteractor,
     private val context: Context,
-    private val flowArgs: NotificationsFlowArgs
+    private val flowArgs: NotificationsFlowArgs,
+    private val sharedPreferencesProvider: SharedPreferencesProvider
 ) : BasicPresenter<NotificationsListView>(router) {
 
-    private var mPrefs: SharedPreferences? = null
-    private var notificationsCache: NotificationsSharedPreferencesItems = NotificationsSharedPreferencesItems()
-
     private var isFirstLoading = true
+    private var notificationIds = sharedPreferencesProvider.notificationIds
+    private var notificationIdsCache: MutableSet<Long> = mutableSetOf()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         if (flowArgs.parentScopeName != Scopes.SCOPE_APP) {
             viewState.setToolbarBackButton()
+        }
+
+        notificationIds.get().forEach {
+            cancelNotification(it)
         }
     }
 
@@ -52,40 +54,28 @@ class NotificationsListPresenter @Inject constructor(
         getAll()
     }
 
-    fun setSharedPreferences(sharedPreferences: SharedPreferences?) {
-        mPrefs = sharedPreferences
-
-        val json = mPrefs?.getString(NOTIFICATIONS_LIST, null)
-
-        if (json != null) {
-            val notifications = Gson().fromJson(json, NotificationsSharedPreferencesItems::class.java)
-            notificationsCache = notifications
-            notifications.uidList.forEach { cancelNotification(it)}
-        }
-    }
-
     private fun getAll() {
         notificationInteractor.getAll()
             .observeOn(RxSchedulers.main())
             .withCustomLoadingViewIf(viewState::setListLoadingVisibility, isFirstLoading)
             .subscribe(::dispatchNotifications, viewState::showError)
             .addFullLifeCycle()
-
     }
 
     private fun dispatchNotifications(list: List<NotificationEntity>) {
         isFirstLoading = false
         viewState.setChatsList(list)
         viewState.setEmptyLayoutVisibility(list.isEmpty())
-        list.filter { it.uid != null }.forEach { notification -> notification.uid?.let { cancelNotification(it) } }
 
         list.filter { it.enabled }.forEach { notification ->
             addNotification(notification)
         }
+
+        notificationIds.set(notificationIdsCache)
     }
 
     private fun addNotification(notificationEntity: NotificationEntity) {
-        notificationsCache.uidList.add(notificationEntity.uid.orZero())
+        notificationIdsCache.add(notificationEntity.uid.orZero())
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
@@ -126,19 +116,10 @@ class NotificationsListPresenter @Inject constructor(
 
         alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, notifyPendingIntent)
 
-        if (mPrefs != null) {
-            val editor = mPrefs?.edit()
-            val json = Gson().toJson(notificationsCache)
-            editor?.let {
-                it.putString(NOTIFICATIONS_LIST, json)
-
-                it.commit()
-            }
-        }
     }
 
     private fun cancelNotification(notificationUid: Long) {
-        notificationsCache.uidList.remove(notificationUid)
+        notificationIdsCache.remove(notificationUid)
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
         val notificationIntent = Intent(context, NotificationsReceiver::class.java)
