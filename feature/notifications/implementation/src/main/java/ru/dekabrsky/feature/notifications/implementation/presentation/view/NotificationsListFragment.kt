@@ -1,6 +1,5 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.view
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import main.utils.setBoolVisibility
@@ -47,8 +46,6 @@ class NotificationsListFragment: BasicFragment(), NotificationsListView {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
 
-        presenter.setSharedPreferences(activity?.getSharedPreferences(NOTIFICATION_SHARED_PREFERENCES, Context.MODE_PRIVATE))
-
         binding.basesCardsList.adapter = adapter
         binding.toolbar.setTitle(R.string.notifications)
         binding.addNotification.setOnClickListener { presenter.onAddNotificationClick() }
@@ -79,7 +76,6 @@ class NotificationsListFragment: BasicFragment(), NotificationsListView {
     }
 
     companion object {
-        private const val NOTIFICATION_SHARED_PREFERENCES: String = "NOTIFICATION_SHARED_PREFERENCES"
         fun newInstance() = NotificationsListFragment()
     }
 }
