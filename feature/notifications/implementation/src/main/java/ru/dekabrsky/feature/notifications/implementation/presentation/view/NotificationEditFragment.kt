@@ -1,10 +1,10 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.view
 
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.View
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog
-import com.wdullaer.materialdatetimepicker.time.TimePickerDialog
 import main.utils.setBoolVisibility
 import main.utils.setIsCheckedWithoutEffects
 import moxy.presenter.InjectPresenter
@@ -67,15 +67,14 @@ class NotificationEditFragment: BasicFragment(), NotificationEditView {
     }
 
     override fun showTimePicker(hour: Int, minute: Int) {
-        val tpd: TimePickerDialog = TimePickerDialog.newInstance(null, hour, minute, true)
-
-        tpd.setOkText("Ок")
-        tpd.setCancelText("Отмена")
-        tpd.setOnTimeSetListener { _, hourOfDay, minute, _ ->
-            presenter.onTimeSet(hourOfDay, minute)
-        }
-
-        tpd.show(requireActivity().supportFragmentManager, TIME_PICKER_TAG)
+        TimePickerDialog(
+            context,
+            R.style.DatePickerTheme,
+            { _, hourOfDay, min -> presenter.onTimeSet(hourOfDay, min) },
+            hour,
+            minute,
+            true
+        ).show()
     }
 
     override fun showStartDatePicker(date: LocalDate) =
