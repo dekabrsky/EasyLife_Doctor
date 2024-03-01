@@ -24,7 +24,7 @@ import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
-import java.util.Calendar
+import java.util.*
 import javax.inject.Inject
 
 
@@ -118,7 +118,11 @@ class NotificationsListPresenter @Inject constructor(
 
         Log.d("addNotification: ", notificationEntity.uid?.toInt().orZero().toString())
 
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, calendar.timeInMillis, notifyPendingIntent)
+        alarmManager.setExactAndAllowWhileIdle(
+            AlarmManager.RTC_WAKEUP,
+            calendar.timeInMillis,
+            notifyPendingIntent
+        )
 
     }
 
@@ -144,7 +148,12 @@ class NotificationsListPresenter @Inject constructor(
     fun onNotificationDelete(notificationEntity: NotificationEntity) {
         notificationInteractor.delete(notificationEntity)
             .observeOn(RxSchedulers.main())
-            .subscribe({ getAll() }, viewState::showError)
+            .subscribe(
+                {
+                    cancelNotification(notificationEntity.uid.orZero())
+                    getAll()
+                }, viewState::showError
+            )
             .addFullLifeCycle()
     }
 
@@ -161,8 +170,4 @@ class NotificationsListPresenter @Inject constructor(
 
     fun formatDosage(medicineEntity: NotificationMedicineEntity) =
         formatter.formatDosage(medicineEntity)
-
-    companion object {
-        private const val NOTIFICATIONS_LIST: String = "NOTIFICATIONS_LIST"
-    }
 }
