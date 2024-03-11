@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
+import com.badlogic.gdx.graphics.g2d.GlyphLayout
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.math.Circle
@@ -16,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable
+import com.badlogic.gdx.utils.viewport.FitViewport
 import java.util.*
 
 
@@ -73,7 +75,7 @@ class FlappyBird: Game() {
         birdCircle = Circle()
         font = BitmapFont()
         font.color = Color.WHITE
-        font.data.setScale(10f)
+        font.data.setScale(6f)
 
         val exitTexture = Texture("exit.png")
 
@@ -82,6 +84,8 @@ class FlappyBird: Game() {
         val scale = 4f
         exitButton.imageCell.size(scale * exitTexture.width, scale * exitTexture.height)
 
+        stage = Stage(FitViewport(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat()))
+        Gdx.input.inputProcessor = stage
 
         val margin = 40f
         val topMargin = 70f
@@ -115,6 +119,7 @@ class FlappyBird: Game() {
 
     @Suppress("LongMethod", "CyclomaticComplexMethod")
     override fun render() {
+        batch.projectionMatrix = stage.camera.combined
         batch.begin()
         batch.draw(background, 0f, 0f, gdxWidth.toFloat(), gdxHeight.toFloat())
 
@@ -188,7 +193,11 @@ class FlappyBird: Game() {
         flapState = if (flapState == 0) 1 else 0
 
         batch.draw(birds[flapState], gdxWidth / 2f - birds[flapState].width / 2f, birdY)
-        font.draw(batch, score.toString(), 100f, 200f)
+        val scoreString = score.toString()
+        val layout = GlyphLayout(font, scoreString)
+        val scoreX = (Gdx.graphics.width - layout.width) / 2f
+        val scoreY = Gdx.graphics.height - 50f
+        font.draw(batch, scoreString, scoreX, scoreY)
         birdCircle.set(gdxWidth / 2f,
                 birdY + birds[flapState].height / 2f,
                 birds[flapState].width / 2f)
@@ -211,7 +220,14 @@ class FlappyBird: Game() {
     }
 
     override fun dispose() {
+        batch.dispose()
         stage.dispose()
+        background.dispose()
+        gameOver.dispose()
+        birds.forEach { it.dispose() }
+        topTube.dispose()
+        bottomTube.dispose()
+        font.dispose()
     }
 
     private fun startGame() {
