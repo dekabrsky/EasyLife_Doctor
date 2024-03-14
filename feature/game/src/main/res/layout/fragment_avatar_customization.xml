@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/wall_color_pink" >
+
+    <ImageView
+        android:id="@+id/backBtn"
+        android:layout_width="@dimen/icon_24"
+        android:layout_height="@dimen/icon_24"
+        android:layout_margin="@dimen/offset_medium"
+        android:background="?selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/floor"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@color/floor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/wardrobe"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/wardrobe"
+        app:layout_constraintBottom_toTopOf="@id/floor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintHeight_percent="0.5" />
+
+    <ru.dekabrsky.italks.game.avatarCustomization.view.widget.CatWidget
+        android:id="@+id/avatar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/hatBox"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/wardrobe"
+        app:layout_constraintEnd_toEndOf="@id/wardrobe"
+        app:layout_constraintStart_toStartOf="@id/wardrobe"
+        app:layout_constraintTop_toTopOf="@id/wardrobe"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0.95"
+        tools:src="@drawable/hat_classic"/>
+
+    <ImageView
+        android:id="@+id/glassesBox"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/wardrobe"
+        app:layout_constraintEnd_toEndOf="@id/wardrobe"
+        app:layout_constraintStart_toStartOf="@id/wardrobe"
+        app:layout_constraintTop_toTopOf="@id/wardrobe"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintVertical_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.95"
+        tools:src="@drawable/glasses_classic"/>
+
+    <ImageView
+        android:id="@+id/tieBox"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/wardrobe"
+        app:layout_constraintEnd_toEndOf="@id/wardrobe"
+        app:layout_constraintStart_toStartOf="@id/wardrobe"
+        app:layout_constraintTop_toTopOf="@id/wardrobe"
+        app:layout_constraintWidth_percent="0.2"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.95"
+        tools:src="@drawable/tie_bow"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

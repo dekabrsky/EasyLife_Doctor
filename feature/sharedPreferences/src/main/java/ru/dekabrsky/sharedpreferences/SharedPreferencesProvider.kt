@@ -37,6 +37,11 @@ class SharedPreferencesProvider @Inject constructor(
     val refreshToken = StringPreference("REFRESH_TOKEN", encryptedSharedPreferences)
     val notificationIds = SetPreference<Long>("NOTIFICATIONS_LIST")
 
+    // avatar customization
+    val avatarHat = StringPreference("AVATAR_HAT")
+    val avatarGlasses = StringPreference("AVATAR_GLASSES")
+    val avatarTie = StringPreference("AVATAR_TIE")
+
     inner class StringPreference(
         private val prefName: String,
         private val sharedPreferences: SharedPreferences = preferences

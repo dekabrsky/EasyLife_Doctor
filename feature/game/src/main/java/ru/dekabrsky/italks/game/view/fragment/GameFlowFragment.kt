@@ -12,6 +12,7 @@ import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.avatarCustomization.view.fragment.AvatarCustomizationFragment
 import ru.dekabrsky.italks.game.view.GameFlowView
 import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import ru.dekabrsky.italks.game.view.presenter.GameFlowPresenter
@@ -42,6 +43,7 @@ class GameFlowFragment : BasicFlowFragment(), GameFlowView {
                     Flows.Game.SCREEN_FIFTEEN -> FifteenFragment.newInstance()
                     Flows.Game.SCREEN_LEAVES -> LeavesFragment.newInstance()
                     Flows.Game.SCREEN_FOOTBALL -> FootballFragment.newInstance()
+                    Flows.Game.SCREEN_AVATAR_CUSTOMIZATION -> AvatarCustomizationFragment.newInstance()
                     Flows.Common.SCREEN_BOTTOM_INFO -> SimpleInfoBottomSheet.newInstance(data as BottomSheetScreenArgs)
                     else -> super.createFragment(screenKey, data)
                 }
