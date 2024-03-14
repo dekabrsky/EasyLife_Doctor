@@ -4,6 +4,7 @@ import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.OneExecution
 import ru.dekabrsky.italks.basic.fragments.BasicView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.game.avatarCustomization.view.model.CatWidgetSettings
 import ru.dekabrsky.italks.game.view.model.ItemVisibility
 import ru.dekabrsky.italks.game.view.model.ShelfItemUiModel
 
@@ -19,4 +20,5 @@ interface MainRoomView: BasicView {
     fun setRoomColor(res: Int)
     fun setScore(score: String)
     fun scrollToAvatar()
+    fun updateCat(settings: CatWidgetSettings)
 }

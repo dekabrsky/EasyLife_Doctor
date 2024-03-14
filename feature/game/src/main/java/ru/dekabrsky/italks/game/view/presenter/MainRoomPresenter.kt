@@ -8,6 +8,7 @@ import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.avatarCustomization.utils.getCatSettingsFromPrefs
 import ru.dekabrsky.italks.game.view.MainRoomView
 import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import ru.dekabrsky.italks.game.view.mapper.ItemsVisibilityMapper
@@ -51,6 +52,7 @@ class MainRoomPresenter @Inject constructor(
         super.attachView(view)
         gameFlowCache.isMusicOnSubject.value?.let { updateMusicState(it) }
         viewState.setScore(score.toString())
+        viewState.updateCat(getCatSettingsFromPrefs(sharedPreferencesProvider))
         updateLevel()
     }
 
@@ -144,6 +146,10 @@ class MainRoomPresenter @Inject constructor(
     private fun updateRoomColor() {
         val selectedVariant = RoomColor.getByRusName(sharedPreferencesProvider.wallColor.get())
         viewState.setRoomColor(selectedVariant.res)
+    }
+
+    fun onAvatarClick() {
+        router.navigateTo(Flows.Game.SCREEN_AVATAR_CUSTOMIZATION)
     }
 
     override fun onBackPressed() {

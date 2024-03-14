@@ -2,7 +2,14 @@ package ru.dekabrsky.italks.game.view.model
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
+import android.graphics.RectF
+import android.graphics.Typeface
 import android.os.CountDownTimer
 import android.view.MotionEvent
 import android.view.SurfaceHolder
@@ -26,7 +33,7 @@ class Leaves(context: Context) : SurfaceView(context), Runnable {
     private val screenHeight = context.resources.displayMetrics.heightPixels
 
     private val treeBitmap = BitmapFactory.decodeResource(resources, R.drawable.tree2)
-    private val boxBitmap = BitmapFactory.decodeResource(resources, R.drawable.box)
+    private val boxBitmap = BitmapFactory.decodeResource(resources, R.drawable.closed_box)
     private val leafBitmap = BitmapFactory.decodeResource(resources, R.drawable.leaf)
 
     private val treeRect = Rect(0, 0, screenWidth, screenHeight)

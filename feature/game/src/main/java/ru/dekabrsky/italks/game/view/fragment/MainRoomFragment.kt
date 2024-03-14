@@ -3,18 +3,15 @@ package ru.dekabrsky.italks.game.view.fragment
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import io.reactivex.Observable
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.italks.game.avatarCustomization.view.model.CatWidgetSettings
 import ru.dekabrsky.italks.game.databinding.MainRoomLayoutBinding
 import ru.dekabrsky.italks.game.view.MainRoomView
 import ru.dekabrsky.italks.game.view.adapter.ShelfAdapter
@@ -24,7 +21,6 @@ import ru.dekabrsky.italks.game.view.presenter.MainRoomPresenter
 import ru.dekabrsky.italks.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
-import java.util.concurrent.TimeUnit
 
 
 @Suppress("MagicNumber")
@@ -55,7 +51,7 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         context?.let {
-            binding.avatar.setOnClickListenerWithAnimation(it) {}
+            binding.avatar.setOnClickListenerWithAnimation(it) { presenter.onAvatarClick() }
             binding.door.setOnClickListenerWithAnimation(it) { presenter.onDoorClick() }
             binding.window.setOnClickListenerWithAnimation(it) { presenter.onDoorClick() }
             binding.clock.setOnClickListenerWithAnimation(it) { presenter.onClockClick() }
@@ -131,6 +127,10 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
                 binding.scrollContainer.y.toInt()
             )
         }
+    }
+
+    override fun updateCat(settings: CatWidgetSettings) {
+        binding.avatar.setup(settings)
     }
 
     override fun onBackPressed() {

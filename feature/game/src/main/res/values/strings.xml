@@ -4,4 +4,8 @@
     <string name="winner_message">Ты победил!</string>
     <string name="pc_winner_message">Попробуй ещё раз!</string>
     <string name="draw_message">Ничья</string>
+
+    <string name="hat_title">Головной убор</string>
+    <string name="glasses_title">Очки</string>
+    <string name="tie_title">Галстук</string>
 </resources>

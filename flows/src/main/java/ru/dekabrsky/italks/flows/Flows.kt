@@ -57,6 +57,7 @@ class Flows {
         const val SCREEN_FOOTBALL = "SCREEN_FOOTBALL"
         const val SCREEN_LEAVES = "SCREEN_LEAVES"
         const val SCREEN_FIFTEEN = "SCREEN_FIFTEEN"
+        const val SCREEN_AVATAR_CUSTOMIZATION = "SCREEN_AVATAR_CUSTOMIZATION"
     }
 
     object Profile : Flow("FLOW_PROFILE") {
