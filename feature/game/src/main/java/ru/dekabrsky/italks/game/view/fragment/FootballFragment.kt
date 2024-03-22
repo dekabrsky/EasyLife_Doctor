@@ -22,7 +22,6 @@ import ru.dekabrsky.italks.game.view.FootballView
 import ru.dekabrsky.italks.game.view.presenter.FootballPresenter
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
-import java.util.Random
 
 @Suppress("LongMethod", "CyclomaticComplexMethod", "ComplexCondition", "MaxLineLength", "MagicNumber")
 class FootballFragment : BasicFragment(), FootballView {
@@ -421,81 +420,99 @@ class FootballFragment : BasicFragment(), FootballView {
         }
 
     private fun hodAI() {
-        val random = Random()
-        val buttonPcClick = 1 + random.nextInt(9)
-        Log.i("hodAI", "buttonPcClick - $buttonPcClick")
-        when (buttonPcClick) {
-            1 -> if (viewBinding.button1.drawable == null) {
-                viewBinding.button1.setImageResource(R.drawable.football_ball)
-                viewBinding.button1.tag = R.drawable.football_ball
-                isPCWinner
-            } else {
-                hodAI()
+        val bestMove = getBestMove()
+        if (bestMove != -1) {
+            val button = when (bestMove) {
+                1 -> viewBinding.button1
+                2 -> viewBinding.button2
+                3 -> viewBinding.button3
+                4 -> viewBinding.button4
+                5 -> viewBinding.button5
+                6 -> viewBinding.button6
+                7 -> viewBinding.button7
+                8 -> viewBinding.button8
+                9 -> viewBinding.button9
+                else -> null
             }
+            button?.setImageResource(R.drawable.football_ball)
+            button?.tag = R.drawable.football_ball
+            isPCWinner
+        }
+    }
 
-            2 -> if (viewBinding.button2.drawable == null) {
-                viewBinding.button2.setImageResource(R.drawable.football_ball)
-                viewBinding.button2.tag = R.drawable.football_ball
-                isPCWinner
-            } else {
-                hodAI()
-            }
+    private fun getBestMove(): Int {
+        val playerSymbol = R.drawable.basket
+        val aiSymbol = R.drawable.football_ball
 
-            3 -> if (viewBinding.button3.drawable == null) {
-                viewBinding.button3.setImageResource(R.drawable.football_ball)
-                viewBinding.button3.tag = R.drawable.football_ball
-                isPCWinner
-            } else {
-                hodAI()
+        for (i in 1..9) {
+            if (isWinningMove(i, aiSymbol)) {
+                return i
             }
+        }
 
-            4 -> if (viewBinding.button4.drawable == null) {
-                viewBinding.button4.setImageResource(R.drawable.football_ball)
-                viewBinding.button4.tag = R.drawable.football_ball
-                isPCWinner
-            } else {
-                hodAI()
+        for (i in 1..9) {
+            if (isWinningMove(i, playerSymbol)) {
+                return i
             }
+        }
 
-            5 -> if (viewBinding.button5.drawable == null) {
-                viewBinding.button5.setImageResource(R.drawable.football_ball)
-                viewBinding.button5.tag = R.drawable.football_ball
-                isPCWinner
-            } else {
-                hodAI()
+        val emptyCells = mutableListOf<Int>()
+        for (i in 1..9) {
+            val button = when (i) {
+                1 -> viewBinding.button1
+                2 -> viewBinding.button2
+                3 -> viewBinding.button3
+                4 -> viewBinding.button4
+                5 -> viewBinding.button5
+                6 -> viewBinding.button6
+                7 -> viewBinding.button7
+                8 -> viewBinding.button8
+                9 -> viewBinding.button9
+                else -> null
             }
+            if (button != null && button.drawable == null) {
+                emptyCells.add(i)
+            }
+        }
+        return if (emptyCells.isNotEmpty()) {
+            emptyCells.random()
+        } else {
+            -1
+        }
+    }
 
-            6 -> if (viewBinding.button6.drawable == null) {
-                viewBinding.button6.setImageResource(R.drawable.football_ball)
-                viewBinding.button6.tag = R.drawable.football_ball
-                isPCWinner
-            } else {
-                hodAI()
-            }
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun isWinningMove(move: Int, symbol: Int): Boolean {
+        val row = (move - 1) / 3
+        val col = (move - 1) % 3
 
-            7 -> if (viewBinding.button7.drawable == null) {
-                viewBinding.button7.setImageResource(R.drawable.football_ball)
-                viewBinding.button7.tag = R.drawable.football_ball
-                isPCWinner
-            } else {
-                hodAI()
-            }
+        return with(viewBinding) {
+            button1.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button2.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button3.drawable?.constantState == context?.getDrawable(symbol)?.constantState && row == 0 ||
+            button4.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button5.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button6.drawable?.constantState == context?.getDrawable(symbol)?.constantState && row == 1 ||
+            button7.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button8.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button9.drawable?.constantState == context?.getDrawable(symbol)?.constantState && row == 2 ||
 
-            8 -> if (viewBinding.button8.drawable == null) {
-                viewBinding.button8.setImageResource(R.drawable.football_ball)
-                viewBinding.button8.tag = R.drawable.football_ball
-                isPCWinner
-            } else {
-                hodAI()
-            }
+            button1.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button4.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button7.drawable?.constantState == context?.getDrawable(symbol)?.constantState && col == 0 ||
+            button2.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button5.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button8.drawable?.constantState == context?.getDrawable(symbol)?.constantState && col == 1 ||
+            button3.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button6.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button9.drawable?.constantState == context?.getDrawable(symbol)?.constantState && col == 2 ||
 
-            9 -> if (viewBinding.button9.drawable == null) {
-                viewBinding.button9.setImageResource(R.drawable.football_ball)
-                viewBinding.button9.tag = R.drawable.football_ball
-                isPCWinner
-            } else {
-                hodAI()
-            }
+            button1.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button5.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button9.drawable?.constantState == context?.getDrawable(symbol)?.constantState && move == 1 ||
+            button3.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button5.drawable?.constantState == context?.getDrawable(symbol)?.constantState &&
+                    button7.drawable?.constantState == context?.getDrawable(symbol)?.constantState && move == 3
         }
     }
 
