@@ -5,7 +5,7 @@ import java.io.Serializable
 
 @Suppress("LongParameterList")
 class ChatUiModel(
-    val chatId: Int = 0,
+    val chatId: Long = 0,
     val date: String = "",
     val secondUser: UserInfoEntity,
     val lastMessage: String = "",

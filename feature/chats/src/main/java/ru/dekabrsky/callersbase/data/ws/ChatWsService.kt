@@ -11,14 +11,14 @@ class ChatWsService @Inject constructor(
     private val baseWsService: WsService
 ) {
 
-    fun subscribeMessages(chatId: Int): Observable<MessageResponse> {
+    fun subscribeMessages(chatId: Long): Observable<MessageResponse> {
         return baseWsService.subscribe<MessageResponse>(
             ChannelType.ReceiveMessage,
             MessageResponse::class.java
         ).filter { it.chatId == chatId }
     }
 
-    fun postMessage(chatId: Int, message: String) {
+    fun postMessage(chatId: Long, message: String) {
         return baseWsService.sendRequest(ChannelType.SendMessage, listOf(MessageRequest(chatId, message)))
     }
 

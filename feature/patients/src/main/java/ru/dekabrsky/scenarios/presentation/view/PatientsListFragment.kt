@@ -1,35 +1,32 @@
 package ru.dekabrsky.scenarios.presentation.view
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.DividerItemDecoration
 import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.scenarios.R
-import ru.dekabrsky.scenarios.databinding.FragmentScenariosBinding
-import ru.dekabrsky.scenarios.presentation.adapter.ScenariosAdapter
+import ru.dekabrsky.scenarios.databinding.FragmentPatientsBinding
+import ru.dekabrsky.scenarios.presentation.adapter.PatientsAdapter
 import ru.dekabrsky.scenarios.presentation.presenter.PatientsListPresenter
 import toothpick.Toothpick
 
 
 class PatientsListFragment: BasicFragment(), PatientsListView {
 
-    override val layoutRes: Int = R.layout.fragment_scenarios
+    override val layoutRes: Int = R.layout.fragment_patients
 
-    private val adapter by lazy { ScenariosAdapter(presenter::onItemClick) }
+    private val adapter by lazy { PatientsAdapter(presenter::onItemClick) }
 
-    private val binding by viewBinding(FragmentScenariosBinding::bind)
-
-    private var sortByNameItem: MenuItem? = null
-    private var sortByDateAscItem: MenuItem? = null
-    private var sortByDateDescItem: MenuItem? = null
+    private val binding by viewBinding(FragmentPatientsBinding::bind)
 
     @InjectPresenter
     lateinit var presenter: PatientsListPresenter
@@ -45,17 +42,9 @@ class PatientsListFragment: BasicFragment(), PatientsListView {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
         binding.basesCardsList.adapter = adapter
+        binding.basesCardsList.addItemDecoration(DividerItemDecoration(context, LinearLayout.VERTICAL))
         binding.toolbar.setTitle(R.string.scenarios_title)
         binding.invitePatient.setOnClickListener { presenter.onInviteClick() }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.scenarios_menu, menu)
-
-        sortByNameItem = menu.findItem(R.id.sort_name)
-        sortByDateAscItem = menu.findItem(R.id.sort_date_asc)
-        sortByDateDescItem = menu.findItem(R.id.sort_date_desc)
     }
 
     override fun onResume() {
@@ -63,34 +52,7 @@ class PatientsListFragment: BasicFragment(), PatientsListView {
         (parentFragment as PatientsFlowFragment).setNavBarVisibility(true)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.sorting -> {}
-            R.id.search -> {}
-            R.id.sort_date_asc -> {
-                presenter.loadSortByDateAsc()
-                sortByDateAscItem?.isChecked = true
-                sortByDateDescItem?.isChecked = false
-                sortByNameItem?.isChecked = false
-            }
-            R.id.sort_date_desc -> {
-                presenter.loadSortByDateDesc()
-                sortByDateAscItem?.isChecked = false
-                sortByDateDescItem?.isChecked = true
-                sortByNameItem?.isChecked = false
-            }
-            R.id.sort_name -> {
-                presenter.loadSortByName()
-                sortByDateAscItem?.isChecked = false
-                sortByDateDescItem?.isChecked = false
-                sortByNameItem?.isChecked = true
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun setItems(items: List<ScenarioItemUiModel>) {
+    override fun setItems(items: List<ContactEntity>) {
         adapter.updateItems(items)
     }
 

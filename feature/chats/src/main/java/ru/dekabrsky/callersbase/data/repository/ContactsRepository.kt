@@ -19,7 +19,7 @@ class ContactsRepository @Inject constructor(
             sortBy = sortBy
         ).map { mapper.mapList(it) }
 
-    fun getCallersBase(id: Int): Observable<CallersBaseEntity> =
+    fun getCallersBase(id: Long): Observable<CallersBaseEntity> =
         api.getCallersBase(id).map { mapper.mapBase(it) }
 
     fun getChats() = api.getChats().map { list -> list.chats.map { mapper.mapChat(it) } }
@@ -30,13 +30,13 @@ class ContactsRepository @Inject constructor(
 
     fun getChildren() = api.getChildren().map { mapper.mapUserForChat(it) }.onErrorReturn { emptyList() }
 
-    fun startChat(id: Int) = api.startChat(id)
+    fun startChat(id: Long) = api.startChat(id)
 
-    fun getChat(id: Int) = api.getChat(id).map(mapper::mapChat)
+    fun getChat(id: Long) = api.getChat(id).map(mapper::mapChat)
 
-    fun observeMessagesWs(chatId: Int): Observable<MessageEntity> =
+    fun observeMessagesWs(chatId: Long): Observable<MessageEntity> =
         wsService.subscribeMessages(chatId).map(mapper::mapMessage)
 
-    fun postMessageWs(chatId: Int, msg: String) = wsService.postMessage(chatId, msg)
+    fun postMessageWs(chatId: Long, msg: String) = wsService.postMessage(chatId, msg)
     fun getParents() = api.getParents().map { mapper.mapUserForChat(it) }.onErrorReturn { emptyList() }
 }

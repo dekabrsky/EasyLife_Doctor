@@ -6,6 +6,6 @@ import androidx.annotation.Keep
 class InvitePatientRequest(
     val fullName: String,
     val isForChild: Boolean,
-    val relatedUserId: Int?,
+    val relatedUserId: Long?,
     val relatedFullName: String?
 )

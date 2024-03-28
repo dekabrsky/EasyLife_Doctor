@@ -21,11 +21,12 @@ import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 
-class NotificationEditFragment: BasicFragment(), NotificationEditView {
+class NotificationEditFragment(
+    private val notificationsScope: String,
+    private val notification: NotificationEntity
+): BasicFragment(), NotificationEditView {
     override val layoutRes = R.layout.fmt_notification_edit
     private val binding by viewBinding(FmtNotificationEditBinding::bind)
-
-    private var notification = NotificationEntity()
 
     @InjectPresenter
     lateinit var presenter: NotificationEditPresenter
@@ -34,7 +35,7 @@ class NotificationEditFragment: BasicFragment(), NotificationEditView {
 
     @ProvidePresenter
     fun providePresenter(): NotificationEditPresenter {
-        return Toothpick.openScopes(Scopes.SCOPE_FLOW_NOTIFICATION, scopeName)
+        return Toothpick.openScopes(notificationsScope, scopeName)
             .module { bind(NotificationEntity::class.java).toInstance(notification) }
             .getInstance(NotificationEditPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
@@ -148,8 +149,9 @@ class NotificationEditFragment: BasicFragment(), NotificationEditView {
         private const val TIME_PICKER_TAG = "TIME_PICKER_DIALOG"
         private const val START_DATE_PICKER_TAG = "START_DATE_PICKER_TAG"
         private const val END_DATE_PICKER_TAG = "END_DATE_PICKER_TAG"
-        fun newInstance(notification: NotificationEntity) = NotificationEditFragment().apply {
-            this.notification = notification
-        }
+        fun newInstance(
+            notification: NotificationEntity,
+            notificationsScope: String
+        ) = NotificationEditFragment(notificationsScope, notification)
     }
 }

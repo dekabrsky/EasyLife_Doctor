@@ -43,7 +43,7 @@ class IdNameResponse(
 
 @Keep
 class CallersBaseOfDialingResponse(
-    val id: Int?,
+    val id: Long?,
     val name: String?,
     val countCallers: Int?
 )

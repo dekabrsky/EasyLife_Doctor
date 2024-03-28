@@ -9,6 +9,8 @@ import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.feature.notifications.common.domain.model.DosageUnit
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
+import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
+import ru.dekabrsky.feature.notifications.implementation.domain.interactor.DoctorNotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.adapter.MedicineAdapter
 import ru.dekabrsky.feature.notifications.implementation.presentation.mapper.NotificationEntityToUiMapper
@@ -22,13 +24,20 @@ import ru.dekabrsky.italks.basic.rx.withLoadingView
 import java.util.Locale
 import javax.inject.Inject
 
+@Suppress("LongParameterList")
 class NotificationEditPresenter @Inject constructor(
     router: FlowRouter,
-    private val interactor: NotificationInteractor,
+    private val flowArgs: NotificationsFlowArgs,
+    private val childInteractor: NotificationInteractor,
+    private val doctorInteractor: DoctorNotificationInteractor,
     private val existingNotification: NotificationEntity,
     private val mapper: NotificationEntityToUiMapper,
     private val analyticsSender: AnalyticsSender
 ) : BasicPresenter<NotificationEditView>(router), MedicineAdapter.DataStore {
+
+    private val interactor = flowArgs.patientId?.let { id ->
+        doctorInteractor.apply { setUserId(id) }
+    } ?: childInteractor
 
     private var notification = existingNotification.uid?.let {
         mapper.mapEntityToUi(existingNotification)

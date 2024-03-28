@@ -19,8 +19,8 @@ interface NotificationApi {
     fun postNotification(@Body request: NotificationRequest): Completable
 
     @DELETE("notifications/{id}")
-    fun deleteNotification(@Path("id") id: Int): Completable
+    fun deleteNotification(@Path("id") id: Long): Completable
 
     @PUT("notifications/{id}")
-    fun putNotification(@Path("id") id: Int, @Body request: NotificationRequest): Completable
+    fun putNotification(@Path("id") id: Long, @Body request: NotificationRequest): Completable
 }

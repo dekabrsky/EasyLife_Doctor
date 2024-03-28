@@ -8,7 +8,6 @@ android {
 
 dependencies {
 
-    implementation project(path: ':feature:simple-bottomsheet')
     dependenciesSet(this) {
         rxJava()
         moxy()
@@ -27,6 +26,8 @@ dependencies {
     implementation project(':flows')
     implementation project(':feature:patients-common')
     implementation project(':feature:events-common')
-    implementation project(':feature:chats-common')
+    implementation project(':feature:chats') // todo вынести только нужное
+    implementation project(':feature:notifications:common')
     implementation project(':feature:tabs')
+    implementation project(':feature:simple-bottomsheet')
 }

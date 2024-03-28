@@ -7,7 +7,7 @@ import ru.dekabrsky.feature.loginCommon.data.model.UserInfoResponse
 class ChatsListResponse(val chats: List<ChatResponse>)
 @Keep
 class ChatResponse(
-    val chatId: Int?,
+    val chatId: Long?,
     val firstUser: UserInfoResponse,
     val secondUser: UserInfoResponse,
     val messages: List<MessageResponse>?
@@ -15,9 +15,9 @@ class ChatResponse(
 
 @Keep
 class MessageResponse(
-    val messageId: Int?,
-    val userId: Int?,
-    val chatId: Int?,
+    val messageId: Long?,
+    val userId: Long?,
+    val chatId: Long?,
     val text: String?,
     val createdDate: String?
 )

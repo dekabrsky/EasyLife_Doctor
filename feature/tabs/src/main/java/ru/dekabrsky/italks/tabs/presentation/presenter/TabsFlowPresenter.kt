@@ -2,7 +2,7 @@ package ru.dekabrsky.italks.tabs.presentation.presenter
 
 import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
-import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
+import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.italks.basic.navigation.Flow
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter

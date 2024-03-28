@@ -3,6 +3,7 @@ package ru.dekabrsky.italks.game.view.presenter
 import android.media.MediaPlayer
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
+import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
@@ -13,6 +14,7 @@ import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import ru.dekabrsky.italks.game.view.mapper.ItemsVisibilityMapper
 import ru.dekabrsky.italks.game.view.mapper.ShelfItemsUiMapper
 import ru.dekabrsky.italks.game.view.model.RoomColor
+import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
@@ -123,8 +125,7 @@ class MainRoomPresenter @Inject constructor(
 
     fun onClockClick() {
         updateMusicState(false)
-        // переход не работает, надо починить
-    // router.startFlow(Flows.Notifications.name, NotificationsFlowArgs(Scopes.SCOPE_FLOW_GAME))
+        router.startFlow(Flows.Notifications.name, NotificationsFlowArgs(Scopes.SCOPE_FLOW_GAME))
     }
 
     fun onColorsClick() {

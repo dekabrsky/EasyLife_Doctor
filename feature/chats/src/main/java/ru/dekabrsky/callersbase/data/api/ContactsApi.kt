@@ -22,7 +22,7 @@ interface ContactsApi {
     ): Observable<CallersBaseResponse>
 
     @GET("callers-base/header/{id}")
-    fun getCallersBase(@Path("id") id: Int): Observable<ContentResponse>
+    fun getCallersBase(@Path("id") id: Long): Observable<ContentResponse>
 
     @GET("users/doctors")
     fun getDoctors(): Single<UsersListIdNameResponse>
@@ -37,10 +37,10 @@ interface ContactsApi {
     fun getParents(): Single<UsersListIdNameResponse>
 
     @POST("chats/users/{companionUserId}")
-    fun startChat(@Path("companionUserId") userId: Int): Completable
+    fun startChat(@Path("companionUserId") userId: Long): Completable
 
     @GET("chats/users/{companionUserId}")
-    fun getChat(@Path("companionUserId") userId: Int): Single<ChatResponse>
+    fun getChat(@Path("companionUserId") userId: Long): Single<ChatResponse>
 
     @GET("chats")
     fun getChats(): Single<ChatsListResponse>

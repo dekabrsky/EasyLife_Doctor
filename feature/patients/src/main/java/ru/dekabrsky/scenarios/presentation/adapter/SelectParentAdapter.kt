@@ -11,7 +11,7 @@ import ru.dekabrsky.scenarios.databinding.ItemExistingParentBinding
 
 class SelectParentAdapter (
     private val onItemClick: (ContactEntity) -> Unit,
-    private val isChecked: (Int) -> Boolean
+    private val isChecked: (Long) -> Boolean
 ): RecyclerView.Adapter<SelectParentAdapter.SelectParentHolder>() {
 
     private var items: MutableList<ContactEntity> = arrayListOf()

@@ -11,6 +11,8 @@ class DoctorPatientsInteractorImpl @Inject constructor(
         patientName: String,
         isChild: Boolean,
         parentName: String?,
-        parentId: Int?
+        parentId: Long?
     ) = repository.generateCode(patientName, isChild, parentName, parentId)
+
+    fun getPatients() = repository.getPatients()
 }

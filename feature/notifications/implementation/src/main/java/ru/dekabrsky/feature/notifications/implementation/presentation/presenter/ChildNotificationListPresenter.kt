@@ -12,9 +12,12 @@ import org.threeten.bp.LocalDateTime
 import org.threeten.bp.LocalTime
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationMedicineEntity
-import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
+import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.common.utils.NotificationToStringFormatter
+import ru.dekabrsky.feature.notifications.implementation.domain.interactor.INotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
+import ru.dekabrsky.feature.notifications.implementation.presentation.view.ChildNotificationsListView
+import ru.dekabrsky.feature.notifications.implementation.presentation.view.DoctorNotificationsListView
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationsListView
 import ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
@@ -24,52 +27,37 @@ import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
-import java.util.*
+import java.util.Calendar
 import javax.inject.Inject
 
-
 @Suppress("LongParameterList")
-class NotificationsListPresenter @Inject constructor(
+class ChildNotificationListPresenter @Inject constructor(
     private val router: FlowRouter,
-    private val notificationInteractor: NotificationInteractor,
+    private val interactor: NotificationInteractor,
     private val context: Context,
     private val flowArgs: NotificationsFlowArgs,
     private val sharedPreferencesProvider: SharedPreferencesProvider,
     private val formatter: NotificationToStringFormatter
-) : BasicPresenter<NotificationsListView>(router) {
+) : BaseNotificationListPresenter<ChildNotificationsListView>(
+    router,
+    interactor,
+    flowArgs,
+    formatter
+) {
 
-    private var isFirstLoading = true
     private var notificationIds = sharedPreferencesProvider.notificationIds
     private var notificationIdsCache: MutableSet<Long> = mutableSetOf()
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        if (flowArgs.parentScopeName != Scopes.SCOPE_APP) {
-            viewState.setToolbarBackButton()
-        }
 
         notificationIds.get().forEach {
             cancelNotification(it)
         }
     }
 
-    override fun attachView(view: NotificationsListView) {
-        super.attachView(view)
-        getAll()
-    }
-
-    private fun getAll() {
-        notificationInteractor.getAll()
-            .observeOn(RxSchedulers.main())
-            .withCustomLoadingViewIf(viewState::setListLoadingVisibility, isFirstLoading)
-            .subscribe(::dispatchNotifications, viewState::showError)
-            .addFullLifeCycle()
-    }
-
-    private fun dispatchNotifications(list: List<NotificationEntity>) {
-        isFirstLoading = false
-        viewState.setChatsList(list)
-        viewState.setEmptyLayoutVisibility(list.isEmpty())
+    override fun dispatchNotifications(list: List<NotificationEntity>) {
+        super.dispatchNotifications(list)
 
         list.filter { it.enabled }.forEach { notification ->
             addNotification(notification)
@@ -141,33 +129,8 @@ class NotificationsListPresenter @Inject constructor(
         alarmManager.cancel(pendingIntent)
     }
 
-    fun onAddNotificationClick() {
-        router.navigateTo(Flows.Notifications.SCREEN_EDIT_NOTIFICATION)
+    override fun dispatchNotificationDelete(notificationEntity: NotificationEntity) {
+        cancelNotification(notificationEntity.uid.orZero())
+        super.dispatchNotificationDelete(notificationEntity)
     }
-
-    fun onNotificationDelete(notificationEntity: NotificationEntity) {
-        notificationInteractor.delete(notificationEntity)
-            .observeOn(RxSchedulers.main())
-            .subscribe(
-                {
-                    cancelNotification(notificationEntity.uid.orZero())
-                    getAll()
-                }, viewState::showError
-            )
-            .addFullLifeCycle()
-    }
-
-    fun onNotificationClick(notificationEntity: NotificationEntity) {
-        router.navigateTo(Flows.Notifications.SCREEN_EDIT_NOTIFICATION, notificationEntity)
-    }
-
-    fun onItemCheckedChanged(notificationEntity: NotificationEntity, isEnabled: Boolean) {
-        notificationInteractor.update(notificationEntity.copy(enabled = isEnabled))
-            .observeOn(RxSchedulers.main())
-            .subscribe({ getAll() }, viewState::showError)
-            .addFullLifeCycle()
-    }
-
-    fun formatDosage(medicineEntity: NotificationMedicineEntity) =
-        formatter.formatDosage(medicineEntity)
 }

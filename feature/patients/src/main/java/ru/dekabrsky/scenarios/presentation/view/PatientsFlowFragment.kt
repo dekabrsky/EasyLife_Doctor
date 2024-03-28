@@ -3,6 +3,7 @@ package ru.dekabrsky.scenarios.presentation.view
 import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import ru.dekabrsky.italks.basic.di.inject
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
@@ -36,7 +37,7 @@ class PatientsFlowFragment : BasicFlowFragment(), PatientsFlowView {
                 when (screenKey) {
                     Flows.Patients.SCREEN_PATIENTS_LIST -> PatientsListFragment.newInstance()
                     Flows.Patients.SCREEN_PATIENT_DETAILS ->
-                        PatientDetailsFragment.newInstance(data as ScenarioItemUiModel)
+                        PatientDetailsFragment.newInstance(data as ContactEntity)
                     Flows.Patients.SCREEN_PATIENTS_CODES ->
                         PatientsCodesFragment.newInstance(data as PatientsCodesScreenArgs)
                     Flows.Patients.SCREEN_INVITE_PATIENT ->

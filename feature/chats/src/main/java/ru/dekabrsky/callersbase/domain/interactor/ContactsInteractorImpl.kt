@@ -12,7 +12,7 @@ class ContactsInteractorImpl @Inject constructor(
     override fun getCallersBases(direction: String, sortBy: String) =
         repository.getCallersBases(direction, sortBy)
 
-    override fun getCallersBase(id: Int) = repository.getCallersBase(id)
+    override fun getCallersBase(id: Long) = repository.getCallersBase(id)
 
     fun getChats() = repository.getChats()
 
@@ -24,11 +24,11 @@ class ContactsInteractorImpl @Inject constructor(
 
     override fun getParents() = repository.getParents()
 
-    fun startChat(id: Int) = repository.startChat(id)
+    fun startChat(id: Long) = repository.startChat(id)
 
-    fun getChat(id: Int) = repository.getChat(id)
+    fun getChat(id: Long) = repository.getChat(id)
 
-    fun observeMessagesWs(chatId: Int) = repository.observeMessagesWs(chatId)
+    fun observeMessagesWs(chatId: Long) = repository.observeMessagesWs(chatId)
 
-    fun postMessageWs(chatId: Int, msg: String) = repository.postMessageWs(chatId, msg)
+    fun postMessageWs(chatId: Long, msg: String) = repository.postMessageWs(chatId, msg)
 }

@@ -5,6 +5,7 @@ import android.view.View
 import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.presentation.adapter.MiniDialingsAdapter
 import ru.dekabrsky.common.presentation.model.TakingMedicationsUiModel
 import ru.dekabrsky.italks.basic.di.module
@@ -13,13 +14,12 @@ import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.presentation.presenter.PatientDetailsPresenter
-import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import ru.dekabrsky.scenarios.databinding.FragmentPatientDetailsBinding
 import toothpick.Toothpick
 
 class PatientDetailsFragment: BasicFragment(), PatientDetailsView {
 
-    private lateinit var model: ScenarioItemUiModel
+    private lateinit var model: ContactEntity
 
     override val layoutRes: Int
         get() = R.layout.fragment_patient_details
@@ -34,7 +34,7 @@ class PatientDetailsFragment: BasicFragment(), PatientDetailsView {
     @ProvidePresenter
     fun providePresenter(): PatientDetailsPresenter {
         return Toothpick.openScopes(Scopes.SCOPE_FLOW_PATIENTS, scopeName)
-            .module { bind(ScenarioItemUiModel::class.java).toInstance(model) }
+            .module { bind(ContactEntity::class.java).toInstance(model) }
             .getInstance(PatientDetailsPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }
@@ -52,7 +52,7 @@ class PatientDetailsFragment: BasicFragment(), PatientDetailsView {
     }
 
 
-    override fun setMainData(model: ScenarioItemUiModel) {
+    override fun setMainData(model: ContactEntity) {
         binding.toolbar.title = model.name
     }
 
@@ -63,7 +63,7 @@ class PatientDetailsFragment: BasicFragment(), PatientDetailsView {
     }
 
     companion object {
-        fun newInstance(model: ScenarioItemUiModel) = PatientDetailsFragment().apply {
+        fun newInstance(model: ContactEntity) = PatientDetailsFragment().apply {
             this.model = model
         }
     }
