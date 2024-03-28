@@ -48,8 +48,8 @@ class ChatsResponseToEntityMapper @Inject constructor(
 
     fun mapMessage(msg: MessageResponse): MessageEntity {
         return MessageEntity(
-            messageId = msg.messageId ?: 0,
-            userId = msg.userId ?: 0,
+            messageId = msg.messageId.orZero(),
+            userId = msg.userId.orZero(),
             text = msg.text.orEmpty(),
             createdDate = msg.createdDate?.let { tryParseServerDateTime(it) } ?: LocalDateTime.now()
         )

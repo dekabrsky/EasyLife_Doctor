@@ -3,7 +3,7 @@ package ru.dekabrsky.feature.loginCommon.domain.model
 import java.io.Serializable
 
 class UserInfoEntity(
-    val id: Int,
+    val id: Long,
     val name: String,
     val role: UserType,
     val currentLevel: UserLoginLevelEntity

@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.chauthai.swipereveallayout.ViewBinderHelper
 import main.utils.orZero
+import main.utils.setBoolVisibility
 import main.utils.setIsCheckedWithoutEffects
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationMedicineEntity
@@ -16,7 +17,8 @@ class NotificationsListAdapter(
     private val onItemClick: (NotificationEntity) -> Unit,
     private val onItemDelete: (NotificationEntity) -> Unit,
     private val onItemCheckedChanged: (NotificationEntity, Boolean) -> Unit,
-    private val formatDosage: (NotificationMedicineEntity) -> String
+    private val formatDosage: (NotificationMedicineEntity) -> String,
+    private val isForChild: Boolean = true
 ): RecyclerView.Adapter<NotificationsListAdapter.NotificationHolder>() {
 
     private var items: MutableList<NotificationEntity> = arrayListOf()
@@ -72,6 +74,7 @@ class NotificationsListAdapter(
                 }
                 deleteWrapper.setOnClickListener { onItemDelete(item) }
                 content.setOnClickListener { onItemClick(item) }
+                drawable.setBoolVisibility(isForChild)
             }
         }
     }

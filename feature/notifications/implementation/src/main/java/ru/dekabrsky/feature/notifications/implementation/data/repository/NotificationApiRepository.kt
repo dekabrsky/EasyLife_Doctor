@@ -30,9 +30,9 @@ class NotificationApiRepository @Inject constructor(
         api
             .postNotification(mapper.mapEntityToRequest(notification))
 
-    fun delete(notificationId: Int) = api.deleteNotification(notificationId)
+    fun delete(notificationId: Long) = api.deleteNotification(notificationId)
 
     fun update(notification: NotificationEntity) =
-        api.putNotification(notification.uid?.toInt().orZero(), mapper.mapEntityToRequest(notification))
+        api.putNotification(notification.uid.orZero(), mapper.mapEntityToRequest(notification))
 
 }

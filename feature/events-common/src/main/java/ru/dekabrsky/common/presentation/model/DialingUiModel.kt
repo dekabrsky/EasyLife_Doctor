@@ -8,7 +8,7 @@ class DialingUiModel(
     val id: Int,
     val name: String,
 
-    val callersBaseId: Int,
+    val callersBaseId: Long,
     val callersBaseName: String,
     val callersBaseCount: Int,
 

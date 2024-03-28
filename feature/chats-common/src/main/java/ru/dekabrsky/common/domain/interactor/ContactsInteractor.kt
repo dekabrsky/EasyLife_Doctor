@@ -13,7 +13,7 @@ interface ContactsInteractor {
         sortBy: String = SortVariants.NAME.name
     ): Observable<List<CallersBaseEntity>>
 
-    fun getCallersBase(id: Int): Observable<CallersBaseEntity>
+    fun getCallersBase(id: Long): Observable<CallersBaseEntity>
 
     fun getChildren(): Single<List<ContactEntity>>
 

@@ -1,6 +1,7 @@
 package ru.dekabrsky.scenarios.presentation.presenter
 
 import ru.dekabrsky.common.domain.interactor.DialingsInteractor
+import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.presentation.mapper.TakingMedicationsUiMapper
 import ru.dekabrsky.common.presentation.model.TakingMedicationsUiModel
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
@@ -11,7 +12,7 @@ import javax.inject.Inject
 
 class PatientDetailsPresenter @Inject constructor(
     private val router: FlowRouter,
-    private val model: ScenarioItemUiModel,
+    private val model: ContactEntity,
     private val dialingsInteractor: DialingsInteractor,
     private val takingMedicationsMapper: TakingMedicationsUiMapper
 ) : BasicPresenter<PatientDetailsView>(router) {

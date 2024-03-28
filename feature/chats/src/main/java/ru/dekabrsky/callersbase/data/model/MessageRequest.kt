@@ -4,6 +4,6 @@ import androidx.annotation.Keep
 
 @Keep
 class MessageRequest(
-    val chatId: Int,
+    val chatId: Long,
     val text: String
 )

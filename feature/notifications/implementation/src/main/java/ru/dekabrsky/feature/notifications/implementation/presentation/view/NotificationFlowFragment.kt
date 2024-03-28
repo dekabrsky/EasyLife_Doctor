@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
-import ru.dekabrsky.feature.notifications.common.model.NotificationsFlowArgs
+import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.presentation.presenter.NotificationFlowPresenter
 import ru.dekabrsky.italks.basic.di.inject
@@ -26,7 +26,7 @@ class NotificationFlowFragment : BasicFlowFragment(), NotificationFlowView {
 
     override val containerId = R.id.flowContainer
 
-    override val scopeName = Scopes.SCOPE_FLOW_NOTIFICATION
+    override val scopeName by lazy { args.parentScopeName + Scopes.SCOPE_FLOW_NOTIFICATION }
 
     private lateinit var args: NotificationsFlowArgs
 
@@ -34,12 +34,16 @@ class NotificationFlowFragment : BasicFlowFragment(), NotificationFlowView {
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
                 when (screenKey) {
-                    Flows.Notifications.SCREEN_NOTIFICATIONS_LIST ->
-                        NotificationsListFragment.newInstance()
+                    Flows.Notifications.SCREEN_CHILD_NOTIFICATIONS_LIST ->
+                        ChildNotificationsListFragment.newInstance(scopeName)
+
+                    Flows.Notifications.SCREEN_DOCTOR_NOTIFICATIONS_LIST ->
+                        DoctorNotificationsListFragment.newInstance(scopeName)
 
                     Flows.Notifications.SCREEN_EDIT_NOTIFICATION ->
                         NotificationEditFragment.newInstance(
-                            data as? NotificationEntity ?: NotificationEntity()
+                            notification = data as? NotificationEntity ?: NotificationEntity(),
+                            notificationsScope = scopeName
                         )
 
                     else -> super.createFragment(screenKey, data)

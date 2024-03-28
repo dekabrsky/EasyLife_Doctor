@@ -25,7 +25,7 @@ class AnalyticsSender @Inject constructor(
         firebaseAnalytics.logEvent(name, bundle)
     }
 
-    fun setUserId(id: Int) {
+    fun setUserId(id: Long) {
         firebaseAnalytics.setUserId(id.toString())
     }
 

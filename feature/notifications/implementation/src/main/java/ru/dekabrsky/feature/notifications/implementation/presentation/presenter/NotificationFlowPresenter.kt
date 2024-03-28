@@ -1,5 +1,6 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.presenter
 
+import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationFlowView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
@@ -8,9 +9,15 @@ import javax.inject.Inject
 
 class NotificationFlowPresenter @Inject constructor(
     private val router: FlowRouter,
+    private val args: NotificationsFlowArgs
 ) : BasicPresenter<NotificationFlowView>(router) {
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        router.newRootScreen(Flows.Notifications.SCREEN_NOTIFICATIONS_LIST)
+        if (args.patientId != null) {
+            router.newRootScreen(Flows.Notifications.SCREEN_DOCTOR_NOTIFICATIONS_LIST)
+        } else {
+            router.newRootScreen(Flows.Notifications.SCREEN_CHILD_NOTIFICATIONS_LIST)
+        }
+
     }
 }

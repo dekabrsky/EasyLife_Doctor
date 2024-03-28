@@ -11,3 +11,10 @@ interface NotificationsListView: BasicView {
     fun setListLoadingVisibility(isVisible: Boolean)
     fun setToolbarBackButton()
 }
+
+@AddToEndSingle
+interface DoctorNotificationsListView: NotificationsListView {
+    fun setTitle(title: String)
+}
+
+interface ChildNotificationsListView: NotificationsListView

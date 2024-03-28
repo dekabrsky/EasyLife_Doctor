@@ -21,7 +21,7 @@ class SelectParentPresenter @Inject constructor(
         router.backWithResult(SELECT_PARENT_RESULT_CODE, item)
     }
 
-    fun isItemChecked(id: Int): Boolean {
+    fun isItemChecked(id: Long): Boolean {
         return args.selectedParentId == id
     }
 
