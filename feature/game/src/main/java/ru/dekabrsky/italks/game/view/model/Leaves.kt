@@ -152,7 +152,7 @@ class Leaves(context: Context) : SurfaceView(context), Runnable {
     }
 
     private fun snackBarView(view: View){
-        val snackBar = Snackbar.make(view, "  Ты заработал $score коинов", Snackbar.LENGTH_SHORT)
+        val snackBar = Snackbar.make(view, "  Получено $score коинов", Snackbar.LENGTH_SHORT)
         val snackBarLayout: View = snackBar.view
         val textView: TextView =
             snackBarLayout.findViewById(com.google.android.material.R.id.snackbar_text) as TextView

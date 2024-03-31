@@ -6,6 +6,7 @@ import android.media.MediaPlayer
 import androidx.core.app.NotificationManagerCompat
 import androidx.room.RoomDatabase
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.mixpanel.android.mpmetrics.MixpanelAPI
 import io.reactivex.Scheduler
 import okhttp3.CookieJar
 import okhttp3.OkHttpClient
@@ -61,6 +62,7 @@ class AppModule : Module() {
             .toProvider(NotificationDatabaseProvider::class.java).providesSingletonInScope()
         bind(MediaPlayer::class.java).toProvider(MediaPlayerProvider::class.java).providesSingletonInScope()
         bind(FirebaseAnalytics::class.java).toProvider(FirebaseAnalyticsProvider::class.java).providesSingletonInScope()
+        bind(MixpanelAPI::class.java).toProvider(MixPanelApiProvider::class.java).providesSingletonInScope()
         bind(AnalyticsSender::class.java).singletonInScope()
         bind(LoginDataCache::class.java).singletonInScope()
     }

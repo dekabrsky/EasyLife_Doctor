@@ -56,7 +56,10 @@ class GameStartPresenter @Inject constructor(
     }
 
     fun onGameStartClicked() {
-        analyticsSender.sendEvent("game_from_notification")
+        if (cache.isFromNotification) {
+            analyticsSender.sendEvent("game_from_notification")
+        }
+
         if (sharedPreferencesProvider.gameAvatar.get().isEmpty()) {
             router.startFlow(Flows.Avatar.name)
         } else {

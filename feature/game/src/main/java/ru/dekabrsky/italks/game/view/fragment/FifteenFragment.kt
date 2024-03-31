@@ -81,7 +81,7 @@ class FifteenFragment : BasicFragment(), FifteenView {
     }
 
     private fun snackBarView(view: View){
-        val snackBar = Snackbar.make(view, "  Ты заработал $progress коинов", Snackbar.LENGTH_SHORT)
+        val snackBar = Snackbar.make(view, "  Получено $progress коинов", Snackbar.LENGTH_SHORT)
         val snackBarLayout: View = snackBar.view
         val textView: TextView =
             snackBarLayout.findViewById(com.google.android.material.R.id.snackbar_text) as TextView
