@@ -316,7 +316,7 @@ class FootballFragment : BasicFragment(), FootballView {
         }
 
     private fun snackBarView(view: View){
-        val snackBar = Snackbar.make(view, "  Ты заработал 40 коинов", Snackbar.LENGTH_SHORT)
+        val snackBar = Snackbar.make(view, "  Получено 40 коинов", Snackbar.LENGTH_SHORT)
         val snackBarLayout: View = snackBar.view
         val textView: TextView =
             snackBarLayout.findViewById(com.google.android.material.R.id.snackbar_text) as TextView

@@ -51,7 +51,7 @@ class GameActivity: AndroidApplication(), FlappyBird.MyGameCallback {
     }
 
     private fun showToast(score: Int) {
-        Toast.makeText(this, "Ты заработал $score коинов", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Получено $score коинов", Toast.LENGTH_LONG).show()
     }
 
     companion object {

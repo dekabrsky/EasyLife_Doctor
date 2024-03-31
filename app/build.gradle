@@ -18,7 +18,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", 'ENDPOINT',  "\"https://easylife-project.ru/\""
+        buildConfigField "String", "ENDPOINT",  "\"https://easylife-project.ru/\""
+        buildConfigField "String", "MIXPANEL_TOKEN", "\"8afa97b846e1246ebdf40fe035946b86\""
     }
 
     buildFeatures {
@@ -57,6 +58,7 @@ dependencies {
     dependenciesSet(this) {
         room()
         analytics()
+        mixpanel()
     }
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

@@ -5,6 +5,7 @@ dependencies {
     dependenciesSet(this) {
         toothpick()
         analytics()
+        mixpanel()
     }
 
     implementation project(':scopes')
