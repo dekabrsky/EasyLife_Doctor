@@ -3,14 +3,12 @@ package ru.dekabrsky.italks.activity.view
 import android.app.NotificationManager
 import android.os.Bundle
 import android.util.Log
-import android.view.KeyEvent
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.google.firebase.analytics.FirebaseAnalytics
 import io.reactivex.disposables.CompositeDisposable
 import moxy.MvpDelegate
 import moxy.presenter.InjectPresenter
@@ -32,7 +30,6 @@ import ru.dekabrsky.italks.navigation.AppFlowFragmentProvider
 import ru.dekabrsky.italks.navigation.AppFlowNavigator
 import ru.dekabrsky.italks.profile.di.ProfileFeatureModule
 import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.italks.testerSettings.presentation.view.TesterSettingsFragment
 import ru.dekabrsky.login.di.module.LoginFeatureModule
 import ru.dekabrsky.scenarios.di.module.DoctorsPatientsModule
 import ru.dekabrsky.stats.di.StatsFeatureModule

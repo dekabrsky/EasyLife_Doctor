@@ -13,5 +13,5 @@ class ChatUiModel(
     val chatIsStarted: Boolean = true
 ) : Serializable {
     val avatarPlaceholder
-        get() = secondUser.name.firstOrNull().toString()
+        get() = secondUser.name.firstOrNull()?.toString().orEmpty()
 }

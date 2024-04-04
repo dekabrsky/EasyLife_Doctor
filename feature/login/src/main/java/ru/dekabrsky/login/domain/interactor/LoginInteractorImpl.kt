@@ -11,13 +11,15 @@ class LoginInteractorImpl @Inject constructor(
     private val repository: LoginRepository
 ): LoginInteractor {
 
-    fun login(login: String, password: String): Single<UserInfoEntity> =
-       repository.login(login, password)
+    fun login(login: String, password: String, token: String): Single<UserInfoEntity> =
+       repository.login(login, password, token)
 
-    override fun logout(): Completable = repository.logout()
+    override fun logout(deviceToken: String): Completable = repository.logout(deviceToken)
 
     fun registration(code: String, login: String, password: String): Single<UserInfoEntity> =
        repository.registration(code, login, password)
 
     fun getCurrentUser(): Single<UserInfoEntity> = repository.getCurrentUser()
+
+    override fun getFcmToken(): Single<String> = repository.getFcmToken()
 }

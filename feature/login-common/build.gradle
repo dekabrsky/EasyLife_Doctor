@@ -14,4 +14,5 @@ dependencies {
     }
 
     implementation project(':basic')
+    implementation project(':feature:notifications:common')
 }

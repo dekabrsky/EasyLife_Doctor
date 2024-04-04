@@ -163,6 +163,7 @@ dependencies {
     implementation project(':feature:stats')
     implementation project(':feature:login')
     implementation project(':feature:game')
+    implementation project(':feature:fcm')
 
     implementation project(':feature:notifications:common')
 }

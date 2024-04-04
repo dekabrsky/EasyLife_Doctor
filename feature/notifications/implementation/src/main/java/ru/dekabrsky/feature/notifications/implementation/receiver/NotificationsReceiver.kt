@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import main.utils.orZero
 import org.threeten.bp.LocalDateTime
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
-import ru.dekabrsky.feature.notifications.implementation.util.sendNotification
+import ru.dekabrsky.feature.notifications.common.utils.sendNotification
 import java.util.Calendar
 
 class NotificationsReceiver : BroadcastReceiver() {
@@ -56,7 +56,12 @@ class NotificationsReceiver : BroadcastReceiver() {
         )
 
         if (notification?.weekDays?.contains(LocalDateTime.now().dayOfWeek) == true) {
-            notificationManager.sendNotification("Пора зайти в EasyLife", context, notification)
+            notificationManager.sendNotification(
+                messageTitle = "Сработало напоминание",
+                messageBody = "Пора зайти в EasyLife",
+                applicationContext = context,
+                notification = notification
+            )
         }
 
         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
