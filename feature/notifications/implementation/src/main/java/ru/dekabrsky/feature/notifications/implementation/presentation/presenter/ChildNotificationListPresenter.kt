@@ -10,23 +10,20 @@ import main.utils.orZero
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.LocalTime
+import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
-import ru.dekabrsky.feature.notifications.common.domain.model.NotificationMedicineEntity
 import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.common.utils.NotificationToStringFormatter
-import ru.dekabrsky.feature.notifications.implementation.domain.interactor.INotificationInteractor
+import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.ChildNotificationsListView
-import ru.dekabrsky.feature.notifications.implementation.presentation.view.DoctorNotificationsListView
-import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationsListView
 import ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
-import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
+import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
+import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
+import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import java.util.Calendar
 import javax.inject.Inject
 
@@ -37,7 +34,9 @@ class ChildNotificationListPresenter @Inject constructor(
     private val context: Context,
     private val flowArgs: NotificationsFlowArgs,
     private val sharedPreferencesProvider: SharedPreferencesProvider,
-    private val formatter: NotificationToStringFormatter
+    private val formatter: NotificationToStringFormatter,
+    private val loginDataCache: LoginDataCache,
+    private val resourceProvider: ResourceProvider
 ) : BaseNotificationListPresenter<ChildNotificationsListView>(
     router,
     interactor,
@@ -64,6 +63,24 @@ class ChildNotificationListPresenter @Inject constructor(
         }
 
         notificationIds.set(notificationIdsCache)
+
+        checkHasUpdatesFromNotification()
+    }
+
+    private fun checkHasUpdatesFromNotification() {
+        loginDataCache.medicinesDiff?.let { diff ->
+            router.navigateTo(
+                Flows.Common.SCREEN_BOTTOM_INFO,
+                BottomSheetScreenArgs(
+                    title = resourceProvider.getString(R.string.doctor_update_notifications),
+                    subtitle = diff,
+                    mode = BottomSheetMode.GAME,
+                    icon = R.drawable.clock
+                )
+            )
+
+            loginDataCache.medicinesDiff = null
+        }
     }
 
     private fun addNotification(notificationEntity: NotificationEntity) {

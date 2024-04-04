@@ -42,14 +42,10 @@ class LoginFragment: BasicFragment(), LoginView {
     fun providePresenter(): LoginPresenter {
         return Toothpick.openScopes(Scopes.SCOPE_FLOW_LOGIN, scopeName)
             .module {
-                bind(NotificationEntity::class.java).toInstance(getTransitData(requireActivity().intent))
+                bind(Intent::class.java).toInstance(requireActivity().intent)
             }
             .getInstance(LoginPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
-    }
-
-    private fun getTransitData(intent: Intent): NotificationEntity {
-        return intent.extras?.getSerializable("NOTIFICATION") as? NotificationEntity ?: NotificationEntity()
     }
 
     override fun onBackPressed() {

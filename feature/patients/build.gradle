@@ -30,4 +30,5 @@ dependencies {
     implementation project(':feature:notifications:common')
     implementation project(':feature:tabs')
     implementation project(':feature:simple-bottomsheet')
+    implementation project(':feature:login-common')
 }

@@ -1,4 +1,4 @@
-package ru.dekabrsky.feature.notifications.implementation.util
+package ru.dekabrsky.feature.notifications.common.utils
 
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -8,7 +8,7 @@ import android.os.Bundle
 import androidx.core.app.NotificationCompat
 import ru.dekabrsky.feature.notifications.api.R
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
-import ru.dekabrsky.feature.notifications.implementation.provider.AppActivityProvider
+import ru.dekabrsky.italks.basic.di.AppActivityProvider
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 
@@ -16,9 +16,11 @@ import toothpick.Toothpick
 private const val NOTIFICATION_ID = 0
 
 fun NotificationManager.sendNotification(
+    messageTitle: String,
     messageBody: String,
     applicationContext: Context,
-    notification: NotificationEntity
+    data: Map<String, String>? = null,
+    notification: NotificationEntity? = null,
 ) {
     val activityProvider = Toothpick.openScope(Scopes.SCOPE_APP_ROOT).getInstance(AppActivityProvider::class.java)
 
@@ -27,7 +29,8 @@ fun NotificationManager.sendNotification(
 
         this.putExtras(
             Bundle().apply {
-                putSerializable("NOTIFICATION", notification)
+                notification?.let { putSerializable("NOTIFICATION", notification) }
+                data?.forEach { putString(it.key, it.value )}
             }
         )
     }
@@ -38,8 +41,8 @@ fun NotificationManager.sendNotification(
     )
 
     builder.setSmallIcon(R.drawable.ic_logo)
-        .setContentTitle(applicationContext.getString(R.string.easy_life_notification_header))
-        .setContentText("Открыть приложение")
+        .setContentTitle(messageTitle)
+        .setContentText(messageBody)
         .setContentIntent(
             PendingIntent.getActivity(
                 applicationContext,

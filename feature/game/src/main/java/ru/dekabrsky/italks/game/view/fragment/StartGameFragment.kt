@@ -29,7 +29,6 @@ class StartGameFragment : BasicFragment(), GameView {
     @ProvidePresenter
     fun providePresenter(): GameStartPresenter {
         return Toothpick.openScopes(Scopes.SCOPE_FLOW_GAME, scopeName)
-            .module { bind(NotificationEntity::class.java).toInstance(getTransitData(requireActivity().intent)) }
             .getInstance(GameStartPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }
@@ -39,10 +38,6 @@ class StartGameFragment : BasicFragment(), GameView {
         binding.startButton.setOnClickListener {
             presenter.onGameStartClicked()
         }
-    }
-
-    private fun getTransitData(intent: Intent): NotificationEntity {
-        return intent.extras?.getSerializable("NOTIFICATION") as? NotificationEntity ?: NotificationEntity()
     }
 
     override fun onResume() {

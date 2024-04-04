@@ -34,7 +34,8 @@ class AdultProfilePresenter @Inject constructor(
     }
 
     fun onLogoutConfirmed() {
-        loginInteractor.logout()
+        loginInteractor.getFcmToken()
+            .flatMapCompletable { token -> loginInteractor.logout(token) }
             .observeOn(AndroidSchedulers.mainThread())
             .withLoadingView(viewState)
             .subscribe({ router.newRootFlow(Flows.Login.name) }, viewState::showError)

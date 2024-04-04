@@ -15,4 +15,8 @@
     <string name="select_existing">Выбрать существующего</string>
     <string name="lagal_representatives">Законные представители</string>
     <string name="patient_cards_in_develop">Раздел "Карточки пациента" в разработке</string>
+    <string name="patient_new_registration_title">Новый пациент зарегистрирован</string>
+    <string name="patient_new_registration_message">Пациент %s активировал код приглашения</string>
+    <string name="patient_update_notifications">Пациент %s обновил напоминания о приеме</string>
+    <string name="look">Посмотреть</string>
 </resources>

@@ -15,6 +15,7 @@ dependencies {
         retrofit()
         gson()
         glide()
+        messaging()
     }
 
     implementation libraries.cicerone

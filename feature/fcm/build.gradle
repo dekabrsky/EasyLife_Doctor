@@ -1,0 +1,9 @@
+apply from: Base
+
+dependencies {
+    dependenciesSet(this) {
+        messaging()
+    }
+
+    implementation project(':feature:notifications:common')
+}

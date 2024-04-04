@@ -10,28 +10,29 @@ import ru.dekabrsky.login.data.model.RegistrationRequest
 import ru.dekabrsky.feature.loginCommon.data.model.UserInfoResponse
 import ru.dekabrsky.feature.loginCommon.domain.model.UserInfoEntity
 import ru.dekabrsky.feature.loginCommon.domain.model.UserLoginLevelEntity
+import ru.dekabrsky.login.data.model.LogoutRequest
 import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 
 class LoginDataMapperImpl @Inject constructor(): LoginDataMapper {
-    fun mapCredentials(login: String, password: String): CredentialsRequest {
+    fun mapCredentials(login: String, password: String, token: String): CredentialsRequest {
         return CredentialsRequest(
-            credentials = String(
-                Base64.encode("$login:$password".toByteArray(), Base64.DEFAULT),
-                StandardCharsets.UTF_8
-            )
+            credentials = encodeToBase64("$login:$password"),
+            deviceToken = encodeToBase64(token)
         )
     }
 
     fun mapRegistration(code: String, login: String, password: String): RegistrationRequest {
         return RegistrationRequest(
-            credentials = String(
-                Base64.encode("$login:$password".toByteArray(), Base64.DEFAULT),
-                StandardCharsets.UTF_8
-            ),
+            credentials = encodeToBase64("$login:$password"),
             code = code
         )
     }
+
+    fun mapLogout(token: String) = LogoutRequest(encodeToBase64(token))
+
+    private fun encodeToBase64(token: String) =
+        String(Base64.encode(token.toByteArray(), Base64.DEFAULT), StandardCharsets.UTF_8)
 
     override fun mapUserInfo(response: UserInfoResponse): UserInfoEntity {
         return UserInfoEntity(

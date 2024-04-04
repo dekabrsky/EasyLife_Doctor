@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +38,7 @@ open class SimpleInfoBottomSheet : BottomSheetDialogFragment() {
         viewBinding.closeButton.setOnClickListener { closeListener() }
 
         viewBinding.title.text = args?.title
-        viewBinding.description.text = args?.subtitle
+        viewBinding.description.text = args?.subtitle?.let { Html.fromHtml(it) }
 
         args?.mode?.let { mode ->
             viewBinding.root.backgroundTintList =

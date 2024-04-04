@@ -27,7 +27,7 @@ import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.di.provider.network.*
 import ru.dekabrsky.italks.navigation.AppFlowFragmentProvider
 import ru.dekabrsky.feature.notifications.implementation.provider.NotificationManagerCompatProvider
-import ru.dekabrsky.feature.notifications.implementation.provider.AppActivityProvider
+import ru.dekabrsky.italks.basic.di.AppActivityProvider
 import ru.dekabrsky.italks.activity.provider.AppActivityProviderImpl
 import ru.dekabrsky.italks.basic.di.WSOkHttpClient
 import ru.dekabrsky.ws.implementation2.WsService

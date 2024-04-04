@@ -16,6 +16,8 @@ import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
+import ru.dekabrsky.simpleBottomsheet.view.fragment.SimpleInfoBottomSheet
+import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -45,6 +47,9 @@ class NotificationFlowFragment : BasicFlowFragment(), NotificationFlowView {
                             notification = data as? NotificationEntity ?: NotificationEntity(),
                             notificationsScope = scopeName
                         )
+
+                    Flows.Common.SCREEN_BOTTOM_INFO ->
+                        SimpleInfoBottomSheet.newInstance(data as BottomSheetScreenArgs)
 
                     else -> super.createFragment(screenKey, data)
                 }

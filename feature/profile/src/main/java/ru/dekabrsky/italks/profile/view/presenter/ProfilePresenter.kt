@@ -64,7 +64,8 @@ class ProfilePresenter @Inject constructor(
     }
 
     private fun makeLogout() {
-        loginInteractor.logout()
+        loginInteractor.getFcmToken()
+            .flatMapCompletable { token -> loginInteractor.logout(token) }
             .observeOn(AndroidSchedulers.mainThread())
             .withLoadingView(viewState)
             .subscribe({ router.newRootFlow(Flows.Login.name) }, viewState::showError)

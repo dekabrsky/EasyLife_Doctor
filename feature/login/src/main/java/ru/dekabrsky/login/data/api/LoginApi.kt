@@ -8,13 +8,14 @@ import retrofit2.http.POST
 import ru.dekabrsky.login.data.model.CredentialsRequest
 import ru.dekabrsky.login.data.model.RegistrationRequest
 import ru.dekabrsky.feature.loginCommon.data.model.UserInfoResponse
+import ru.dekabrsky.login.data.model.LogoutRequest
 
 interface LoginApi {
     @POST("users/login")
     fun login(@Body credentialsRequest: CredentialsRequest): Single<UserInfoResponse>
 
     @POST("users/logout")
-    fun logout(): Completable
+    fun logout(@Body logoutRequest: LogoutRequest): Completable
 
     @POST("register/user")
     fun registration(@Body regRequest: RegistrationRequest): Single<UserInfoResponse>

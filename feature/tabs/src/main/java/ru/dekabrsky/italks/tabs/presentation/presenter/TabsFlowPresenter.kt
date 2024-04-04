@@ -2,6 +2,8 @@ package ru.dekabrsky.italks.tabs.presentation.presenter
 
 import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
+import ru.dekabrsky.feature.loginCommon.domain.model.UserType
+import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.italks.basic.navigation.Flow
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
@@ -15,7 +17,8 @@ import javax.inject.Inject
 
 class TabsFlowPresenter @Inject constructor(
     private val args: TabsFlowArgs,
-    private val router: FlowRouter
+    private val router: FlowRouter,
+    private val loginDataCache: LoginDataCache
 ) : BasicPresenter<TabsFlowView>(router) {
 
     private var currentFlow: Flow? = null
@@ -25,10 +28,10 @@ class TabsFlowPresenter @Inject constructor(
 
         viewState.setTabsByRole(
             when (args.userType) {
-                ru.dekabrsky.feature.loginCommon.domain.model.UserType.DOCTOR -> R.menu.doctor_tabs_menu
-                ru.dekabrsky.feature.loginCommon.domain.model.UserType.PATIENT -> R.menu.patient_tabs_menu
-                ru.dekabrsky.feature.loginCommon.domain.model.UserType.PARENT -> R.menu.parent_tabs_menu
-                ru.dekabrsky.feature.loginCommon.domain.model.UserType.CHILD -> R.menu.child_tabs_menu
+                UserType.DOCTOR -> R.menu.doctor_tabs_menu
+                UserType.PATIENT -> R.menu.patient_tabs_menu
+                UserType.PARENT -> R.menu.parent_tabs_menu
+                UserType.CHILD -> R.menu.child_tabs_menu
             }
         )
 
@@ -49,11 +52,43 @@ class TabsFlowPresenter @Inject constructor(
             Flows.Notifications.name to NotificationsFlowArgs(Scopes.SCOPE_APP)
         )
         when (args.userType) {
-           ru.dekabrsky.feature.loginCommon.domain.model.UserType.DOCTOR -> toggleScreen(Flows.Events)
-            ru.dekabrsky.feature.loginCommon.domain.model.UserType.PATIENT -> toggleScreen(Flows.Game)
-            ru.dekabrsky.feature.loginCommon.domain.model.UserType.PARENT -> toggleScreen(Flows.Chats)
-            ru.dekabrsky.feature.loginCommon.domain.model.UserType.CHILD -> toggleScreen(Flows.Game)
+            UserType.DOCTOR -> setDoctorStartScreen()
+            UserType.PATIENT -> setPatientStartScreen()
+            UserType.PARENT -> toggleScreen(Flows.Chats)
+            UserType.CHILD -> setChildStartScreen()
         }
+    }
+
+    private fun setDoctorStartScreen() {
+        toggleScreen(
+            when {
+                loginDataCache.registeredPatientId != null -> Flows.Patients
+                loginDataCache.patientMedicinesDiff != null -> Flows.Patients
+                loginDataCache.chatId != null -> Flows.Chats
+                else -> Flows.Patients
+            }
+        )
+    }
+
+    private fun setPatientStartScreen() {
+        toggleScreen(
+            when {
+                loginDataCache.medReminder != null -> Flows.Game
+                loginDataCache.medicinesDiff != null -> Flows.Notifications
+                loginDataCache.chatId != null -> Flows.Chats
+                else -> Flows.Game
+            }
+        )
+    }
+
+    private fun setChildStartScreen() {
+        toggleScreen(
+            when {
+                loginDataCache.medReminder != null -> Flows.Game
+                loginDataCache.medicinesDiff != null -> Flows.Notifications
+                else -> Flows.Game
+            }
+        )
     }
 
     fun onTabSelect(itemId: Int) {
@@ -65,6 +100,7 @@ class TabsFlowPresenter @Inject constructor(
                     Flows.Chats.SCREEN_CHATS_LIST
                 )
             )
+
             R.id.events -> toggleScreen(
                 Flows.Events,
                 EventsFlowScreenArgs(
@@ -72,6 +108,7 @@ class TabsFlowPresenter @Inject constructor(
                     Flows.Events.SCREEN_DIALINGS_LIST
                 )
             )
+
             R.id.notifications -> toggleScreen(Flows.Notifications, NotificationsFlowArgs(Scopes.SCOPE_APP))
             R.id.patients -> toggleScreen(Flows.Patients)
             R.id.stats -> toggleScreen(Flows.Stats)

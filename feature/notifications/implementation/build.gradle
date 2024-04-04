@@ -34,4 +34,6 @@ dependencies {
     implementation project(':feature:tabs')
     implementation project(':feature:analytics')
     implementation project(':feature:sharedPreferences')
+    implementation project(':feature:login-common')
+    implementation project(':feature:simple-bottomsheet')
 }

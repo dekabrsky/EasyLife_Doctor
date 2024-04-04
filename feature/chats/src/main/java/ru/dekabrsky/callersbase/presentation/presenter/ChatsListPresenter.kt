@@ -6,10 +6,10 @@ import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
 import ru.dekabrsky.callersbase.presentation.model.ChatFlowCache
 import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 import ru.dekabrsky.callersbase.presentation.view.ChatsListView
+import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
-import ru.dekabrsky.italks.basic.rx.withLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
 import javax.inject.Inject
 
@@ -17,7 +17,8 @@ class ChatsListPresenter @Inject constructor(
     private val router: FlowRouter,
     private val interactor: ContactsInteractorImpl,
     private val uiMapper: ChatEntityToUiMapper,
-    private val cache: ChatFlowCache
+    private val cache: ChatFlowCache,
+    private val loginDataCache: LoginDataCache
 ) : BaseChatListPresenter<ChatsListView>(router, interactor) {
 
     override fun load() {
@@ -32,6 +33,19 @@ class ChatsListPresenter @Inject constructor(
     override fun dispatchLoading(items: List<ChatUiModel>) {
         cache.existingCompanionIds = items.map { it.secondUser.id }
         super.dispatchLoading(items)
+
+        checkHasNotifications(items)
+    }
+
+    private fun checkHasNotifications(items: List<ChatUiModel>) {
+
+
+        loginDataCache.chatId?.toLongOrNull()?.let { id ->
+            val chat = items.find { it.chatId == id }
+            chat?.let(::onChatClick)
+
+            loginDataCache.chatId = null
+        }
     }
 
     fun onStartChatClick() {
