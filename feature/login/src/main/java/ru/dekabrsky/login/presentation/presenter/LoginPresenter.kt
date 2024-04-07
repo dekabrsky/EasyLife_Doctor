@@ -10,7 +10,6 @@ import ru.dekabrsky.italks.basic.navigation.BaseScreens
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.resources.ResourceProvider
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
@@ -51,7 +50,7 @@ class LoginPresenter @Inject constructor(
         parseIntent()
 
 //        interactor.login("dobryden", "123")
-//            .observeOn(RxSchedulers.main())
+//            .subscribeOnIo()
 //            .subscribe({
 //                router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
 //            }, viewState::showError)
@@ -87,7 +86,7 @@ class LoginPresenter @Inject constructor(
             LoginMode.LOGIN -> {
                 interactor.getFcmToken()
                     .flatMap { token -> interactor.login(currentLogin, currentPassword, token) }
-                    .observeOn(RxSchedulers.main())
+                    .subscribeOnIo()
                     .withLoadingView(viewState)
                     .subscribe({
                         router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
@@ -99,7 +98,7 @@ class LoginPresenter @Inject constructor(
 
             LoginMode.REGISTRATION -> {
                 interactor.registration(currentCode, currentLogin, currentPassword)
-                    .observeOn(RxSchedulers.main())
+                    .subscribeOnIo()
                     .withLoadingView(viewState)
                     .subscribe({
                         router.replaceFlow(

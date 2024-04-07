@@ -12,4 +12,5 @@
     <string name="logout">Выйти из приложения</string>
     <string name="confirm_logout_title">Выйти из учетной записи?</string>
     <string name="confirm_logout_msg">Будет необходимо авторизоваться повторно</string>
+    <string name="nickname_role_pattern">%s • %s</string>
 </resources>

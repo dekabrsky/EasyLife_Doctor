@@ -8,7 +8,6 @@ import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 import ru.dekabrsky.callersbase.presentation.view.ChatsListView
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
 import javax.inject.Inject
@@ -23,7 +22,7 @@ class ChatsListPresenter @Inject constructor(
 
     override fun load() {
          interactor.getChats()
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .withCustomLoadingViewIf(viewState::setLoadingViewVisibility, isFirstLoading)
             .map { chats -> uiMapper.prepareChatsList(chats = chats) }
             .subscribe(::dispatchLoading, viewState::showError)

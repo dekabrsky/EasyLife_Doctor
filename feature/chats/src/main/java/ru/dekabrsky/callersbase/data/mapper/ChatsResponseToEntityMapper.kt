@@ -11,8 +11,8 @@ import ru.dekabrsky.callersbase.data.model.MessageResponse
 import ru.dekabrsky.callersbase.data.model.UsersListIdNameResponse
 import ru.dekabrsky.callersbase.domain.model.ChatEntity
 import ru.dekabrsky.callersbase.domain.model.MessageEntity
-import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.domain.model.CallersBaseEntity
+import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.feature.loginCommon.data.mapper.LoginDataMapper
 import ru.dekabrsky.italks.basic.dateTime.tryParseServerDateTime
 import javax.inject.Inject
@@ -56,6 +56,12 @@ class ChatsResponseToEntityMapper @Inject constructor(
     }
 
     fun mapUserForChat(response: UsersListIdNameResponse): List<ContactEntity> {
-        return response.users?.map { ContactEntity(it.id.orZero(), it.name.orEmpty()) }.orEmpty()
+        return response.users?.map {
+            ContactEntity(
+                id = it.id.orZero(),
+                displayName = it.displayName.orEmpty(),
+                nickName = it.name.orEmpty()
+            )
+        }.orEmpty()
     }
 }

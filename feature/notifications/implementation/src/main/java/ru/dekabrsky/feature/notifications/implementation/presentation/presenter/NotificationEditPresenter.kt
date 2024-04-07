@@ -81,7 +81,7 @@ class NotificationEditPresenter @Inject constructor(
 
         if (existingNotification.uid == null) {
             interactor.add(result)
-                .observeOn(RxSchedulers.main())
+                .subscribeOnIo()
                 .withLoadingView(viewState)
                 .subscribe({
                     onBackPressed()
@@ -89,7 +89,7 @@ class NotificationEditPresenter @Inject constructor(
                 .addFullLifeCycle()
         } else {
             interactor.update(result)
-                .observeOn(RxSchedulers.main())
+                .subscribeOnIo()
                 .withLoadingView(viewState)
                 .subscribe({
                     onBackPressed()

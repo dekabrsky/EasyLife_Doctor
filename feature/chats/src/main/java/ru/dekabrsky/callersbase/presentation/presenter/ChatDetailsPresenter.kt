@@ -1,15 +1,14 @@
 package ru.dekabrsky.callersbase.presentation.presenter
 
-import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import ru.dekabrsky.callersbase.presentation.mapper.ChatEntityToUiMapper
 import ru.dekabrsky.callersbase.presentation.view.ChatDetailsView
 import ru.dekabrsky.common.domain.interactor.DialingsInteractor
+import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import ru.dekabrsky.common.presentation.mapper.TakingMedicationsUiMapper
 import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.common.presentation.model.TakingMedicationsUiModel
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
 import javax.inject.Inject
@@ -41,7 +40,7 @@ class ChatDetailsPresenter @Inject constructor(
 
     private fun loadDialings() =
         dialingsInteractor.getDialingsByCallersBase(model.id)
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .map { it.map { entity -> dialingMapper.map(entity) } }
             .subscribe(
                 {

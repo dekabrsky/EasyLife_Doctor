@@ -11,4 +11,5 @@ interface ProfileView : BasicView {
     @OneExecution
     fun setParentCode(code: Int)
     fun setupAvatars(router: FlowRouter)
+    fun setTitle(title: String)
 }

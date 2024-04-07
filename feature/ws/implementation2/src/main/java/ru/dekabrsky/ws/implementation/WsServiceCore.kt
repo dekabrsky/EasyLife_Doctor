@@ -75,6 +75,7 @@ class WsServiceCore @Inject constructor(
     private fun tryReconnect() {
         closeSocket()
         Observable.timer(RECONNECT_DELAY, TimeUnit.SECONDS)
+            .subscribeOn(RxSchedulers.io())
             .observeOn(RxSchedulers.main())
             .subscribe { createSocket() }
             .addFullLifeCycle()

@@ -8,10 +8,10 @@ import androidx.appcompat.app.AlertDialog
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.common.domain.model.ContactEntity
+import ru.dekabrsky.feature.loginCommon.domain.model.UserInfoEntity
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.feature.loginCommon.domain.model.UserInfoEntity
 import ru.dekabrsky.stats.R
 import ru.dekabrsky.stats.databinding.FragmentAdultProfileBinding
 import ru.dekabrsky.stats.presentation.adapter.ChildrenAdapter
@@ -58,7 +58,8 @@ class AdultProfileFragment: BasicFragment(), AdultProfileView {
          infoEntity?.let {
              binding.myProfile.title.setText(R.string.myAccount)
              binding.myProfile.value.text = it.name
-             binding.myProfile.speciality.text = it.role.desc
+             binding.myProfile.speciality.text =
+                 context?.getString(R.string.nickname_role_pattern, it.nickname, it.role.desc)
          }
     }
 

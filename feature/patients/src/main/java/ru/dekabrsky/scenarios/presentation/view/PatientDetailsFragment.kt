@@ -13,8 +13,8 @@ import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.scenarios.R
-import ru.dekabrsky.scenarios.presentation.presenter.PatientDetailsPresenter
 import ru.dekabrsky.scenarios.databinding.FragmentPatientDetailsBinding
+import ru.dekabrsky.scenarios.presentation.presenter.PatientDetailsPresenter
 import toothpick.Toothpick
 
 class PatientDetailsFragment: BasicFragment(), PatientDetailsView {
@@ -53,7 +53,7 @@ class PatientDetailsFragment: BasicFragment(), PatientDetailsView {
 
 
     override fun setMainData(model: ContactEntity) {
-        binding.toolbar.title = model.name
+        binding.toolbar.title = model.displayName
     }
 
     override fun setupTakingMedications(dialings: List<TakingMedicationsUiModel>) {

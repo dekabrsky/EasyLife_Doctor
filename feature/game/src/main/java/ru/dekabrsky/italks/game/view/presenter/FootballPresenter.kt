@@ -4,7 +4,6 @@ import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.data.domain.interactor.GameInteractor
@@ -29,7 +28,7 @@ class FootballPresenter @Inject constructor(
         val footballInfo = cache.configs.find { it.type == GameType.TicTacToe } ?: return
         val id = footballInfo.gameId
         interactor.postGameProgress(id, score, usePillMultiplier)
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .withLoadingView(viewState)
             .subscribe({ cache.experience = it }, viewState::showError)
             .addFullLifeCycle()

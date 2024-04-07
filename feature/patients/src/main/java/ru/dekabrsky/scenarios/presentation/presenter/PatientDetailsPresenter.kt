@@ -30,7 +30,7 @@ class PatientDetailsPresenter @Inject constructor(
     private fun loadTakingMedications() =
         viewState.setupTakingMedications(takingMedicationsMapper.mapMock())
 //        dialingsInteractor.getDialingsByCallersBase(model.id)
-//            .observeOn(RxSchedulers.main())
+//            .subscribeOnIo()
 //            .map { it.map { entity -> dialingMapper.map(entity) } }
 //            .subscribe(
 //                {

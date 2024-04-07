@@ -30,8 +30,8 @@ class SelectParentAdapter (
 
     override fun onBindViewHolder(holder: SelectParentHolder, position: Int) {
         val item = items[position]
-        holder.name.text = item.name
-        holder.id.text = item.id.toString()
+        holder.name.text = item.displayName
+        holder.nickname.text = item.nickName
         holder.root.setOnClickListener { onItemClick(item) }
         holder.check.setBoolVisibility(isChecked.invoke(item.id))
     }
@@ -41,7 +41,7 @@ class SelectParentAdapter (
     class SelectParentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = ItemExistingParentBinding.bind(itemView)
         val name = binding.existingParent
-        val id = binding.existingParentId
+        val nickname = binding.existingParentNickname
         val check = binding.checkIcon
         val root = binding.root
     }

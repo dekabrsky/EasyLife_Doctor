@@ -6,6 +6,7 @@ import androidx.annotation.Keep
 class UserInfoResponse(
     val id: Long?,
     val name: String?,
+    val displayName: String?,
     val roleId: Int?,
     val currentLevel: LoginLevelResponse?
 )
