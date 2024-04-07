@@ -7,6 +7,7 @@ import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 import io.reactivex.android.schedulers.AndroidSchedulers
 import ru.dekabrsky.italks.basic.di.inject
+import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.game.data.domain.interactor.GameInteractor
 import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import ru.dekabrsky.italks.scopes.Scopes
@@ -43,6 +44,7 @@ class GameActivity: AndroidApplication(), FlappyBird.MyGameCallback {
         val gameId = intent.getIntExtra("gameId", 0)
         val multipliedScore = score * SCORE_MULTIPLIER
         gameInteractor.postGameProgress(gameId, multipliedScore, true)
+            .subscribeOn(RxSchedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 showToast(multipliedScore)

@@ -4,10 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import main.utils.visible
 import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.stats.R
-import ru.dekabrsky.stats.databinding.IncludeStatsLineChartBinding
 import ru.dekabrsky.stats.databinding.IncludeTitleValueBinding
 
 class ChildrenAdapter(
@@ -29,18 +27,18 @@ class ChildrenAdapter(
     }
 
     override fun onBindViewHolder(holder: ChildHolder, position: Int) {
-        val item = items[position]
-        holder.title.setText(R.string.myChild)
-        holder.value.text = item.name
-        holder.root.setOnClickListener { onItemClick(item) }
+        holder.bind(items[position])
     }
 
     override fun getItemCount(): Int = items.size
 
-    class ChildHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ChildHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val binding = IncludeTitleValueBinding.bind(itemView)
-        val root = binding.root
-        val title = binding.title
-        val value = binding.value
+        fun bind(item: ContactEntity) {
+            binding.title.setText(R.string.myChild)
+            binding.value.text = item.displayName
+            binding.speciality.text = itemView.context.getString(R.string.nickname_pattern, item.nickName)
+            binding.root.setOnClickListener { onItemClick(item) }
+        }
     }
 }

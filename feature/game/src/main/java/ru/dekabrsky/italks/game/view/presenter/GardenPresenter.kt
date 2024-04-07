@@ -4,7 +4,6 @@ import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
@@ -29,7 +28,7 @@ class GardenPresenter @Inject constructor(
         super.onFirstViewAttach()
         viewState.setupAvatar(router)
         interactor.getGamesConfigs()
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .withLoadingView(viewState)
             .subscribe(::dispatchConfigs, viewState::showError)
             .addFullLifeCycle()

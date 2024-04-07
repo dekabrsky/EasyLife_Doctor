@@ -31,12 +31,15 @@
     <TextView
         android:id="@+id/name"
         style="@style/BoldText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/offset_medium"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintEnd_toStartOf="@id/lastMessageTime"
         app:layout_constraintStart_toEndOf="@id/avatar"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Сергей Сорокин" />
+        tools:text="Сергей Владиславовадимович Сорокин @soroka" />
 
     <TextView
         android:id="@+id/lastMessage"

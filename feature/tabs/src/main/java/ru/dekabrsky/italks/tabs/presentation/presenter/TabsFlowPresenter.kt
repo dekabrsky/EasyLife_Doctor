@@ -101,13 +101,13 @@ class TabsFlowPresenter @Inject constructor(
                 )
             )
 
-            R.id.events -> toggleScreen(
-                Flows.Events,
-                EventsFlowScreenArgs(
-                    Scopes.SCOPE_APP,
-                    Flows.Events.SCREEN_DIALINGS_LIST
-                )
-            )
+//            R.id.events -> toggleScreen(
+//                Flows.Events,
+//                EventsFlowScreenArgs(
+//                    Scopes.SCOPE_APP,
+//                    Flows.Events.SCREEN_DIALINGS_LIST
+//                )
+//            )
 
             R.id.notifications -> toggleScreen(Flows.Notifications, NotificationsFlowArgs(Scopes.SCOPE_APP))
             R.id.patients -> toggleScreen(Flows.Patients)

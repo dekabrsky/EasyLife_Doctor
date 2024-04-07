@@ -1,12 +1,10 @@
 package ru.dekabrsky.callersbase.presentation.presenter
 
-import io.reactivex.Single
 import ru.dekabrsky.callersbase.domain.interactor.ContactsInteractorImpl
 import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 import ru.dekabrsky.callersbase.presentation.view.BaseChatsListView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 
 abstract class BaseChatListPresenter<T: BaseChatsListView> constructor(
@@ -36,7 +34,7 @@ abstract class BaseChatListPresenter<T: BaseChatsListView> constructor(
             navigateToChat(model)
         } else {
             interactor.startChat(model.secondUser.id)
-                .observeOn(RxSchedulers.main())
+                .subscribeOnIo()
                 .withLoadingView(viewState)
                 .subscribe({ navigateToChat(model) }, viewState::showError)
                 .addFullLifeCycle()

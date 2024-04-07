@@ -2,18 +2,16 @@ package ru.dekabrsky.dialings.presentation.view
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import main.utils.gone
 import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.common.presentation.model.DialingUiModel
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.databinding.FragmentDialingListBinding
 import ru.dekabrsky.dialings.presentation.adapter.DialingListAdapter
-import ru.dekabrsky.common.presentation.model.DialingUiModel
 import ru.dekabrsky.dialings.presentation.presenter.DialingsListPresenter
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
@@ -54,7 +52,6 @@ class DialingsListFragment : BasicFragment(), DialingsListView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
         binding.basesCardsList.adapter = adapter
         binding.toolbar.setTitle(R.string.dialings_title)
 
@@ -63,44 +60,6 @@ class DialingsListFragment : BasicFragment(), DialingsListView {
         }
 
         binding.allChip.isChecked = true
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.dialings_menu, menu)
-
-        sortByNameItem = menu.findItem(R.id.sort_name)
-        sortByDateAscItem = menu.findItem(R.id.sort_date_asc)
-        sortByDateDescItem = menu.findItem(R.id.sort_date_desc)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.sorting -> {
-            }
-            R.id.search -> {
-            }
-            R.id.sort_date_asc -> {
-                presenter.loadSortByDateAsc()
-                sortByDateAscItem?.isChecked = true
-                sortByDateDescItem?.isChecked = false
-                sortByNameItem?.isChecked = false
-            }
-            R.id.sort_date_desc -> {
-                presenter.loadSortByDateDesc()
-                sortByDateAscItem?.isChecked = false
-                sortByDateDescItem?.isChecked = true
-                sortByNameItem?.isChecked = false
-            }
-            R.id.sort_name -> {
-                presenter.loadSortByName()
-                sortByDateAscItem?.isChecked = false
-                sortByDateDescItem?.isChecked = false
-                sortByNameItem?.isChecked = true
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 
     override fun setItems(items: List<DialingUiModel>) {

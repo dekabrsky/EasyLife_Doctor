@@ -1,16 +1,15 @@
 package ru.dekabrsky.dialings.presentation.presenter
 
+import ru.dekabrsky.common.domain.model.DialingStatus
+import ru.dekabrsky.common.presentation.model.DialingUiModel
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.domain.interactor.DialingsInteractorImpl
-import ru.dekabrsky.common.domain.model.DialingStatus
 import ru.dekabrsky.dialings.presentation.mapper.DialingListUiMapper
-import ru.dekabrsky.common.presentation.model.DialingUiModel
 import ru.dekabrsky.dialings.presentation.view.DialingsListView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.network.utils.Direction
 import ru.dekabrsky.italks.basic.network.utils.SortVariants
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.flows.Flows
 import javax.inject.Inject
 
@@ -69,7 +68,7 @@ class DialingsListPresenter @Inject constructor(
 
     fun runNow(id: Int) {
         interactor.startDialing(id)
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .subscribe(
                 { changeFilter(DialingStatus.RUN) },
                 {

@@ -12,6 +12,7 @@ import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.domain.interactor.DoctorPatientsInteractorImpl
+import ru.dekabrsky.scenarios.presentation.mapper.ScenariosUiMapper
 import ru.dekabrsky.scenarios.presentation.view.PatientsListView
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
@@ -28,8 +29,7 @@ class PatientsListPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         interactor.getPatients()
-            .subscribeOn(RxSchedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOnIo()
             .subscribe(::dispatchLoading, viewState::showError)
             .addFullLifeCycle()
     }
@@ -47,7 +47,7 @@ class PatientsListPresenter @Inject constructor(
     private fun checkNewRegistration(items: List<ContactEntity>) {
         loginDataCache.registeredPatientId?.let { id ->
 
-            val newPatient = items.find { it.id == id.toLongOrNull() }?.name.orEmpty()
+            val newPatient = items.find { it.id == id.toLongOrNull() }?.displayName.orEmpty()
             router.navigateTo(
                 Flows.Common.SCREEN_BOTTOM_INFO,
                 BottomSheetScreenArgs(
@@ -69,7 +69,10 @@ class PatientsListPresenter @Inject constructor(
             router.navigateTo(
                 Flows.Common.SCREEN_BOTTOM_INFO,
                 BottomSheetScreenArgs(
-                    title = resourceProvider.getString(R.string.patient_update_notifications, patient?.name.orEmpty()),
+                    title = resourceProvider.getString(
+                        R.string.patient_update_notifications,
+                        patient?.displayName.orEmpty()
+                    ),
                     subtitle = patientDiff.diff,
                     mode = BottomSheetMode.LK,
                     buttonState = ButtonState(resourceProvider.getString(R.string.look)) {
@@ -83,9 +86,10 @@ class PatientsListPresenter @Inject constructor(
     }
 
     fun onItemClick(model: ContactEntity) {
+        //router.navigateTo(Flows.Patients.SCREEN_PATIENT_DETAILS, model)
         router.startFlow(
             Flows.Notifications.name,
-            NotificationsFlowArgs(Scopes.SCOPE_FLOW_PATIENTS, model.id, model.name)
+            NotificationsFlowArgs(Scopes.SCOPE_FLOW_PATIENTS, model.id, model.displayName)
         )
     }
 

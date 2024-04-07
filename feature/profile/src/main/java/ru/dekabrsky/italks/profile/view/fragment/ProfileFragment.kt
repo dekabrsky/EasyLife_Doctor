@@ -42,11 +42,8 @@ class ProfileFragment : BasicFragment(), ProfileView {
             .also { Toothpick.closeScope(scopeName) }
     }
 
-    override val layoutRes: Int
-        get() = R.layout.fragment_profile
+    override val layoutRes = R.layout.fragment_profile
 
-
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         init()
@@ -161,6 +158,10 @@ class ProfileFragment : BasicFragment(), ProfileView {
                 widget.setup(router, R.dimen.icon_48)
                 widget.setAvatar(avatar)
             }
+    }
+
+    override fun setTitle(title: String) {
+        binding.toolbar.title = title
     }
 
     companion object {

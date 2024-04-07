@@ -1,12 +1,15 @@
 package ru.dekabrsky.italks.basic.presenter
 
+import io.reactivex.Completable
+import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import moxy.MvpPresenter
 import moxy.MvpView
-import ru.dekabrsky.italks.basic.navigation.router.AppRouter
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.rx.RxDisposer
+import ru.dekabrsky.italks.basic.rx.RxSchedulers
 
 abstract class BasicPresenter<T : MvpView> constructor(private val router: FlowRouter? = null) :
     MvpPresenter<T>() {
@@ -39,5 +42,17 @@ abstract class BasicPresenter<T : MvpView> constructor(private val router: FlowR
         return this
     }
 
+    protected fun <T> Single<T>.subscribeOnIo() =
+        this.subscribeOn(RxSchedulers.io())
+            .observeOn(RxSchedulers.main())
+
+    protected fun <T> Observable<T>.subscribeOnIo(): Observable<T> =
+        this.subscribeOn(RxSchedulers.io())
+            .observeOn(RxSchedulers.main())
+
+    protected fun Completable.subscribeOnIo() =
+        this.subscribeOn(RxSchedulers.io())
+            .observeOn(RxSchedulers.main())
+    
     open fun onBackPressed() { router?.back() }
 }

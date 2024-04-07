@@ -6,20 +6,12 @@ import ru.dekabrsky.callersbase.presentation.mapper.ChatEntityToUiMapper
 import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
 import ru.dekabrsky.callersbase.presentation.model.ChatFlowCache
 import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
-import ru.dekabrsky.callersbase.presentation.view.ChatsListView
 import ru.dekabrsky.callersbase.presentation.view.NewContactsListView
 import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.network.utils.Direction
-import ru.dekabrsky.italks.basic.network.utils.SortVariants
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
-import ru.dekabrsky.italks.basic.rx.withLoadingView
-import ru.dekabrsky.italks.basic.rx.withLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import javax.inject.Inject
 
 class ChatNewContactsPresenter @Inject constructor(
@@ -52,7 +44,7 @@ class ChatNewContactsPresenter @Inject constructor(
 
     override fun load() {
         source
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .withCustomLoadingViewIf(viewState::setLoadingViewVisibility, isFirstLoading)
             .map { users -> uiMapper.prepareChatsList(users = users.filter { it.id !in cache.existingCompanionIds }) }
             .subscribe(::dispatchLoading, viewState::showError)

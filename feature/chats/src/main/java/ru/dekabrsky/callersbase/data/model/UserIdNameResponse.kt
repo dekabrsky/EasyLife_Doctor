@@ -10,5 +10,6 @@ class UsersListIdNameResponse(
 @Keep
 class UserIdNameResponse(
     val id: Long?,
-    val name: String?
+    val name: String?,
+    val displayName: String?
 )

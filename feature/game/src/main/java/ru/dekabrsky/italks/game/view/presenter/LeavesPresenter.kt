@@ -4,7 +4,6 @@ import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
@@ -30,7 +29,7 @@ class LeavesPresenter @Inject constructor(
         val leavesInfo = cache.configs.find { it.type == GameType.Leaves } ?: return
         val id = leavesInfo.gameId
         interactor.postGameProgress(id, score, usePillMultiplier)
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .withLoadingView(viewState)
             .subscribe({ cache.experience = it }, viewState::showError)
             .addFullLifeCycle()

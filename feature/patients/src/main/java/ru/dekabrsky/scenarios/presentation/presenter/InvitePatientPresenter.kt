@@ -1,13 +1,11 @@
 package ru.dekabrsky.scenarios.presentation.presenter
 
-import io.reactivex.android.schedulers.AndroidSchedulers
 import main.utils.isBlankOrEmpty
 import ru.dekabrsky.common.domain.interactor.ContactsInteractor
 import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.domain.model.PatientCodeEntity
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.scenarios.domain.interactor.DoctorPatientsInteractorImpl
@@ -30,7 +28,7 @@ class InvitePatientPresenter @Inject constructor(
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         contactsInteractor.getParents()
-            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOnIo()
             .withLoadingView(viewState)
             .subscribe({ parents = it }, viewState::showError)
             .addFullLifeCycle()
@@ -65,7 +63,7 @@ class InvitePatientPresenter @Inject constructor(
             invitation.parentName,
             invitation.parentId
         )
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .withLoadingView(viewState)
             .subscribe(::showAddPatientsResult, viewState::showError)
             .addFullLifeCycle()
@@ -87,7 +85,7 @@ class InvitePatientPresenter @Inject constructor(
             router.removeResultListener(SelectParentPresenter.SELECT_PARENT_RESULT_CODE)
             if (it !is ContactEntity) return@setResultListener
             invitation.parentId = it.id
-            invitation.parentName = it.name
+            invitation.parentName = it.displayName
             setParentToView()
         }
     }

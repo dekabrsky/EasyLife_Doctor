@@ -6,7 +6,6 @@ import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.R
 import ru.dekabrsky.italks.game.view.MainRoomView
@@ -57,7 +56,7 @@ class MainRoomPresenter @Inject constructor(
 
     private fun observeMusicState() {
         gameFlowCache.isMusicOnSubject
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .subscribe(::updateMusicState)
             .addFullLifeCycle()
     }

@@ -4,5 +4,6 @@ import java.io.Serializable
 
 class ContactEntity(
     val id: Long,
-    val name: String
+    val displayName: String,
+    val nickName: String
 ): Serializable

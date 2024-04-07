@@ -9,7 +9,6 @@ import ru.dekabrsky.callersbase.presentation.model.ChatMessageUiModel
 import ru.dekabrsky.callersbase.presentation.view.ChatConversationView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import javax.inject.Inject
 
@@ -32,7 +31,7 @@ class ChatConversationPresenter @Inject constructor(
 
     private fun loadMessages() {
         interactor.getChat(args.companion.id)
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .withLoadingView(viewState)
             .map(mapper::map)
             .subscribe(::onMessagesLoaded, viewState::showError)
@@ -44,7 +43,7 @@ class ChatConversationPresenter @Inject constructor(
         updateViewMessages()
 
         interactor.observeMessagesWs(args.chatId)
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .map { mapper.mapMessage(it, args.companion.name) }
             .subscribe({
 //                this.messages.add(it)

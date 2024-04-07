@@ -2,20 +2,19 @@ package ru.dekabrsky.dialings.presentation.presenter
 
 import org.threeten.bp.LocalDateTime
 import ru.dekabrsky.common.domain.interactor.ContactsInteractor
-import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
-import ru.dekabrsky.dialings.presentation.mapper.DialingListUiMapper
-import ru.dekabrsky.dialings.presentation.view.DialingDetailsView
 import ru.dekabrsky.common.domain.interactor.DialingsInteractor
 import ru.dekabrsky.common.domain.model.DialingStatus
+import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.common.presentation.model.DialingUiModel
+import ru.dekabrsky.dialings.presentation.mapper.DialingListUiMapper
+import ru.dekabrsky.dialings.presentation.view.DialingDetailsView
 import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiDateTime
 import ru.dekabrsky.italks.basic.di.IntWrapper
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
-import java.util.*
+import java.util.Date
 import javax.inject.Inject
 
 class DialingDetailsPresenter @Inject constructor(
@@ -34,7 +33,7 @@ class DialingDetailsPresenter @Inject constructor(
 
     private fun loadDialingDetails() {
         dialingsInteractor.getDialingById(dialingId.value)
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .map { dialingUiMapper.map(it) }
             .subscribe(
                 {
@@ -63,7 +62,7 @@ class DialingDetailsPresenter @Inject constructor(
         val baseId = model.callersBaseId
 
         callersBaseInteractor.getCallersBase(baseId)
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .subscribe(
                 {
                     router.startFlow(
@@ -99,7 +98,7 @@ class DialingDetailsPresenter @Inject constructor(
 
     fun runNow() {
         dialingsInteractor.startDialing(model.id)
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .subscribe(
                 { loadDialingDetails() },
                 {

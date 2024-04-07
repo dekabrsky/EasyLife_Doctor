@@ -4,20 +4,13 @@ import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationMedicineEntity
 import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.common.utils.NotificationToStringFormatter
-import ru.dekabrsky.feature.notifications.implementation.domain.interactor.DoctorNotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.INotificationInteractor
-import ru.dekabrsky.feature.notifications.implementation.domain.interactor.NotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationsListView
-import ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
-import java.util.Calendar
-import javax.inject.Inject
 
 abstract class BaseNotificationListPresenter<T: NotificationsListView>(
     private val router: FlowRouter,
@@ -42,7 +35,7 @@ abstract class BaseNotificationListPresenter<T: NotificationsListView>(
 
     private fun getAll() {
         interactor.getAll()
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .withCustomLoadingViewIf(viewState::setListLoadingVisibility, isFirstLoading)
             .subscribe(::dispatchNotifications, viewState::showError)
             .addFullLifeCycle()
@@ -60,7 +53,7 @@ abstract class BaseNotificationListPresenter<T: NotificationsListView>(
 
     fun onNotificationDelete(notificationEntity: NotificationEntity) {
         interactor.delete(notificationEntity)
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .subscribe(
                 { dispatchNotificationDelete(notificationEntity) },
                 viewState::showError
@@ -78,7 +71,7 @@ abstract class BaseNotificationListPresenter<T: NotificationsListView>(
 
     fun onItemCheckedChanged(notificationEntity: NotificationEntity, isEnabled: Boolean) {
         interactor.update(notificationEntity.copy(enabled = isEnabled))
-            .observeOn(RxSchedulers.main())
+            .subscribeOnIo()
             .subscribe({ getAll() }, viewState::showError)
             .addFullLifeCycle()
     }

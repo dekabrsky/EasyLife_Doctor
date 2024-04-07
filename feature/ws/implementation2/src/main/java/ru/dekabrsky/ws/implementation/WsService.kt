@@ -43,6 +43,7 @@ class WsService @Inject constructor(
         cache.destroyDisposable =
             Observable.timer(DESTROY_DELAY, TimeUnit.MILLISECONDS)
                 .repeatUntil { cache.unsubscribeCount == 0 }
+                .subscribeOn(RxSchedulers.io())
                 .observeOn(RxSchedulers.main())
                 .doOnTerminate { cache.destroyDisposable?.dispose() }
                 .subscribe { wsCore.doDestroy() }
