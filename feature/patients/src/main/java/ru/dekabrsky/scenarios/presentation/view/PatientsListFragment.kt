@@ -1,15 +1,14 @@
 package ru.dekabrsky.scenarios.presentation.view
 
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.DividerItemDecoration
+import main.utils.setBoolVisibility
 import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.common.domain.model.ContactEntity
-import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
@@ -58,6 +57,10 @@ class PatientsListFragment: BasicFragment(), PatientsListView {
 
     override fun showEmptyLayout() {
         binding.emptyLayout.visible()
+    }
+
+    override fun setLoadingViewVisibility(isVisible: Boolean) {
+        binding.loadingText.setBoolVisibility(isVisible)
     }
 
     override fun onBackPressed() = presenter.onBackPressed()

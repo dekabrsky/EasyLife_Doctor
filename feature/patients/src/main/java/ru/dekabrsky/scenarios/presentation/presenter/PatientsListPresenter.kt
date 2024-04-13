@@ -1,18 +1,16 @@
 package ru.dekabrsky.scenarios.presentation.presenter
 
-import io.reactivex.android.schedulers.AndroidSchedulers
 import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.resources.ResourceProvider
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
+import ru.dekabrsky.italks.basic.rx.withCustomLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.domain.interactor.DoctorPatientsInteractorImpl
-import ru.dekabrsky.scenarios.presentation.mapper.ScenariosUiMapper
 import ru.dekabrsky.scenarios.presentation.view.PatientsListView
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
@@ -30,6 +28,7 @@ class PatientsListPresenter @Inject constructor(
         super.onFirstViewAttach()
         interactor.getPatients()
             .subscribeOnIo()
+            .withCustomLoadingView(viewState::setLoadingViewVisibility)
             .subscribe(::dispatchLoading, viewState::showError)
             .addFullLifeCycle()
     }

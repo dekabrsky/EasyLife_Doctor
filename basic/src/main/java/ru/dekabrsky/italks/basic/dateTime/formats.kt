@@ -6,15 +6,16 @@ import org.threeten.bp.ZoneId
 import org.threeten.bp.ZoneOffset
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.DateTimeParseException
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
-fun formatDateTimeToUiDateTime(dateTime: LocalDateTime): String = formatDateTime(dateTime, "d MMM yyyy, hh:mm")
+fun formatDateTimeToUiDateTime(dateTime: LocalDateTime): String = formatDateTime(dateTime, "d MMM yyyy, HH:mm")
 
 fun formatDateToUiDate(dateTime: LocalDateTime): String = formatDateTime(dateTime, "d MMM yyyy")
 
 fun formatDateToUiDateShort(dateTime: LocalDate): String = formatDateTime(dateTime, "dd.MM.yyyy")
 
-fun formatDateTimeToUiTime(dateTime: LocalDateTime): String = formatDateTime(dateTime, "hh:mm")
+fun formatDateTimeToUiTime(dateTime: LocalDateTime): String = formatDateTime(dateTime, "HH:mm")
 
 fun formatDateToServerString(date: LocalDate): String = formatDateTime(date.atTime(0, 0), SERVER_DATE_FORMAT)
 
@@ -54,7 +55,11 @@ fun tryParseServerDate(date: String) = try {
 }
 
 fun tryParseServerDateTime(date: String) = try {
-    LocalDateTime.parse(date, DateTimeFormatter.ISO_ZONED_DATE_TIME)
+    LocalDateTime
+        .parse(date, DateTimeFormatter.ISO_ZONED_DATE_TIME)
+        .atZone(ZoneOffset.UTC)
+        .withZoneSameInstant(ZoneId.systemDefault())
+        .toLocalDateTime()
 } catch (e: DateTimeParseException) {
     null
 }

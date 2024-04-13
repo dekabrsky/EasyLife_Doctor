@@ -5,8 +5,8 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:animateLayoutChanges="true">
+    android:animateLayoutChanges="true"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -19,8 +19,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/basesCardsList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/toolbar"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/offset_large"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="3"
         tools:listitem="@layout/item_callers_base" />
@@ -56,15 +58,15 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/startChat"
-        android:src="@drawable/ic_round_add_24"
-        app:tint="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:backgroundTint="@color/cyan_main"
-        android:layout_margin="@dimen/offset_medium"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/offset_medium"
+        android:src="@drawable/ic_round_add_24"
+        app:backgroundTint="@color/cyan_main"
         app:fabSize="mini"
-        android:layout_alignParentBottom="true" />
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/loadingText"

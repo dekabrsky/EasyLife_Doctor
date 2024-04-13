@@ -42,10 +42,12 @@ class MessageEntityToUiMapper @Inject constructor() {
         )
     }
 
-    private fun mapMessageTime(date: LocalDateTime) =
-        if (date.toLocalDate().equals(LocalDate.now())) {
-            formatDateTimeToUiTime(date)
-        } else {
-            formatDateTimeToUiDateTime(date)
-        }
+    companion object {
+        fun mapMessageTime(date: LocalDateTime) =
+            if (date.toLocalDate().equals(LocalDate.now())) {
+                formatDateTimeToUiTime(date)
+            } else {
+                formatDateTimeToUiDateTime(date)
+            }
+    }
 }
