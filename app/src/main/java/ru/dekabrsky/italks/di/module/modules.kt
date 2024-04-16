@@ -14,6 +14,7 @@ import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
+import ru.dekabrsky.feature.loginCommon.presentation.model.TokenCache
 import ru.dekabrsky.feature.notifications.implementation.NotificationChannelManager
 import ru.dekabrsky.feature.notifications.implementation.data.provider.NotificationDatabaseProvider
 import ru.dekabrsky.italks.basic.di.NotificationDatabaseQualifier
@@ -65,6 +66,7 @@ class AppModule : Module() {
         bind(MixpanelAPI::class.java).toProvider(MixPanelApiProvider::class.java).providesSingletonInScope()
         bind(AnalyticsSender::class.java).singletonInScope()
         bind(LoginDataCache::class.java).singletonInScope()
+        bind(TokenCache::class.java).singletonInScope()
     }
 }
 

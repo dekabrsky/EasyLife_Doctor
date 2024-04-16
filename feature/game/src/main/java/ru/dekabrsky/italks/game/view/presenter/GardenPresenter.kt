@@ -3,6 +3,7 @@ package ru.dekabrsky.italks.game.view.presenter
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
@@ -21,7 +22,8 @@ class GardenPresenter @Inject constructor(
     val router: FlowRouter,
     private val interactor: GameInteractor,
     private val cache: GameFlowCache,
-    private val analyticsSender: AnalyticsSender
+    private val analyticsSender: AnalyticsSender,
+    private val errorHandler: ServerErrorHandler
 ) : BasicPresenter<GardenView>(router) {
 
     override fun onFirstViewAttach() {
@@ -30,7 +32,7 @@ class GardenPresenter @Inject constructor(
         interactor.getGamesConfigs()
             .subscribeOnIo()
             .withLoadingView(viewState)
-            .subscribe(::dispatchConfigs, viewState::showError)
+            .subscribe(::dispatchConfigs) { errorHandler.onError(it, viewState) }
             .addFullLifeCycle()
         AnalyticsUtils.sendScreenOpen(this, analyticsSender)
     }

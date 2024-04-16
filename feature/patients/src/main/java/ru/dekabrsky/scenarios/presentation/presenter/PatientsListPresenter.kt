@@ -4,6 +4,7 @@ import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingView
@@ -21,7 +22,8 @@ class PatientsListPresenter @Inject constructor(
     private val router: FlowRouter,
     private val interactor: DoctorPatientsInteractorImpl,
     private val loginDataCache: LoginDataCache,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val errorHandler: ServerErrorHandler
 ) : BasicPresenter<PatientsListView>(router) {
 
     override fun onFirstViewAttach() {
@@ -29,7 +31,7 @@ class PatientsListPresenter @Inject constructor(
         interactor.getPatients()
             .subscribeOnIo()
             .withCustomLoadingView(viewState::setLoadingViewVisibility)
-            .subscribe(::dispatchLoading, viewState::showError)
+            .subscribe(::dispatchLoading) { errorHandler.onError(it, viewState) }
             .addFullLifeCycle()
     }
 

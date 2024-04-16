@@ -8,6 +8,7 @@ import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
 import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
 import ru.dekabrsky.italks.basic.navigation.router.AppRouter
+import ru.dekabrsky.italks.basic.network.model.ReLoginType
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.login.R
@@ -22,6 +23,8 @@ class LoginFlowFragment : BasicFlowFragment(), LoginFlowView {
     override val containerId = R.id.flowContainer
 
     override val scopeName = Scopes.SCOPE_FLOW_LOGIN
+
+    private var reLoginType: ReLoginType = ReLoginType.DEFAULT
 
     override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
         object : FragmentFlowNavigator(this, router, containerId) {
@@ -56,7 +59,9 @@ class LoginFlowFragment : BasicFlowFragment(), LoginFlowView {
     }
 
     companion object {
-        fun newInstance() = LoginFlowFragment()
+        fun newInstance(type: ReLoginType? = null) = LoginFlowFragment().apply {
+            type?.let { this.reLoginType = type }
+        }
     }
 
 }

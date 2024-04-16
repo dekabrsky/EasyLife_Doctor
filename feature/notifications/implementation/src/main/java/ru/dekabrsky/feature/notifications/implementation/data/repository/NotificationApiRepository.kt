@@ -15,6 +15,14 @@ class NotificationApiRepository @Inject constructor(
 ) {
 
     fun getAll() = api.getNotifications().map { list -> list.sortedBy { it.time }.map { mapper.mapResponseToEntity(it) } }
+//        Single.error<List<NotificationEntity>>(
+//        HttpException(
+//            Response.error<List<NotificationEntity>>(
+//                401,
+//                ResponseBody.create("application/json".toMediaType(), "null")
+//            )
+//        )
+//    )
 //    На случай, если нужно будет сохранять в бд
 //    fun getAll() =
 //        api

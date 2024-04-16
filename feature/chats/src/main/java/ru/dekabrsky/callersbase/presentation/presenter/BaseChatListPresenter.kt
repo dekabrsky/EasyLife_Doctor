@@ -4,12 +4,14 @@ import ru.dekabrsky.callersbase.domain.interactor.ContactsInteractorImpl
 import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 import ru.dekabrsky.callersbase.presentation.view.BaseChatsListView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 
 abstract class BaseChatListPresenter<T: BaseChatsListView> constructor(
     private val router: FlowRouter,
-    private val interactor: ContactsInteractorImpl
+    private val interactor: ContactsInteractorImpl,
+    private val errorHandler: ServerErrorHandler
 ) : BasicPresenter<T>(router) {
 
     protected var isFirstLoading = true
@@ -36,7 +38,7 @@ abstract class BaseChatListPresenter<T: BaseChatsListView> constructor(
             interactor.startChat(model.secondUser.id)
                 .subscribeOnIo()
                 .withLoadingView(viewState)
-                .subscribe({ navigateToChat(model) }, viewState::showError)
+                .subscribe({ navigateToChat(model) }, { errorHandler.onError(it, viewState) })
                 .addFullLifeCycle()
         }
     }

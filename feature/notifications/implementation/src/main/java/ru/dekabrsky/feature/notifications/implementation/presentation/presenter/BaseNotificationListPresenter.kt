@@ -7,6 +7,7 @@ import ru.dekabrsky.feature.notifications.common.utils.NotificationToStringForma
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.INotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationsListView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
@@ -16,7 +17,8 @@ abstract class BaseNotificationListPresenter<T: NotificationsListView>(
     private val router: FlowRouter,
     private val interactor: INotificationInteractor,
     private val flowArgs: NotificationsFlowArgs,
-    private val formatter: NotificationToStringFormatter
+    private val formatter: NotificationToStringFormatter,
+    private val errorHandler: ServerErrorHandler
 ) : BasicPresenter<T>(router) {
 
     private var isFirstLoading = true
@@ -37,7 +39,7 @@ abstract class BaseNotificationListPresenter<T: NotificationsListView>(
         interactor.getAll()
             .subscribeOnIo()
             .withCustomLoadingViewIf(viewState::setListLoadingVisibility, isFirstLoading)
-            .subscribe(::dispatchNotifications, viewState::showError)
+            .subscribe(::dispatchNotifications) { errorHandler.onError(it, viewState) }
             .addFullLifeCycle()
     }
 
@@ -56,7 +58,7 @@ abstract class BaseNotificationListPresenter<T: NotificationsListView>(
             .subscribeOnIo()
             .subscribe(
                 { dispatchNotificationDelete(notificationEntity) },
-                viewState::showError
+                { errorHandler.onError(it, viewState) }
             )
             .addFullLifeCycle()
     }
@@ -72,7 +74,7 @@ abstract class BaseNotificationListPresenter<T: NotificationsListView>(
     fun onItemCheckedChanged(notificationEntity: NotificationEntity, isEnabled: Boolean) {
         interactor.update(notificationEntity.copy(enabled = isEnabled))
             .subscribeOnIo()
-            .subscribe({ getAll() }, viewState::showError)
+            .subscribe({ getAll() }, { errorHandler.onError(it, viewState) })
             .addFullLifeCycle()
     }
 

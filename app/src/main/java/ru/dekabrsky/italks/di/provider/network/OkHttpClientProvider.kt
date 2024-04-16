@@ -10,10 +10,16 @@ import javax.inject.Provider
 class OkHttpClientProvider : Provider<OkHttpClient> {
 
     private var cookieJar: CookieJar? = null
+    private var tokenInterceptor: TokenInterceptor? = null
 
     @Inject
     fun inject(cookieJar: CookieJar) {
         this.cookieJar = cookieJar
+    }
+
+    @Inject
+    fun inject(interceptor: TokenInterceptor) {
+        this.tokenInterceptor = interceptor
     }
 
     override fun get(): OkHttpClient = prepareClient().build()
@@ -26,6 +32,7 @@ class OkHttpClientProvider : Provider<OkHttpClient> {
         builder.writeTimeout(TIME_OUT, TimeUnit.SECONDS)
         builder.followSslRedirects(true)
         cookieJar?.let { builder.cookieJar(cookieJar!!) }
+        tokenInterceptor?.let { builder.addInterceptor(tokenInterceptor!!) }
 
         return builder
     }

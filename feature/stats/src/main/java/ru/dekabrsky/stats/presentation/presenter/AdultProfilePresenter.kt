@@ -5,6 +5,7 @@ import ru.dekabrsky.feature.loginCommon.domain.interactor.LoginInteractor
 import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
@@ -15,7 +16,8 @@ class AdultProfilePresenter @Inject constructor(
     private val router: FlowRouter,
     private val loginInteractor: LoginInteractor,
     private val loginDataCache: LoginDataCache,
-    private val contactsInteractor: ContactsInteractor
+    private val contactsInteractor: ContactsInteractor,
+    private val errorHandler: ServerErrorHandler
 ): BasicPresenter<AdultProfileView>(router) {
 
     override fun onFirstViewAttach() {
@@ -24,7 +26,7 @@ class AdultProfilePresenter @Inject constructor(
         if (loginDataCache.currentUserData?.role != UserType.PARENT) return
         contactsInteractor.getChildren()
             .subscribeOnIo()
-            .subscribe(viewState::showChildInfo, viewState::showError)
+            .subscribe(viewState::showChildInfo, { errorHandler.onError(it, viewState) })
             .addFullLifeCycle()
     }
 
@@ -37,7 +39,7 @@ class AdultProfilePresenter @Inject constructor(
             .flatMapCompletable { token -> loginInteractor.logout(token) }
             .subscribeOnIo()
             .withLoadingView(viewState)
-            .subscribe({ router.newRootFlow(Flows.Login.name) }, viewState::showError)
+            .subscribe({ router.newRootFlow(Flows.Login.name) }, { errorHandler.onError(it, viewState) })
             .addFullLifeCycle()
     }
 
