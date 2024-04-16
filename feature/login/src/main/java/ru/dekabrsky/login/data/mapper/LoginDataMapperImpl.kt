@@ -10,7 +10,9 @@ import ru.dekabrsky.feature.loginCommon.domain.model.UserLoginLevelEntity
 import ru.dekabrsky.login.data.model.LogoutRequest
 import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.login.data.model.CredentialsRequest
+import ru.dekabrsky.login.data.model.LoginTokenResponse
 import ru.dekabrsky.login.data.model.RegistrationRequest
+import ru.dekabrsky.login.domain.entity.LoginTokenEntity
 import java.nio.charset.StandardCharsets
 import javax.inject.Inject
 
@@ -48,5 +50,13 @@ class LoginDataMapperImpl @Inject constructor(): LoginDataMapper {
       UserLoginLevelEntity(
             score = response?.score.orZero(),
             experience = response?.experience.orZero()
+        )
+
+
+    fun mapToken(response: LoginTokenResponse) =
+        LoginTokenEntity(
+            accessToken = response.accessToken.orEmpty(),
+            expiresIn = response.expiresIn.orZero(),
+            refreshToken = response.refreshToken.orEmpty()
         )
 }

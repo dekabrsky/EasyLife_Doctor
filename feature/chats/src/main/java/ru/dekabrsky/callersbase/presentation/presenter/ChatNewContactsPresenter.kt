@@ -10,6 +10,7 @@ import ru.dekabrsky.callersbase.presentation.view.NewContactsListView
 import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
 import javax.inject.Inject
@@ -19,8 +20,9 @@ class ChatNewContactsPresenter @Inject constructor(
     private val interactor: ContactsInteractorImpl,
     private val uiMapper: ChatEntityToUiMapper,
     private val cache: ChatFlowCache,
-    private val loginDataCache: LoginDataCache
-) : BaseChatListPresenter<NewContactsListView>(router, interactor) {
+    private val loginDataCache: LoginDataCache,
+    private val errorHandler: ServerErrorHandler
+) : BaseChatListPresenter<NewContactsListView>(router, interactor, errorHandler) {
 
     private val source = when (loginDataCache.currentUserData?.role) {
         UserType.PATIENT ->
@@ -47,7 +49,7 @@ class ChatNewContactsPresenter @Inject constructor(
             .subscribeOnIo()
             .withCustomLoadingViewIf(viewState::setLoadingViewVisibility, isFirstLoading)
             .map { users -> uiMapper.prepareChatsList(users = users.filter { it.id !in cache.existingCompanionIds }) }
-            .subscribe(::dispatchLoading, viewState::showError)
+            .subscribe(::dispatchLoading) { errorHandler.onError(it, viewState) }
             .addFullLifeCycle()
     }
 

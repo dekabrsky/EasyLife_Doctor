@@ -1,12 +1,11 @@
 package ru.dekabrsky.italks.profile.view.presenter
 
-import io.reactivex.android.schedulers.AndroidSchedulers
 import ru.dekabrsky.feature.loginCommon.domain.interactor.LoginInteractor
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
+import ru.dekabrsky.feature.loginCommon.presentation.model.TokenCache
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.resources.ResourceProvider
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.profile.R
@@ -18,14 +17,15 @@ import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import ru.dekabrsky.simpleBottomsheet.view.model.ButtonState
 import javax.inject.Inject
-import kotlin.math.log
 
 class ProfilePresenter @Inject constructor(
     val router: FlowRouter,
     private val interactor: ProfileInteractor,
     private val loginInteractor: LoginInteractor,
     private val sharedPreferencesProvider: SharedPreferencesProvider,
-    private val loginDataCache: LoginDataCache
+    private val loginDataCache: LoginDataCache,
+    private val tokenCache: TokenCache,
+    private val errorHandler: ServerErrorHandler
 ) : BasicPresenter<ProfileView>(router) {
 
     override fun onFirstViewAttach() {
@@ -71,11 +71,12 @@ class ProfilePresenter @Inject constructor(
     }
 
     private fun makeLogout() {
+        //tokenCache.accessToken = null
         loginInteractor.getFcmToken()
             .flatMapCompletable { token -> loginInteractor.logout(token) }
             .subscribeOnIo()
             .withLoadingView(viewState)
-            .subscribe({ router.newRootFlow(Flows.Login.name) }, viewState::showError)
+            .subscribe({ router.newRootFlow(Flows.Login.name) }, { errorHandler.onError(it, viewState) })
             .addFullLifeCycle()
     }
 }

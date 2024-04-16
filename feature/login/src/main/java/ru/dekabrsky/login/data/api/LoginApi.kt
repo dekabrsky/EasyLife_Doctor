@@ -8,17 +8,22 @@ import retrofit2.http.POST
 import ru.dekabrsky.login.data.model.CredentialsRequest
 import ru.dekabrsky.login.data.model.RegistrationRequest
 import ru.dekabrsky.feature.loginCommon.data.model.UserInfoResponse
+import ru.dekabrsky.login.data.model.LoginTokenResponse
 import ru.dekabrsky.login.data.model.LogoutRequest
+import ru.dekabrsky.login.data.model.RefreshRequest
 
 interface LoginApi {
-    @POST("users/login")
-    fun login(@Body credentialsRequest: CredentialsRequest): Single<UserInfoResponse>
+    @POST("auth/login")
+    fun login(@Body credentialsRequest: CredentialsRequest): Single<LoginTokenResponse>
 
-    @POST("users/logout")
+    @POST("auth/logout")
     fun logout(@Body logoutRequest: LogoutRequest): Completable
 
-    @POST("register/user")
-    fun registration(@Body regRequest: RegistrationRequest): Single<UserInfoResponse>
+    @POST("auth/user")
+    fun registration(@Body regRequest: RegistrationRequest): Single<LoginTokenResponse>
+
+    @POST("auth/refresh")
+    fun refresh(@Body refreshRequest: RefreshRequest): Single<LoginTokenResponse>
 
     @GET("users/current")
     fun getCurrentUser():  Single<UserInfoResponse>

@@ -3,6 +3,7 @@ package ru.dekabrsky.italks.game.view.presenter
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
@@ -20,7 +21,8 @@ class FifteenPresenter @Inject constructor(
     private val router: FlowRouter,
     private val interactor: GameInteractor,
     private val cache: GameFlowCache,
-    private val analyticsSender: AnalyticsSender
+    private val analyticsSender: AnalyticsSender,
+    private val errorHandler: ServerErrorHandler
 ): BasicPresenter<FifteenView>(router) {
     override fun onBackPressed() = exitWithConfirm { router.back() }
 
@@ -30,7 +32,7 @@ class FifteenPresenter @Inject constructor(
         interactor.postGameProgress(id, score, usePillMultiplier)
             .subscribeOnIo()
             .withLoadingView(viewState)
-            .subscribe({ cache.experience = it }, viewState::showError)
+            .subscribe({ cache.experience = it }, { errorHandler.onError(it, viewState) })
             .addFullLifeCycle()
         AnalyticsUtils.sendScreenOpen(this, analyticsSender)
     }

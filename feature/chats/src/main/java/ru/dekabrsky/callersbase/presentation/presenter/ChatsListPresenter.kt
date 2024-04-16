@@ -8,6 +8,7 @@ import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 import ru.dekabrsky.callersbase.presentation.view.ChatsListView
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
 import ru.dekabrsky.italks.flows.Flows
 import javax.inject.Inject
@@ -17,15 +18,16 @@ class ChatsListPresenter @Inject constructor(
     private val interactor: ContactsInteractorImpl,
     private val uiMapper: ChatEntityToUiMapper,
     private val cache: ChatFlowCache,
-    private val loginDataCache: LoginDataCache
-) : BaseChatListPresenter<ChatsListView>(router, interactor) {
+    private val loginDataCache: LoginDataCache,
+    private val errorHandler: ServerErrorHandler
+) : BaseChatListPresenter<ChatsListView>(router, interactor, errorHandler) {
 
     override fun load() {
          interactor.getChats()
             .subscribeOnIo()
             .withCustomLoadingViewIf(viewState::setLoadingViewVisibility, isFirstLoading)
             .map { chats -> uiMapper.prepareChatsList(chats = chats) }
-            .subscribe(::dispatchLoading, viewState::showError)
+            .subscribe(::dispatchLoading) { errorHandler.onError(it, viewState) }
             .addFullLifeCycle()
     }
 

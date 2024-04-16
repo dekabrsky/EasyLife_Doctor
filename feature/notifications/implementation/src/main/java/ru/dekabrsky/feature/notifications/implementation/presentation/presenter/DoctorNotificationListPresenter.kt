@@ -4,9 +4,9 @@ import ru.dekabrsky.feature.notifications.common.presentation.model.Notification
 import ru.dekabrsky.feature.notifications.common.utils.NotificationToStringFormatter
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.DoctorNotificationInteractor
-import ru.dekabrsky.feature.notifications.implementation.domain.interactor.INotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.DoctorNotificationsListView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import javax.inject.Inject
 
@@ -15,12 +15,14 @@ class DoctorNotificationListPresenter @Inject constructor(
     private val interactor: DoctorNotificationInteractor,
     private val flowArgs: NotificationsFlowArgs,
     private val formatter: NotificationToStringFormatter,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val errorHandler: ServerErrorHandler
 ): BaseNotificationListPresenter<DoctorNotificationsListView>(
     router,
     interactor,
     flowArgs,
-    formatter
+    formatter,
+    errorHandler
 ) {
     init {
         flowArgs.patientId?.let { interactor.setUserId(it) }

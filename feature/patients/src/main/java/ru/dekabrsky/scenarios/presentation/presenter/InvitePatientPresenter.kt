@@ -5,6 +5,7 @@ import ru.dekabrsky.common.domain.interactor.ContactsInteractor
 import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.domain.model.PatientCodeEntity
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
@@ -18,7 +19,8 @@ import javax.inject.Inject
 class InvitePatientPresenter @Inject constructor(
     private val router: FlowRouter,
     private val interactor: DoctorPatientsInteractorImpl,
-    private val contactsInteractor: ContactsInteractor
+    private val contactsInteractor: ContactsInteractor,
+    private val errorHandler: ServerErrorHandler
 ): BasicPresenter<InvitePatientView>(router) {
 
     private val invitation: PatientInvitationUiModel = PatientInvitationUiModel()
@@ -30,7 +32,7 @@ class InvitePatientPresenter @Inject constructor(
         contactsInteractor.getParents()
             .subscribeOnIo()
             .withLoadingView(viewState)
-            .subscribe({ parents = it }, viewState::showError)
+            .subscribe({ parents = it }, { errorHandler.onError(it, viewState) })
             .addFullLifeCycle()
     }
 
@@ -65,7 +67,7 @@ class InvitePatientPresenter @Inject constructor(
         )
             .subscribeOnIo()
             .withLoadingView(viewState)
-            .subscribe(::showAddPatientsResult, viewState::showError)
+            .subscribe(::showAddPatientsResult, { errorHandler.onError(it, viewState) })
             .addFullLifeCycle()
     }
 

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="retry">Повторить</string>
+    <string name="error">Ошибка</string>
+    <string name="ok">Ок</string>
+    <string name="unknown_host_error">Проверьте подключение</string>
+    <string name="unknown_error">Произошла неизвестная ошибка</string>
     <string name="loading">Загрузка…</string>
 </resources>

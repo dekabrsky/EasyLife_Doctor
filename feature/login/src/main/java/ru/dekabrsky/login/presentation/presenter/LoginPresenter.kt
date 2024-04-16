@@ -1,13 +1,14 @@
 package ru.dekabrsky.login.presentation.presenter
 
-import android.content.Context
 import android.content.Intent
+import io.reactivex.Single
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.feature.loginCommon.presentation.model.PatientMedicinesDiff
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.italks.basic.navigation.BaseScreens
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import ru.dekabrsky.italks.basic.rx.withLoadingView
@@ -29,7 +30,7 @@ class LoginPresenter @Inject constructor(
     private val loginDataCache: LoginDataCache,
     private val resourceProvider: ResourceProvider,
     private val intent: Intent,
-    private val context: Context
+    private val errorHandler: ServerErrorHandler
 ): BasicPresenter<LoginView>() {
 
     enum class LoginMode { LOGIN, REGISTRATION }
@@ -49,12 +50,29 @@ class LoginPresenter @Inject constructor(
 
         parseIntent()
 
+        // симуляция сохраненного пина. По факту тут нужно будет смотреть, есть ли пин
+        interactor.getSavedRefreshToken()?.let { refreshToken ->
+            makeLogin(interactor.refresh(refreshToken))
+        }
+
 //        interactor.login("dobryden", "123")
 //            .subscribeOnIo()
 //            .subscribe({
 //                router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
-//            }, viewState::showError)
+//            }, { errorHandler.onError(it, viewState) })
 //            .addFullLifeCycle()
+    }
+
+    private fun makeLogin(method: Single<*>) {
+        method
+            .flatMap { interactor.getCurrentUser() }
+            .subscribeOnIo()
+            .withLoadingView(viewState)
+            .subscribe({
+                router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
+                analyticsSender.setUserId(it.id)
+            }, { errorHandler.onError(it, viewState) })
+            .addFullLifeCycle()
     }
 
     private fun parseIntent() {
@@ -84,29 +102,15 @@ class LoginPresenter @Inject constructor(
     fun onDoneButtonClick() {
         when (mode) {
             LoginMode.LOGIN -> {
-                interactor.getFcmToken()
-                    .flatMap { token -> interactor.login(currentLogin, currentPassword, token) }
-                    .subscribeOnIo()
-                    .withLoadingView(viewState)
-                    .subscribe({
-                        router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
-                        analyticsSender.setUserId(it.id)
-                    }, viewState::showError)
-                    .addFullLifeCycle()
+                makeLogin(
+                    interactor.getFcmToken()
+                        .flatMap { token -> interactor.login(currentLogin, currentPassword, token) }
+                )
                 if (lastLogin != currentLogin) sharedPreferencesProvider.lastLogin.set(currentLogin)
             }
 
             LoginMode.REGISTRATION -> {
-                interactor.registration(currentCode, currentLogin, currentPassword)
-                    .subscribeOnIo()
-                    .withLoadingView(viewState)
-                    .subscribe({
-                        router.replaceFlow(
-                            Flows.Main.name,
-                            TabsFlowArgs(it.role)
-                        )
-                    }, viewState::showError)
-                    .addFullLifeCycle()
+                makeLogin(interactor.registration(currentCode, currentLogin, currentPassword))
             }
         }
     }

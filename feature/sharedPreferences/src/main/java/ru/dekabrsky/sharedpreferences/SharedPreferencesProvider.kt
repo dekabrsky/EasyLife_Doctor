@@ -17,6 +17,8 @@ class SharedPreferencesProvider @Inject constructor(
     val wallColor = StringPreference("WALL_COLOR")
     val notificationIds = SetPreference<Long>("NOTIFICATIONS_LIST")
 
+    val refreshToken = StringPreference("REFRESH_TOKEN")
+
     inner class StringPreference(private val prefName: String) {
         fun get() = preferences.getString(prefName, "").orEmpty()
 

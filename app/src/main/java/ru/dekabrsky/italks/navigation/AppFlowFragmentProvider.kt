@@ -9,6 +9,7 @@ import ru.dekabrsky.feature.notifications.common.presentation.model.Notification
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationFlowFragment
 import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
 import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider
+import ru.dekabrsky.italks.basic.network.model.ReLoginType
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.game.view.fragment.GameFlowFragment
 import ru.dekabrsky.italks.profile.view.fragment.ProfileFlowFragment
@@ -26,7 +27,7 @@ class AppFlowFragmentProvider @Inject constructor() : FlowFragmentProvider {
     override fun provideFlowFragment(screenName: String?, data: Any?): BasicFlowFragment? {
         return when (screenName) {
             Flows.Main.name -> TabsFlowFragment.newInstance(data as TabsFlowArgs)
-            Flows.Login.name -> LoginFlowFragment.newInstance()
+            Flows.Login.name -> LoginFlowFragment.newInstance(data as? ReLoginType)
             Flows.Chats.name ->
                 ChatFlowFragment.newInstance(data as ChatsFlowScreenArgs)
             Flows.Notifications.name ->

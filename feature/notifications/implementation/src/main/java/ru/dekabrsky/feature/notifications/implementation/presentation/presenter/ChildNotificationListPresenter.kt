@@ -19,6 +19,7 @@ import ru.dekabrsky.feature.notifications.implementation.domain.interactor.Notif
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.ChildNotificationsListView
 import ru.dekabrsky.feature.notifications.implementation.receiver.NotificationsReceiver
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
@@ -36,12 +37,14 @@ class ChildNotificationListPresenter @Inject constructor(
     private val sharedPreferencesProvider: SharedPreferencesProvider,
     private val formatter: NotificationToStringFormatter,
     private val loginDataCache: LoginDataCache,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val errorHandler: ServerErrorHandler
 ) : BaseNotificationListPresenter<ChildNotificationsListView>(
     router,
     interactor,
     flowArgs,
-    formatter
+    formatter,
+    errorHandler
 ) {
 
     private var notificationIds = sharedPreferencesProvider.notificationIds

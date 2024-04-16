@@ -123,12 +123,23 @@ abstract class BasicFragment : MvpFragmentImpl(), BasicView {
         val snackBar = Snackbar
             .make(requireView(), error.localizedMessage ?: "", Snackbar.LENGTH_LONG)
 
-        action.let {
-            snackBar.setAction(R.string.retry, View.OnClickListener { action })
-        }
+//        action.let {
+//            snackBar.setAction(R.string.retry, View.OnClickListener { action })
+//        }
         snackBar.show()
 
         Log.d(scopeName, error.stackTraceToString())
+    }
+
+    override fun showError(error: String) {
+        activity?.let {
+            AlertDialog.Builder(it)
+                .setTitle(getString(R.string.error))
+                .setMessage(error)
+                .setPositiveButton(R.string.ok, null)
+                .create()
+                .show()
+        }
     }
 
     override fun showToast(msg: String) {

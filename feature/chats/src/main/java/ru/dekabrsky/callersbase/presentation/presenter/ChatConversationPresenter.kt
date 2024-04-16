@@ -8,6 +8,7 @@ import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
 import ru.dekabrsky.callersbase.presentation.model.ChatMessageUiModel
 import ru.dekabrsky.callersbase.presentation.view.ChatConversationView
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import javax.inject.Inject
@@ -17,7 +18,8 @@ class ChatConversationPresenter @Inject constructor(
     private val args: ChatConversationScreenArgs,
     private val mapper: MessageEntityToUiMapper,
     private val router: FlowRouter,
-    private val analyticsSender: AnalyticsSender
+    private val analyticsSender: AnalyticsSender,
+    private val errorHandler: ServerErrorHandler
 ) : BasicPresenter<ChatConversationView>(router) {
 
     private val messages = mutableListOf<ChatMessageUiModel>()
@@ -34,7 +36,7 @@ class ChatConversationPresenter @Inject constructor(
             .subscribeOnIo()
             .withLoadingView(viewState)
             .map(mapper::map)
-            .subscribe(::onMessagesLoaded, viewState::showError)
+            .subscribe(::onMessagesLoaded) { errorHandler.onError(it, viewState) }
             .addFullLifeCycle()
     }
 
@@ -49,7 +51,7 @@ class ChatConversationPresenter @Inject constructor(
 //                this.messages.add(it)
 //                updateViewMessages()
                        viewState.addMessage(it)
-            }, viewState::showError)
+            }, { errorHandler.onError(it, viewState) })
             .addFullLifeCycle()
     }
 
