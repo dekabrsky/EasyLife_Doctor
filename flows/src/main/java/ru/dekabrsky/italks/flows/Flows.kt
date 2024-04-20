@@ -8,6 +8,7 @@ class Flows {
 
     object Login : Flow("FLOW_LOGIN") {
         const val SCREEN_LOGIN = "SCREEN_LOGIN"
+        const val SCREEN_PIN_LOGIN = "SCREEN_PIN_LOGIN"
     }
 
     object Chats : Flow("FLOW_CALLERS_BASE") {

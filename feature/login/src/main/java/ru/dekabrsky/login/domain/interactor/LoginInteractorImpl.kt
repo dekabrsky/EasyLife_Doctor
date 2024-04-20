@@ -25,7 +25,5 @@ class LoginInteractorImpl @Inject constructor(
 
     fun getCurrentUser(): Single<UserInfoEntity> = repository.getCurrentUser()
 
-    fun getSavedRefreshToken(): String? = repository.getSavedRefreshToken()
-
     override fun getFcmToken(): Single<String> = repository.getFcmToken()
 }

@@ -19,11 +19,12 @@ fun formatDateTimeToUiTime(dateTime: LocalDateTime): String = formatDateTime(dat
 
 fun formatDateToServerString(date: LocalDate): String = formatDateTime(date.atTime(0, 0), SERVER_DATE_FORMAT)
 
-fun formatHourAndMinute(hour: Int?, minute: Int?) : String {
+fun formatHourAndMinute(hour: Int?, minute: Int?, withSeconds: Boolean = false) : String {
     if (hour == null || minute == null) return ""
     val hour = if (hour < MIN_TWO_DIGIT_MINUTE) "0$hour" else hour.toString()
     val minute = if (minute < MIN_TWO_DIGIT_MINUTE) "0$minute" else minute.toString()
-    return "$hour:$minute"
+    val second = "00".takeIf { withSeconds }
+    return listOfNotNull(hour, minute, second).joinToString(":")
 }
 
 fun hourAndMinuteFromString(time: String?): Pair<Int, Int> {

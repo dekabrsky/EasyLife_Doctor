@@ -18,7 +18,6 @@ import ru.dekabrsky.feature.notifications.implementation.presentation.presenter.
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 
 class NotificationEditFragment(
@@ -139,6 +138,11 @@ class NotificationEditFragment(
 
     override fun showSelectedDays(selectedDays: String) {
         binding.selectedDays.text = selectedDays
+    }
+
+    override fun onPause() {
+        hideKeyboard()
+        super.onPause()
     }
 
     override fun onBackPressed() {

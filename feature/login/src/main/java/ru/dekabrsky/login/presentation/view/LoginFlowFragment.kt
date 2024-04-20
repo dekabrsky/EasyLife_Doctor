@@ -29,10 +29,11 @@ class LoginFlowFragment : BasicFlowFragment(), LoginFlowView {
     override fun provideNavigator(router: AppRouter): FragmentFlowNavigator =
         object : FragmentFlowNavigator(this, router, containerId) {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
-                if (screenKey == Flows.Login.SCREEN_LOGIN) {
-                    LoginFragment.newInstance()
-                } else {
-                    super.createFragment(screenKey, data)
+                when (screenKey) {
+                    Flows.Login.SCREEN_LOGIN -> LoginFragment.newInstance()
+                    Flows.Login.SCREEN_PIN_LOGIN ->
+                        PinLoginFragment.newInstance()
+                    else -> super.createFragment(screenKey, data)
                 }
         }
 
@@ -45,7 +46,9 @@ class LoginFlowFragment : BasicFlowFragment(), LoginFlowView {
 
     override fun injectDependencies() {
         Toothpick.openScopes(Scopes.SCOPE_APP, scopeName)
-            .moduleFlow()
+            .moduleFlow {
+                bind(ReLoginType::class.java).toInstance(reLoginType)
+            }
             .inject(this)
     }
 

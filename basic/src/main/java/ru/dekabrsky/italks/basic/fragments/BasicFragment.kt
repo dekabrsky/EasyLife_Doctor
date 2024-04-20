@@ -148,11 +148,13 @@ abstract class BasicFragment : MvpFragmentImpl(), BasicView {
 
     override fun setLoadingVisibility(isVisible: Boolean) {
         if (isVisible) {
-            loadingDialog =
-                AlertDialog.Builder(requireActivity())
-                    .setMessage(getString(R.string.loading))
-                    .setCancelable(false)
-                    .create()
+            if (loadingDialog == null) {
+                loadingDialog =
+                    AlertDialog.Builder(requireActivity())
+                        .setMessage(getString(R.string.loading))
+                        .setCancelable(false)
+                        .create()
+            }
             loadingDialog?.show()
         } else {
             loadingDialog?.dismiss()

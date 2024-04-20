@@ -13,7 +13,6 @@ import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
 import ru.dekabrsky.login.R
 import ru.dekabrsky.login.domain.interactor.LoginInteractorImpl
 import ru.dekabrsky.login.presentation.model.Extras
@@ -51,9 +50,11 @@ class LoginPresenter @Inject constructor(
         parseIntent()
 
         // симуляция сохраненного пина. По факту тут нужно будет смотреть, есть ли пин
-        interactor.getSavedRefreshToken()?.let { refreshToken ->
-            makeLogin(interactor.refresh(refreshToken))
-        }
+//        interactor.getSavedRefreshToken()?.let { refreshToken ->
+//            makeLogin(interactor.refresh(refreshToken))
+//        }
+
+
 
 //        interactor.login("dobryden", "123")
 //            .subscribeOnIo()
@@ -69,7 +70,7 @@ class LoginPresenter @Inject constructor(
             .subscribeOnIo()
             .withLoadingView(viewState)
             .subscribe({
-                router.replaceFlow(Flows.Main.name, TabsFlowArgs(it.role))
+                router.replaceScreen(Flows.Login.SCREEN_PIN_LOGIN)
                 analyticsSender.setUserId(it.id)
             }, { errorHandler.onError(it, viewState) })
             .addFullLifeCycle()
