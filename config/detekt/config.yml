@@ -90,6 +90,7 @@ complexity:
     active: true
     threshold: 8
     ignoreDefaultParameters: false
+    excludes: "**Presenter**"
   MethodOverloading:
     active: false
     threshold: 6

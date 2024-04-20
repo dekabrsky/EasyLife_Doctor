@@ -37,10 +37,6 @@ class LoginRepository @Inject constructor(
             .map { mapper.mapToken(it) }
             .doOnSuccess(::updateTokens)
 
-    fun getSavedRefreshToken(): String? {
-        return sharedPreferencesProvider.refreshToken.get().ifEmpty { null }
-    }
-
     fun getCurrentUser(): Single<UserInfoEntity> =
         api.getCurrentUser()
             .map { mapper.mapUserInfo(it) }
@@ -60,6 +56,5 @@ class LoginRepository @Inject constructor(
         tokenCache.expiresIn = it.expiresIn
         tokenCache.refreshToken = it.refreshToken
         tokenCache.accessToken = it.accessToken
-        sharedPreferencesProvider.refreshToken.set(it.refreshToken)
     }
 }

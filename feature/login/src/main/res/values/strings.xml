@@ -9,4 +9,13 @@
     <string name="forgot_password_question">Забыли пароль?</string>
     <string name="change_mode_to_login">У меня уже есть учетная запись</string>
     <string name="auth_to_view">Авторизуйся, чтобы посмотреть уведомление</string>
+
+    <string name="pin_login_title">Введите пин-код</string>
+    <string name="pin_login_create_title">Придумайте пин-код</string>
+    <string name="pin_login_hint">Пин-код</string>
+    <string name="pin_login_skip">Пропустить</string>
+    <string name="pin_reset">Сбросить пин-код</string>
+    <string name="pin_length_error">Длина пин-кода - 4 цифры</string>
+    <string name="pin_incorrect">Неправильный пин</string>
+
 </resources>

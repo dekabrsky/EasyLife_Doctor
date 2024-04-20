@@ -55,7 +55,7 @@ class NotificationResponseToEntityMapper @Inject constructor() {
                     note = it.note
                 )
             },
-            time = formatHourAndMinute(entity.hour, entity.minute),
+            time = formatHourAndMinute(entity.hour, entity.minute, withSeconds = true),
             enabled = entity.enabled,
             weekDays = entity.weekDays.map { it.name },
 //            duration = entity.duration?.startDate?.let { formatDateToServerString(it) }?.let { start ->
