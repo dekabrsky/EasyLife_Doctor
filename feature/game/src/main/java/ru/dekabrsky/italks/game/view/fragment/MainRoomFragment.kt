@@ -2,7 +2,9 @@ package ru.dekabrsky.italks.game.view.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.SpannableString
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import moxy.presenter.InjectPresenter
@@ -56,7 +58,7 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
             binding.window.setOnClickListenerWithAnimation(it) { presenter.onDoorClick() }
             binding.clock.setOnClickListenerWithAnimation(it) { presenter.onClockClick() }
             binding.speakerAnimation.setOnClickListenerWithAnimation(it) { presenter.onSpeakerClick() }
-            binding.colorsAnimation.setOnClickListenerWithAnimation(it) { presenter.onColorsClick() }
+            binding.colorsAnimation.setOnClickListenerWithAnimation(it) { presenter.onColorsClick(requireContext()) }
 //            Observable.interval(10L, TimeUnit.SECONDS)
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe({ binding.avatar.startAnimation(AnimationUtils.loadAnimation(context, R.anim.anum_jump)) }, {})
@@ -101,18 +103,19 @@ class MainRoomFragment: BasicFragment(), MainRoomView {
         }
     }
 
-    override fun showColorsDialog(selectedVariantIndex: Int, variants: Array<String>) {
+    override fun showColorsDialog(selectedVariantIndex: Int, variants: List<Pair<SpannableString, Int>>) {
         var selectedVariant = selectedVariantIndex
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("В какой цвет покрасить комнату?")
-            .setSingleChoiceItems(variants, selectedVariantIndex) { _, which ->
+            .setSingleChoiceItems(variants.map { it.first }.toTypedArray(), selectedVariantIndex) { _, which ->
                 selectedVariant = which
             }
             .setPositiveButton("Ок") { _, _ ->
-                showToast("Покрашено в ${variants[selectedVariant]}!")
+                showToast("Покрашено в ${variants[selectedVariant].first}!")
                 presenter.onColorSelected(selectedVariant)
             }
             .setNegativeButton("Отмена") { dialog, _ -> dialog.dismiss() }
+            .setBackground(ContextCompat.getDrawable(requireContext(), R.color.dialog_color_grey))
             .show()
     }
 

@@ -1,6 +1,11 @@
 package ru.dekabrsky.italks.game.view.model
 
+import android.content.Context
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import androidx.annotation.ColorRes
+import androidx.core.content.ContextCompat
 import ru.dekabrsky.italks.game.R
 
 enum class RoomColor(val rusName: String, @ColorRes val res: Int) {
@@ -15,5 +20,17 @@ enum class RoomColor(val rusName: String, @ColorRes val res: Int) {
         fun getByRusName(rusName: String) = values().find { it.rusName == rusName } ?: Pink
         fun indexOfRusName(rusName: String) = getByRusName(rusName).ordinal
         fun getByIndex(i: Int) = values().getOrNull(i) ?: Pink
+
+        fun getColoredRusName(rusName: String, context: Context): SpannableString {
+            val color = getByRusName(rusName)
+            val coloredText = SpannableString(color.rusName)
+            coloredText.setSpan(
+                ForegroundColorSpan(ContextCompat.getColor(context, color.res)),
+                0,
+                color.rusName.length,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            return coloredText
+        }
     }
 }
