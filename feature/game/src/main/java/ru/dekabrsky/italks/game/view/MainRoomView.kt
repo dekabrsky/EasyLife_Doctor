@@ -1,5 +1,6 @@
 package ru.dekabrsky.italks.game.view
 
+import android.text.SpannableString
 import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.OneExecution
 import ru.dekabrsky.italks.basic.fragments.BasicView
@@ -16,7 +17,7 @@ interface MainRoomView: BasicView {
     fun setMusicIsOn(isOn: Boolean)
 
     @OneExecution
-    fun showColorsDialog(selectedVariantIndex: Int, variants: Array<String>)
+    fun showColorsDialog(selectedVariantIndex: Int, variants: List<Pair<SpannableString, Int>>)
     fun setRoomColor(res: Int)
     fun setScore(score: String)
     fun scrollToAvatar()

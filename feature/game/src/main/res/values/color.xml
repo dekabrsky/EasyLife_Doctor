@@ -17,5 +17,6 @@
     <color name="wall_color_yellow">#FFF6AA</color>
     <color name="wall_color_purple">#E7DAFF</color>
     <color name="wall_color_blue">#C0E3FF</color>
+    <color name="dialog_color_grey">#A7B1B8</color>
     <color name="score_gold">#FFFFA800</color>
 </resources>

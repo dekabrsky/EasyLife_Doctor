@@ -1,5 +1,6 @@
 package ru.dekabrsky.italks.game.view.presenter
 
+import android.content.Context
 import android.media.MediaPlayer
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
@@ -129,12 +130,16 @@ class MainRoomPresenter @Inject constructor(
         router.startFlow(Flows.Notifications.name, NotificationsFlowArgs(Scopes.SCOPE_FLOW_GAME))
     }
 
-    fun onColorsClick() {
+    fun onColorsClick(context: Context) {
         val selectedVariant = sharedPreferencesProvider.wallColor.get()
+
+        val variantsWithColors = RoomColor.values().map {
+            Pair(RoomColor.getColoredRusName(it.rusName, context), it.res)
+        }
 
         viewState.showColorsDialog(
             selectedVariantIndex = RoomColor.indexOfRusName(selectedVariant),
-            variants = RoomColor.values().map { it.rusName }.toTypedArray()
+            variants = variantsWithColors
         )
     }
 
