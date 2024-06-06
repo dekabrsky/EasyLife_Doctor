@@ -40,7 +40,7 @@ fun NotificationManager.sendNotification(
         applicationContext.getString(R.string.easy_life_notification_channel_id)
     )
 
-    builder.setSmallIcon(R.drawable.ic_logo)
+    builder.setSmallIcon(R.drawable.ic_logotype)
         .setContentTitle(messageTitle)
         .setContentText(messageBody)
         .setContentIntent(
