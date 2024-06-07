@@ -21,20 +21,30 @@
             android:src="@drawable/drawable_table"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/logotype"
+            android:layout_width="@dimen/icon_48"
+            android:layout_height="@dimen/icon_48"
+            android:src="@drawable/ic_logotype_without_bg"
+            app:layout_constraintEnd_toStartOf="@id/appName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/appName"
+            app:layout_constraintBottom_toBottomOf="@id/appName"
+            app:layout_constraintHorizontal_chainStyle="packed" />
+
         <TextView
             android:id="@+id/appName"
-            style="@style/TextView.H4"
-            android:layout_width="218dp"
-            android:layout_height="89dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:gravity="center"
             android:text="EASY LIFE"
             android:textColor="@color/cyan_main"
             android:textSize="42sp"
             android:textStyle="bold"
+            android:layout_marginStart="@dimen/offset_medium"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/logotype"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
