@@ -31,4 +31,5 @@ dependencies {
     implementation project(':feature:login-common')
     implementation project(':feature:chats-common')
     implementation project(':feature:tabs')
+    implementation project(':feature:webview')
 }

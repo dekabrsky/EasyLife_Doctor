@@ -8,15 +8,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.tbruyelle.rxpermissions3.RxPermissions
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import main.utils.gone
 import main.utils.onTextChange
+import main.utils.setBoolVisibility
 import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
@@ -61,6 +62,10 @@ class LoginFragment: BasicFragment(), LoginView {
 
         binding.loginCardBtn.setOnClickListener { presenter.onDoneButtonClick() }
         binding.changeMode.setOnClickListener { presenter.onChangeModeClick() }
+        binding.termsText.setOnClickListener { presenter.onTermsTextClick() }
+        binding.policyText.setOnClickListener { presenter.onPolicyTextClick() }
+        binding.policyBox.setOnCheckedChangeListener { _, b -> presenter.onPolicyCheckedChanged(b) }
+        binding.termsBox.setOnCheckedChangeListener { _, b -> presenter.onTermsCheckedChanged(b) }
 
         val notificationManager = ContextCompat.getSystemService(
             requireActivity().applicationContext,
@@ -102,18 +107,28 @@ class LoginFragment: BasicFragment(), LoginView {
 
     override fun setupForRegistration() {
         binding.title.text = getString(R.string.registration)
+        setTitleBias(REG_TITLE_BIAS)
         binding.codeLayout.visible()
         binding.changeMode.text = getString(R.string.change_mode_to_login)
         binding.bgImage.setImageResource(R.drawable.ic_divan)
+        binding.termsBlock.setBoolVisibility(true)
     }
 
     override fun setupForLogin() {
         binding.title.text = getString(R.string.login_title)
+        setTitleBias(LOGIN_TITLE_BIAS)
         binding.codeLayout.gone()
         binding.changeMode.text = getString(R.string.registration)
         binding.bgImage.setImageResource(R.drawable.drawable_table)
+        binding.termsBlock.setBoolVisibility(false)
     }
 
+    private fun setTitleBias(bias: Float) {
+        val params = binding.title.layoutParams as? ConstraintLayout.LayoutParams
+        params?.verticalBias = bias
+
+        binding.title.layoutParams = params
+    }
     override fun setLogin(lastLogin: String) {
         binding.editTextLogin.setText(lastLogin)
     }
@@ -128,7 +143,10 @@ class LoginFragment: BasicFragment(), LoginView {
         compositeDisposable.dispose()
     }
 
-    companion object{
+    companion object {
+        private const val REG_TITLE_BIAS = 0.25f
+        private const val LOGIN_TITLE_BIAS = 0.45f
+
         fun newInstance() = LoginFragment()
     }
 }

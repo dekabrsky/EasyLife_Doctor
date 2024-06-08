@@ -44,6 +44,57 @@
                 tools:listitem="@layout/include_title_value"
                 tools:itemCount="1" />
 
+            <LinearLayout
+                android:id="@+id/terms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/offset_medium"
+                android:paddingVertical="@dimen/offset_small"
+                android:layout_marginTop="@dimen/offset_small"
+                android:gravity="center_vertical"
+                android:background="?selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/open_in_new" />
+
+                <TextView
+                    android:id="@+id/termsText"
+                    style="@style/TextView.Subtitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/terms_of_use"
+                    android:textColor="@color/cyan_main"
+                    android:layout_marginStart="@dimen/offset_small" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/policy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/offset_medium"
+                android:paddingVertical="@dimen/offset_small"
+                android:gravity="center_vertical"
+                android:background="?selectableItemBackground">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/open_in_new" />
+
+                <TextView
+                    android:id="@+id/policyText"
+                    style="@style/TextView.Subtitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/privacy_policy"
+                    android:textColor="@color/cyan_main"
+                    android:layout_marginStart="@dimen/offset_small"/>
+            </LinearLayout>
+
             <Button
                 android:id="@+id/logoutBtn"
                 android:layout_width="match_parent"

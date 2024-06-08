@@ -27,8 +27,8 @@ class LoginRepository @Inject constructor(
 
     fun logout(deviceToken: String): Completable = api.logout(mapper.mapLogout(deviceToken))
 
-    fun registration(code: String, login: String, password: String): Single<LoginTokenEntity> =
-        api.registration(mapper.mapRegistration(code = code, login = login, password = password))
+    fun registration(code: String, login: String, password: String, token: String): Single<LoginTokenEntity> =
+        api.registration(mapper.mapRegistration(code = code, login = login, password = password, token = token))
             .map { mapper.mapToken(it) }
             .doOnSuccess(::updateTokens)
 

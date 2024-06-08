@@ -1,0 +1,21 @@
+apply from: Base
+
+android {
+
+    namespace 'ru.dekabrsky.webview'
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    dependenciesSet(this) {
+        moxy()
+        toothpick()
+    }
+
+    implementation project(':basic')
+    implementation project(':uikit')
+}

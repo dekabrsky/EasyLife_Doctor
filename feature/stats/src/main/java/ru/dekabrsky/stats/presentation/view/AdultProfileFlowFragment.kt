@@ -12,6 +12,8 @@ import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.stats.R
 import ru.dekabrsky.stats.presentation.presenter.AdultProfileFlowPresenter
+import ru.dekabrsky.webview.presentation.model.WebViewArgs
+import ru.dekabrsky.webview.presentation.view.WebViewFragment
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -29,6 +31,7 @@ class AdultProfileFlowFragment: BasicFlowFragment(), AdultProfileFlowView {
             override fun createFragment(screenKey: String?, data: Any?): Fragment? =
                 when (screenKey) {
                     Flows.Stats.SCREEN_MAIN_STATS -> AdultProfileFragment.newInstance()
+                    Flows.Common.SCREEN_WEB_VIEW -> WebViewFragment.newInstance(data as WebViewArgs)
                     else -> super.createFragment(screenKey, data)
                 }
         }

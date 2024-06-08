@@ -52,6 +52,8 @@ class AdultProfileFragment: BasicFragment(), AdultProfileView {
         binding.toolbar.setTitle(R.string.general_stats)
         binding.childrenRecycler.adapter = adapter
         binding.logoutBtn.setOnClickListener { presenter.onLogoutClicked() }
+        binding.terms.setOnClickListener { presenter.onTermsTextClick() }
+        binding.policy.setOnClickListener { presenter.onPolicyTextClick() }
     }
 
     override fun showMyInfo(infoEntity: UserInfoEntity?) {

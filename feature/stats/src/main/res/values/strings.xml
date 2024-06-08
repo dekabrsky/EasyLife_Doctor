@@ -13,4 +13,6 @@
     <string name="confirm_logout_title">Выйти из учетной записи?</string>
     <string name="confirm_logout_msg">Будет необходимо авторизоваться повторно</string>
     <string name="nickname_role_pattern">%s • %s</string>
+    <string name="terms_of_use">Условия использования</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
 </resources>

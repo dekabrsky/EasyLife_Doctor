@@ -2,6 +2,7 @@ package ru.dekabrsky.login.presentation.presenter
 
 import android.content.Intent
 import io.reactivex.Single
+import main.utils.isBlankOrEmpty
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.feature.loginCommon.presentation.model.PatientMedicinesDiff
@@ -13,11 +14,13 @@ import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.login.R
 import ru.dekabrsky.login.domain.interactor.LoginInteractorImpl
 import ru.dekabrsky.login.presentation.model.Extras
 import ru.dekabrsky.login.presentation.view.LoginView
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
+import ru.dekabrsky.webview.presentation.model.WebViewArgs
 import javax.inject.Inject
 
 @Suppress("LongParameterList")
@@ -37,6 +40,8 @@ class LoginPresenter @Inject constructor(
     private var currentCode: String = ""
     private var currentLogin: String = ""
     private var currentPassword: String = ""
+    private var termsIsChecked: Boolean = false
+    private var policyIsChecked: Boolean = false
     private var lastLogin = sharedPreferencesProvider.lastLogin.get()
 
     private var mode: LoginMode = LoginMode.LOGIN
@@ -103,6 +108,7 @@ class LoginPresenter @Inject constructor(
     fun onDoneButtonClick() {
         when (mode) {
             LoginMode.LOGIN -> {
+                if (validateLogin().not()) return
                 makeLogin(
                     interactor.getFcmToken()
                         .flatMap { token -> interactor.login(currentLogin, currentPassword, token) }
@@ -111,8 +117,37 @@ class LoginPresenter @Inject constructor(
             }
 
             LoginMode.REGISTRATION -> {
-                makeLogin(interactor.registration(currentCode, currentLogin, currentPassword))
+                if (validateRegistration().not()) return
+                makeLogin(
+                    interactor.getFcmToken().flatMap { token ->
+                        interactor.registration(currentCode, currentLogin, currentPassword, token)
+                    }
+                )
             }
+        }
+    }
+
+    private fun validateLogin(): Boolean {
+        val errors = mutableListOf<String>().apply {
+            if (currentLogin.isBlankOrEmpty()) add("Заполните логин")
+            if (currentPassword.isBlankOrEmpty()) add("Заполните пароль")
+        }
+
+        return errors.isEmpty().also { errorsIsEmpty ->
+            if (errorsIsEmpty.not()) viewState.showToast(errors.joinToString("\n"))
+        }
+    }
+
+    private fun validateRegistration(): Boolean {
+        val errors = mutableListOf<String>().apply {
+            if (currentCode.isBlankOrEmpty()) add("Заполните код приглашения")
+            if (currentLogin.isBlankOrEmpty()) add("Заполните логин")
+            if (currentPassword.isBlankOrEmpty()) add("Заполните пароль")
+            if (!termsIsChecked || !policyIsChecked) add("Требуется согласие со всеми документами")
+        }
+
+        return errors.isEmpty().also { errorsIsEmpty ->
+            if (errorsIsEmpty.not()) viewState.showToast(errors.joinToString("\n"))
         }
     }
 
@@ -144,5 +179,32 @@ class LoginPresenter @Inject constructor(
 
     fun onGrantPermissionBySettingsClicked() {
         router.startFlow(BaseScreens.SCREEN_OPEN_SETTINGS)
+    }
+
+    fun onTermsTextClick() {
+        router.navigateTo(
+            Flows.Common.SCREEN_WEB_VIEW,
+            WebViewArgs(Scopes.SCOPE_FLOW_LOGIN, TERMS_URL)
+        )
+    }
+
+    fun onPolicyTextClick() {
+        router.navigateTo(
+            Flows.Common.SCREEN_WEB_VIEW,
+            WebViewArgs(Scopes.SCOPE_FLOW_LOGIN, POLICY_URL)
+        )
+    }
+
+    fun onPolicyCheckedChanged(isChecked: Boolean) {
+        this.policyIsChecked = isChecked
+    }
+
+    fun onTermsCheckedChanged(isChecked: Boolean) {
+        this.termsIsChecked = isChecked
+    }
+
+    companion object {
+        private const val TERMS_URL = "https://easylife-project.ru/terms_of_use"
+        private const val POLICY_URL = "https://easylife-project.ru/privacy_policy"
     }
 }

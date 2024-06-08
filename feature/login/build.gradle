@@ -34,5 +34,6 @@ dependencies {
     implementation project(':feature:sharedPreferences')
     implementation project(':feature:tabs')
     implementation project(':feature:analytics')
+    implementation project(':feature:webview')
     implementation project(':feature:notifications:common')
 }

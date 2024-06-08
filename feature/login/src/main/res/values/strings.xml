@@ -17,5 +17,8 @@
     <string name="pin_reset">Сбросить пин-код</string>
     <string name="pin_length_error">Длина пин-кода - 4 цифры</string>
     <string name="pin_incorrect">Неправильный пин</string>
+    <string name="terms_title">Я ознакомился и принимаю:</string>
+    <string name="terms_of_use">Условия использования</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
 
 </resources>

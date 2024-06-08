@@ -7,10 +7,10 @@ import ru.dekabrsky.feature.loginCommon.data.model.LoginLevelResponse
 import ru.dekabrsky.feature.loginCommon.data.model.UserInfoResponse
 import ru.dekabrsky.feature.loginCommon.domain.model.UserInfoEntity
 import ru.dekabrsky.feature.loginCommon.domain.model.UserLoginLevelEntity
-import ru.dekabrsky.login.data.model.LogoutRequest
 import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.login.data.model.CredentialsRequest
 import ru.dekabrsky.login.data.model.LoginTokenResponse
+import ru.dekabrsky.login.data.model.LogoutRequest
 import ru.dekabrsky.login.data.model.RegistrationRequest
 import ru.dekabrsky.login.domain.entity.LoginTokenEntity
 import java.nio.charset.StandardCharsets
@@ -24,10 +24,11 @@ class LoginDataMapperImpl @Inject constructor(): LoginDataMapper {
         )
     }
 
-    fun mapRegistration(code: String, login: String, password: String): RegistrationRequest {
+    fun mapRegistration(code: String, login: String, password: String, token: String): RegistrationRequest {
         return RegistrationRequest(
             credentials = encodeToBase64("$login:$password"),
-            code = code
+            code = code,
+            deviceToken = encodeToBase64(token)
         )
     }
 

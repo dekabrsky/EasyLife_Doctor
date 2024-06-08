@@ -12,10 +12,12 @@ import ru.dekabrsky.italks.profile.R
 import ru.dekabrsky.italks.profile.domain.interactor.ProfileInteractor
 import ru.dekabrsky.italks.profile.domain.model.CodeEntity
 import ru.dekabrsky.italks.profile.view.ProfileView
+import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs
 import ru.dekabrsky.simpleBottomsheet.view.model.ButtonState
+import ru.dekabrsky.webview.presentation.model.WebViewArgs
 import javax.inject.Inject
 
 class ProfilePresenter @Inject constructor(
@@ -78,5 +80,24 @@ class ProfilePresenter @Inject constructor(
             .withLoadingView(viewState)
             .subscribe({ router.newRootFlow(Flows.Login.name) }, { errorHandler.onError(it, viewState) })
             .addFullLifeCycle()
+    }
+
+    fun onTermsTextClick() {
+        router.navigateTo(
+            Flows.Common.SCREEN_WEB_VIEW,
+            WebViewArgs(Scopes.SCOPE_FLOW_LOGIN, TERMS_URL)
+        )
+    }
+
+    fun onPolicyTextClick() {
+        router.navigateTo(
+            Flows.Common.SCREEN_WEB_VIEW,
+            WebViewArgs(Scopes.SCOPE_FLOW_LOGIN, POLICY_URL)
+        )
+    }
+
+    companion object {
+        private const val TERMS_URL = "https://easylife-project.ru/terms_of_use"
+        private const val POLICY_URL = "https://easylife-project.ru/privacy_policy"
     }
 }

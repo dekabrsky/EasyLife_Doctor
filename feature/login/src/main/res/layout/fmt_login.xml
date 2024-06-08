@@ -59,7 +59,6 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.45" />
@@ -143,12 +142,69 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:id="@+id/termsBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:layout_marginTop="@dimen/offset_medium"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
+            tools:visibility="visible">
+
+        <TextView
+                android:layout_width="wrap_content"
+                style="@style/TextView.Subtitle2"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_title" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/termsBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/termsText"
+                    style="@style/TextView.Subtitle2"
+                    android:background="?selectableItemBackground"
+                    android:textColor="@color/cyan_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/terms_of_use"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <CheckBox
+                    android:id="@+id/policyBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/policyText"
+                    style="@style/TextView.Subtitle2"
+                    android:background="?selectableItemBackground"
+                    android:textColor="@color/cyan_main"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/privacy_policy" />
+            </LinearLayout>
+        </LinearLayout>
+
         <androidx.cardview.widget.CardView
             android:id="@+id/login_card_btn"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginHorizontal="50dp"
             android:layout_marginTop="@dimen/offset_medium"
+            app:layout_goneMarginTop="@dimen/offset_medium"
             android:layout_marginBottom="30dp"
             android:backgroundTint="@color/cyan_main_50"
             android:outlineProvider="none"
@@ -156,7 +212,7 @@
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLayout"
+            app:layout_constraintTop_toBottomOf="@+id/termsBlock"
             tools:ignore="MissingClass">
 
             <TextView
