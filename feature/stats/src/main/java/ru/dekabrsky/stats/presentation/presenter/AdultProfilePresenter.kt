@@ -9,7 +9,9 @@ import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
 import ru.dekabrsky.italks.basic.presenter.BasicPresenter
 import ru.dekabrsky.italks.basic.rx.withLoadingView
 import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.stats.presentation.view.AdultProfileView
+import ru.dekabrsky.webview.presentation.model.WebViewArgs
 import javax.inject.Inject
 
 class AdultProfilePresenter @Inject constructor(
@@ -41,6 +43,25 @@ class AdultProfilePresenter @Inject constructor(
             .withLoadingView(viewState)
             .subscribe({ router.newRootFlow(Flows.Login.name) }, { errorHandler.onError(it, viewState) })
             .addFullLifeCycle()
+    }
+
+    fun onTermsTextClick() {
+        router.navigateTo(
+            Flows.Common.SCREEN_WEB_VIEW,
+            WebViewArgs(Scopes.SCOPE_FLOW_LOGIN, TERMS_URL)
+        )
+    }
+
+    fun onPolicyTextClick() {
+        router.navigateTo(
+            Flows.Common.SCREEN_WEB_VIEW,
+            WebViewArgs(Scopes.SCOPE_FLOW_LOGIN, POLICY_URL)
+        )
+    }
+
+    companion object {
+        private const val TERMS_URL = "https://easylife-project.ru/terms_of_use"
+        private const val POLICY_URL = "https://easylife-project.ru/privacy_policy"
     }
 
 }

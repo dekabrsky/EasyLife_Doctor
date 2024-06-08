@@ -13,6 +13,8 @@ import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.login.R
 import ru.dekabrsky.login.presentation.presenter.LoginFlowPresenter
+import ru.dekabrsky.webview.presentation.model.WebViewArgs
+import ru.dekabrsky.webview.presentation.view.WebViewFragment
 import toothpick.Toothpick
 import javax.inject.Inject
 
@@ -33,6 +35,8 @@ class LoginFlowFragment : BasicFlowFragment(), LoginFlowView {
                     Flows.Login.SCREEN_LOGIN -> LoginFragment.newInstance()
                     Flows.Login.SCREEN_PIN_LOGIN ->
                         PinLoginFragment.newInstance()
+                    Flows.Common.SCREEN_WEB_VIEW ->
+                        WebViewFragment.newInstance(data as WebViewArgs)
                     else -> super.createFragment(screenKey, data)
                 }
         }

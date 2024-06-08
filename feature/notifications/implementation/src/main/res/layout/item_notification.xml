@@ -45,9 +45,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginEnd="@dimen/offset_large"
-                android:alpha="0.5"
+                android:alpha="0.3"
                 android:rotation="15"
-                android:src="@drawable/ic_logotype"
+                android:src="@drawable/ic_logotype_without_bg"
                 app:layout_constraintBottom_toBottomOf="@id/dosage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

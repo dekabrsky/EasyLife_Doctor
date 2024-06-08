@@ -1,7 +1,6 @@
 package ru.dekabrsky.italks.profile.view.fragment
 
 import android.content.SharedPreferences
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,7 +8,6 @@ import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import moxy.presenter.InjectPresenter
@@ -24,7 +22,6 @@ import ru.dekabrsky.italks.profile.view.ProfileView
 import ru.dekabrsky.italks.profile.view.presenter.ProfilePresenter
 import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
-import java.util.*
 
 class ProfileFragment : BasicFragment(), ProfileView {
 
@@ -97,6 +94,8 @@ class ProfileFragment : BasicFragment(), ProfileView {
         //}
         tapCat()
         binding.logout.setOnClickListener { presenter.onLogoutClick() }
+        binding.terms.setOnClickListener { presenter.onTermsTextClick() }
+        binding.policy.setOnClickListener { presenter.onPolicyTextClick() }
     }
 
     override fun onBackPressed() {

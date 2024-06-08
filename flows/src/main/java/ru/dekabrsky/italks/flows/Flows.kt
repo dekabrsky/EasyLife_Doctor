@@ -74,5 +74,6 @@ class Flows {
 
     object Common : Flow("COMMON") {
         const val SCREEN_BOTTOM_INFO = "SCREEN_BOTTOM_INFO"
+        const val SCREEN_WEB_VIEW = "SCREEN_WEB_VIEW"
     }
 }

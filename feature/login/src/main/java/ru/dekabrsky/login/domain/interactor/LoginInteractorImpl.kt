@@ -17,8 +17,8 @@ class LoginInteractorImpl @Inject constructor(
 
     override fun logout(deviceToken: String): Completable = repository.logout(deviceToken)
 
-    fun registration(code: String, login: String, password: String): Single<LoginTokenEntity> =
-       repository.registration(code, login, password)
+    fun registration(code: String, login: String, password: String, token: String): Single<LoginTokenEntity> =
+       repository.registration(code, login, password, token)
 
     fun refresh(refreshToken: String): Single<LoginTokenEntity> =
         repository.refresh(refreshToken)
