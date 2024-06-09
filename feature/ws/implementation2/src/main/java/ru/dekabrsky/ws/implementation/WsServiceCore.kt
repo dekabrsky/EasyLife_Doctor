@@ -9,8 +9,8 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.WebSocket
 import okhttp3.WebSocketListener
-import ru.dekabrsky.italks.basic.di.WSOkHttpClient
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
+import ru.dekabrsky.easylife.basic.di.WSOkHttpClient
+import ru.dekabrsky.easylife.basic.rx.RxSchedulers
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 

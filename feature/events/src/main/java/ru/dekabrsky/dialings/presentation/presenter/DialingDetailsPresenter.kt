@@ -8,12 +8,12 @@ import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.common.presentation.model.DialingUiModel
 import ru.dekabrsky.dialings.presentation.mapper.DialingListUiMapper
 import ru.dekabrsky.dialings.presentation.view.DialingDetailsView
-import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiDateTime
-import ru.dekabrsky.italks.basic.di.IntWrapper
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.dateTime.formatDateTimeToUiDateTime
+import ru.dekabrsky.easylife.basic.di.IntWrapper
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.scopes.Scopes
 import java.util.Date
 import javax.inject.Inject
 

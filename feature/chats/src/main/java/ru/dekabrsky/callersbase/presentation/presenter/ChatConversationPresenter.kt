@@ -7,10 +7,10 @@ import ru.dekabrsky.callersbase.presentation.mapper.MessageEntityToUiMapper
 import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
 import ru.dekabrsky.callersbase.presentation.model.ChatMessageUiModel
 import ru.dekabrsky.callersbase.presentation.view.ChatConversationView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.withLoadingView
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.network.utils.ServerErrorHandler
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.basic.rx.withLoadingView
 import javax.inject.Inject
 
 class ChatConversationPresenter @Inject constructor(

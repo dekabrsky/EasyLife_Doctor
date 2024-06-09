@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.view.fragment
+package ru.dekabrsky.easylife.game.view.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,19 +9,19 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.avatarCustomization.view.model.CatWidgetSettings
-import ru.dekabrsky.italks.game.databinding.MainRoomLayoutBinding
-import ru.dekabrsky.italks.game.view.MainRoomView
-import ru.dekabrsky.italks.game.view.adapter.ShelfAdapter
-import ru.dekabrsky.italks.game.view.model.ItemVisibility
-import ru.dekabrsky.italks.game.view.model.ShelfItemUiModel
-import ru.dekabrsky.italks.game.view.presenter.MainRoomPresenter
-import ru.dekabrsky.italks.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.game.R
+import ru.dekabrsky.easylife.game.avatarCustomization.view.model.CatWidgetSettings
+import ru.dekabrsky.easylife.game.databinding.MainRoomLayoutBinding
+import ru.dekabrsky.easylife.game.view.MainRoomView
+import ru.dekabrsky.easylife.game.view.adapter.ShelfAdapter
+import ru.dekabrsky.easylife.game.view.model.ItemVisibility
+import ru.dekabrsky.easylife.game.view.model.ShelfItemUiModel
+import ru.dekabrsky.easylife.game.view.presenter.MainRoomPresenter
+import ru.dekabrsky.easylife.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
 
 

@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.di
+package ru.dekabrsky.easylife.basic.di
 
 import toothpick.Scope
 import toothpick.Toothpick
@@ -13,7 +13,7 @@ fun module(func: (Module.() -> (Unit))) = object : Module() {
 fun Scope.inject(any: Any) = Toothpick.inject(any, this)
 
 fun Scope.module(func: Module.() -> Unit): Scope {
-    installModules(ru.dekabrsky.italks.basic.di.module { func(this) })
+    installModules(ru.dekabrsky.easylife.basic.di.module { func(this) })
     return this
 }
 

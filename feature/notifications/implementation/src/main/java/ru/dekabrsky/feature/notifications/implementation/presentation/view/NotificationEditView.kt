@@ -3,7 +3,7 @@ package ru.dekabrsky.feature.notifications.implementation.presentation.view
 import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.OneExecution
 import org.threeten.bp.LocalDate
-import ru.dekabrsky.italks.basic.fragments.BasicView
+import ru.dekabrsky.easylife.basic.fragments.BasicView
 
 @AddToEndSingle
 interface NotificationEditView: BasicView {

@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.navigation.router
+package ru.dekabrsky.easylife.basic.navigation.router
 
 import ru.terrakok.cicerone.result.ResultListener
 

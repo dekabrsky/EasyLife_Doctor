@@ -1,11 +1,11 @@
 package ru.dekabrsky.login.presentation.util
 
 import android.content.Intent
+import ru.dekabrsky.easylife.basic.fragments.BasicView
+import ru.dekabrsky.easylife.basic.resources.ResourceProvider
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.feature.loginCommon.presentation.model.PatientMedicinesDiff
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
-import ru.dekabrsky.italks.basic.fragments.BasicView
-import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import ru.dekabrsky.login.R
 import ru.dekabrsky.login.presentation.model.Extras
 

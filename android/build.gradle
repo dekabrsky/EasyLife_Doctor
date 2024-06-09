@@ -19,7 +19,7 @@ android {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
-        applicationId "ru.dekabrsky.italks"
+        applicationId "ru.dekabrsky.easylife"
         minSdkVersion 23
         targetSdkVersion 33
         versionCode 1

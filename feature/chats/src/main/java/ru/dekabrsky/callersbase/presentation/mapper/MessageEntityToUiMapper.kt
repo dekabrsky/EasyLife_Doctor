@@ -5,8 +5,8 @@ import org.threeten.bp.LocalDateTime
 import ru.dekabrsky.callersbase.domain.model.ChatEntity
 import ru.dekabrsky.callersbase.domain.model.MessageEntity
 import ru.dekabrsky.callersbase.presentation.model.ChatMessageUiModel
-import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiDateTime
-import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiTime
+import ru.dekabrsky.easylife.basic.dateTime.formatDateTimeToUiDateTime
+import ru.dekabrsky.easylife.basic.dateTime.formatDateTimeToUiTime
 import javax.inject.Inject
 
 class MessageEntityToUiMapper @Inject constructor() {

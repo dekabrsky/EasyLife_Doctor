@@ -1,10 +1,10 @@
-package ru.dekabrsky.italks.game.data.repository
+package ru.dekabrsky.easylife.game.data.repository
 
 import io.reactivex.Single
-import ru.dekabrsky.italks.game.data.api.GameApi
-import ru.dekabrsky.italks.game.data.cache.GameConfigsCache
-import ru.dekabrsky.italks.game.data.mapper.GameResponseToEntityMapper
-import ru.dekabrsky.italks.game.data.model.GameProgressRequest
+import ru.dekabrsky.easylife.game.data.api.GameApi
+import ru.dekabrsky.easylife.game.data.cache.GameConfigsCache
+import ru.dekabrsky.easylife.game.data.mapper.GameResponseToEntityMapper
+import ru.dekabrsky.easylife.game.data.model.GameProgressRequest
 import javax.inject.Inject
 
 class GameRepository @Inject constructor(

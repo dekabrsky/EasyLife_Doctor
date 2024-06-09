@@ -6,8 +6,8 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import ru.dekabrsky.easylife.basic.resources.ResourceProvider
 import ru.dekabrsky.feature.notifications.api.R
-import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import javax.inject.Inject
 
 class NotificationChannelManager @Inject constructor(

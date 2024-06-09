@@ -1,7 +1,7 @@
-package ru.dekabrsky.italks.activity.provider
+package ru.dekabrsky.easylife.activity.provider
 
-import ru.dekabrsky.italks.basic.di.AppActivityProvider
-import ru.dekabrsky.italks.activity.view.MainActivity
+import ru.dekabrsky.easylife.activity.view.MainActivity
+import ru.dekabrsky.easylife.basic.di.AppActivityProvider
 import javax.inject.Inject
 import javax.inject.Provider
 

@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.network.model
+package ru.dekabrsky.easylife.basic.network.model
 
 import java.io.Serializable
 

@@ -1,9 +1,9 @@
-package ru.dekabrsky.italks.basic.navigation
+package ru.dekabrsky.easylife.basic.navigation
 
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import ru.dekabrsky.italks.basic.navigation.router.AppRouter
+import ru.dekabrsky.easylife.basic.navigation.router.AppRouter
 import ru.terrakok.cicerone.commands.Command
 import ru.terrakok.cicerone.commands.Forward
 import ru.terrakok.cicerone.commands.Replace

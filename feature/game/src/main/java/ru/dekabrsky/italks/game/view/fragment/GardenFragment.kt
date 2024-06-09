@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.view.fragment
+package ru.dekabrsky.easylife.game.view.fragment
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,16 +7,16 @@ import android.view.View
 import gree.uniq.minigameleaves.AndroidLauncher
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.game.GameActivity
-import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.databinding.GardenFragmentBinding
-import ru.dekabrsky.italks.game.view.GardenView
-import ru.dekabrsky.italks.game.view.presenter.GardenPresenter
-import ru.dekabrsky.italks.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.game.GameActivity
+import ru.dekabrsky.easylife.game.R
+import ru.dekabrsky.easylife.game.databinding.GardenFragmentBinding
+import ru.dekabrsky.easylife.game.view.GardenView
+import ru.dekabrsky.easylife.game.view.presenter.GardenPresenter
+import ru.dekabrsky.easylife.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
 
 class GardenFragment : BasicFragment(), GardenView {

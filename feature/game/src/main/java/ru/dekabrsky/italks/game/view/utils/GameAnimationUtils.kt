@@ -1,9 +1,9 @@
-package ru.dekabrsky.italks.game.view.utils
+package ru.dekabrsky.easylife.game.view.utils
 
 import android.content.Context
 import android.view.View
 import android.view.animation.AnimationUtils
-import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.easylife.game.R
 
 object GameAnimationUtils {
     fun View.setOnClickListenerWithAnimation(context: Context, onClick: () -> Unit) {

@@ -1,6 +1,6 @@
-package ru.dekabrsky.italks.game.data.domain.interactor
+package ru.dekabrsky.easylife.game.data.domain.interactor
 
-import ru.dekabrsky.italks.game.data.repository.GameRepository
+import ru.dekabrsky.easylife.game.data.repository.GameRepository
 import javax.inject.Inject
 
 class GameInteractor @Inject constructor(

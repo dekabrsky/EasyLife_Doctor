@@ -1,9 +1,8 @@
-package ru.dekabrsky.italks.game.view
+package ru.dekabrsky.easylife.game.view
 
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle
-import moxy.viewstate.strategy.alias.OneExecution
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
 
 @AddToEndSingle
 interface GameView : MvpView {

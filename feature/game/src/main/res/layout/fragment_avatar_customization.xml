@@ -39,7 +39,7 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintHeight_percent="0.5" />
 
-    <ru.dekabrsky.italks.game.avatarCustomization.view.widget.CatWidget
+    <ru.dekabrsky.easylife.game.avatarCustomization.view.widget.CatWidget
         android:id="@+id/avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

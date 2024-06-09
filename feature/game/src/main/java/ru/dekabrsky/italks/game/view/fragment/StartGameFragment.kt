@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.view.fragment
+package ru.dekabrsky.easylife.game.view.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,15 +6,15 @@ import android.view.View
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
-import ru.dekabrsky.italks.basic.di.module
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.databinding.StartGameFragmentBinding
-import ru.dekabrsky.italks.game.view.GameView
-import ru.dekabrsky.italks.game.view.presenter.GameStartPresenter
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.di.module
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.game.R
+import ru.dekabrsky.easylife.game.databinding.StartGameFragmentBinding
+import ru.dekabrsky.easylife.game.view.GameView
+import ru.dekabrsky.easylife.game.view.presenter.GameStartPresenter
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
 
 class StartGameFragment : BasicFragment(), GameView {

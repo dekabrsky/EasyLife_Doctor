@@ -1,10 +1,14 @@
-package ru.dekabrsky.italks.basic.navigation.router
+package ru.dekabrsky.easylife.basic.navigation.router
 
-import ru.dekabrsky.italks.basic.navigation.*
-import java.io.Serializable
+import ru.dekabrsky.easylife.basic.navigation.AddScreen
+import ru.dekabrsky.easylife.basic.navigation.NavigateToStart
+import ru.dekabrsky.easylife.basic.navigation.NewData
+import ru.dekabrsky.easylife.basic.navigation.PresetScreen
+import ru.dekabrsky.easylife.basic.navigation.ToggleScreen
 import ru.terrakok.cicerone.Router
 import ru.terrakok.cicerone.commands.Back
 import ru.terrakok.cicerone.commands.Forward
+import java.io.Serializable
 
 @Suppress("SpreadOperator", "ArrayPrimitive")
 abstract class AppRouter : Router() {

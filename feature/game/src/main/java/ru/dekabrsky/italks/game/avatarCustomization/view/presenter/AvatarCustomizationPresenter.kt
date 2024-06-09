@@ -1,15 +1,15 @@
-package ru.dekabrsky.italks.game.avatarCustomization.view.presenter
+package ru.dekabrsky.easylife.game.avatarCustomization.view.presenter
 
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.avatarCustomization.domain.model.Glasses
-import ru.dekabrsky.italks.game.avatarCustomization.domain.model.Hat
-import ru.dekabrsky.italks.game.avatarCustomization.domain.model.Tie
-import ru.dekabrsky.italks.game.avatarCustomization.utils.getCatSettingsFromPrefs
-import ru.dekabrsky.italks.game.avatarCustomization.view.fragment.AvatarCustomizationView
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.game.R
+import ru.dekabrsky.easylife.game.avatarCustomization.domain.model.Glasses
+import ru.dekabrsky.easylife.game.avatarCustomization.domain.model.Hat
+import ru.dekabrsky.easylife.game.avatarCustomization.domain.model.Tie
+import ru.dekabrsky.easylife.game.avatarCustomization.utils.getCatSettingsFromPrefs
+import ru.dekabrsky.easylife.game.avatarCustomization.view.fragment.AvatarCustomizationView
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import javax.inject.Inject
 

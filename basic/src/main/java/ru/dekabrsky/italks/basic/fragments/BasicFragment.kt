@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.fragments
+package ru.dekabrsky.easylife.basic.fragments
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -18,8 +18,8 @@ import androidx.appcompat.widget.Toolbar
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import ru.dekabrsky.italks.basic.R
-import ru.dekabrsky.italks.basic.logging.log
+import ru.dekabrsky.easylife.basic.R
+import ru.dekabrsky.easylife.basic.logging.log
 
 
 abstract class BasicFragment : MvpFragmentImpl(), BasicView {

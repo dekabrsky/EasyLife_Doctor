@@ -1,7 +1,7 @@
-package ru.dekabrsky.italks.profile.data.repository
+package ru.dekabrsky.easylife.profile.data.repository
 
-import ru.dekabrsky.italks.profile.data.api.ProfileApi
-import ru.dekabrsky.italks.profile.data.mapper.CodeResponseToEntityMapper
+import ru.dekabrsky.easylife.profile.data.api.ProfileApi
+import ru.dekabrsky.easylife.profile.data.mapper.CodeResponseToEntityMapper
 import javax.inject.Inject
 
 class PatientRepository @Inject constructor(

@@ -4,11 +4,11 @@ import main.utils.isBlankOrEmpty
 import ru.dekabrsky.common.domain.interactor.ContactsInteractor
 import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.domain.model.PatientCodeEntity
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.withLoadingView
-import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.network.utils.ServerErrorHandler
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.basic.rx.withLoadingView
+import ru.dekabrsky.easylife.flows.Flows
 import ru.dekabrsky.scenarios.domain.interactor.DoctorPatientsInteractorImpl
 import ru.dekabrsky.scenarios.presentation.model.PatientInvitationUiModel
 import ru.dekabrsky.scenarios.presentation.model.PatientsCodesScreenArgs

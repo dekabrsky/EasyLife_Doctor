@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.navigation
+package ru.dekabrsky.easylife.basic.navigation
 
 import android.content.Context
 import android.content.Intent

@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.presenter
+package ru.dekabrsky.easylife.basic.presenter
 
 import io.reactivex.Completable
 import io.reactivex.Observable
@@ -7,9 +7,9 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import moxy.MvpPresenter
 import moxy.MvpView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.rx.RxDisposer
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.rx.RxDisposer
+import ru.dekabrsky.easylife.basic.rx.RxSchedulers
 
 abstract class BasicPresenter<T : MvpView> constructor(private val router: FlowRouter? = null) :
     MvpPresenter<T>() {

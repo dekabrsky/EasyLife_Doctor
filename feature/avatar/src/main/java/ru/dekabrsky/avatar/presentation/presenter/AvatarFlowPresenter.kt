@@ -1,9 +1,9 @@
 package ru.dekabrsky.avatar.presentation.presenter
 
 import ru.dekabrsky.avatar.presentation.view.AvatarFlowView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.flows.Flows
 import javax.inject.Inject
 
 class AvatarFlowPresenter  @Inject constructor(

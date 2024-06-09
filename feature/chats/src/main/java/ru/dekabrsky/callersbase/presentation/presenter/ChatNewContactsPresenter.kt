@@ -7,12 +7,12 @@ import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
 import ru.dekabrsky.callersbase.presentation.model.ChatFlowCache
 import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 import ru.dekabrsky.callersbase.presentation.view.NewContactsListView
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.network.utils.ServerErrorHandler
+import ru.dekabrsky.easylife.basic.rx.withCustomLoadingViewIf
+import ru.dekabrsky.easylife.flows.Flows
 import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
-import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
-import ru.dekabrsky.italks.flows.Flows
 import javax.inject.Inject
 
 class ChatNewContactsPresenter @Inject constructor(

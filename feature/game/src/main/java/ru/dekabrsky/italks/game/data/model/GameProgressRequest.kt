@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.data.model
+package ru.dekabrsky.easylife.game.data.model
 
 import androidx.annotation.Keep
 

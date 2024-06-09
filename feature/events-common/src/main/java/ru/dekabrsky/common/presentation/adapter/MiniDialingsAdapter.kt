@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import main.utils.visible
 import ru.dekabrsky.common.presentation.model.TakingMedicationsUiModel
+import ru.dekabrsky.easylife.uikit.databinding.ClickableTitleSubtitleItemBinding
 import ru.dekabrsky.events.common.R
-import ru.dekabrsky.italks.uikit.databinding.ClickableTitleSubtitleItemBinding
 
 class MiniDialingsAdapter(
     private val onItemClick: (TakingMedicationsUiModel) -> Unit

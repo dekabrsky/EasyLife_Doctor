@@ -1,13 +1,13 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.presenter
 
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.network.utils.ServerErrorHandler
+import ru.dekabrsky.easylife.basic.resources.ResourceProvider
 import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.common.utils.NotificationToStringFormatter
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.DoctorNotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.DoctorNotificationsListView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
-import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import javax.inject.Inject
 
 class DoctorNotificationListPresenter @Inject constructor(

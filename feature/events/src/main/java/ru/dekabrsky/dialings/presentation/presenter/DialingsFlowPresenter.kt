@@ -1,9 +1,9 @@
 package ru.dekabrsky.dialings.presentation.presenter
 
-import ru.dekabrsky.dialings.presentation.view.DialingsFlowView
 import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
+import ru.dekabrsky.dialings.presentation.view.DialingsFlowView
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
 import javax.inject.Inject
 
 class DialingsFlowPresenter @Inject constructor(

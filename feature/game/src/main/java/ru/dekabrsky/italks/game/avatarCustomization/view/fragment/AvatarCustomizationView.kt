@@ -1,8 +1,8 @@
-package ru.dekabrsky.italks.game.avatarCustomization.view.fragment
+package ru.dekabrsky.easylife.game.avatarCustomization.view.fragment
 
 import moxy.viewstate.strategy.alias.AddToEndSingle
-import ru.dekabrsky.italks.basic.fragments.BasicView
-import ru.dekabrsky.italks.game.avatarCustomization.view.model.CatWidgetSettings
+import ru.dekabrsky.easylife.basic.fragments.BasicView
+import ru.dekabrsky.easylife.game.avatarCustomization.view.model.CatWidgetSettings
 
 @AddToEndSingle
 interface AvatarCustomizationView: BasicView {

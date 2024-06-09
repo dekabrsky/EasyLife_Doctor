@@ -1,17 +1,14 @@
 package ru.dekabrsky.materials.presentation.view
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.italks.basic.di.IntWrapper
-import ru.dekabrsky.italks.basic.di.module
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.di.module
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.scopes.Scopes
 import ru.dekabrsky.materials.R
 import ru.dekabrsky.materials.databinding.FragmentMaterialDetailsBinding
 import ru.dekabrsky.materials.presentation.model.MaterialDetailsUiModel

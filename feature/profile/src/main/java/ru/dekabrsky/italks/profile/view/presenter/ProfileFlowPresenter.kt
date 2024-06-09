@@ -1,9 +1,9 @@
-package ru.dekabrsky.italks.profile.view.presenter
+package ru.dekabrsky.easylife.profile.view.presenter
 
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.profile.view.ProfileFlowView
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.profile.view.ProfileFlowView
 import javax.inject.Inject
 
 class ProfileFlowPresenter @Inject constructor(

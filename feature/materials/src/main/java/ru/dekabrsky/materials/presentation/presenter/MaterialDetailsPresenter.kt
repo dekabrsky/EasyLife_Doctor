@@ -1,7 +1,7 @@
 package ru.dekabrsky.materials.presentation.presenter
 
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
 import ru.dekabrsky.materials.presentation.model.MaterialDetailsUiModel
 import ru.dekabrsky.materials.presentation.view.MaterialDetailsView
 import javax.inject.Inject

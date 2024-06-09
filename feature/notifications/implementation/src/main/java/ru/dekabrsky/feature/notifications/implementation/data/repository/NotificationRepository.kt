@@ -1,10 +1,10 @@
 package ru.dekabrsky.feature.notifications.implementation.data.repository
 
 import androidx.room.RoomDatabase
+import ru.dekabrsky.easylife.basic.di.NotificationDatabaseQualifier
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.data.database.NotificationDatabase
 import ru.dekabrsky.feature.notifications.implementation.data.mapper.NotificationDbToEntityMapper
-import ru.dekabrsky.italks.basic.di.NotificationDatabaseQualifier
 import javax.inject.Inject
 
 class NotificationRepository @Inject constructor(

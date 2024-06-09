@@ -1,7 +1,7 @@
-package ru.dekabrsky.italks.di.provider.network
+package ru.dekabrsky.easylife.di.provider.network
 
-import okhttp3.*
-import java.util.*
+import okhttp3.CookieJar
+import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Provider

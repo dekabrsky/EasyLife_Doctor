@@ -3,15 +3,15 @@ package ru.dekabrsky.feature.notifications.implementation.data.mapper
 import main.utils.isTrue
 import main.utils.orZero
 import org.threeten.bp.DayOfWeek
+import ru.dekabrsky.easylife.basic.dateTime.formatHourAndMinute
+import ru.dekabrsky.easylife.basic.dateTime.hourAndMinuteFromString
+import ru.dekabrsky.easylife.basic.dateTime.tryParseServerDate
 import ru.dekabrsky.feature.notifications.common.domain.model.DosageUnit
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationDurationEntity
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationMedicineEntity
 import ru.dekabrsky.feature.notifications.implementation.data.model.NotificationRequest
 import ru.dekabrsky.feature.notifications.implementation.data.model.NotificationResponse
-import ru.dekabrsky.italks.basic.dateTime.formatHourAndMinute
-import ru.dekabrsky.italks.basic.dateTime.hourAndMinuteFromString
-import ru.dekabrsky.italks.basic.dateTime.tryParseServerDate
 import javax.inject.Inject
 
 class NotificationResponseToEntityMapper @Inject constructor() {

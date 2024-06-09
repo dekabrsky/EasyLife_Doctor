@@ -1,6 +1,6 @@
-package ru.dekabrsky.italks.basic.navigation.di
+package ru.dekabrsky.easylife.basic.navigation.di
 
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
 import ru.terrakok.cicerone.Cicerone
 import ru.terrakok.cicerone.NavigatorHolder
 import toothpick.Scope

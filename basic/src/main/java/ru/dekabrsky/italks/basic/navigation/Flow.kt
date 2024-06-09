@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.navigation
+package ru.dekabrsky.easylife.basic.navigation
 
 import java.io.Serializable
 

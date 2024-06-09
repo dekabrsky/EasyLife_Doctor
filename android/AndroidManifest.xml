@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.mygdx.game">
 
     <uses-feature
@@ -27,7 +26,7 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name="ru.dekabrsky.italks.activity.view.MainActivity"
+            android:name="ru.dekabrsky.easylife.activity.view.MainActivity"
             android:configChanges="keyboard|keyboardHidden|navigation|orientation|screenSize|screenLayout"
             android:exported="true"
             android:screenOrientation="portrait">
@@ -38,7 +37,7 @@
         </activity>
 
         <activity
-            android:name="ru.dekabrsky.italks.game.GameActivity"
+            android:name="ru.dekabrsky.easylife.game.GameActivity"
             android:screenOrientation="portrait" />
 
         <receiver

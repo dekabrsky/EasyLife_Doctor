@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.network.utils
+package ru.dekabrsky.easylife.basic.network.utils
 
 enum class Direction {
     ASC,

@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.tabs.presentation.fragment
+package ru.dekabrsky.easylife.tabs.presentation.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -6,20 +6,20 @@ import main.utils.setBoolVisibility
 import main.utils.visible
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.italks.basic.di.inject
-import ru.dekabrsky.italks.basic.di.module
-import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
-import ru.dekabrsky.italks.basic.navigation.FlowFragmentProvider
-import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
-import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
-import ru.dekabrsky.italks.basic.navigation.router.AppRouter
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.feature.tabs.R
-import ru.dekabrsky.italks.feature.tabs.databinding.TabsFragmentBinding
-import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
-import ru.dekabrsky.italks.tabs.presentation.presenter.TabsFlowPresenter
-import ru.dekabrsky.italks.tabs.presentation.view.TabsFlowView
+import ru.dekabrsky.easylife.basic.di.inject
+import ru.dekabrsky.easylife.basic.di.module
+import ru.dekabrsky.easylife.basic.fragments.BasicFlowFragment
+import ru.dekabrsky.easylife.basic.navigation.FlowFragmentProvider
+import ru.dekabrsky.easylife.basic.navigation.FragmentFlowNavigator
+import ru.dekabrsky.easylife.basic.navigation.di.moduleFlow
+import ru.dekabrsky.easylife.basic.navigation.router.AppRouter
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.feature.tabs.R
+import ru.dekabrsky.easylife.feature.tabs.databinding.TabsFragmentBinding
+import ru.dekabrsky.easylife.scopes.Scopes
+import ru.dekabrsky.easylife.tabs.presentation.model.TabsFlowArgs
+import ru.dekabrsky.easylife.tabs.presentation.presenter.TabsFlowPresenter
+import ru.dekabrsky.easylife.tabs.presentation.view.TabsFlowView
 import toothpick.Toothpick
 import javax.inject.Inject
 

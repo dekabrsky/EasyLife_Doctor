@@ -1,17 +1,17 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.presenter
 
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.network.utils.ServerErrorHandler
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.basic.rx.withCustomLoadingViewIf
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.scopes.Scopes
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationMedicineEntity
 import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
 import ru.dekabrsky.feature.notifications.common.utils.NotificationToStringFormatter
 import ru.dekabrsky.feature.notifications.implementation.domain.interactor.INotificationInteractor
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationsListView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.withCustomLoadingViewIf
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.scopes.Scopes
 
 abstract class BaseNotificationListPresenter<T: NotificationsListView>(
     private val router: FlowRouter,

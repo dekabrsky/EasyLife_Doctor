@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.view.model
+package ru.dekabrsky.easylife.game.view.model
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -18,7 +18,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
-import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.easylife.game.R
 import java.util.concurrent.CopyOnWriteArrayList
 
 @Suppress("MagicNumber")

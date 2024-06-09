@@ -13,9 +13,9 @@ import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.databinding.FragmentDialingListBinding
 import ru.dekabrsky.dialings.presentation.adapter.DialingListAdapter
 import ru.dekabrsky.dialings.presentation.presenter.DialingsListPresenter
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
 
 class DialingsListFragment : BasicFragment(), DialingsListView {

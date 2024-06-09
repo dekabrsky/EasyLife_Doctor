@@ -1,11 +1,11 @@
-package ru.dekabrsky.italks.game.avatarCustomization.view.widget
+package ru.dekabrsky.easylife.game.avatarCustomization.view.widget
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
-import ru.dekabrsky.italks.game.avatarCustomization.view.model.CatWidgetSettings
-import ru.dekabrsky.italks.game.databinding.WidgetCatBinding
+import ru.dekabrsky.easylife.game.avatarCustomization.view.model.CatWidgetSettings
+import ru.dekabrsky.easylife.game.databinding.WidgetCatBinding
 
 class CatWidget @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

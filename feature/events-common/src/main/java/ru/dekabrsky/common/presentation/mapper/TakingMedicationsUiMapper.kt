@@ -3,7 +3,7 @@ package ru.dekabrsky.common.presentation.mapper
 import org.threeten.bp.LocalDateTime
 import ru.dekabrsky.common.domain.model.DialingEntity
 import ru.dekabrsky.common.presentation.model.TakingMedicationsUiModel
-import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiDateTime
+import ru.dekabrsky.easylife.basic.dateTime.formatDateTimeToUiDateTime
 import javax.inject.Inject
 import kotlin.random.Random
 

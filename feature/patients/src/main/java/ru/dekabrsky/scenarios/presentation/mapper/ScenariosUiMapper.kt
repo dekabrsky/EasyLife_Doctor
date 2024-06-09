@@ -1,7 +1,7 @@
 package ru.dekabrsky.scenarios.presentation.mapper
 
 import org.threeten.bp.LocalDateTime
-import ru.dekabrsky.italks.basic.dateTime.formatDateToUiDate
+import ru.dekabrsky.easylife.basic.dateTime.formatDateToUiDate
 import ru.dekabrsky.common.presentation.model.ScenarioItemUiModel
 import javax.inject.Inject
 import kotlin.random.Random

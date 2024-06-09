@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.view.model
+package ru.dekabrsky.easylife.game.view.model
 
 import android.content.Context
 import android.content.res.Resources
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
-import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.easylife.game.R
 
 class GridAdapter(private val mContext: Context, private val mCols: Int, private val mRows: Int) : BaseAdapter() {
 

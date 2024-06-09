@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.navigation;
+package ru.dekabrsky.easylife.basic.navigation;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

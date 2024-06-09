@@ -13,10 +13,10 @@ import ru.dekabrsky.avatar.R
 import ru.dekabrsky.avatar.databinding.WidgetAvatarBinding
 import ru.dekabrsky.avatar.domain.AvatarType
 import ru.dekabrsky.avatar.presentation.utils.AvatarUriProvider
-import ru.dekabrsky.italks.basic.di.inject
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.di.inject
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.scopes.Scopes
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import toothpick.Toothpick
 import javax.inject.Inject

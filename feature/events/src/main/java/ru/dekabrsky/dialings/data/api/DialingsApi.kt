@@ -8,8 +8,8 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import ru.dekabrsky.dialings.data.model.DialingResultResponse
 import ru.dekabrsky.dialings.data.model.DialingsResponse
-import ru.dekabrsky.italks.basic.network.utils.Direction
-import ru.dekabrsky.italks.basic.network.utils.SortVariants
+import ru.dekabrsky.easylife.basic.network.utils.Direction
+import ru.dekabrsky.easylife.basic.network.utils.SortVariants
 
 interface DialingsApi {
     @GET("dialing")

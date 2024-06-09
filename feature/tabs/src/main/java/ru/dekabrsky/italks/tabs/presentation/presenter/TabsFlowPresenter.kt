@@ -1,18 +1,18 @@
-package ru.dekabrsky.italks.tabs.presentation.presenter
+package ru.dekabrsky.easylife.tabs.presentation.presenter
 
 import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
 import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
 import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
-import ru.dekabrsky.italks.basic.navigation.Flow
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.feature.tabs.R
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.italks.tabs.presentation.model.TabsFlowArgs
-import ru.dekabrsky.italks.tabs.presentation.view.TabsFlowView
+import ru.dekabrsky.easylife.basic.navigation.Flow
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.feature.tabs.R
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.scopes.Scopes
+import ru.dekabrsky.easylife.tabs.presentation.model.TabsFlowArgs
+import ru.dekabrsky.easylife.tabs.presentation.view.TabsFlowView
 import javax.inject.Inject
 
 class TabsFlowPresenter @Inject constructor(

@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.resources
+package ru.dekabrsky.easylife.basic.resources
 
 import android.content.Context
 import android.graphics.Typeface

@@ -1,7 +1,7 @@
-package ru.dekabrsky.italks.game.avatarCustomization.domain.model
+package ru.dekabrsky.easylife.game.avatarCustomization.domain.model
 
 import androidx.annotation.DrawableRes
-import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.easylife.game.R
 
 interface Cloth {
     val drawableRes: Int?

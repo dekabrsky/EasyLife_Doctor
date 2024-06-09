@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.logging
+package ru.dekabrsky.easylife.basic.logging
 
 import android.util.Log
 import androidx.fragment.app.Fragment

@@ -1,7 +1,7 @@
-package ru.dekabrsky.italks.game.view.mapper
+package ru.dekabrsky.easylife.game.view.mapper
 
-import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.view.model.ShelfItemUiModel
+import ru.dekabrsky.easylife.game.R
+import ru.dekabrsky.easylife.game.view.model.ShelfItemUiModel
 import javax.inject.Inject
 
 class ShelfItemsUiMapper @Inject constructor() {

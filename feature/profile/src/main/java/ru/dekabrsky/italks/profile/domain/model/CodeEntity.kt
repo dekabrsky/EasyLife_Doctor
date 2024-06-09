@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.profile.domain.model
+package ru.dekabrsky.easylife.profile.domain.model
 
 class CodeEntity(
     val code: Int

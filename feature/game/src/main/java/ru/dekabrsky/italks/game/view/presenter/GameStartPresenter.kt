@@ -1,15 +1,15 @@
-package ru.dekabrsky.italks.game.view.presenter
+package ru.dekabrsky.easylife.game.view.presenter
 
 import ru.dekabrsky.analytics.AnalyticsSender
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.game.R
+import ru.dekabrsky.easylife.game.view.GameView
+import ru.dekabrsky.easylife.game.view.cache.GameFlowCache
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
-import ru.dekabrsky.italks.game.view.GameView
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.common.utils.NotificationToStringFormatter
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.view.cache.GameFlowCache
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs

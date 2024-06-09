@@ -1,7 +1,7 @@
-package ru.dekabrsky.italks.game.data.di.provider
+package ru.dekabrsky.easylife.game.data.di.provider
 
 import retrofit2.Retrofit
-import ru.dekabrsky.italks.game.data.api.GameApi
+import ru.dekabrsky.easylife.game.data.api.GameApi
 import javax.inject.Inject
 import javax.inject.Provider
 

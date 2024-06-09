@@ -1,9 +1,9 @@
-package ru.dekabrsky.italks.testerSettings.presentation.presenter
+package ru.dekabrsky.easylife.testerSettings.presentation.presenter
 
-import ru.dekabrsky.italks.basic.di.ServerEndpoint
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.testerSettings.presentation.view.TesterSettingsView
+import ru.dekabrsky.easylife.basic.di.ServerEndpoint
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.testerSettings.presentation.view.TesterSettingsView
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import javax.inject.Inject
 

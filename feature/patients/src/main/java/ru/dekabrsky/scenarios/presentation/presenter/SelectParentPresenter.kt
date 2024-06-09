@@ -1,8 +1,8 @@
 package ru.dekabrsky.scenarios.presentation.presenter
 
 import ru.dekabrsky.common.domain.model.ContactEntity
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
 import ru.dekabrsky.scenarios.presentation.model.SelectParentArgs
 import ru.dekabrsky.scenarios.presentation.view.SelectParentView
 import javax.inject.Inject

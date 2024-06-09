@@ -1,8 +1,8 @@
 package ru.dekabrsky.callersbase.data.model
 
 import androidx.annotation.Keep
-import ru.dekabrsky.italks.basic.paging.data.response.Pageable
-import ru.dekabrsky.italks.basic.paging.data.response.Sort
+import ru.dekabrsky.easylife.basic.paging.data.response.Pageable
+import ru.dekabrsky.easylife.basic.paging.data.response.Sort
 
 @Suppress("LongParameterList")
 @Keep

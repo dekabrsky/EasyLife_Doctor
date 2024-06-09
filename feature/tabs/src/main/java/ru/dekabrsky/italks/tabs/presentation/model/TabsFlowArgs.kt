@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.tabs.presentation.model
+package ru.dekabrsky.easylife.tabs.presentation.model
 
 import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import java.io.Serializable

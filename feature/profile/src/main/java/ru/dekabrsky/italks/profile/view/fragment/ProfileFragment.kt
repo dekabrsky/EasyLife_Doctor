@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.profile.view.fragment
+package ru.dekabrsky.easylife.profile.view.fragment
 
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -13,14 +13,14 @@ import androidx.core.content.ContextCompat
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.avatar.domain.AvatarType
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.profile.R
-import ru.dekabrsky.italks.profile.databinding.FragmentProfileBinding
-import ru.dekabrsky.italks.profile.view.ProfileView
-import ru.dekabrsky.italks.profile.view.presenter.ProfilePresenter
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.profile.R
+import ru.dekabrsky.easylife.profile.databinding.FragmentProfileBinding
+import ru.dekabrsky.easylife.profile.view.ProfileView
+import ru.dekabrsky.easylife.profile.view.presenter.ProfilePresenter
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
 
 class ProfileFragment : BasicFragment(), ProfileView {

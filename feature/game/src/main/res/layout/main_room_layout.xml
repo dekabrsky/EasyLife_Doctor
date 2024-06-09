@@ -25,7 +25,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 
-        <ru.dekabrsky.italks.game.avatarCustomization.view.widget.CatWidget
+        <ru.dekabrsky.easylife.game.avatarCustomization.view.widget.CatWidget
             android:id="@+id/avatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

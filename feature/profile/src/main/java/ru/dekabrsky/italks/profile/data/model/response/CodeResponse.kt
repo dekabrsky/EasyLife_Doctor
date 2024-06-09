@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.profile.data.model.response
+package ru.dekabrsky.easylife.profile.data.model.response
 
 import androidx.annotation.Keep
 

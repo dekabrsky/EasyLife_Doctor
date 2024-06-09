@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.dateTime
+package ru.dekabrsky.easylife.basic.dateTime
 
 import org.threeten.bp.LocalDate
 import org.threeten.bp.LocalDateTime

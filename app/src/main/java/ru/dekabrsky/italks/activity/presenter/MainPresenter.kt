@@ -1,12 +1,12 @@
-package ru.dekabrsky.italks.activity.presenter
+package ru.dekabrsky.easylife.activity.presenter
 
 import io.reactivex.Single
 import io.reactivex.disposables.Disposable
+import ru.dekabrsky.easylife.activity.view.MainView
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.flows.Flows
 import ru.dekabrsky.feature.loginCommon.presentation.model.TokenCache
-import ru.dekabrsky.italks.activity.view.MainView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.login.domain.interactor.LoginInteractorImpl
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject

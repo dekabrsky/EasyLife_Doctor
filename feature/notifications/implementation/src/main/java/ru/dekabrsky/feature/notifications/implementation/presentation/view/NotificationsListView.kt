@@ -1,8 +1,8 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.view
 
 import moxy.viewstate.strategy.alias.AddToEndSingle
+import ru.dekabrsky.easylife.basic.fragments.BasicView
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
-import ru.dekabrsky.italks.basic.fragments.BasicView
 
 @AddToEndSingle
 interface NotificationsListView: BasicView {

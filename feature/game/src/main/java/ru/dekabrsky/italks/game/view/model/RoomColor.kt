@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.view.model
+package ru.dekabrsky.easylife.game.view.model
 
 import android.content.Context
 import android.text.Spannable
@@ -6,7 +6,7 @@ import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
-import ru.dekabrsky.italks.game.R
+import ru.dekabrsky.easylife.game.R
 
 enum class RoomColor(val rusName: String, @ColorRes val res: Int) {
     Pink("Розовый", R.color.wall_color_pink),

@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.fragments
+package ru.dekabrsky.easylife.basic.fragments
 
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.OneExecution

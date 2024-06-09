@@ -1,20 +1,19 @@
-package ru.dekabrsky.italks.game.view.fragment
+package ru.dekabrsky.easylife.game.view.fragment
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.databinding.FragmentLeavesBinding
-import ru.dekabrsky.italks.game.view.LeavesView
-import ru.dekabrsky.italks.game.view.model.Leaves
-import ru.dekabrsky.italks.game.view.presenter.LeavesPresenter
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.game.R
+import ru.dekabrsky.easylife.game.databinding.FragmentLeavesBinding
+import ru.dekabrsky.easylife.game.view.LeavesView
+import ru.dekabrsky.easylife.game.view.model.Leaves
+import ru.dekabrsky.easylife.game.view.presenter.LeavesPresenter
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
 
 @Suppress("NAME_SHADOWING", "DEPRECATION")

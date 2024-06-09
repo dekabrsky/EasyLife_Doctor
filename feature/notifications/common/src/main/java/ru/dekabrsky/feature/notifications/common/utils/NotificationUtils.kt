@@ -6,10 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.core.app.NotificationCompat
+import ru.dekabrsky.easylife.basic.di.AppActivityProvider
+import ru.dekabrsky.easylife.scopes.Scopes
 import ru.dekabrsky.feature.notifications.api.R
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
-import ru.dekabrsky.italks.basic.di.AppActivityProvider
-import ru.dekabrsky.italks.scopes.Scopes
 import toothpick.Toothpick
 
 //TODO Проверить, работу нескольких уведомлений подряд с разными id

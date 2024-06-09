@@ -10,14 +10,14 @@ import main.utils.setIsCheckedWithoutEffects
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import org.threeten.bp.LocalDate
+import ru.dekabrsky.easylife.basic.di.module
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.databinding.FmtNotificationEditBinding
 import ru.dekabrsky.feature.notifications.implementation.presentation.adapter.MedicineAdapter
 import ru.dekabrsky.feature.notifications.implementation.presentation.presenter.NotificationEditPresenter
-import ru.dekabrsky.italks.basic.di.module
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import toothpick.Toothpick
 
 class NotificationEditFragment(

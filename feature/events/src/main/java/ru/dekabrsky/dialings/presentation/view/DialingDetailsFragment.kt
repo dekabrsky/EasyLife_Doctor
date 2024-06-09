@@ -13,18 +13,19 @@ import moxy.presenter.ProvidePresenter
 import org.eazegraph.lib.models.PieModel
 import org.eazegraph.lib.models.ValueLinePoint
 import org.eazegraph.lib.models.ValueLineSeries
+import ru.dekabrsky.common.domain.model.DialingStatus
+import ru.dekabrsky.common.presentation.model.DialingUiModel
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.databinding.NewFragmentDialingDetailsBinding
 import ru.dekabrsky.dialings.presentation.presenter.DialingDetailsPresenter
-import ru.dekabrsky.common.domain.model.DialingStatus
-import ru.dekabrsky.common.presentation.model.DialingUiModel
-import ru.dekabrsky.italks.basic.di.IntWrapper
-import ru.dekabrsky.italks.basic.di.module
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.di.IntWrapper
+import ru.dekabrsky.easylife.basic.di.module
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
-import java.util.*
+import java.util.Calendar
+import java.util.Date
 
 
 class DialingDetailsFragment: BasicFragment(), DialingDetailsView {

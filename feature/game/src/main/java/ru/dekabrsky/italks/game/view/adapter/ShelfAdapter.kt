@@ -1,12 +1,12 @@
-package ru.dekabrsky.italks.game.view.adapter
+package ru.dekabrsky.easylife.game.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.databinding.ItemOnShelfBinding
-import ru.dekabrsky.italks.game.view.model.ShelfItemUiModel
+import ru.dekabrsky.easylife.game.R
+import ru.dekabrsky.easylife.game.databinding.ItemOnShelfBinding
+import ru.dekabrsky.easylife.game.view.model.ShelfItemUiModel
 
 class ShelfAdapter: RecyclerView.Adapter<ShelfAdapter.ShelfItemHolder>() {
 

@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.view.model
+package ru.dekabrsky.easylife.game.view.model
 
 import androidx.annotation.DrawableRes
 

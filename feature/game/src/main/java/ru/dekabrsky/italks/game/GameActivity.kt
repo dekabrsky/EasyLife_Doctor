@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game
+package ru.dekabrsky.easylife.game
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,11 +6,11 @@ import android.widget.Toast
 import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 import io.reactivex.android.schedulers.AndroidSchedulers
-import ru.dekabrsky.italks.basic.di.inject
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
-import ru.dekabrsky.italks.game.data.domain.interactor.GameInteractor
-import ru.dekabrsky.italks.game.view.cache.GameFlowCache
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.di.inject
+import ru.dekabrsky.easylife.basic.rx.RxSchedulers
+import ru.dekabrsky.easylife.game.data.domain.interactor.GameInteractor
+import ru.dekabrsky.easylife.game.view.cache.GameFlowCache
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
 import javax.inject.Inject
 

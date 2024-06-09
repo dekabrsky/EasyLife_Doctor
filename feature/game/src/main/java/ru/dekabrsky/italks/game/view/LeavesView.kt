@@ -1,5 +1,5 @@
-package ru.dekabrsky.italks.game.view
+package ru.dekabrsky.easylife.game.view
 
-import ru.dekabrsky.italks.basic.fragments.BasicView
+import ru.dekabrsky.easylife.basic.fragments.BasicView
 
 interface LeavesView: BasicView

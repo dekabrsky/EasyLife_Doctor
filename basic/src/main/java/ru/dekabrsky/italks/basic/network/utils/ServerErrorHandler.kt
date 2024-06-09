@@ -1,13 +1,13 @@
-package ru.dekabrsky.italks.basic.network.utils
+package ru.dekabrsky.easylife.basic.network.utils
 
 import com.google.gson.Gson
 import retrofit2.HttpException
-import ru.dekabrsky.italks.basic.R
-import ru.dekabrsky.italks.basic.fragments.BasicView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.network.model.ErrorResponseBody
-import ru.dekabrsky.italks.basic.network.model.ReLoginType
-import ru.dekabrsky.italks.basic.resources.ResourceProvider
+import ru.dekabrsky.easylife.basic.R
+import ru.dekabrsky.easylife.basic.fragments.BasicView
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.network.model.ErrorResponseBody
+import ru.dekabrsky.easylife.basic.network.model.ReLoginType
+import ru.dekabrsky.easylife.basic.resources.ResourceProvider
 import java.net.UnknownHostException
 import javax.inject.Inject
 

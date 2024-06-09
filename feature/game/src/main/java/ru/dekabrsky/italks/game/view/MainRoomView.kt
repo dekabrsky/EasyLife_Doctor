@@ -1,13 +1,13 @@
-package ru.dekabrsky.italks.game.view
+package ru.dekabrsky.easylife.game.view
 
 import android.text.SpannableString
 import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.OneExecution
-import ru.dekabrsky.italks.basic.fragments.BasicView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.game.avatarCustomization.view.model.CatWidgetSettings
-import ru.dekabrsky.italks.game.view.model.ItemVisibility
-import ru.dekabrsky.italks.game.view.model.ShelfItemUiModel
+import ru.dekabrsky.easylife.basic.fragments.BasicView
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.game.avatarCustomization.view.model.CatWidgetSettings
+import ru.dekabrsky.easylife.game.view.model.ItemVisibility
+import ru.dekabrsky.easylife.game.view.model.ShelfItemUiModel
 
 @AddToEndSingle
 interface MainRoomView: BasicView {

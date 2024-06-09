@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.view
+package ru.dekabrsky.easylife.game.view
 
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.OneExecution

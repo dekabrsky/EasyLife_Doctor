@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.scopes
+package ru.dekabrsky.easylife.scopes
 
 object Scopes {
     const val SCOPE_APP = "SCOPE_APP"

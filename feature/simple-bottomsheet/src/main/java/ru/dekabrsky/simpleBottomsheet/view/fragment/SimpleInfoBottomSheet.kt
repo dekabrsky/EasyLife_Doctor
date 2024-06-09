@@ -14,7 +14,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import main.utils.visible
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
 import ru.dekabrsky.simpleBottomsheet.R
 import ru.dekabrsky.simpleBottomsheet.databinding.SimpleInfobottomSheetFragmentBinding
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs

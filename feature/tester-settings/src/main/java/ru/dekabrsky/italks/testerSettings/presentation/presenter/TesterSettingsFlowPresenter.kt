@@ -1,9 +1,9 @@
-package ru.dekabrsky.italks.testerSettings.presentation.presenter
+package ru.dekabrsky.easylife.testerSettings.presentation.presenter
 
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.testerSettings.presentation.view.TesterSettingsFlowView
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.testerSettings.presentation.view.TesterSettingsFlowView
 import javax.inject.Inject
 
 class TesterSettingsFlowPresenter @Inject constructor(

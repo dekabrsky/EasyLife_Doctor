@@ -1,5 +1,5 @@
 package ru.dekabrsky.scenarios.presentation.view
 
-import ru.dekabrsky.italks.basic.fragments.BasicView
+import ru.dekabrsky.easylife.basic.fragments.BasicView
 
 interface PatientsCodesView: BasicView

@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.viewBinding
+package ru.dekabrsky.easylife.basic.viewBinding
 
 import android.view.View
 import androidx.annotation.IdRes

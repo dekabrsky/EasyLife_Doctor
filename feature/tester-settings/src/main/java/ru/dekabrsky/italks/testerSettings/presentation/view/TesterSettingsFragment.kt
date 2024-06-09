@@ -1,15 +1,15 @@
-package ru.dekabrsky.italks.testerSettings.presentation.view
+package ru.dekabrsky.easylife.testerSettings.presentation.view
 
 import android.os.Bundle
 import android.view.View
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.italks.testerSettings.R
-import ru.dekabrsky.italks.testerSettings.databinding.FmtTesterSettingsBinding
-import ru.dekabrsky.italks.testerSettings.presentation.presenter.TesterSettingsPresenter
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.scopes.Scopes
+import ru.dekabrsky.easylife.testerSettings.R
+import ru.dekabrsky.easylife.testerSettings.databinding.FmtTesterSettingsBinding
+import ru.dekabrsky.easylife.testerSettings.presentation.presenter.TesterSettingsPresenter
 import toothpick.Toothpick
 import javax.inject.Inject
 

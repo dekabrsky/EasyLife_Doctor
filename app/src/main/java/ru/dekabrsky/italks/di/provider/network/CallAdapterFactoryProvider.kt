@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.di.provider.network
+package ru.dekabrsky.easylife.di.provider.network
 
 import io.reactivex.Scheduler
 import retrofit2.CallAdapter

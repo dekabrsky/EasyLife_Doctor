@@ -1,11 +1,11 @@
-package ru.dekabrsky.italks.di.provider.network
+package ru.dekabrsky.easylife.di.provider.network
 
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.dekabrsky.italks.basic.network.urlProvider.UrlProvider
+import ru.dekabrsky.easylife.basic.network.urlProvider.UrlProvider
 import javax.inject.Inject
 import javax.inject.Provider
 

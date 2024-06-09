@@ -8,10 +8,10 @@ import androidx.appcompat.app.AlertDialog
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.common.domain.model.ContactEntity
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.scopes.Scopes
 import ru.dekabrsky.feature.loginCommon.domain.model.UserInfoEntity
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.stats.R
 import ru.dekabrsky.stats.databinding.FragmentAdultProfileBinding
 import ru.dekabrsky.stats.presentation.adapter.ChildrenAdapter

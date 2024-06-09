@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.di.provider.network
+package ru.dekabrsky.easylife.di.provider.network
 
 import okhttp3.CookieJar
 import okhttp3.JavaNetCookieJar

@@ -1,9 +1,9 @@
 package ru.dekabrsky.login.presentation.presenter
 
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.network.model.ReLoginType
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.network.model.ReLoginType
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.flows.Flows
 import ru.dekabrsky.login.presentation.view.LoginFlowView
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import javax.inject.Inject

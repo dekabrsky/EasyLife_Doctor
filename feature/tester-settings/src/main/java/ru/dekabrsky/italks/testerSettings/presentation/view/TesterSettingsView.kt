@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.testerSettings.presentation.view
+package ru.dekabrsky.easylife.testerSettings.presentation.view
 
 import moxy.MvpView
 import moxy.viewstate.strategy.alias.AddToEndSingle

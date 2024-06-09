@@ -6,15 +6,15 @@ import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.presentation.presenter.DialingsFlowPresenter
-import ru.dekabrsky.italks.basic.di.inject
-import ru.dekabrsky.italks.basic.di.module
-import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
-import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
-import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
-import ru.dekabrsky.italks.basic.navigation.router.AppRouter
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
+import ru.dekabrsky.easylife.basic.di.inject
+import ru.dekabrsky.easylife.basic.di.module
+import ru.dekabrsky.easylife.basic.fragments.BasicFlowFragment
+import ru.dekabrsky.easylife.basic.navigation.FragmentFlowNavigator
+import ru.dekabrsky.easylife.basic.navigation.di.moduleFlow
+import ru.dekabrsky.easylife.basic.navigation.router.AppRouter
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.scopes.Scopes
+import ru.dekabrsky.easylife.tabs.presentation.fragment.TabsFlowFragment
 import toothpick.Toothpick
 import javax.inject.Inject
 

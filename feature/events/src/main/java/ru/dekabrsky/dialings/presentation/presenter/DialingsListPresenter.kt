@@ -6,11 +6,11 @@ import ru.dekabrsky.dialings.R
 import ru.dekabrsky.dialings.domain.interactor.DialingsInteractorImpl
 import ru.dekabrsky.dialings.presentation.mapper.DialingListUiMapper
 import ru.dekabrsky.dialings.presentation.view.DialingsListView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.network.utils.Direction
-import ru.dekabrsky.italks.basic.network.utils.SortVariants
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.network.utils.Direction
+import ru.dekabrsky.easylife.basic.network.utils.SortVariants
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.flows.Flows
 import javax.inject.Inject
 
 class DialingsListPresenter @Inject constructor(

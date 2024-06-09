@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.di
+package ru.dekabrsky.easylife.basic.di
 
 interface AppActivityProvider {
     fun get(): Class<*>

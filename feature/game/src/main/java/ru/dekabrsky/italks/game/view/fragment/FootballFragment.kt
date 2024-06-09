@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.view.fragment
+package ru.dekabrsky.easylife.game.view.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -14,13 +14,13 @@ import com.airbnb.lottie.LottieDrawable
 import com.google.android.material.snackbar.Snackbar
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.databinding.FragmentFootballBinding
-import ru.dekabrsky.italks.game.view.FootballView
-import ru.dekabrsky.italks.game.view.presenter.FootballPresenter
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.game.R
+import ru.dekabrsky.easylife.game.databinding.FragmentFootballBinding
+import ru.dekabrsky.easylife.game.view.FootballView
+import ru.dekabrsky.easylife.game.view.presenter.FootballPresenter
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
 
 @Suppress("LongMethod", "CyclomaticComplexMethod", "ComplexCondition", "MaxLineLength", "MagicNumber")

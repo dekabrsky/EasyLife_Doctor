@@ -1,19 +1,14 @@
-package ru.dekabrsky.italks.tabs.presentation.widget
+package ru.dekabrsky.easylife.tabs.presentation.widget
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
-import android.widget.TextView
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import moxy.MvpDelegate
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.italks.feature.tabs.R
-import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.italks.tabs.presentation.presenter.TabsWidgetPresenter
-import ru.dekabrsky.italks.tabs.presentation.view.BottomTabsView
+import ru.dekabrsky.easylife.scopes.Scopes
+import ru.dekabrsky.easylife.tabs.presentation.presenter.TabsWidgetPresenter
+import ru.dekabrsky.easylife.tabs.presentation.view.BottomTabsView
 import toothpick.Toothpick
 
 class NavigationTabsWidget @JvmOverloads constructor(

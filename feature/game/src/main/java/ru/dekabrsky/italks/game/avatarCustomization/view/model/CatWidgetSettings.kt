@@ -1,8 +1,8 @@
-package ru.dekabrsky.italks.game.avatarCustomization.view.model
+package ru.dekabrsky.easylife.game.avatarCustomization.view.model
 
-import ru.dekabrsky.italks.game.avatarCustomization.domain.model.Glasses
-import ru.dekabrsky.italks.game.avatarCustomization.domain.model.Hat
-import ru.dekabrsky.italks.game.avatarCustomization.domain.model.Tie
+import ru.dekabrsky.easylife.game.avatarCustomization.domain.model.Glasses
+import ru.dekabrsky.easylife.game.avatarCustomization.domain.model.Hat
+import ru.dekabrsky.easylife.game.avatarCustomization.domain.model.Tie
 
 class CatWidgetSettings(
     val hat: Hat = Hat.NONE,

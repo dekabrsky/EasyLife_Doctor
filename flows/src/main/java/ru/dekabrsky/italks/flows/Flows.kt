@@ -1,6 +1,6 @@
-package ru.dekabrsky.italks.flows
+package ru.dekabrsky.easylife.flows
 
-import ru.dekabrsky.italks.basic.navigation.Flow
+import ru.dekabrsky.easylife.basic.navigation.Flow
 
 class Flows {
 

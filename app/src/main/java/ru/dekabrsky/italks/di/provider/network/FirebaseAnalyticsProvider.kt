@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.di.provider.network
+package ru.dekabrsky.easylife.di.provider.network
 
 import android.content.Context
 import com.google.firebase.analytics.FirebaseAnalytics

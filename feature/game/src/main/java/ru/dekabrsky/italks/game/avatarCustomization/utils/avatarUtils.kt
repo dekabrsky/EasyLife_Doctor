@@ -1,10 +1,10 @@
-package ru.dekabrsky.italks.game.avatarCustomization.utils
+package ru.dekabrsky.easylife.game.avatarCustomization.utils
 
-import ru.dekabrsky.italks.basic.utils.asEnumOrDefaultNonNull
-import ru.dekabrsky.italks.game.avatarCustomization.domain.model.Glasses
-import ru.dekabrsky.italks.game.avatarCustomization.domain.model.Hat
-import ru.dekabrsky.italks.game.avatarCustomization.domain.model.Tie
-import ru.dekabrsky.italks.game.avatarCustomization.view.model.CatWidgetSettings
+import ru.dekabrsky.easylife.basic.utils.asEnumOrDefaultNonNull
+import ru.dekabrsky.easylife.game.avatarCustomization.domain.model.Glasses
+import ru.dekabrsky.easylife.game.avatarCustomization.domain.model.Hat
+import ru.dekabrsky.easylife.game.avatarCustomization.domain.model.Tie
+import ru.dekabrsky.easylife.game.avatarCustomization.view.model.CatWidgetSettings
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 
 fun getCatSettingsFromPrefs(prefs: SharedPreferencesProvider): CatWidgetSettings {

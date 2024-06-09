@@ -7,6 +7,9 @@ import org.threeten.bp.LocalDate
 import org.threeten.bp.format.TextStyle
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.analytics.AnalyticsUtils
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.basic.rx.withLoadingView
 import ru.dekabrsky.feature.notifications.common.domain.model.DosageUnit
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.common.presentation.model.NotificationsFlowArgs
@@ -17,10 +20,6 @@ import ru.dekabrsky.feature.notifications.implementation.presentation.mapper.Not
 import ru.dekabrsky.feature.notifications.implementation.presentation.model.MedicineItemUiModel
 import ru.dekabrsky.feature.notifications.implementation.presentation.model.NotificationEditUiModel
 import ru.dekabrsky.feature.notifications.implementation.presentation.view.NotificationEditView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
-import ru.dekabrsky.italks.basic.rx.withLoadingView
 import java.util.Locale
 import javax.inject.Inject
 

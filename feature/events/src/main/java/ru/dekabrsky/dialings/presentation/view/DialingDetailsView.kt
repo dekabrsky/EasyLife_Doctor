@@ -2,8 +2,8 @@ package ru.dekabrsky.dialings.presentation.view
 
 import moxy.viewstate.strategy.alias.AddToEndSingle
 import ru.dekabrsky.common.presentation.model.DialingUiModel
-import ru.dekabrsky.italks.basic.fragments.BasicView
-import java.util.*
+import ru.dekabrsky.easylife.basic.fragments.BasicView
+import java.util.Date
 
 @AddToEndSingle
 interface DialingDetailsView: BasicView {

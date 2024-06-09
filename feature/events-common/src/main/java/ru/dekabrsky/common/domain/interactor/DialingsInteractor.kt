@@ -4,8 +4,8 @@ import io.reactivex.Completable
 import io.reactivex.Observable
 import ru.dekabrsky.common.domain.model.DialingEntity
 import ru.dekabrsky.common.domain.model.DialingStatus
-import ru.dekabrsky.italks.basic.network.utils.Direction
-import ru.dekabrsky.italks.basic.network.utils.SortVariants
+import ru.dekabrsky.easylife.basic.network.utils.Direction
+import ru.dekabrsky.easylife.basic.network.utils.SortVariants
 
 interface DialingsInteractor {
     fun getDialings(

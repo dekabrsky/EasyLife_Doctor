@@ -2,8 +2,8 @@ package ru.dekabrsky.ws.implementation2
 
 import com.google.gson.Gson
 import io.reactivex.Observable
-import ru.dekabrsky.italks.basic.di.ServerEndpoint
-import ru.dekabrsky.italks.basic.rx.RxSchedulers
+import ru.dekabrsky.easylife.basic.di.ServerEndpoint
+import ru.dekabrsky.easylife.basic.rx.RxSchedulers
 import ru.dekabrsky.ws.implementation2.data.mapper.WsRequestMapper
 import ru.dekabrsky.ws.implementation2.data.mapper.WsResponseMapper
 import ru.dekabrsky.ws.implementation2.data.model.ChannelType

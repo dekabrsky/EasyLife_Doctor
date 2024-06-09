@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.network.urlProvider
+package ru.dekabrsky.easylife.basic.network.urlProvider
 
 interface UrlProvider {
     fun provideServerUrl(): String

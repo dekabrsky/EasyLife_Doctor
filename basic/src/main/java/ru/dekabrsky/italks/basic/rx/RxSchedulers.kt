@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.rx
+package ru.dekabrsky.easylife.basic.rx
 
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers

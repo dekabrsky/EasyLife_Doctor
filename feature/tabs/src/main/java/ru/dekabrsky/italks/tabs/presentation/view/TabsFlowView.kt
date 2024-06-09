@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.tabs.presentation.view
+package ru.dekabrsky.easylife.tabs.presentation.view
 
 import androidx.annotation.MenuRes
 import moxy.MvpView

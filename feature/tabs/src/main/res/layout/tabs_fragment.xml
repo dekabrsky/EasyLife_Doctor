@@ -40,7 +40,7 @@
                     android:layout_height="1dp"
                     android:background="@color/grey_200"/>
 
-                <ru.dekabrsky.italks.tabs.presentation.widget.NavigationTabsWidget
+                <ru.dekabrsky.easylife.tabs.presentation.widget.NavigationTabsWidget
                     android:id="@+id/navBar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

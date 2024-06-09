@@ -3,14 +3,17 @@ package ru.dekabrsky.callersbase.data.api
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 import ru.dekabrsky.callersbase.data.model.CallersBaseResponse
 import ru.dekabrsky.callersbase.data.model.ChatResponse
 import ru.dekabrsky.callersbase.data.model.ChatsListResponse
 import ru.dekabrsky.callersbase.data.model.ContentResponse
 import ru.dekabrsky.callersbase.data.model.UsersListIdNameResponse
-import ru.dekabrsky.italks.basic.network.utils.SortVariants
-import ru.dekabrsky.italks.basic.network.utils.Direction
+import ru.dekabrsky.easylife.basic.network.utils.Direction
+import ru.dekabrsky.easylife.basic.network.utils.SortVariants
 
 interface ContactsApi {
     @GET("callers-base/header")

@@ -1,8 +1,8 @@
-package ru.dekabrsky.italks.profile.view
+package ru.dekabrsky.easylife.profile.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import ru.dekabrsky.italks.profile.databinding.ActivityDailyBinding
+import ru.dekabrsky.easylife.profile.databinding.ActivityDailyBinding
 
 class DailyActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDailyBinding

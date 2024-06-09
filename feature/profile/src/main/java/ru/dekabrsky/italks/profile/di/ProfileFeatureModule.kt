@@ -1,6 +1,6 @@
-package ru.dekabrsky.italks.profile.di
+package ru.dekabrsky.easylife.profile.di
 
-import ru.dekabrsky.italks.profile.data.api.ProfileApi
+import ru.dekabrsky.easylife.profile.data.api.ProfileApi
 import toothpick.config.Module
 
 class ProfileFeatureModule : Module() {

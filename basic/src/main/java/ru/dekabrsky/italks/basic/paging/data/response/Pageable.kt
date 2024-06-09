@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.basic.paging.data.response
+package ru.dekabrsky.easylife.basic.paging.data.response
 
 data class Pageable(
     val offset: Int,

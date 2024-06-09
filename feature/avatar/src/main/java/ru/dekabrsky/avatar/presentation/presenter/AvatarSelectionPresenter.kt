@@ -2,12 +2,11 @@ package ru.dekabrsky.avatar.presentation.presenter
 
 import android.net.Uri
 import ru.dekabrsky.avatar.domain.AvatarType
-import ru.dekabrsky.avatar.presentation.adapter.AvatarsAdapter
 import ru.dekabrsky.avatar.presentation.utils.AvatarUriProvider
 import ru.dekabrsky.avatar.presentation.view.AvatarSelectionView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.flows.Flows
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.flows.Flows
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetMode
 import ru.dekabrsky.simpleBottomsheet.view.model.BottomSheetScreenArgs

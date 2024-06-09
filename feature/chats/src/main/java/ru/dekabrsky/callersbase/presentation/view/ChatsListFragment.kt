@@ -1,18 +1,12 @@
 package ru.dekabrsky.callersbase.presentation.view
 
 import android.os.Bundle
-import android.view.*
-import main.utils.visible
+import android.view.View
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.callersbase.R
-import ru.dekabrsky.callersbase.databinding.FragmentChatsListBinding
-import ru.dekabrsky.callersbase.presentation.adapter.ChatsListAdapter
 import ru.dekabrsky.callersbase.presentation.presenter.ChatsListPresenter
-import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.scopes.Scopes.SCOPE_FLOW_CHATS
+import ru.dekabrsky.easylife.scopes.Scopes.SCOPE_FLOW_CHATS
 import toothpick.Toothpick
 
 class ChatsListFragment : BaseChatsListFragment<ChatsListPresenter>(), ChatsListView {

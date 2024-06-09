@@ -1,9 +1,9 @@
-package ru.dekabrsky.italks.profile.view
+package ru.dekabrsky.easylife.profile.view
 
 import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.OneExecution
-import ru.dekabrsky.italks.basic.fragments.BasicView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.fragments.BasicView
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
 
 @AddToEndSingle
 interface ProfileView : BasicView {

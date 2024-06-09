@@ -2,8 +2,8 @@ package ru.dekabrsky.dialings.presentation.mapper
 
 import ru.dekabrsky.common.domain.model.DialingEntity
 import ru.dekabrsky.common.presentation.model.DialingUiModel
-import ru.dekabrsky.italks.basic.dateTime.formatDateTimeToUiDateTime
-import ru.dekabrsky.italks.basic.dateTime.formatDateToUiDate
+import ru.dekabrsky.easylife.basic.dateTime.formatDateTimeToUiDateTime
+import ru.dekabrsky.easylife.basic.dateTime.formatDateToUiDate
 import javax.inject.Inject
 
 class DialingListUiMapper @Inject constructor() {

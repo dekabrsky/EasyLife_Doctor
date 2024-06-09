@@ -1,12 +1,12 @@
-package ru.dekabrsky.italks.game.data.mapper
+package ru.dekabrsky.easylife.game.data.mapper
 
-import ru.dekabrsky.italks.game.data.model.GameConfigResponse
-import ru.dekabrsky.italks.game.data.model.GameLevelResponse
-import ru.dekabrsky.italks.game.data.model.GameProgressResponse
-import ru.dekabrsky.italks.game.data.domain.model.GameConfigEntity
-import ru.dekabrsky.italks.game.data.domain.model.GameLevelResponseEntity
-import ru.dekabrsky.italks.game.data.domain.model.GameProgressEntity
-import ru.dekabrsky.italks.game.data.domain.model.GameType
+import ru.dekabrsky.easylife.game.data.domain.model.GameConfigEntity
+import ru.dekabrsky.easylife.game.data.domain.model.GameLevelResponseEntity
+import ru.dekabrsky.easylife.game.data.domain.model.GameProgressEntity
+import ru.dekabrsky.easylife.game.data.domain.model.GameType
+import ru.dekabrsky.easylife.game.data.model.GameConfigResponse
+import ru.dekabrsky.easylife.game.data.model.GameLevelResponse
+import ru.dekabrsky.easylife.game.data.model.GameProgressResponse
 import javax.inject.Inject
 
 class GameResponseToEntityMapper @Inject constructor() {

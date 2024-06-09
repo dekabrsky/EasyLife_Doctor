@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.view.model
+package ru.dekabrsky.easylife.game.view.model
 
 @Suppress("NestedBlockDepth", "UnnecessaryParentheses", "MagicNumber")
 class Position(var x: Float, var y: Float) {

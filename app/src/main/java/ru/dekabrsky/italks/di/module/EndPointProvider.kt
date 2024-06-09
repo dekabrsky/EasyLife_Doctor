@@ -1,6 +1,6 @@
-package ru.dekabrsky.italks.di.module
+package ru.dekabrsky.easylife.di.module
 
-import ru.dekabrsky.italks.BuildConfig
+import ru.dekabrsky.easylife.BuildConfig
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import javax.inject.Inject
 import javax.inject.Provider

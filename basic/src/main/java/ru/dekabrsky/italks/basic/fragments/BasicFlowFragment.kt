@@ -1,9 +1,8 @@
-package ru.dekabrsky.italks.basic.fragments
+package ru.dekabrsky.easylife.basic.fragments
 
-import ru.dekabrsky.italks.basic.R
-import ru.dekabrsky.italks.basic.navigation.FlowNavigator
-import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
-import ru.dekabrsky.italks.basic.navigation.router.AppRouter
+import ru.dekabrsky.easylife.basic.R
+import ru.dekabrsky.easylife.basic.navigation.FragmentFlowNavigator
+import ru.dekabrsky.easylife.basic.navigation.router.AppRouter
 import ru.terrakok.cicerone.NavigatorHolder
 import javax.inject.Inject
 

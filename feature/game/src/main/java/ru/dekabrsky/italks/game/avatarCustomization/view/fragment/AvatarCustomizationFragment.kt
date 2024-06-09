@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.game.avatarCustomization.view.fragment
+package ru.dekabrsky.easylife.game.avatarCustomization.view.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -6,14 +6,14 @@ import androidx.annotation.StringRes
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.game.R
-import ru.dekabrsky.italks.game.avatarCustomization.view.model.CatWidgetSettings
-import ru.dekabrsky.italks.game.avatarCustomization.view.presenter.AvatarCustomizationPresenter
-import ru.dekabrsky.italks.game.databinding.FragmentAvatarCustomizationBinding
-import ru.dekabrsky.italks.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.game.R
+import ru.dekabrsky.easylife.game.avatarCustomization.view.model.CatWidgetSettings
+import ru.dekabrsky.easylife.game.avatarCustomization.view.presenter.AvatarCustomizationPresenter
+import ru.dekabrsky.easylife.game.databinding.FragmentAvatarCustomizationBinding
+import ru.dekabrsky.easylife.game.view.utils.GameAnimationUtils.setOnClickListenerWithAnimation
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
 
 class AvatarCustomizationFragment: BasicFragment(), AvatarCustomizationView {

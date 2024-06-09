@@ -2,8 +2,8 @@ package com.mygdx.game
 
 import android.app.Application
 import com.jakewharton.threetenabp.AndroidThreeTen
-import ru.dekabrsky.italks.di.module.AppRootModule
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.di.module.AppRootModule
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
 import toothpick.configuration.Configuration
 import toothpick.smoothie.module.SmoothieApplicationModule

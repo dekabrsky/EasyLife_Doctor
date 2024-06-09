@@ -13,8 +13,8 @@ import ru.dekabrsky.callersbase.domain.model.ChatEntity
 import ru.dekabrsky.callersbase.domain.model.MessageEntity
 import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import ru.dekabrsky.common.domain.model.ContactEntity
+import ru.dekabrsky.easylife.basic.dateTime.tryParseServerDateTime
 import ru.dekabrsky.feature.loginCommon.data.mapper.LoginDataMapper
-import ru.dekabrsky.italks.basic.dateTime.tryParseServerDateTime
 import javax.inject.Inject
 
 class ChatsResponseToEntityMapper @Inject constructor(

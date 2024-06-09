@@ -3,13 +3,13 @@ package ru.dekabrsky.feature.notifications.implementation.presentation.view
 import android.os.Bundle
 import android.view.View
 import main.utils.setBoolVisibility
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.implementation.R
 import ru.dekabrsky.feature.notifications.implementation.databinding.FmtNotificationsBinding
 import ru.dekabrsky.feature.notifications.implementation.presentation.adapter.NotificationsListAdapter
 import ru.dekabrsky.feature.notifications.implementation.presentation.presenter.BaseNotificationListPresenter
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 
 abstract class NotificationsListFragment<T : BaseNotificationListPresenter<*>> : BasicFragment(),
     NotificationsListView {

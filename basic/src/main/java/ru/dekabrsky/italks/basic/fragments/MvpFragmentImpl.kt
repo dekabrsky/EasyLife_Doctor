@@ -1,10 +1,9 @@
-package ru.dekabrsky.italks.basic.fragments
+package ru.dekabrsky.easylife.basic.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import moxy.MvpDelegate
-import ru.dekabrsky.italks.basic.logging.log
+import ru.dekabrsky.easylife.basic.logging.log
 
 open class MvpFragmentImpl : Fragment() {
     private var stateSaved: Boolean = false

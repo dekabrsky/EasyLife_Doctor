@@ -1,17 +1,17 @@
-package ru.dekabrsky.italks.testerSettings.presentation.view
+package ru.dekabrsky.easylife.testerSettings.presentation.view
 
 import androidx.fragment.app.Fragment
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
-import ru.dekabrsky.italks.basic.di.inject
-import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
-import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
-import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
-import ru.dekabrsky.italks.basic.navigation.router.AppRouter
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.scopes.Scopes
-import ru.dekabrsky.italks.testerSettings.R
-import ru.dekabrsky.italks.testerSettings.presentation.presenter.TesterSettingsFlowPresenter
+import ru.dekabrsky.easylife.basic.di.inject
+import ru.dekabrsky.easylife.basic.fragments.BasicFlowFragment
+import ru.dekabrsky.easylife.basic.navigation.FragmentFlowNavigator
+import ru.dekabrsky.easylife.basic.navigation.di.moduleFlow
+import ru.dekabrsky.easylife.basic.navigation.router.AppRouter
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.scopes.Scopes
+import ru.dekabrsky.easylife.testerSettings.R
+import ru.dekabrsky.easylife.testerSettings.presentation.presenter.TesterSettingsFlowPresenter
 import toothpick.Toothpick
 import javax.inject.Inject
 

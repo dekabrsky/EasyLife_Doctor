@@ -1,6 +1,6 @@
-package ru.dekabrsky.italks.profile.domain.interactor
+package ru.dekabrsky.easylife.profile.domain.interactor
 
-import ru.dekabrsky.italks.profile.data.repository.PatientRepository
+import ru.dekabrsky.easylife.profile.data.repository.PatientRepository
 import javax.inject.Inject
 
 class ProfileInteractor @Inject constructor(

@@ -8,10 +8,10 @@ import moxy.presenter.ProvidePresenter
 import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.presentation.adapter.MiniDialingsAdapter
 import ru.dekabrsky.common.presentation.model.TakingMedicationsUiModel
-import ru.dekabrsky.italks.basic.di.module
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.di.module
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.scopes.Scopes
 import ru.dekabrsky.scenarios.R
 import ru.dekabrsky.scenarios.databinding.FragmentPatientDetailsBinding
 import ru.dekabrsky.scenarios.presentation.presenter.PatientDetailsPresenter

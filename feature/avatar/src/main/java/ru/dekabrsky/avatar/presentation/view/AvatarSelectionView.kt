@@ -3,8 +3,7 @@ package ru.dekabrsky.avatar.presentation.view
 import moxy.viewstate.strategy.alias.AddToEndSingle
 import moxy.viewstate.strategy.alias.OneExecution
 import ru.dekabrsky.avatar.domain.AvatarType
-import ru.dekabrsky.italks.basic.fragments.BasicView
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.fragments.BasicView
 
 @AddToEndSingle
 interface AvatarSelectionView: BasicView {

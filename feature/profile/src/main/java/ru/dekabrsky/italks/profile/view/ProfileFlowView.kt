@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.profile.view
+package ru.dekabrsky.easylife.profile.view
 
 import moxy.MvpView
 

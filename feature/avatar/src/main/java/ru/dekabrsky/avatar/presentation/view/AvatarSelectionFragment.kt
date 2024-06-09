@@ -11,10 +11,9 @@ import ru.dekabrsky.avatar.databinding.FmtChooseAvatarBinding
 import ru.dekabrsky.avatar.domain.AvatarType
 import ru.dekabrsky.avatar.presentation.adapter.AvatarsAdapter
 import ru.dekabrsky.avatar.presentation.presenter.AvatarSelectionPresenter
-import ru.dekabrsky.italks.basic.fragments.BasicFragment
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.viewBinding.viewBinding
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.fragments.BasicFragment
+import ru.dekabrsky.easylife.basic.viewBinding.viewBinding
+import ru.dekabrsky.easylife.scopes.Scopes
 import toothpick.Toothpick
 
 class AvatarSelectionFragment: BasicFragment(), AvatarSelectionView {

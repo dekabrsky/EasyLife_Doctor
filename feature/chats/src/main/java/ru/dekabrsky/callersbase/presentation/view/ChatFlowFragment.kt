@@ -8,15 +8,15 @@ import ru.dekabrsky.callersbase.presentation.model.ChatConversationScreenArgs
 import ru.dekabrsky.callersbase.presentation.model.ChatFlowCache
 import ru.dekabrsky.callersbase.presentation.presenter.ChatFlowPresenter
 import ru.dekabrsky.common.presentation.model.ChatsFlowScreenArgs
-import ru.dekabrsky.italks.basic.di.inject
-import ru.dekabrsky.italks.basic.di.module
-import ru.dekabrsky.italks.basic.fragments.BasicFlowFragment
-import ru.dekabrsky.italks.basic.navigation.FragmentFlowNavigator
-import ru.dekabrsky.italks.basic.navigation.di.moduleFlow
-import ru.dekabrsky.italks.basic.navigation.router.AppRouter
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.scopes.Scopes.SCOPE_FLOW_CHATS
-import ru.dekabrsky.italks.tabs.presentation.fragment.TabsFlowFragment
+import ru.dekabrsky.easylife.basic.di.inject
+import ru.dekabrsky.easylife.basic.di.module
+import ru.dekabrsky.easylife.basic.fragments.BasicFlowFragment
+import ru.dekabrsky.easylife.basic.navigation.FragmentFlowNavigator
+import ru.dekabrsky.easylife.basic.navigation.di.moduleFlow
+import ru.dekabrsky.easylife.basic.navigation.router.AppRouter
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.scopes.Scopes.SCOPE_FLOW_CHATS
+import ru.dekabrsky.easylife.tabs.presentation.fragment.TabsFlowFragment
 import toothpick.Toothpick
 import javax.inject.Inject
 

@@ -1,8 +1,8 @@
-package ru.dekabrsky.italks.basic.rx
+package ru.dekabrsky.easylife.basic.rx
 
 import io.reactivex.Completable
 import io.reactivex.Single
-import ru.dekabrsky.italks.basic.fragments.BasicView
+import ru.dekabrsky.easylife.basic.fragments.BasicView
 
 fun <T> Single<T>.withLoadingView(view: BasicView) =
     this.doOnSubscribe { view.setLoadingVisibility(true) }

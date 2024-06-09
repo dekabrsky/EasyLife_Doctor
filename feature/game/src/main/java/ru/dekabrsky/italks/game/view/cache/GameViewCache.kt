@@ -1,6 +1,6 @@
-package ru.dekabrsky.italks.game.view.cache
+package ru.dekabrsky.easylife.game.view.cache
 
-import ru.dekabrsky.italks.game.data.domain.model.GameConfigEntity
+import ru.dekabrsky.easylife.game.data.domain.model.GameConfigEntity
 import javax.inject.Inject
 
 class GameViewCache @Inject constructor(){

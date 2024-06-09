@@ -1,4 +1,4 @@
-package ru.dekabrsky.italks.di.provider.network
+package ru.dekabrsky.easylife.di.provider.network
 
 import okhttp3.Interceptor
 import okhttp3.Response

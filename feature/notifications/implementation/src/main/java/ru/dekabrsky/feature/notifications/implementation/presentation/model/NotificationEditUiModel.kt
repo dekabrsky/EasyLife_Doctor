@@ -1,10 +1,9 @@
 package ru.dekabrsky.feature.notifications.implementation.presentation.model
 
-import main.utils.orZero
 import org.threeten.bp.DayOfWeek
 import org.threeten.bp.LocalDate
-import ru.dekabrsky.italks.basic.dateTime.formatDateToUiDateShort
-import ru.dekabrsky.italks.basic.dateTime.formatHourAndMinute
+import ru.dekabrsky.easylife.basic.dateTime.formatDateToUiDateShort
+import ru.dekabrsky.easylife.basic.dateTime.formatHourAndMinute
 
 @Suppress("LongParameterList")
 class NotificationEditUiModel(

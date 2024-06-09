@@ -1,15 +1,15 @@
 package ru.dekabrsky.stats.presentation.presenter
 
 import ru.dekabrsky.common.domain.interactor.ContactsInteractor
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.network.utils.ServerErrorHandler
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.basic.rx.withLoadingView
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.scopes.Scopes
 import ru.dekabrsky.feature.loginCommon.domain.interactor.LoginInteractor
 import ru.dekabrsky.feature.loginCommon.domain.model.UserType
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.basic.rx.withLoadingView
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.stats.presentation.view.AdultProfileView
 import ru.dekabrsky.webview.presentation.model.WebViewArgs
 import javax.inject.Inject

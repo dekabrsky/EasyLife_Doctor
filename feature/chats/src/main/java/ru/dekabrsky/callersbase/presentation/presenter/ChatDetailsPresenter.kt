@@ -7,10 +7,10 @@ import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import ru.dekabrsky.common.presentation.mapper.TakingMedicationsUiMapper
 import ru.dekabrsky.common.presentation.model.EventsFlowScreenArgs
 import ru.dekabrsky.common.presentation.model.TakingMedicationsUiModel
-import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
-import ru.dekabrsky.italks.basic.presenter.BasicPresenter
-import ru.dekabrsky.italks.flows.Flows
-import ru.dekabrsky.italks.scopes.Scopes
+import ru.dekabrsky.easylife.basic.navigation.router.FlowRouter
+import ru.dekabrsky.easylife.basic.presenter.BasicPresenter
+import ru.dekabrsky.easylife.flows.Flows
+import ru.dekabrsky.easylife.scopes.Scopes
 import javax.inject.Inject
 
 class ChatDetailsPresenter @Inject constructor(

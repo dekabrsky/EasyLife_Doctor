@@ -5,10 +5,10 @@ import ru.dekabrsky.callersbase.presentation.model.ChatUiModel
 import ru.dekabrsky.common.domain.model.CallersBaseEntity
 import ru.dekabrsky.common.domain.model.ContactEntity
 import ru.dekabrsky.common.presentation.model.CallersBaseUiModel
+import ru.dekabrsky.easylife.basic.dateTime.formatDateToUiDate
 import ru.dekabrsky.feature.loginCommon.domain.model.UserInfoEntity
 import ru.dekabrsky.feature.loginCommon.domain.model.UserLoginLevelEntity
 import ru.dekabrsky.feature.loginCommon.domain.model.UserType
-import ru.dekabrsky.italks.basic.dateTime.formatDateToUiDate
 import javax.inject.Inject
 
 class ChatEntityToUiMapper @Inject constructor() {

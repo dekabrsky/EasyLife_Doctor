@@ -1,9 +1,9 @@
 package ru.dekabrsky.feature.notifications.common.utils
 
 import main.utils.orZero
+import ru.dekabrsky.easylife.basic.resources.ResourceProvider
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.feature.notifications.common.domain.model.NotificationMedicineEntity
-import ru.dekabrsky.italks.basic.resources.ResourceProvider
 import javax.inject.Inject
 
 class NotificationToStringFormatter @Inject constructor(

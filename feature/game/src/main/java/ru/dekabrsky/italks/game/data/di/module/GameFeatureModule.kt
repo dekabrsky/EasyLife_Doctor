@@ -1,8 +1,8 @@
-package ru.dekabrsky.italks.game.data.di.module
+package ru.dekabrsky.easylife.game.data.di.module
 
-import ru.dekabrsky.italks.game.data.api.GameApi
-import ru.dekabrsky.italks.game.data.cache.GameConfigsCache
-import ru.dekabrsky.italks.game.data.di.provider.GameApiProvider
+import ru.dekabrsky.easylife.game.data.api.GameApi
+import ru.dekabrsky.easylife.game.data.cache.GameConfigsCache
+import ru.dekabrsky.easylife.game.data.di.provider.GameApiProvider
 import toothpick.config.Module
 
 class GameFeatureModule: Module() {
