@@ -1,6 +1,7 @@
 package ru.dekabrsky.login.presentation.presenter
 
 import android.content.Context
+import android.content.Intent
 import android.util.Base64
 import com.google.crypto.tink.Aead
 import com.google.crypto.tink.aead.AeadKeyTemplates
@@ -19,6 +20,7 @@ import ru.dekabrsky.login.R
 import ru.dekabrsky.login.domain.interactor.LoginInteractorImpl
 import ru.dekabrsky.login.presentation.util.Pbkdf2Factory
 import ru.dekabrsky.login.presentation.util.Salt
+import ru.dekabrsky.login.presentation.util.parseLoginIntent
 import ru.dekabrsky.login.presentation.view.PinLoginView
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import java.security.GeneralSecurityException
@@ -33,7 +35,9 @@ class PinLoginPresenter @Inject constructor(
     private val loginInteractor: LoginInteractorImpl,
     private val analyticsSender: AnalyticsSender,
     private val errorHandler: ServerErrorHandler,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val loginDataCache: LoginDataCache,
+    private val intent: Intent
 ) : BasicPresenter<PinLoginView>(router) {
 
     private var pin: String = ""
@@ -74,6 +78,7 @@ class PinLoginPresenter @Inject constructor(
 
         viewState.setAdditionalButtonText(additionalButtonText)
         viewState.setTitle(headerText)
+        parseLoginIntent(intent, loginDataCache, viewState, resourceProvider)
     }
 
     fun onLoginClicked() {

@@ -5,8 +5,6 @@ import io.reactivex.Single
 import main.utils.isBlankOrEmpty
 import ru.dekabrsky.analytics.AnalyticsSender
 import ru.dekabrsky.feature.loginCommon.presentation.model.LoginDataCache
-import ru.dekabrsky.feature.loginCommon.presentation.model.PatientMedicinesDiff
-import ru.dekabrsky.feature.notifications.common.domain.model.NotificationEntity
 import ru.dekabrsky.italks.basic.navigation.BaseScreens
 import ru.dekabrsky.italks.basic.navigation.router.FlowRouter
 import ru.dekabrsky.italks.basic.network.utils.ServerErrorHandler
@@ -17,7 +15,7 @@ import ru.dekabrsky.italks.flows.Flows
 import ru.dekabrsky.italks.scopes.Scopes
 import ru.dekabrsky.login.R
 import ru.dekabrsky.login.domain.interactor.LoginInteractorImpl
-import ru.dekabrsky.login.presentation.model.Extras
+import ru.dekabrsky.login.presentation.util.parseLoginIntent
 import ru.dekabrsky.login.presentation.view.LoginView
 import ru.dekabrsky.sharedpreferences.SharedPreferencesProvider
 import ru.dekabrsky.webview.presentation.model.WebViewArgs
@@ -52,7 +50,7 @@ class LoginPresenter @Inject constructor(
         viewState.setLogin(lastLogin)
         analyticsSender.sendLogin()
 
-        parseIntent()
+        parseLoginIntent(intent, loginDataCache, viewState, resourceProvider)
 
         // симуляция сохраненного пина. По факту тут нужно будет смотреть, есть ли пин
 //        interactor.getSavedRefreshToken()?.let { refreshToken ->
@@ -81,29 +79,29 @@ class LoginPresenter @Inject constructor(
             .addFullLifeCycle()
     }
 
-    private fun parseIntent() {
-        intent.extras?.let { extras ->
-
-            (extras.getSerializable(Extras.NOTIFICATION) as? NotificationEntity)?.let {
-                loginDataCache.medReminder = it
-                viewState.showToast(resourceProvider.getString(R.string.auth_to_view))
-            }
-
-            when (extras.getString(Extras.TYPE)) {
-                Extras.NOTIFICATIONS_UPDATE_BY_DOCTOR ->
-                    loginDataCache.medicinesDiff = extras.getString(Extras.DIFF)
-                Extras.CHAT_NEW_MESSAGE ->
-                    loginDataCache.chatId = extras.getString(Extras.CHAT_ID)
-                Extras.NOTIFICATIONS_UPDATE_BY_PATIENT ->
-                    loginDataCache.patientMedicinesDiff = PatientMedicinesDiff(
-                        patientId = extras.getString(Extras.PATIENT_ID).orEmpty(),
-                        diff = extras.getString(Extras.DIFF).orEmpty()
-                    )
-                Extras.PATIENT_REGISTRATION ->
-                    loginDataCache.registeredPatientId = extras.getString(Extras.PATIENT_ID)
-            }
-        }
-    }
+//    private fun parseIntent() {
+//        intent.extras?.let { extras ->
+//
+//            (extras.getSerializable(Extras.NOTIFICATION) as? NotificationEntity)?.let {
+//                loginDataCache.medReminder = it
+//                viewState.showToast(resourceProvider.getString(R.string.auth_to_view))
+//            }
+//
+//            when (extras.getString(Extras.TYPE)) {
+//                Extras.NOTIFICATIONS_UPDATE_BY_DOCTOR ->
+//                    loginDataCache.medicinesDiff = extras.getString(Extras.DIFF)
+//                Extras.CHAT_NEW_MESSAGE ->
+//                    loginDataCache.chatId = extras.getString(Extras.CHAT_ID)
+//                Extras.NOTIFICATIONS_UPDATE_BY_PATIENT ->
+//                    loginDataCache.patientMedicinesDiff = PatientMedicinesDiff(
+//                        patientId = extras.getString(Extras.PATIENT_ID).orEmpty(),
+//                        diff = extras.getString(Extras.DIFF).orEmpty()
+//                    )
+//                Extras.PATIENT_REGISTRATION ->
+//                    loginDataCache.registeredPatientId = extras.getString(Extras.PATIENT_ID)
+//            }
+//        }
+//    }
 
     fun onDoneButtonClick() {
         when (mode) {

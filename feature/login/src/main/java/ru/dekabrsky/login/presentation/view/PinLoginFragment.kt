@@ -1,11 +1,13 @@
 package ru.dekabrsky.login.presentation.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import main.utils.onTextChange
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import ru.dekabrsky.italks.basic.di.module
 import ru.dekabrsky.italks.basic.fragments.BasicFragment
 import ru.dekabrsky.italks.basic.viewBinding.viewBinding
 import ru.dekabrsky.italks.scopes.Scopes
@@ -25,6 +27,9 @@ class PinLoginFragment: BasicFragment(), PinLoginView {
     @ProvidePresenter
     fun providePresenter(): PinLoginPresenter {
         return Toothpick.openScopes(Scopes.SCOPE_FLOW_LOGIN, scopeName)
+            .module {
+                bind(Intent::class.java).toInstance(requireActivity().intent)
+            }
             .getInstance(PinLoginPresenter::class.java)
             .also { Toothpick.closeScope(scopeName) }
     }
