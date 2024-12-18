@@ -8,6 +8,9 @@ buildscript {
     }
 
     repositories {
+        flatDir {
+            dirs("libs")
+        }
         google()
         mavenCentral()
         jcenter()
@@ -31,6 +34,9 @@ apply from: 'detekt.gradle'
 allprojects {
 
     repositories {
+        flatDir {
+            dirs("libs")
+        }
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
