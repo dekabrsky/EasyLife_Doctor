@@ -8,9 +8,14 @@ buildscript {
     }
 
     repositories {
+        flatDir {
+            dirs("libs")
+        }
         google()
         mavenCentral()
+        jcenter()
         maven { url 'https://jitpack.io' }
+        maven { url "https://repo.spring.io/milestone" }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.3.0"
@@ -29,10 +34,14 @@ apply from: 'detekt.gradle'
 allprojects {
 
     repositories {
+        flatDir {
+            dirs("libs")
+        }
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
         maven { url 'https://jitpack.io' }
+        maven { url "https://repo.spring.io/milestone" }
     }
 
     configurations { natives }

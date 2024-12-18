@@ -15,11 +15,10 @@ ext.versions = [
         rxandroid2          : '2.1.1',
         retrofit            : '2.3.0',
         okhttp              : '4.9.3',
-        moxy                : '2.2.1',
+        moxy                : '2.2.2',
         toothpick           : '2.1.0',
         room                : '2.5.1',
-        swipeRevealLayout   : '1.4.1',
-        weekDaysSelector    : '1.1.1',
+        swipeRevealLayout   : '0.0.1',
         // Test
         junit               : '4.12',
         mockito             : '3.9.0',
@@ -51,13 +50,11 @@ ext.libraries = [
         toothpickCompiler    : "com.github.stephanenicolas.toothpick:toothpick-compiler:$versions.toothpick",
         material             : "com.google.android.material:material:$versions.material",
 
-        cicerone             : "ru.terrakok.cicerone:cicerone:$versions.cicerone",
+        cicerone             : files('libs/cicerone-3.0.0.jar'),
 
         glide                : "com.github.bumptech.glide:glide:$versions.glide",
 
-        swipeRevealLayout    : "com.chauthai.swipereveallayout:swipe-reveal-layout:$versions.swipeRevealLayout",
-
-        weekDaysSelector     : "com.github.DavidProdinger:weekdays-selector:$versions.weekDaysSelector",
+        swipeRevealLayout    : "io.github.rexmtorres.android:swipereveallayout:$versions.swipeRevealLayout",
 
         // Test
         kotlinTest           : "org.jetbrains.kotlin:kotlin-test:$versions.kotlin",

@@ -135,9 +135,9 @@ dependencies {
 
     implementation libraries.cicerone
 
-    implementation "com.github.moxy-community:moxy-android:2.2.1"
-    implementation "com.github.moxy-community:moxy-androidx:2.2.1"
-    implementation "com.github.moxy-community:moxy-material:2.2.1"
+    implementation "com.github.moxy-community:moxy-android:2.2.2"
+    implementation "com.github.moxy-community:moxy-androidx:2.2.2"
+    implementation "com.github.moxy-community:moxy-material:2.2.2"
 
     implementation "com.squareup.retrofit2:retrofit:2.3.0"
     implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"

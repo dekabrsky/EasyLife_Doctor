@@ -9,7 +9,7 @@
     app:cardCornerRadius="@dimen/radius_12"
     app:cardElevation="4dp">
 
-    <com.chauthai.swipereveallayout.SwipeRevealLayout
+    <io.github.rexmtorres.android.swipereveallayout.SwipeRevealLayout
         android:id="@+id/swipeReveal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -115,6 +115,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </com.chauthai.swipereveallayout.SwipeRevealLayout>
+    </io.github.rexmtorres.android.swipereveallayout.SwipeRevealLayout>
 
 </androidx.cardview.widget.CardView>
