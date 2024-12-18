@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.chauthai.swipereveallayout.ViewBinderHelper
+import io.github.rexmtorres.android.swipereveallayout.ViewBinderHelper
 import main.utils.orZero
 import main.utils.setBoolVisibility
 import main.utils.setIsCheckedWithoutEffects
