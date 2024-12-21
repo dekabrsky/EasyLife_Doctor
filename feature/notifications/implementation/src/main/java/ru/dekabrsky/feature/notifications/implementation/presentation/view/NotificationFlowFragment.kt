@@ -48,6 +48,12 @@ class NotificationFlowFragment : BasicFlowFragment(), NotificationFlowView {
                             notificationsScope = scopeName
                         )
 
+                    Flows.Notifications.SCREEN_REST_OF_PILLS_LIST ->
+                        RestOfPillsFragment.newInstance(scopeName)
+
+                    Flows.Notifications.SCREEN_EDIT_REST_OF_PILLS ->
+                        EditRestOfPillsFragment.newInstance(scopeName)
+
                     Flows.Common.SCREEN_BOTTOM_INFO ->
                         SimpleInfoBottomSheet.newInstance(data as BottomSheetScreenArgs)
 
